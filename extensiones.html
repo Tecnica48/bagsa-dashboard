@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seguimiento de Extensiones — BAGSA</title>
+<link rel="icon" href="data:image/png;base64,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">
+<style>
+  :root{
+    --navy:#005895; --teal:#00aec3; --teal-soft:#e3f6f8; --blue-bright:#008ed7;
+    --bg:#f3f7fa; --panel:#ffffff; --border:#dbe6ee; --border-soft:#eaf1f5;
+    --text:#16303f; --text-muted:#5c7688; --red:#d64545; --red-soft:#fbe9e9;
+    --radius:4px;
+    --sans: Calibri, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    --display: "Calibri Light", Calibri, "Segoe UI", -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:36px 24px 80px;}
+  .wrap{max-width:1560px;margin:0 auto;}
+
+  header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;border-bottom:3px solid var(--teal);padding-bottom:20px;margin-bottom:30px;}
+  .brand-row{display:flex;align-items:center;gap:20px;cursor:pointer;justify-self:start;}
+  .brand-row img{height:108px;width:auto;display:block;}
+  .brand-div{width:1px;height:80px;background:var(--border);}
+  .brand-title{font-size:18px;font-weight:600;color:var(--text-muted);letter-spacing:.03em;white-space:nowrap;}
+  .header-center{text-align:center;}
+  h1{font-family:var(--display);font-weight:400;color:var(--navy);font-size:clamp(24px,4vw,32px);margin:0 0 4px;}
+  .subtitle{color:var(--text-muted);font-size:14px;margin:0 auto;max-width:64ch;}
+  .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:9px;justify-self:end;}
+  @media (max-width:1100px){
+    header{grid-template-columns:1fr;justify-items:center;text-align:center;}
+    .brand-row,.header-right{justify-self:center;}
+    .header-right{align-items:center;}
+  }
+  .timestamp{font-size:12.5px;color:var(--text-muted);text-align:right;}
+  .timestamp b{color:var(--navy);font-weight:600;}
+
+  .back-link{display:none;align-items:center;gap:6px;color:var(--teal);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:18px;}
+  .back-link.show{display:inline-flex;}
+
+  /* 3 columnas x 2 filas: las tarjetas se acomodan por columna, en el orden del HTML */
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;grid-auto-flow:column;gap:16px;margin-bottom:36px;}
+  @media (max-width:900px){.menu-grid{grid-template-columns:1fr 1fr;grid-template-rows:unset;grid-auto-flow:row;}}
+  @media (max-width:600px){.menu-grid{grid-template-columns:1fr;}}
+  .menu-card{
+    border:none;border-radius:8px;padding:20px 20px 18px;cursor:pointer;color:#fff;
+    display:flex;flex-direction:column;gap:6px;text-align:left;
+    box-shadow:0 4px 0 rgba(0,0,0,.16), 0 6px 14px rgba(0,0,0,.10);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .menu-card:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.16), 0 10px 18px rgba(0,0,0,.12);}
+  .menu-card:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.16);}
+  .menu-card.dark{background:var(--navy);}
+  .menu-card.light{background:var(--teal);}
+  .menu-card.mid{background:var(--blue-bright);}
+  .menu-card .mc-label{font-size:18px;font-weight:700;}
+  .menu-card .mc-note{font-size:11.5px;opacity:.92;line-height:1.5;}
+  .menu-card .mc-count{font-family:var(--display);font-size:28px;line-height:1;margin-top:8px;}
+
+  .view{display:none;}
+  .view.active{display:block;}
+
+  section{margin-bottom:36px;}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;gap:16px;flex-wrap:wrap;}
+  h2{font-family:var(--display);font-weight:400;font-size:21px;margin:0;color:var(--navy);}
+  h3{font-family:var(--display);font-weight:400;font-size:16px;margin:0;color:var(--navy);}
+  .section-note{font-size:12.5px;color:var(--text-muted);}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 24px 18px;}
+
+  .chips{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .chip{background:#fff;border:1px solid var(--border);color:var(--text-muted);padding:7px 14px;border-radius:16px;font-size:12.5px;cursor:pointer;font-weight:600;white-space:nowrap;}
+  .chip.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .search-row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .search-row input[type="text"]{flex:1;min-width:220px;}
+  select, input[type="text"]{background:#fff;color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;font-size:13.5px;font-family:var(--sans);}
+  select:focus, input:focus{outline:1px solid var(--teal);}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;font-weight:700;color:var(--navy);font-size:11px;padding:8px 9px;border-bottom:2px solid var(--border);white-space:nowrap;text-transform:uppercase;letter-spacing:.02em;position:sticky;top:0;background:var(--panel);}
+  th[data-key]{cursor:pointer;user-select:none;}
+  th[data-key]:hover{color:var(--teal);}
+  th[data-key] .sort-arrow{margin-left:4px;opacity:.5;font-size:9px;}
+  th[data-key].sorted .sort-arrow{opacity:1;color:var(--teal);}
+  td{padding:8px 9px;border-bottom:1px solid var(--border-soft);white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  #tabla-resumen thead tr.totals-row th{font-weight:700;color:var(--navy);background:var(--teal-soft);position:sticky;top:0;z-index:3;border-bottom:1px solid var(--border);}
+  #tabla-resumen thead tr:not(.totals-row) th{position:sticky;top:34px;z-index:3;background:var(--panel);}
+  th.totals-label{text-align:left;}
+  .table-scroll{overflow:auto;max-height:520px;border:1px solid var(--border-soft);border-radius:3px;}
+  .table-scroll.small{max-height:340px;}
+  .badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;white-space:nowrap;font-weight:600;}
+  .muted{color:var(--text-muted);}
+  .row-count{font-size:12px;color:var(--text-muted);margin-top:10px;}
+  .trunc{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .trunc.tight{max-width:130px;}
+  .cliente-sm{font-size:11px;color:var(--text-muted);}
+
+  .filters{display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+  .filters label{font-size:12.5px;color:var(--text-muted);display:flex;flex-direction:column;gap:5px;}
+
+  .pipeline{display:flex;flex-direction:column;gap:0;}
+  .stage-row{display:grid;grid-template-columns:190px 1fr 96px;align-items:center;gap:16px;padding:10px 0;border-bottom:1px dashed var(--border-soft);cursor:pointer;border-radius:3px;}
+  .stage-row:hover{background:var(--teal-soft);}
+  .stage-row:last-child{border-bottom:none;}
+  .stage-name{font-size:14px;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .bottleneck-tag{font-size:10px;background:var(--red-soft);color:var(--red);padding:2px 7px;border-radius:9px;font-weight:600;}
+  .stage-track{position:relative;height:16px;background:var(--border-soft);border-radius:2px;overflow:hidden;}
+  .stage-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;}
+  .stage-count{font-size:13px;color:var(--text-muted);text-align:right;}
+  .stage-count b{color:var(--navy);font-weight:600;}
+  .stage-hint{font-size:11.5px;color:var(--text-muted);margin-top:10px;}
+
+
+  /* Collapsibles */
+  .collapsible-section{border:none;}
+  .collapsible-header{display:flex;align-items:baseline;gap:10px;cursor:pointer;list-style:none;padding:4px 0;user-select:none;}
+  .collapsible-header::-webkit-details-marker{display:none;}
+  .collapsible-header h2{margin:0;}
+  .coll-arrow{font-size:13px;color:var(--navy);transition:transform .2s;display:inline-block;}
+  details[open] .coll-arrow{transform:rotate(180deg);}
+
+  /* ── Consulta individual ── */
+  .consulta-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start;}
+  @media(max-width:900px){.consulta-layout{grid-template-columns:1fr;}}
+  .consulta-sidebar{display:flex;flex-direction:column;gap:10px;}
+  .consulta-search{display:flex;gap:8px;align-items:center;}
+  .consulta-search input{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;font-family:var(--sans);background:var(--bg);color:var(--text);}
+  .consulta-search input:focus{outline:none;border-color:var(--teal);}
+  .consulta-list{max-height:70vh;overflow-y:auto;display:flex;flex-direction:column;gap:4px;}
+  .consulta-item{padding:10px 14px;border-radius:var(--radius);border:1px solid var(--border);cursor:pointer;transition:all .15s;}
+  .consulta-item:hover{border-color:var(--teal);background:var(--teal)11;}
+  .consulta-item.active{border-color:var(--navy);background:var(--navy)11;}
+  .ci-proyecto{font-family:var(--display);font-size:13px;font-weight:700;color:var(--navy);}
+  .ci-cliente{font-size:12px;color:var(--text);margin-top:2px;}
+  .ci-loc{font-size:11px;color:var(--text-muted);}
+  .consulta-empty{color:var(--text-muted);font-size:13px;padding:20px 0;text-align:center;}
+
+  /* Ficha */
+  .ficha{display:none;}
+  .ficha.visible{display:block;}
+  .ficha-header{background:var(--navy);color:#fff;padding:14px 24px;border-radius:var(--radius) var(--radius) 0 0;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;}
+  .ficha-header-logo{display:flex;flex-direction:row;align-items:center;gap:16px;}
+  .ficha-header-logo img{height:76px;filter:brightness(0) invert(1);}
+  .ficha-header-logo span{font-size:17px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.9);font-weight:600;white-space:nowrap;}
+  .ficha-header-title{text-align:center;}
+  .ficha-header-title h3{margin:0;font-size:19px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;}
+  .ficha-header-title p{margin:4px 0 0;font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.5px;text-transform:uppercase;}
+  .ficha-header-fecha{text-align:right;font-size:14px;font-weight:600;color:#fff;}
+  .ficha-body{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px;}
+  .ficha-top{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+  .ficha-top-field{display:flex;flex-direction:column;gap:3px;}
+  .ficha-top-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);}
+  .ficha-top-val{font-size:14px;font-weight:600;color:var(--text);}
+  .ficha-top-val.paso-pendiente{color:#e05252;font-weight:700;}
+  .ficha-top-val.paso-ok{color:#4caf82;font-weight:700;}
+  .ficha-sections{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:700px){.ficha-sections{grid-template-columns:1fr;}}
+  .ficha-section{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ficha-section-title{background:var(--navy);color:#fff;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:8px 14px;}
+  .ficha-section.full{grid-column:1/-1;}
+  .ficha-section-title.con-total{display:flex;justify-content:space-between;align-items:center;}
+  .ficha-section-total{font-size:13px;font-weight:600;letter-spacing:.4px;text-transform:none;}
+  .ficha-section-total b{font-size:15px;font-weight:700;}
+  .ficha-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 14px;border-bottom:1px solid var(--border-soft);gap:12px;}
+  .ficha-row:last-child{border-bottom:none;}
+  .ficha-row-label{font-size:12px;color:var(--text-muted);flex-shrink:0;}
+  .ficha-row-val{font-size:13px;font-weight:500;color:var(--text);text-align:right;}
+  .ficha-row-val.muted{color:var(--text-muted);font-weight:400;}
+  .ficha-row-val.filled{color:var(--navy);font-weight:600;}
+  .ficha-row-val.next-step{color:var(--teal);font-weight:700;}
+  .ficha-carpeta{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--teal);text-decoration:none;margin-top:12px;}
+  .ficha-carpeta:hover{text-decoration:underline;}
+  .ficha-actions{display:flex;gap:10px;margin-top:16px;}
+  .ficha-actions button{padding:9px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--sans);}
+  .btn-print{background:var(--navy);color:#fff;}
+
+  /* Vista Extensiones habilitadas: recuadros de resumen */
+  .ext-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px;}
+  .ext-box{background:var(--panel);border:1px solid var(--border);border-top:4px solid var(--navy);border-radius:8px;padding:14px 18px 12px;}
+  .ext-box.price{border-top-color:var(--teal);}
+  .ext-label{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;}
+  .ext-value{font-family:var(--display);font-size:32px;line-height:1.15;color:var(--navy);margin-top:4px;}
+  .ext-sub{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
+  .ext-nota{margin:0 0 18px;}
+  @media (max-width:800px){.ext-boxes{grid-template-columns:1fr;}}
+
+  /* Vista Factibilidades vigentes: tres pasos en una sola tabla */
+  #tabla-fact tr.grp td{background:var(--teal-soft);color:var(--navy);font-weight:700;padding:10px 12px;border-top:2px solid var(--border);border-left:5px solid var(--teal);}
+  #tabla-fact tr.grp1 td{border-left-color:var(--navy);}
+  #tabla-fact tr.grp2 td{border-left-color:var(--blue-bright);}
+  #tabla-fact tr.grp3 td{border-left-color:var(--teal);}
+  #tabla-fact .grp-step{display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;margin-right:8px;}
+  #tabla-fact .grp-sub{font-weight:400;color:var(--text-muted);font-size:12px;margin-left:8px;}
+  #tabla-fact .grp-n{float:right;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1px 10px;font-size:12px;}
+  #tabla-fact tr.grp-empty td{color:var(--text-muted);font-style:italic;}
+
+  /* Tablas de usuarios por localidad: fila TOTAL fija arriba, encabezado de columnas justo debajo */
+  table.tot-arriba, #tabla-resumen{border-collapse:separate;border-spacing:0;}   /* con bordes colapsados Chrome deja ver el texto que pasa por debajo de las filas fijas */
+  table.tot-arriba thead tr.totals-row th{font-weight:700;color:var(--navy);background:var(--teal-soft);position:sticky;top:0;z-index:3;border-bottom:1px solid var(--border);}
+  table.tot-arriba thead tr:not(.totals-row) th{position:sticky;top:34px;z-index:3;background:var(--panel);}
+  #tabla-ul-cons tr.zona td{background:#eaf3f8;color:var(--navy);font-weight:700;border-top:2px solid var(--border);}
+  #tabla-ul-cons tr.zona td:first-child{border-left:4px solid var(--teal);}
+  #tabla-ul-cons tr.sinzona td{background:var(--red-soft);color:var(--red);font-weight:700;border-top:2px solid var(--border);}
+  #tabla-ul-cons tr.sinzona td:first-child{border-left:4px solid var(--red);}
+  #tabla-ul-cons td.loc{padding-left:28px;}
+  .zona-partidos{display:block;font-weight:400;font-size:11.5px;color:var(--text-muted);margin-top:2px;white-space:normal;max-width:560px;}
+
+  /* Enlaces del encabezado: Definiciones / Calidad de datos */
+  .header-links{display:flex;gap:18px;justify-content:flex-end;flex-wrap:wrap;}
+  .link-btn{background:none;border:none;padding:0 0 1px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--teal);cursor:pointer;border-bottom:1px dashed var(--teal);display:inline-flex;align-items:center;gap:6px;}
+  .link-btn:hover{color:var(--navy);border-bottom-color:var(--navy);}
+  .cal-badge{background:var(--red);color:#fff;border-radius:10px;padding:0 7px;font-size:11px;line-height:17px;font-weight:700;}
+  .cal-badge.ok{background:#3aa676;}
+  @media (max-width:1100px){.header-links{justify-content:center;}}
+
+  /* Hoja de definiciones */
+  .def-grupo{margin-bottom:16px;}
+  .def-item{padding:11px 0;border-bottom:1px solid var(--border-soft);}
+  .def-item:last-child{border-bottom:none;padding-bottom:2px;}
+  .def-grupo h3{margin-bottom:4px;}
+  .def-term{font-weight:700;color:var(--navy);font-size:14px;}
+  .def-desc{font-size:13px;color:var(--text);margin-top:3px;line-height:1.5;}
+  .def-hoy{display:inline-block;background:var(--teal-soft);color:var(--navy);border-radius:10px;padding:1px 10px;font-size:11.5px;font-weight:600;margin-left:10px;}
+
+  /* Calidad de datos */
+  .cal-resumen{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;}
+  .cal-tile{background:var(--panel);border:1px solid var(--border);border-top:4px solid var(--border);border-radius:8px;padding:12px 18px;}
+  .cal-tile.error{border-top-color:var(--red);}
+  .cal-tile.advertencia{border-top-color:#e0a030;}
+  .cal-tile.info{border-top-color:var(--blue-bright);}
+  .cal-tile .cal-t{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;}
+  .cal-tile b{display:block;font-family:var(--display);font-size:30px;font-weight:400;color:var(--navy);line-height:1.2;margin-top:2px;}
+  .cal-tile span.cal-s{font-size:12px;color:var(--text-muted);}
+  .cal-aviso{background:#fdf1dc;border:1px solid #ecd39b;color:#7a5410;border-radius:var(--radius);padding:12px 16px;font-size:13px;line-height:1.5;margin-bottom:14px;}
+  details.cal-check{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;}
+  details.cal-check>summary{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;list-style:none;user-select:none;}
+  details.cal-check>summary::-webkit-details-marker{display:none;}
+  details.cal-check[open]>summary{border-bottom:1px solid var(--border-soft);}
+  .cal-sev{display:inline-block;border-radius:10px;padding:1px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
+  .cal-sev.error{background:var(--red-soft);color:var(--red);}
+  .cal-sev.advertencia{background:#fdf1dc;color:#9a6a12;}
+  .cal-sev.info{background:var(--teal-soft);color:var(--navy);}
+  .cal-ttl{font-weight:600;color:var(--navy);font-size:14px;}
+  .cal-n{margin-left:auto;font-size:12px;color:var(--text-muted);white-space:nowrap;}
+  .cal-cuerpo{padding:12px 16px 14px;}
+  .cal-cuerpo p{margin:0 0 10px;font-size:13px;line-height:1.5;color:var(--text);}
+  .cal-ok{list-style:none;margin:8px 0 0;padding:0;columns:2;font-size:13px;color:var(--text);}
+  .cal-ok li{padding:3px 0;}
+  .cal-ok li:before{content:"✓";color:#3aa676;font-weight:700;margin-right:8px;}
+  @media (max-width:800px){.cal-resumen{grid-template-columns:1fr;}.cal-ok{columns:1;}}
+
+  /* Botón Exportar a Excel */
+  .export-row{display:flex;justify-content:flex-end;margin-bottom:8px;}
+  .btn-export{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:var(--radius);padding:5px 12px;font-size:12px;font-weight:600;font-family:var(--sans);cursor:pointer;}
+  .btn-export:hover{background:var(--navy);color:#fff;}
+
+  @media print{
+    .export-row,#toast{display:none!important;}
+    @page{margin:15mm 12mm;}
+    header,#back-link,.consulta-sidebar,.ficha-actions,.view:not(#view-consulta),.menu-grid{display:none!important;}
+    .consulta-layout{display:block!important;}
+    .ficha{display:block!important;}
+    body{background:#fff!important;}
+    /* Forzar fondos e impresión de colores */
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
+    .ficha-header{background:var(--navy)!important;color:#fff!important;border-radius:6px 6px 0 0!important;}
+    .ficha-header-title h3,.ficha-header-fecha,.ficha-header-logo span{color:#fff!important;}
+    .ficha-header-logo img{filter:brightness(0) invert(1)!important;}
+    [style*="background:var(--teal)"]{background:#00AEC3!important;color:#fff!important;}
+    .ficha-section-title{background:var(--navy)!important;color:#fff!important;}
+    .ficha-section{border:1px solid #ccc!important;break-inside:avoid;}
+    .ficha-body{border:1px solid #ccc!important;border-top:none!important;}
+    .ficha-top{border-bottom:1px solid #ccc!important;}
+    .ficha-row{border-bottom:1px solid #eee!important;}
+    .ficha-top-val.paso-pendiente{color:#c0392b!important;}
+    .ficha-top-val.paso-ok{color:#27ae60!important;}
+    .ficha-top-label{color:#666!important;}
+    .ficha-row-label{color:#666!important;}
+    .ficha-row-val.filled{color:var(--navy)!important;}
+    .ficha-carpeta{color:var(--teal)!important;}
+  }
+</style>
+</head>
+<body>
+<!-- overlay mientras carga el JSON -->
+<div id="loading-overlay" style="position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;font-family:var(--sans);color:var(--text-muted);font-size:15px;flex-direction:column;gap:10px;">
+  <svg width="36" height="36" viewBox="0 0 16 16" fill="none" style="animation:spin 1s linear infinite;"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5V6h-3.5" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span>Cargando datos…</span>
+</div>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+
+<div class="wrap">
+
+  <header>
+      <div class="brand-row" onclick="showView('menu')">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAREAAABxCAYAAADyF5dgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAEy9JREFUeNrsXU1S40gWzuqo5US06wSYE7Q5AFHiBBasZmd7PQvjE4BPYFjMGrObFYgTIIIDoDoBqhO0O2L2PXr2yyFRKX+VklL2+yLcVdUYZSp/vnzfy5cvGSMQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCITDwcPrQPajf/zz30NqIAKhG/zWA/KIis9j8bdHxbfuCiKZUncSCEQiZfJ4Lv4Gn9jgN4BIIupSAuHQSeQzediSwmNBJCPqVgLhEEnk4XWIssWFPDjAb/JMREIgHBqJPLxeFv99M5QtRCQEApHIJ+sDLI8VTn5fICIhEPaeRB5eY7Q+ooZK4EQypG4mEPaNRHby5dGz9SEjEnC2DqirCYR9IZGH1zuUL21hhBYJEQmB0HsS2RHItIP33BIJdTeB0GcS6Y5A/k8khTVyR11OIPSRRLonEI4pEQmB0DcSeXi9DoRARCK5pK4nEPpAIrtt3KsA33tFB/YIhNBJBALJGAtZOqwoGI1ACNsSAQIJeVuVgtEIhGBJZBdMFvXg/SkYjUAIjkR2GciuetQGo8BlF4FwcJaI78N0bSAurJFrGg4EQtcksnOmTnvaFlcFkcQ0JAiEbi2Rq563xx05WgkEO3z1aIUMemyFcGwdrcXnpImHYw5YKINvLX8vfSUS/p4Vnw3+Hf78gf8v++9//pU32QgW0g7qkrTZQbgtD+10JLTjqEJC5/gBvODfob6Z57Kjiq+mQh1+4r+h7I2nMRQZfv3GR5ntkUj/CYQDztisisZfeBr00C5zYdAZ16P071h4JgxOmLy3vgkFJZ2pRcnr0TRxQJ3G2Aam/rYhfj5N9OJZadFmZxZlQ3mw2zgRnqdDVGWhF89aFGXf1GyOOTPPAAj9s+6TnJnvkYV26TFz/NCBQEyeCQP7HQjP8xb12KYeTQbsAQEXn3e0DqesZYc9Ho94RxLwIXMHNeszYHYpRMdttJMfEnl4HXlq5JDQl/gRGOg+U0HaOpcnTUiW4gNZ7+66GFfQ78WnibSdbfdN3MYY9mWJRGz/MGD9iR/ZxrrUHTAoGwYND2wT+ffcgPVmg+dAx7SLZdH4juNvHb5cHxC3tO0Lzr4UP6CZl6hl+f8zJZJVB/3oTdIggXR6XAKdysGdqcJdwzjEuenLsRqx/cUdOuOa8HIbO/lwos6Z2oENPoRlDWerbJBukNhWCkmTeSIQU2yQYGHXKmcfOzFlaxLa7QhlUWQwUU2cyvCuT5zgi/ZOS34LcdfoCMutS0wqAllgvQcySdPkLk19EoEb6/YbXNacd1kJ3JqcFQPiRTPZYrRmfEqZBD8rRZmLGgQytLCiwEK7FyeuBkkFGcug2xyAiXiuKhsnK/95mVzqWFgTzTv+oVhgYtbgLo0POXMIx+njUO75LQbpWjMgvjcgZZ7QuskakjQmEgbKPinqMbMgEBkZu1jUQA5nrmUDubhaiEiysvblcUNPXUkaHyRyKCdgQ3Ky3jfQH1IpIwSUpY4rpWqCRAZyOMMJnDXcrioivG2hfBcpwyVVwj6CEyslTcgk8v1ASGQYyiE9zWoYOUxknZQxIS9XB/SVIYE0GnlpYEmlHXb5xHBBSRron1ZI5JAw70HsiMtkU0qZkhTIfUkaNNN1pLdoI3TbwILLu+hMjZTJS9ZRJ5KG5Iz9u3Z+yFBzSNDF5DaRMiar3cRTuRzrOv4P35ZogFImKVmonUgacqza4zKAk76RrxVTI2VSjflc12TWSeGnFttUR76TjvraVMp0Jmn2Rc7A9uIZ/nnDasYseNDxTVohOmvopQkp05CkUZHhps0TwiiZVLJp2vYNAZZSxoR4J0Qi8gEA21wQuAVHn0FDw1H+b8VnxppxiE278I1gmY8K0zrHLeBGzGWfksYgbqILGaMjLQg8bDPnjEvfqNotaqLuPkhkEyixwEq2xojQY+b/yPplS8QBh9FivLnvXbN6LyyfrdyVUTg0fUgancXyo4Nhc2+ygLDd6ek3OOXb8LUjtlKGW1StShofYe8ZCzzsHYNxzjEmwdfJUIhuvK7r2yjq9Len15w5mP9WUka0/DCnyVAmaTzEVOQdjJMUjjgYjucRJ8Lid3iU6guSb+26O0oZse9iBTHd+Gy3g9riRU//iSerZBDILXo8FHvt8Lsu5rIvSTMKjUQQ5w7WNc/zsRKslLpjo6m+GfmWNHsrZzQy59wTG3d9ehne4djFAVlDyviSNINQxwfbOenrkBhPzfBeg0wmLlZiF5LGB4n8YD0Epj9c1l0tOg4+A7+M66o3dh2kXNIwj4FnTQDkq+QzMng3sFjXNaswRDJ5thknGimzMYydaW2XxgeJZKynKDrj2sNA6fqaCeuBit+b1jCXfUmapvEs+awMxgZM1hlaJXXlL/hYbIgkbrhvvEoaH47VvPOh8vC6EqyilF2c5hZEMsOVyXXlHNcgoo0hCQ8M6scHqsk5k1izKMAgM6n/T00Zi6DHjdn4gFU/FZICjZnbRgL03yOSUh0p89PiRHmmGDdOKSOaIZGL06yYxJuONe7oU8c+vKZbqXJxmhr+PvhI3hzfIapR78wy8zh0/FxRJs9uNqshZUa4Wte2kDS7NDoSGQZGJjlOuhsulQRCMV2AQEpNVU5wjZQBXDE/wY7edml87c6kLCxsV+WCTJ7xVj6TAXLrWNagLf0PDlQkHRVJTFWmqkPG8LoDtY5MC9pCEQIbj9nOv2ZiXekSH7XVN94kjS8SeQm0r6OthbHLRq/DDXPfaYpaHsBrjYSaB+LDmWpkggq9STEBixD6104MVnfd5G3TlxSHRCJJwH08QKtkqBkImxrWyFEH77XUSBIXKeO97TWJrvNQiNkTmWxw129tIL9dpExIlqJnEtk5MrPAicQkM5mrRhx1MGBzheUUBSBlTEhLaY0EEsznm+BV46XtvvEiaXxeo3nPwk4LEG2TSiucrbCSFI2aOHRmV05l2yMHqvcy3SmSvb9qYswUMniqWSnXfWMQIHjFsQBXyyCrIbdHijFae5fGJ4lAZ68C798J0zuBXxxIpCvytB2kKqtgWeee2GLS/CkZqFtJI4mqTTQWIuxmXHq4v7YLbCzbTydlnFNE4nWgqus+arWvv7MzF6ebHqwaJpO9F8FzKE2Glt/3EcTk8vtjmeVnMGauQoh+9TzWcksrMamZIrLRwDPfB/CWfSeRgNLx1ZEmqeX3Mw8nT58c66obM1vHeChXdhgS9tRhoZo7tq2RvNIsjnE4JLJzsPZOw/YNuDKvLAepSsrc162TJr+ndJdGCOIyIZJVk2eVfDzboG825QA8/J1hg1airo8n4ZBIP6wR73qWtXiSWbjwemA6YAykjC/ry1rSCGPGREaCtv8Ts4s1cfgRTHt4/qNtwiGoC14pouubxHISJ56y3Tcmab56H+VgjTy83rCWMn9ZwnSy2A5O510NwUyvWqEiQYbBNYmRgR8krQg1V8ZqeLyUCczuqcJknsl8I8W7zgwmIMeUl4MJgXz6sTjhxvh83r+8nL9K3ze651dYbJaWcsJLsmrcMWrkLM3XhibrEis1DIxEmoqsdfUnfDqnYnjoTTdIZ5ZWgLdAQZA0indQ7dLwbGlnFkQiTvqm/SV84tUtZ1H2PbUkZUQLdaSQNE4k0kxms91OzYKFB62/xtFEDiGnCr8rNreUMvee6+EqacQ8HinbP6wlB+/akDKNSprm0iNenCbMcy7H2gRiliLAZbXpetBDWx9LZElbUsbE/NbuAuA5FH79x2ZPCGSBuUls28TrvTtN7dI0m2P14nTBwoi7kGnRKtge/Mo7vOh5jdbHuWLFakXKGD5Td5ZGHPDb1I8oz/qa+GqN5H4jsXrblDImluckPBLZ4SyAFeXcIlFR7HHScH+Jr0mQonUH+U++weqmimvpQMqY5Pcc2zwLr/3gx+0X+Oy8ZhtmkvJSD+Vk7CP37UwTf9NkgFlrkuZLK1N4dxTf1mH2a+dfnJ5Jnv8skSE7R+NOWmmBq+SjZb2ObQK1sJPEjhpWrEblHYespUutewVcyQcSGZqLJOAaRIhErHOsbndvehSo6BVfWiupPpHYkkiKBGIzwZ8tfSKpTWYyAmEf0d69M5BGsXlpw03Jky3h2BHIlNk7VZc0hAiHji+tl7izSFT3ydpbIvXNYqiLbY7VBO+vIRDIEmkVO4skmFgA4ZJsGwIJNQ6GQDgAEtkRyQatik7lABII+EFsj5ovfdy3SiAQidQnk+uurJIaBJL0NEkOgdAIvnZeA+5wfXidst19GsMWCCRiu4xatmVBXWcO5b1VkBWPp1jw7dvie3+jlXNd8Qz4f1fFz76I/5aVCd/D9wSivMEEwspnCuQKR9mnpbreluuFvz8vSUHY6vxm0Cbv2P6yun1qC+H75f64FcPJNTts2900yTvyBeJcUechtnls8s7orL/D9jsub9NjSMFVxdg4qQpgxPJX7Nf4krUiIrZcF8A3nyEDX4Ohs4tTGAhrJJM5ayDlIA4e6DSXE8b8bIpL44/YLnpRDO6KBNKs4zA2kYRwrP1JF8dQss7A2nrCyQKRjJBh7IgPVoHEEnyvjfBeun7gkZobpr8pj2NYakNeL0gLwErnUnJWHUjHJegj1pO/I3/eQFNnflgSynrB+qvyy86F78RMOLuFBP8oLEy5MFZkY4yHSIj1Nl0IJ7K67A+J/EomI3zx2qeBcXJcVqyabRAIx8/SJIarGX9nNVMmVFktEsAqdKwjGxzE56XTtnA6F34fLsa6x/eAvskqVm4Tacon1wJJIDIM1Cq3YYJWXjmhcy5rF1zNI5kFpAAPQjyrsBISSTkjfEd43/J1q2PheRtd+yHpwDNnqhv0NO8sq0uPfSI6mQNnby5Oj9FvcutAHiMc/O+4aroQSCYzLz3gr5ZaE6yVIVoPutUqkxzXXwjfYYIl4YIYJx7PhlYns9YTs4vvGdq2vTCBby3GQSwQzPYGgVJI+QgXgTYSYOnqsqck8iuhJAadPcCMVyvU0G+oe92jZCuO13uUVmPWzsXWKa48uqTHQ9lKiIM9EyYh9Edkm/sU/QDw7k/COZs6OT7HzMIxj5bMlrgsMpdFMotDY22lOHbuS5OZkx+0h+kNCXycXDkQwJx95NGtqsueyRm3Cbli/pMg2Zq7Wk1a1PN7aWBCp57XfPeqy7cXFSvmAtvoDi27Ks2vW6E3gv5f4js84x0rMDnvDWTJVpsL1s4TyiRpwiIBRwIBjwTfWdmpOKpqF+GIwgLb4Q2zfaVoZeQaAsoM+4T7fJb897AcMfHPGv99iU7PFIl1LSk7x+xvW8u6+HuKfpm1qt5CXWaKuhyAJaLHyCOB5Gh9+A4my7HT+Yev6vOaz32p+GwklsQMJ9h13ZfBCcVPvOZo8T1LSE20vj459YQEzyaSZoq7NnDHDXcALyom3kbSLrzMNfu4hJv7gt5d2wXqVLLIJhWWyz0TTsniCeUT7JMECRn8Q+8ySwPrze/75ZsE75rs8tq6kCXi33dw09CJ2ZeSs++aXypU/Hnr6nOxcKzy9IUJmsRJmRQM0zNmJWKCAX0jbpsqLpziJvQlvvunn8EzNG2/Zh8p/qAsWcxOrmsXXL2vsR9gMj3ydpH1Bazqhv3E3/PPijadC/4l8XL2mXDJ1EpmoWL5mWBl3CH5yFIHGNfl0C2RutiuTDDw2jxyL0yAWFhB/5B8/XdPxc6wnDuJXBkrrIhI5sPBlZXLioFiVdxaeqXPzFCnb3dnsN1ukIxiD/2QC5NpoCBOrf8H68OlTPk9U9U74nulzDC8AQnlVrDGvdWFLBEzcKdeZyHsggnMy4eOjSQrcsw8JDcSMqtXHYJM0JKo2nK9FB2CCqKR/WzIPrZW04qfXzGLu3dBbvKgQdD4HvpwoLHgcrRUUo01Mkafz7WkDe40Fs2A2TnbB8J4rqxLlXUt1CWqmwflEEmEs3fScqKfIxz0meDDuRLIjGvVGH0LS/YRHDQXnWMSIioP/NRA1pRXIu58hXtXbtnHrscEfR4pd36i6b0RBjzX6Iypb+CTbdUnaFkMLQgBTP43JETRWTxQtQs64kXf0RAlhOr6iQWWA32zVpBpzOS7OPzu4TkE/2G5WUlejJgkgBDrLZbLx1CGcjTGZyyx/2PFOOd12d5Pjf4gcPzPbAn5UEgkwUGTdHhwbsoqwqyxwzfC5J7hgH4sWU1Liede5sjUpXmYoWUwKFkpZ1j+FfscVr8u6ec/Kt4H2vZcQmA8BkXW/vdo7RjffyLsWADprQRn+EjTLjH7NcgP6ryQLSzYNyfsI+L5smKST7E9nxRWICfvF/brTXm8n68VY6iq3tx/8h379AktDdO6zNjHvUbW4RBf9oEhSucluOPpBw7aNJA6iuHRuY7MhNR/my4SQYv11eRxjUzfKbAxI/aHdfpJIc1lrf6x7edSes2sQqaMXOrDL4jvMOl45wNi1NOb4wkEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoEQKP4nwACHi4gW064R4AAAAABJRU5ErkJggg==" alt="BAGSA">
+        <div class="brand-div"></div>
+        <div class="brand-title">GERENCIA TÉCNICA</div>
+      </div>
+    <div class="header-center">
+      <h1>Seguimiento de Extensiones</h1>
+      <p class="subtitle">Sistema de seguimiento de proyectos de extensiones menores de redes de distribución de gas</p>
+    </div>
+    <div class="header-right">
+      <div class="timestamp">Datos al <b id="ts-date">—</b><br><span id="ts-file"></span></div>
+      <div class="header-links">
+        <button type="button" class="link-btn" onclick="showView('definiciones')">Definiciones</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="back-link" id="back-link" onclick="showView('menu')">← Volver al menú</div>
+
+  <!-- ===== MENU ===== -->
+  <div class="view active" id="view-menu">
+    <div class="menu-grid">
+      <!-- Columna 1 · búsqueda (azul) -->
+      <div class="menu-card dark" onclick="showView('buscador')">
+        <div class="mc-label">Buscar por expediente</div>
+        <div class="mc-note">Búsqueda general con estado de situación por etapa de cada expediente</div>
+        <div class="mc-count" id="mc-total">—</div>
+      </div>
+      <div class="menu-card dark" onclick="showView('consulta')">
+        <div class="mc-label">Consulta individual</div>
+        <div class="mc-note">Ficha técnica completa de un expediente con todas sus etapas y fechas</div>
+        <div class="mc-count">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </div>
+      </div>
+      <!-- Columna 2 · datos actuales (celeste claro) -->
+      <div class="menu-card light" onclick="showView('info-actuales')">
+        <div class="mc-label">Situación actual</div>
+        <div class="mc-note">Expedientes con empresa asignada pendientes de cierre (sin Anexo IV)</div>
+        <div class="mc-count" id="mc-info-actuales">—</div>
+      </div>
+      <div class="menu-card light" onclick="showView('factibilidades')">
+        <div class="mc-label">Factibilidades vigentes</div>
+        <div class="mc-note" id="mc-factibilidades-note">Pendientes de confección, pendientes de factibilidad y factibilidades sin vencer</div>
+        <div class="mc-count" id="mc-factibilidades">—</div>
+      </div>
+      <!-- Columna 3 · informativas (celeste intermedio) -->
+      <div class="menu-card mid" onclick="showView('empresas')">
+        <div class="mc-label">Empresas constructoras</div>
+        <div class="mc-note">Ranking por volumen de obra y tiempos promedio entre etapas</div>
+        <div class="mc-count" id="mc-empresas">—</div>
+      </div>
+      <div class="menu-card mid" onclick="showView('extensiones')">
+        <div class="mc-label">Extensiones habilitadas</div>
+        <div class="mc-note">Metros, usuarios y precio promedio por localidad y año</div>
+        <div class="mc-count" id="mc-extensiones">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXTENSIONES HABILITADAS ===== -->
+  <div class="view" id="view-extensiones">
+    <div class="section-head"><h2>Extensiones habilitadas por localidad / año</h2><span class="section-note">Solo proyectos habilitados · año = año de habilitación</span></div>
+
+    <div class="ext-boxes">
+      <div class="ext-box">
+        <div class="ext-label">Metros de cañería</div>
+        <div class="ext-value" id="ext-metros">—</div>
+        <div class="ext-sub ext-alcance"></div>
+      </div>
+      <div class="ext-box">
+        <div class="ext-label">Usuarios sucedáneos</div>
+        <div class="ext-value" id="ext-usuarios">—</div>
+        <div class="ext-sub ext-alcance"></div>
+      </div>
+      <div class="ext-box price">
+        <div class="ext-label">Precio promedio por metro</div>
+        <div class="ext-value" id="ext-precio">—</div>
+        <div class="ext-sub" id="ext-precio-sub"></div>
+      </div>
+    </div>
+    <p class="section-note ext-nota" id="ext-precio-nota"></p>
+
+    <div class="panel">
+      <div class="filters">
+        <label>Localidad<select id="f-localidad"></select></label>
+        <label>Año<select id="f-anio"></select></label>
+      </div>
+      <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-resumen')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll small"><table id="tabla-resumen">
+        <thead>
+          <tr id="totals-row" class="totals-row">
+            <th class="totals-label">TOTAL</th>
+            <th></th><th></th><th></th>
+            <th></th><th></th><th></th><th></th><th></th>
+            <th></th><th></th><th></th><th></th>
+          </tr>
+          <tr>
+            <th data-key="grupo" data-type="text">Localidad / Año</th>
+            <th data-key="cant" data-type="number">Extensiones</th>
+            <th data-key="usuarios" data-type="number">Us. sucedáneos</th>
+            <th data-key="metros" data-type="number">Metros totales</th>
+            <th data-key="PE Ø50" data-type="number">PE Ø50</th>
+            <th data-key="PE Ø63" data-type="number">PE Ø63</th>
+            <th data-key="PE Ø90" data-type="number">PE Ø90</th>
+            <th data-key="PE Ø125" data-type="number">PE Ø125</th>
+            <th data-key="PE Ø180" data-type="number">PE Ø180</th>
+            <th data-key="A° Ø51" data-type="number">A° Ø51</th>
+            <th data-key="A° Ø76" data-type="number">A° Ø76</th>
+            <th data-key="A° Ø102" data-type="number">A° Ø102</th>
+            <th data-key="A° Ø152" data-type="number">A° Ø152</th>
+          </tr>
+        </thead>
+        <tbody id="resumen-body"></tbody>
+      </table></div>
+    </div>
+
+
+    <div class="panel" style="margin-top:22px;">
+      <details>
+        <summary style="cursor:pointer;font-size:13px;font-weight:600;color:var(--navy);list-style:none;display:flex;align-items:center;gap:6px;">
+          <svg id="evol-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span id="evol-titulo">Evolución del precio promedio por año</span>
+        </summary>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-evolucion-precio')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll small" style="margin-top:12px;"><table id="tabla-evolucion-precio">
+          <thead><tr><th>Año</th><th>Precio promedio /m</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </details>
+    </div>
+
+    <details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Consolidado de usuarios por localidad y zona</h2>
+        <span class="section-note">Vigentes sin empresa + con empresa sin habilitar + habilitadas en el último año</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Suma de usuarios por localidad: <b>Vigentes sin empresa</b> (adhesión de las factibilidades otorgadas con vencimiento posterior a hoy y sin empresa), <b>Con empresa, sin habilitar</b> (adhesión de las extensiones con empresa y sin fecha de habilitación) y <b>Habilitadas último año</b> (usuarios sucedáneos —si no tiene, los de adhesión— de las habilitadas en los últimos 12 meses). Las localidades siguen el orden de la lista de la Gerencia, agrupadas por zona según su ubicación en la provincia de Buenos Aires; bajo cada zona figuran los partidos que incluye. Lo que tenga usuarios y no figure en ninguna zona aparece aparte, en rojo.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-cons')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll"><table id="tabla-ul-cons" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th><th></th><th></th></tr>
+            <tr>
+              <th>Zona / Localidad</th>
+              <th>Vigentes sin empresa</th>
+              <th>Con empresa, sin habilitar</th>
+              <th>Habilitadas último año</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Usuarios por localidad · habilitadas en el último año</h2>
+        <span class="section-note">Habilitadas en los últimos 12 meses corridos · usuarios sucedáneos (si no tiene, los de adhesión)</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios sucedáneos tiene cada localidad entre las habilitadas en los últimos 12 meses (según la fecha de habilitación, contando hacia atrás desde hoy). Si una extensión no tiene usuarios sucedáneos cargados, se cuentan los de adhesión.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-hab')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll small"><table id="tabla-ul-hab" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
+            <tr>
+              <th data-key="localidad" data-type="text">Localidad</th>
+              <th data-key="cant" data-type="number">Extensiones</th>
+              <th data-key="usuarios" data-type="number">Usuarios sucedáneos</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- ===== DEFINICIONES ===== -->
+  <div class="view" id="view-definiciones">
+    <div class="section-head"><h2>Definiciones</h2><span class="section-note">Qué significa cada número del tablero y cómo se calcula</span></div>
+    <div id="def-cuerpo"></div>
+  </div>
+
+  <!-- ===== INFO ACTUALES ===== -->
+  <div class="view" id="view-info-actuales">
+    <div class="section-head"><h2>Situación actual</h2><span class="section-note" id="ia-count"></span></div>
+    <div class="panel">
+      <div class="chips" id="ia-chips"></div>
+      <div class="search-row"><input type="text" id="ia-search" placeholder="Buscar por cliente, proyecto, localidad o empresa…"></div>
+      <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ia')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll"><table id="tabla-ia">
+        <thead><tr>
+          <th data-key="localidad" data-type="text">Localidad</th>
+          <th data-key="cliente" data-type="text">Cliente</th>
+          <th data-key="proyecto" data-type="text">Proyecto</th>
+          <th data-key="empresa" data-type="text">Empresa</th>
+          <th data-key="f_envio_distrib" data-type="date">Envío distrib.</th>
+          <th data-key="f_aprobacion_dist" data-type="date">Aprob. dist.</th>
+          <th data-key="f_recepcion_legajo" data-type="date">Recep. legajo</th>
+          <th data-key="usuariosSuc" data-type="number">Usuarios</th>
+          <th data-key="f_inicio_obra" data-type="date">Inicio obra</th>
+          <th data-key="f_finalizacion" data-type="date">Finalización</th>
+          <th data-key="f_habilitacion" data-type="date">Habilitación</th>
+          <th data-key="metros" data-type="number">Metros</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <div class="row-count" id="ia-row-count"></div>
+    </div>
+
+    <details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Usuarios por localidad · con empresa, sin habilitar</h2>
+        <span class="section-note">Extensiones con empresa constructora y sin fecha de habilitación · usuarios de adhesión</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios de adhesión tiene cada localidad entre las que ya tienen empresa constructora pero todavía no se habilitaron. No incluye las que ya se habilitaron y esperan el Anexo IV, por eso son algunas menos que las de la tabla de arriba.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-obra')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll small"><table id="tabla-ul-obra" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
+            <tr>
+              <th data-key="localidad" data-type="text">Localidad</th>
+              <th data-key="cant" data-type="number">Extensiones</th>
+              <th data-key="usuarios" data-type="number">Usuarios adhesión</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Calidad de datos <span class="cal-badge" id="cal-badge"></span></h2>
+        <span class="section-note" id="cal-nota"></span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Controles automáticos sobre la Tabla Master del Excel. Cada punto lista las filas que conviene corregir, con su número de fila en el Excel. <b>Error</b>: dato incorrecto que cambia números. <b>Advertencia</b>: dato dudoso o incompleto. <b>Información</b>: no es un error, pero conviene saberlo. Se recalculan cada vez que se actualiza el dashboard.</p>
+        <div id="cal-aviso"></div>
+        <div class="cal-resumen" id="cal-resumen"></div>
+        <div id="cal-export"></div>
+        <div id="cal-controles"></div>
+        <div id="cal-ok"></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== FACTIBILIDADES VIGENTES (3 pasos en una tabla) ===== -->
+  <div class="view" id="view-factibilidades">
+    <div class="section-head"><h2>Factibilidades vigentes</h2><span class="section-note">Pasos 1 y 2: últimos 12 meses · Paso 3: todas las vigentes (vencimiento posterior a hoy) · del más antiguo al más nuevo</span></div>
+    <div class="panel">
+      <div class="search-row"><input type="text" id="fact-search" placeholder="Buscar por cliente, proyecto o localidad…"></div>
+      <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-fact')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll"><table id="tabla-fact">
+        <thead><tr>
+          <th data-key="localidad" data-type="text">Localidad</th>
+          <th data-key="cliente" data-type="text">Cliente</th>
+          <th data-key="proyecto" data-type="text">Proyecto</th>
+          <th data-key="f_recepcion" data-type="date">Fecha recepción</th>
+          <th data-key="f_aceptacion" data-type="date">Fecha aceptación</th>
+          <th data-key="f_confeccion" data-type="date">Fecha confección</th>
+          <th data-key="f_factibilidad" data-type="date">Fecha factibilidad</th>
+          <th data-key="f_vencimiento" data-type="date">Fecha vencimiento</th>
+          <th data-key="usuariosAdh" data-type="number">Usuarios adhesión</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <div class="row-count" id="fact-row-count"></div>
+    </div>
+
+    <details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Usuarios por localidad · vigentes sin empresa</h2>
+        <span class="section-note">Factibilidades otorgadas con vencimiento posterior a hoy y sin empresa asignada · usuarios de adhesión</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios de adhesión tiene cada localidad entre las factibilidades ya otorgadas que siguen vigentes (fecha de vencimiento posterior a hoy) y todavía no tienen empresa constructora. Se calcula sola con la fecha de hoy: no hace falta tildar fechas.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-vig')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll small"><table id="tabla-ul-vig" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
+            <tr>
+              <th data-key="localidad" data-type="text">Localidad</th>
+              <th data-key="cant" data-type="number">Extensiones</th>
+              <th data-key="usuarios" data-type="number">Usuarios adhesión</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== EMPRESAS Y TIEMPOS DE OBRA ===== -->
+  <div class="view" id="view-empresas">
+    <section>
+      <div class="section-head"><h2>Tiempo promedio entre etapas</h2><span class="section-note" id="tiempos-nota">Solo expedientes con etapa constructiva y ambas fechas cargadas</span></div>
+      <div class="panel">
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-tiempos')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll small"><table id="tabla-tiempos">
+          <thead><tr><th>Desde</th><th>Hasta</th><th>Días promedio</th><th>Expedientes</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Ranking de empresas constructoras</h2><span class="section-note">Sobre expedientes habilitados con aprobación del constructivo y finalización cargadas</span></div>
+      <div class="panel">
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-empresas')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll"><table id="tabla-empresas">
+          <thead><tr>
+            <th data-key="empresa" data-type="text">Empresa</th>
+            <th data-key="proyectos" data-type="number">Proyectos</th>
+            <th data-key="dias" data-type="number">Días promedio (constructivo aprobado → fin)</th>
+            <th data-key="metros" data-type="number">Metros totales</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Filtrar extensiones</h2><span class="section-note" id="empresa-filtro-count"></span></div>
+      <div class="panel">
+        <div class="filters">
+          <label>Empresa<select id="f-empresa"></select></label>
+          <label>Localidad<select id="f-empresa-localidad"></select></label>
+          <label>Año (última actualización)<select id="f-empresa-anio"></select></label>
+        </div>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-empresa-detalle')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll"><table id="tabla-empresa-detalle">
+          <thead><tr>
+            <th data-key="localidad" data-type="text">Localidad</th>
+            <th data-key="cliente" data-type="text">Cliente</th>
+            <th data-key="proyecto" data-type="text">Proyecto</th>
+            <th data-key="empresa" data-type="text">Empresa</th>
+            <th data-key="stage" data-type="number">Estado actual</th>
+            <th data-key="ultimaFecha" data-type="date">Última actualización</th>
+            <th data-key="metros" data-type="number">Metros</th>
+            <th data-key="usuariosTotal" data-type="number">Usuarios</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== CONSULTA INDIVIDUAL ===== -->
+  <div class="view" id="view-consulta">
+    <div class="consulta-layout">
+      <div class="consulta-sidebar">
+        <div class="consulta-search">
+          <input type="text" id="consulta-input" placeholder="Buscar por proyecto, cliente, empresa, localidad…" autocomplete="off">
+        </div>
+        <div class="consulta-list" id="consulta-list"></div>
+      </div>
+
+      <div id="ficha-container">
+        <div id="ficha-placeholder" style="color:var(--text-muted);font-size:14px;padding:40px 0;text-align:center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="opacity:.3;display:block;margin:0 auto 12px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Buscá un expediente para ver su ficha completa
+        </div>
+        <div id="ficha" class="ficha">
+          <div class="ficha-header">
+            <div class="ficha-header-logo">
+              <img src="data:image/png;base64,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" alt="BAGSA">
+              <span>Gerencia Técnica</span>
+            </div>
+            <div class="ficha-header-title">
+              <h3>Consulta Individual</h3>
+              <p>Extensiones Menores</p>
+            </div>
+            <div class="ficha-header-fecha" id="fh-fecha-hoy"></div>
+          </div>
+          <div style="background:var(--teal);padding:12px 24px;display:flex;justify-content:center;align-items:center;gap:24px;">
+            <div id="fh-proyecto" style="font-family:var(--display);font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px;"></div>
+            <div style="width:1px;height:24px;background:rgba(255,255,255,.4);"></div>
+            <div id="fh-cliente" style="font-size:16px;font-weight:600;color:#fff;"></div>
+          </div>
+          <div class="ficha-body">
+            <!-- Datos identificatorios -->
+            <div class="ficha-top" id="ficha-top"></div>
+            <!-- Secciones -->
+            <div class="ficha-sections" id="ficha-sections"></div>
+
+            <!-- Acciones -->
+            <div class="ficha-actions">
+              <button class="btn-print" onclick="imprimirFicha()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Imprimir / Guardar PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BUSCADOR + ETAPAS ===== -->
+  <div class="view" id="view-buscador">
+    <section>
+      <div class="section-head"><h2>Buscar proyectos</h2><span class="section-note" id="search-count"></span></div>
+      <div class="panel">
+        <div class="search-row">
+          <input type="text" id="search-text" placeholder="Buscar por cliente, proyecto, localidad o empresa…">
+          <select id="search-stage"><option value="-1">Todas las etapas</option></select>
+        </div>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-buscar')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+      <div class="table-scroll"><table id="tabla-buscar">
+          <thead><tr>
+            <th data-key="localidad" data-type="text">Localidad</th>
+            <th data-key="cliente" data-type="text">Cliente</th>
+            <th data-key="proyecto" data-type="text">Proyecto</th>
+            <th data-key="empresa" data-type="text">Empresa</th>
+            <th data-key="metros" data-type="number">Metros</th>
+            <th data-key="usuarios" data-type="number">Usuarios</th>
+            <th data-key="stage" data-type="number">Estado actual</th>
+            <th data-key="fechaEstado" data-type="date">Fecha estado</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="row-count" id="search-row-count"></div>
+      </div>
+    </section>
+    <section>
+      <details class="collapsible-section">
+        <summary class="collapsible-header">
+          <span class="coll-arrow">▼</span>
+          <h2>¿Dónde está parado cada expediente?</h2>
+          <span class="section-note" id="pipeline-note">Etapa más avanzada alcanzada</span>
+        </summary>
+        <div class="panel" style="margin-top:12px;">
+          <div class="pipeline" id="pipeline"></div>
+          <div class="stage-hint">Hacé clic en una etapa para ver la lista de proyectos que están ahí.</div>
+        </div>
+      </details>
+    </section>
+  </div>
+
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const STAGE_NAMES = ["Recepción","Aceptación","Proyecto constructivo","Aprobación distrib.","Legajo único","Inicio de obra","Finalización","Habilitación"];
+const STAGE_COLORS = ["#005895","#0a6aa1","#1f7bab","#3b8fb6","#5aa3bf","#7bb8c1","#9dccc2","#00aec3"];
+const STAGE6_NAMES = ["Envío a Distribuidora","Aprobación Dist.","Recepción Legajo Único","Inicio de Obra","Finalización","Habilitación"];
+const STAGE6_FIELDS = ["f_envio_distrib","f_aprobacion_dist","f_recepcion_legajo","f_inicio_obra","f_finalizacion","f_habilitacion"];
+const STAGE8_FIELDS = ["f_recepcion","f_aceptacion","f_recepcion_proy_const","f_aprobacion_dist","f_recepcion_legajo","f_inicio_obra","f_finalizacion","f_habilitacion"];
+const DIAM_HEADERS = ["PE Ø50","PE Ø63","PE Ø90","PE Ø125","PE Ø180","A° Ø51","A° Ø76","A° Ø102","A° Ø152"];
+
+let DATA = null;
+let FIELD_IDX = {};
+function buildFieldIdx(){ FIELD_IDX = {}; DATA.fields.forEach((f,i)=>FIELD_IDX[f]=i); }
+buildFieldIdx();
+function F(row, name){ return row[FIELD_IDX[name]]; }
+
+const fmtInt = n => Math.round(n).toLocaleString("es-AR");
+const fmtMetros = n => (Number(n)||0).toLocaleString("es-AR", {minimumFractionDigits:2, maximumFractionDigits:2});
+const esc = s => (s===null||s===undefined) ? "" : String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* ================= Fechas y orden de columnas (genérico) ================= */
+/* ---- Fechas -------------------------------------------------------------------------------------
+   Único lector de fechas del tablero. Acepta dd/mm/aaaa y dd/mm/aa; descarta textos ("---", "vsdo:…")
+   y la fecha vacía de Excel (01/01/1900). */
+function fechaFlex(s){
+  if (!s) return null;
+  const m = String(s).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/);
+  if (!m) return null;
+  let y = +m[3]; if (y<100) y += 2000;
+  if (y<2000) return null;
+  const d = new Date(y, +m[2]-1, +m[1]);
+  return (isNaN(d.getTime()) || d.getMonth()!==+m[2]-1) ? null : d;
+}
+function diasEntre(s1, s2){
+  const a = fechaFlex(s1), b = fechaFlex(s2);
+  return (a && b) ? Math.round((b-a)/864e5) : null;
+}
+function normFecha(s){
+  const d = fechaFlex(s);
+  return d ? String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear() : "";
+}
+function dateSortVal(s){
+  if (!s) return -1;
+  const p = String(s).split("/");
+  if (p.length!==3) return -1;
+  return parseInt(p[2])*10000 + parseInt(p[1])*100 + parseInt(p[0]);
+}
+function sortRows(rows, getValue, key, dir, type){
+  return rows.slice().sort((a,b)=>{
+    let va = getValue(a,key), vb = getValue(b,key);
+    if (type==="date"){ va = dateSortVal(va); vb = dateSortVal(vb); }
+    else if (type==="number"){ va = Number(va)||0; vb = Number(vb)||0; }
+    else { va = (va===null||va===undefined) ? "" : String(va); vb = (vb===null||vb===undefined) ? "" : String(vb); }
+    if (va<vb) return -1*dir;
+    if (va>vb) return 1*dir;
+    return 0;
+  });
+}
+function applySort(tableId, rows, getValue, sortState){
+  if (!sortState.key) return rows;
+  const th = document.querySelector("#"+tableId+' th[data-key="'+CSS.escape(sortState.key)+'"]');
+  const type = th ? th.dataset.type : "text";
+  return sortRows(rows, getValue, sortState.key, sortState.dir, type);
+}
+function wireSortableHeaders(tableId, sortState, renderFn){
+  const headers = document.querySelectorAll("#"+tableId+" thead th[data-key]");
+  headers.forEach(th=>{
+    if (!th.dataset.wired){
+      th.innerHTML = th.textContent + ' <span class="sort-arrow">▲▼</span>';
+      th.dataset.wired = "1";
+    }
+    th.classList.toggle("sorted", sortState.key===th.dataset.key);
+    th.onclick = ()=>{
+      const key = th.dataset.key;
+      if (sortState.key===key) sortState.dir *= -1; else { sortState.key=key; sortState.dir=1; }
+      headers.forEach(h=>h.classList.toggle("sorted", h.dataset.key===sortState.key));
+      renderFn();
+    };
+  });
+}
+
+function showView(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById("view-"+id).classList.add("active");
+  document.getElementById("back-link").classList.toggle("show", id!=="menu");
+  if (id==="menu" && typeof resetConsulta==="function") resetConsulta();
+  if (id==="extensiones") ajustarStickyResumen();
+  ajustarStickyTodas();
+  window.scrollTo(0,0);
+}
+
+function render(){
+  document.getElementById("ts-date").textContent = DATA.generatedAt || "—";
+  document.getElementById("ts-file").textContent = fmtInt(DATA.total) + " extensiones" + (DATA.generatedTime ? " · " + DATA.generatedTime + " h" : "");
+
+  const rows = DATA.rows;
+  const infoActuales = rows.filter(r=>F(r,"empresaAsignada") && !F(r,"anexoIVHecho"));
+  const fb = factibilidadesBloques();
+
+  document.getElementById("mc-info-actuales").textContent = fmtInt(infoActuales.length);
+  document.getElementById("mc-factibilidades").textContent = fmtInt(fb.a.length + fb.b.length + fb.c.length);
+  document.getElementById("mc-factibilidades-note").textContent = fb.a.length + " por confeccionar · " + fb.b.length + " por factibilidad · " + fb.c.length + " vigentes";
+  document.getElementById("mc-total").textContent = fmtInt(rows.length);
+  document.getElementById("mc-extensiones").textContent = fmtInt(rows.filter(r=>F(r,"habilitado")).length);
+
+  renderTiempos();
+  renderRankingEmpresas();
+  setupEmpresaFiltro();
+  initConsulta();
+
+  initInfoActuales();
+  initFactibilidades();
+  Object.keys(UL).forEach(renderUsuariosLocalidad);
+  renderConsolidadoUsuarios();
+  renderDefiniciones();
+  renderCalidad();
+  setupResumenFiltros();
+  renderResumen();
+  setupBuscador();
+  renderBuscador();
+  renderPipeline();
+
+  wireSortableHeaders("tabla-resumen", resumenSortState, renderResumen);
+  wireSortableHeaders("tabla-ia", iaSortState, renderInfoActuales);
+  wireSortableHeaders("tabla-fact", factSortState, renderFactibilidades);
+  Object.keys(UL).forEach(tid => wireSortableHeaders(tid, UL[tid].sort, () => renderUsuariosLocalidad(tid)));
+  document.querySelectorAll("details").forEach(d => d.addEventListener("toggle", ajustarStickyTodas));
+  wireSortableHeaders("tabla-buscar", searchSortState, renderBuscador);
+  wireSortableHeaders("tabla-empresas", empresasSortState, renderRankingEmpresas);
+  wireSortableHeaders("tabla-empresa-detalle", empresaDetalleSortState, renderEmpresaDetalle);
+}
+
+/* Precio de referencia por metro lineal, por año: entre los proyectos habilitados con
+   presupuesto asignado, se parte la lista de precios unitarios (presupuesto/metros) por
+   la mediana y se promedia cada mitad, para dar un "entre tanto y tanto" sin que un caso
+   extremo aislado distorsione el número. Se muestra para los últimos 2 años habilitados. */
+function proyectosConPrecioDelAnio(year, loc){
+  const rows = DATA.rows.filter(r=>F(r,"habilitado") && F(r,"anioHabil")===year && (!loc || F(r,"localidad")===loc) && F(r,"presupuesto")>0 && F(r,"metros")>0);
+  return rows.map(r=>({precio:F(r,"presupuesto")/F(r,"metros"), presupuesto:F(r,"presupuesto"), metros:F(r,"metros")}))
+    .sort((a,b)=>a.precio-b.precio);
+}
+function ratioSums(list){
+  const p = list.reduce((a,x)=>a+x.presupuesto,0);
+  const m = list.reduce((a,x)=>a+x.metros,0);
+  return m>0 ? p/m : 0;
+}
+
+/* Recuadros de la vista "Extensiones habilitadas". Metros y usuarios siguen los filtros de la tabla.
+   El precio promedio ($/m = presupuesto total ÷ metros, de los habilitados con presupuesto cargado)
+   toma el año elegido; si no hay año elegido toma SIEMPRE el año en curso (no se promedian años). */
+function renderExtBoxes(loc, anio, totMet, totUsu){
+  const anioActual = new Date().getFullYear();
+  const yearPrecio = anio ? parseInt(anio) : anioActual;
+  const locTxt = loc || "Todas las localidades";
+  const anioTxt = "Año " + yearPrecio + (anio ? "" : " (en curso)");
+
+  document.getElementById("ext-metros").textContent = fmtMetros(totMet);
+  document.getElementById("ext-usuarios").textContent = fmtInt(totUsu);
+  document.querySelectorAll(".ext-alcance").forEach(el => el.textContent = locTxt + " · " + (anio ? "Año " + anio : "Todos los años"));
+
+  const items = proyectosConPrecioDelAnio(yearPrecio, loc);
+  const elP = document.getElementById("ext-precio"), elS = document.getElementById("ext-precio-sub");
+  if (items.length===0){
+    elP.textContent = "Sin datos";
+    elS.textContent = anioTxt + " · " + locTxt + " · sin proyectos habilitados con presupuesto";
+  } else {
+    const half = Math.max(1, Math.floor(items.length/2));
+    const avg = ratioSums(items);
+    const avgLow = ratioSums(items.slice(0, half));
+    const avgHigh = ratioSums(items.slice(items.length-half));
+    elP.textContent = "$ " + fmtInt(avg) + " /m";
+    elS.textContent = anioTxt + " · " + locTxt + " · entre $ " + fmtInt(avgLow) + " y $ " + fmtInt(avgHigh) + " · " + items.length + " proyecto" + (items.length===1 ? "" : "s");
+  }
+  document.getElementById("ext-precio-nota").textContent = anio
+    ? "Precio promedio calculado sobre los proyectos habilitados en " + anio + " con presupuesto cargado (presupuesto total ÷ metros)."
+    : "Sin elegir un año, el precio promedio corresponde siempre al año en curso (" + anioActual + "); elegí un año para ver otro. Metros y usuarios incluyen todos los años.";
+}
+
+/* Evolución del precio promedio por metro, año a año; sigue el filtro de localidad. */
+function renderEvolucionPrecio(loc){
+  const anios = [...new Set(DATA.rows.filter(r=>F(r,"habilitado") && F(r,"anioHabil") && (!loc || F(r,"localidad")===loc)).map(r=>F(r,"anioHabil")))].sort((a,b)=>b-a);
+  document.getElementById("evol-titulo").textContent = "Evolución del precio promedio por año — " + (loc || "todas las localidades");
+  const tbody = document.querySelector("#tabla-evolucion-precio tbody");
+  tbody.innerHTML = "";
+  const filasEvol = [];
+  anios.forEach(year=>{
+    const items = proyectosConPrecioDelAnio(year, loc);
+    filasEvol.push([year, items.length ? ratioSums(items) : null]);
+    const tr = document.createElement("tr");
+    if (items.length===0){
+      tr.innerHTML = `<td>${year}</td><td class="muted">—</td>`;
+    } else {
+      tr.innerHTML = `<td>${year}</td><td>$ ${fmtInt(ratioSums(items))} /m</td>`;
+    }
+    tbody.appendChild(tr);
+  });
+  EXPORTAR["tabla-evolucion-precio"] = () => ({ archivo:"Evolucion_precio_promedio" + (loc ? "_" + loc : ""), hoja:"Evolución del precio",
+    cols:[{h:"Año",t:"text"},{h:"Precio promedio por metro ($)",t:"money"}], filas: filasEvol });
+}
+
+/* ================= Factibilidades vigentes: 3 pasos, solo el último año =================
+   Paso 1 · Pendientes de confección: recibidos (fecha de aceptación si está cargada, si no la de
+            recepción), con número de proyecto, sin fecha de confección ni de factibilidad.
+   Paso 2 · Pendientes de factibilidad: con fecha de confección y sin fecha de factibilidad.
+   Paso 3 · Factibilidades otorgadas, vigentes (sin vencer) y sin empresa asignada.
+   Pasos 1 y 2: la fecha de referencia no puede tener más de 12 meses de antigüedad.
+   Paso 3: vigencia por fecha de vencimiento (posterior a hoy), sin tope de antigüedad.
+   Cada expediente cae en un solo paso (el más avanzado). */
+function tieneNumeroProyecto(p){
+  const s = (p||"").trim();
+  return s.length>0 && !/^-+$/.test(s);
+}
+const FACT_VENTANA_DIAS = 365;
+/* Vigente = factibilidad ya otorgada, con fecha de vencimiento posterior (o igual) a hoy y sin empresa asignada.
+   (Si hay vencimiento pero todavía no fecha de factibilidad, sigue en "pendientes de factibilidad".) */
+function esVigenteSinEmpresa(r, hoy){
+  if (F(r,"empresaAsignada")) return false;
+  if (!fechaFlex(F(r,"f_factibilidad"))) return false;
+  const v = fechaFlex(F(r,"f_vencimiento"));
+  return !!v && v >= hoy;
+}
+function factibilidadesBloques(){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const reciente = d => !!d && (hoy-d)/864e5 <= FACT_VENTANA_DIAS;   // solo tope de antigüedad: una fecha futura (error de carga) se ve, no se esconde
+  const a=[], b=[], c=[];
+  DATA.rows.forEach(r=>{
+    if (esVigenteSinEmpresa(r, hoy)){ c.push(r); return; }
+    const fa = fechaFlex(F(r,"f_factibilidad")), co = fechaFlex(F(r,"f_confeccion"));
+    if (fa) return;                       // factibilidad vencida o con empresa: no va en esta tabla
+    if (co){
+      if (reciente(co)) b.push(r);
+    } else if (tieneNumeroProyecto(F(r,"proyecto"))){
+      if (reciente(fechaFlex(F(r,"f_aceptacion")) || fechaFlex(F(r,"f_recepcion")))) a.push(r);
+    }
+  });
+  return { a, b, c };
+}
+
+/* ================= USUARIOS POR LOCALIDAD (resúmenes y consolidado por zona) =================
+   Reemplazan las tablas dinámicas que se armaban a mano (tildando fechas y años):
+   · Vigentes sin empresa: factibilidad otorgada, vencimiento >= hoy y sin empresa → usuarios de adhesión.
+   · Con empresa, sin habilitar: empresa válida y sin fecha de habilitación → usuarios de adhesión.
+   · Habilitadas último año: habilitadas en los últimos 12 meses corridos → usuarios sucedáneos
+     (si no tiene, los de adhesión).
+   El consolidado los suma por localidad, agrupado en zonas según la lista de la Gerencia. */
+const normLoc = s => String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim().toUpperCase();
+const usuAdh = r => F(r,"usuariosAdh") || 0;
+const usuSucOAdh = r => (F(r,"usuariosSuc") || 0) > 0 ? F(r,"usuariosSuc") : (F(r,"usuariosAdh") || 0);
+function conjuntosUsuarios(){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  return {
+    vig:  DATA.rows.filter(r => esVigenteSinEmpresa(r, hoy)),
+    obra: DATA.rows.filter(r => esEmpresaValida(F(r,"empresa")) && !fechaFlex(F(r,"f_habilitacion"))),
+    hab:  DATA.rows.filter(r => { const h = fechaFlex(F(r,"f_habilitacion")); return !!h && h<=hoy && (hoy-h)/864e5 <= 365; })
+  };
+}
+function usuariosPorLocalidad(rows, fnUsu){
+  const m = new Map();
+  rows.forEach(r=>{
+    const loc = F(r,"localidad");
+    const o = m.get(loc) || { localidad:loc, cant:0, usuarios:0 };
+    o.cant++; o.usuarios += fnUsu(r) || 0;
+    m.set(loc, o);
+  });
+  return [...m.values()];
+}
+const UL = {
+  "tabla-ul-vig":  { sort:{key:null,dir:1}, sel:()=>conjuntosUsuarios().vig,  usu:usuAdh,      archivo:"Usuarios_vigentes_sin_empresa",         hoja:"Vigentes sin empresa",  colU:"Usuarios adhesión" },
+  "tabla-ul-obra": { sort:{key:null,dir:1}, sel:()=>conjuntosUsuarios().obra, usu:usuAdh,      archivo:"Usuarios_con_empresa_sin_habilitar",    hoja:"Con empresa sin habilitar", colU:"Usuarios adhesión" },
+  "tabla-ul-hab":  { sort:{key:null,dir:1}, sel:()=>conjuntosUsuarios().hab,  usu:usuSucOAdh,  archivo:"Usuarios_habilitadas_ultimo_anio",      hoja:"Habilitadas último año", colU:"Usuarios sucedáneos" }
+};
+function renderUsuariosLocalidad(tid){
+  const cfg = UL[tid];
+  let filas = usuariosPorLocalidad(cfg.sel(), cfg.usu);
+  filas = cfg.sort.key ? applySort(tid, filas, (r,k)=>r[k], cfg.sort)
+                       : filas.sort((a,b)=>a.localidad.localeCompare(b.localidad, "es"));
+  const totC = filas.reduce((a,x)=>a+x.cant, 0), totU = filas.reduce((a,x)=>a+x.usuarios, 0);
+  const ths = document.querySelectorAll("#"+tid+" thead tr.totals-row th");
+  ths[1].textContent = fmtInt(totC); ths[2].textContent = fmtInt(totU);
+  document.querySelector("#"+tid+" tbody").innerHTML = filas.map(x =>
+    `<tr><td>${esc(x.localidad)}</td><td>${fmtInt(x.cant)}</td><td>${fmtInt(x.usuarios)}</td></tr>`).join("");
+  EXPORTAR[tid] = () => ({ archivo:cfg.archivo, hoja:cfg.hoja, sinFiltro:true,
+    cols:[{h:"Localidad",t:"text"},{h:"Extensiones",t:"int"},{h:cfg.colU,t:"int"}],
+    filas:[["TOTAL", totC, totU]].concat(filas.map(x=>[x.localidad, x.cant, x.usuarios])) });
+  requestAnimationFrame(ajustarStickyTodas);
+}
+
+/* Zonas: orden de la lista de la Gerencia, agrupadas por ubicación en la provincia de Buenos Aires.
+   (Se corrigió NAPALEUFU → NAPALEOFU y se sumó MECHITA, que existen en tbl_master.) */
+const ZONAS_USUARIOS = [
+  { nombre:"Zona 1 · Sur y sudeste", localidades:["BAHIA SAN BLAS","S. F. BELLOCQ","CASCALLARES","CLAROMECÓ","COPETONAS","EL PERDIDO","GARDEY","LA COLINA","MECHONGUE","NAPALEOFU","ORENSE","ORIENTE","SAN MANUEL","VILLA VENTANA","CLARAZ"] },
+  { nombre:"Zona 2 · Oeste", localidades:["BLAQUIER","BUNGE","GERMANIA","GRANADA","PASTEUR","PIEDRITAS","QUENUMÁ","ROBERTS","SALAZAR","MONES CAZON","CASBAS","DUDIGNAC","GUAMINÍ","LAGUNA ALSINA","PIROVANO"] },
+  { nombre:"Zona 3 · Costa Atlántica", localidades:["LAS GAVIOTAS - MAR AZUL","MAR DE LAS PAMPAS","VILLA GESELL"] },
+  { nombre:"Zona 4 · Norte y noroeste", localidades:["CARABELAS","CUCULLÚ","FERRÉ","INES INDART","PEARSON","IRINEO PORTELA","RAWSON","TRES SARGENTOS","AGUSTIN ROCA","BAYAUCA","GENERAL ARENALES","O'BRIEN","RAFAEL OBLIGADO","CAMPOS SALLES","FONTEZUELA","LA LUISA","PUEBLO DOYLE","SANTA LUCIA","RIO TALA","TODD","TODD Parque Industrial","SAN NICOLAS ZONA NORTE"] },
+  { nombre:"Zona 5 · Ribera (Magdalena y Punta Indio)", localidades:["ALVAREZ JONTE","ATALAYA","GENERAL MANSILLA (BAVIO)","MAGDALENA","PIPINAS","VERÓNICA","VIEYTES"] },
+  { nombre:"Zona 6 · Centro y Gran La Plata", localidades:["AREA 60 SUR","AREA 60 NORTE","BOSQUECITOS","EL RODEO","GÓMEZ","MAXIMO PAZ","COMODORO PY","ARTURO SEGUI","PLA","CARBONI","DEL CARRIL","POLVAREDAS","MOQUEHUA","NORBERTO DE LA RIESTRA","PATRICIOS","PEDERNALES","SALVADOR MARÍA","LAGUNA LOBOS","VILLANUEVA","MECHITA (ALBERTI-BRAGADO)"] }
+];
+const PARTIDO_NOMBRES = { "CANUELAS":"Cañuelas", "GUAMINI":"Guaminí", "LOBERIA":"Lobería", "BOLIVAR":"Bolívar", "COLON":"Colón", "JUNIN":"Junín",
+  "SALLIQUELO":"Salliqueló", "CAPITAN SARMIENTO":"Capitán Sarmiento", "SAN ANDRES DE GILES":"San Andrés de Giles", "VEINTICINCO DE MAYO":"25 de Mayo", "NUEVE DE JULIO":"Nueve de Julio" };
+function nombrePartido(p){
+  const k = normLoc(p);
+  return PARTIDO_NOMBRES[k] || k.toLowerCase().replace(/(^|\s)(\S)/g, (m,a,b)=>a+b.toUpperCase());
+}
+function renderConsolidadoUsuarios(){
+  const { vig, obra, hab } = conjuntosUsuarios();
+  const agg = new Map();
+  const sumar = (rows, fn, campo) => rows.forEach(r=>{
+    const k = normLoc(F(r,"localidad"));
+    const o = agg.get(k) || { nombre:F(r,"localidad"), vig:0, obra:0, hab:0 };
+    o[campo] += fn(r) || 0; agg.set(k, o);
+  });
+  sumar(vig, usuAdh, "vig"); sumar(obra, usuAdh, "obra"); sumar(hab, usuSucOAdh, "hab");
+  const info = new Map();
+  DATA.rows.forEach(r=>{
+    const k = normLoc(F(r,"localidad"));
+    const o = info.get(k) || { nombre:F(r,"localidad"), partidos:new Set() };
+    o.partidos.add(nombrePartido(F(r,"partido"))); info.set(k, o);
+  });
+  const usados = new Set();
+  const fila = (nombre, a) => ({ nombre, vig:a.vig, obra:a.obra, hab:a.hab, total:a.vig+a.obra+a.hab });
+  const suma = arr => arr.reduce((t,x)=>({ vig:t.vig+x.vig, obra:t.obra+x.obra, hab:t.hab+x.hab, total:t.total+x.total }), { vig:0, obra:0, hab:0, total:0 });
+  const bloques = ZONAS_USUARIOS.map(z=>{
+    const locs = z.localidades.map(n=>{
+      const k = normLoc(n); usados.add(k);
+      return fila((info.get(k) || {}).nombre || n.trim(), agg.get(k) || { vig:0, obra:0, hab:0 });
+    });
+    const partidos = [...new Set(z.localidades.flatMap(n => [...((info.get(normLoc(n)) || { partidos:[] }).partidos)]))].sort((a,b)=>a.localeCompare(b,"es"));
+    return { nombre:z.nombre, partidos, locs, sub:suma(locs) };
+  });
+  const sinZonaLocs = [...agg.entries()].filter(([k,a]) => !usados.has(k) && (a.vig+a.obra+a.hab) > 0).map(([k,a]) => fila(a.nombre, a));
+  if (sinZonaLocs.length) bloques.push({ nombre:"Sin zona asignada", partidos:[], locs:sinZonaLocs, sub:suma(sinZonaLocs), sinZona:true });
+  const tot = suma(bloques.map(b=>b.sub));
+
+  const ths = document.querySelectorAll("#tabla-ul-cons thead tr.totals-row th");
+  [tot.vig, tot.obra, tot.hab, tot.total].forEach((v,i)=>{ ths[i+1].textContent = fmtInt(v); });
+  const celdas = x => `<td>${fmtInt(x.vig)}</td><td>${fmtInt(x.obra)}</td><td>${fmtInt(x.hab)}</td><td>${fmtInt(x.total)}</td>`;
+  document.querySelector("#tabla-ul-cons tbody").innerHTML = bloques.map(b =>
+    `<tr class="${b.sinZona ? "sinzona" : "zona"}"><td>${esc(b.nombre)}${b.partidos.length ? `<span class="zona-partidos">${esc(b.partidos.join(", "))}</span>` : ""}</td>${celdas(b.sub)}</tr>` +
+    b.locs.map(x => `<tr><td class="loc">${esc(x.nombre)}</td>${celdas(x)}</tr>`).join("")
+  ).join("");
+
+  EXPORTAR["tabla-ul-cons"] = () => ({ archivo:"Consolidado_usuarios_por_localidad", hoja:"Consolidado", sinFiltro:true,
+    cols:[{h:"Zona",t:"text"},{h:"Localidad",t:"text"},{h:"Vigentes sin empresa",t:"int"},{h:"Con empresa, sin habilitar",t:"int"},{h:"Habilitadas último año",t:"int"},{h:"Total",t:"int"}],
+    filas:[["TOTAL", "", tot.vig, tot.obra, tot.hab, tot.total]].concat(bloques.flatMap(b =>
+      [[b.nombre, "SUBTOTAL", b.sub.vig, b.sub.obra, b.sub.hab, b.sub.total]].concat(b.locs.map(x=>[b.nombre, x.nombre, x.vig, x.obra, x.hab, x.total])))) });
+  requestAnimationFrame(ajustarStickyTodas);
+}
+/* Deja cada encabezado de columnas pegado justo debajo de su fila TOTAL (si la tabla está oculta no se toca:
+   se reajusta al mostrar la vista o al abrir el desplegable). */
+function ajustarStickyTodas(){
+  document.querySelectorAll("table.tot-arriba").forEach(t=>{
+    const tr = t.querySelector("thead tr.totals-row");
+    const h = tr ? tr.getBoundingClientRect().height : 0;
+    if (!h) return;
+    t.querySelectorAll("thead tr:not(.totals-row) th").forEach(th => th.style.top = Math.floor(h) + "px");   // floor: evita un hueco de medio píxel entre las dos filas fijas
+  });
+}
+
+/* ================= DEFINICIONES =================
+   Cada regla del tablero, en palabras. Si se cambia una regla en el código, se cambia acá el texto.
+   "hoy" muestra cuánto da esa regla con los datos actuales. */
+const _uext = (rows, fn) => fmtInt(rows.length) + " extensiones · " + fmtInt(rows.reduce((a,r)=>a+(fn(r)||0),0)) + " usuarios";
+const DEFINICIONES = [
+  { grupo:"Los datos", items:[
+    { t:"Fuente y fecha de los datos",
+      d:"Todo sale de la hoja «Tabla Master» (tbl_master) del Excel «Seguimiento Extensiones», que se copia al tablero con actualizar.py. «Datos al» indica cuándo se hizo esa copia. Lo que depende del día de hoy (vigencias, «últimos 12 meses») usa la fecha de la computadora al abrir el tablero.",
+      hoy:()=>"datos al " + (DATA.generatedAt || "—") },
+    { t:"Extensión (o expediente)",
+      d:"Cada fila de la Tabla Master. Es la unidad que se cuenta en todo el tablero.",
+      hoy:()=>fmtInt(DATA.total) + " extensiones" },
+    { t:"Fechas válidas",
+      d:"Se leen fechas escritas dd/mm/aaaa o dd/mm/aa. No cuentan como fecha los textos («---», «xxxx», «vsdo:…»), las fechas inexistentes ni la fecha vacía de Excel (01/01/1900). Esos casos se listan en «Calidad de datos», al final de «Situación actual»." },
+    { t:"Metros",
+      d:"Suma de los 9 diámetros de cada extensión (PE Ø50, Ø63, Ø90, Ø125, Ø180 y A° Ø51, Ø76, Ø102, Ø152). Se muestran con 2 decimales y sin unidad." },
+    { t:"Usuarios de adhesión, sucedáneos y total",
+      d:"Adhesión: columna USUARIOS ADHESION. Sucedáneos: columna USUARIOS SUCEDANEOS. Total: la suma de ambos. En «Buscar por expediente» la columna Usuarios muestra los sucedáneos y, si no tiene, los de adhesión." },
+    { t:"Con empresa y empresa válida",
+      d:"«Con empresa asignada»: la columna EMPRESA tiene algo cargado. «Empresa válida» (rankings, tiempos y «con empresa, sin habilitar») descarta además los marcadores «X», «-», «--» y «---»." },
+    { t:"Habilitada y año de habilitación",
+      d:"Una extensión está habilitada cuando tiene algo cargado en HABILITACION. El año de habilitación es el año de esa fecha; una habilitación con texto en lugar de fecha no tiene año." },
+  ]},
+  { grupo:"Etapas y estados", items:[
+    { t:"Estado actual",
+      d:"La etapa más avanzada que tenga algo cargado, en este orden: Recepción, Aceptación, Proyecto constructivo, Aprobación distrib., Legajo único, Inicio de obra, Finalización, Habilitación. Ojo: cualquier contenido cuenta como «cargado», incluso un guion («---»). Los totales de «¿Dónde está parado cada expediente?» son cuántas extensiones hay en cada estado." },
+    { t:"Fecha estado",
+      d:"Fecha del último paso cargado del flujo completo: Recepción, Aceptación, Confección, Factibilidad, Recepción Proy. Const., Envío a distribuidora, Aprobación Dist., Recepción Legajo, Inicio de obra, Finalización, Habilitación y Anexo IV. Solo cuentan los pasos con fecha válida, por eso puede ser posterior a la etapa del Estado actual (por ejemplo, la fecha del Anexo IV en una extensión ya habilitada)." },
+    { t:"Próximo paso (ficha de Consulta individual)",
+      d:"El paso que sigue al último que tiene algo cargado en el flujo completo." },
+    { t:"Situación actual (tarjeta)",
+      d:"Extensiones con empresa asignada y sin nada cargado en Anexo IV (pendientes de cierre).",
+      hoy:()=>fmtInt(DATA.rows.filter(r=>F(r,"empresaAsignada") && !F(r,"anexoIVHecho")).length) + " extensiones" },
+  ]},
+  { grupo:"Factibilidades vigentes (tarjeta)", items:[
+    { t:"Paso 1 · Pendientes de confección",
+      d:"Extensiones recibidas en los últimos 12 meses (se toma la fecha de aceptación y, si no tiene, la de recepción), con número de proyecto cargado y sin fecha de confección ni de factibilidad.",
+      hoy:()=>fmtInt(factibilidadesBloques().a.length) + " extensiones" },
+    { t:"Paso 2 · Pendientes de factibilidad",
+      d:"Extensiones con fecha de confección de los últimos 12 meses y sin fecha de factibilidad (incluye las que tienen vencimiento cargado pero todavía no factibilidad).",
+      hoy:()=>fmtInt(factibilidadesBloques().b.length) + " extensiones" },
+    { t:"Paso 3 · Factibilidades vigentes",
+      d:"Factibilidad ya otorgada (con fecha de factibilidad), con fecha de vencimiento igual o posterior a hoy y sin empresa asignada. No tiene tope de antigüedad. Cada extensión aparece en un solo paso, el más avanzado.",
+      hoy:()=>fmtInt(factibilidadesBloques().c.length) + " extensiones" },
+  ]},
+  { grupo:"Usuarios por localidad", items:[
+    { t:"Vigentes sin empresa",
+      d:"Las extensiones del Paso 3, agrupadas por localidad, con sus usuarios de adhesión.",
+      hoy:()=>_uext(conjuntosUsuarios().vig, usuAdh) },
+    { t:"Con empresa, sin habilitar",
+      d:"Extensiones con empresa válida y sin fecha de habilitación, con sus usuarios de adhesión. No incluye las ya habilitadas que esperan el Anexo IV, por eso son algunas menos que las de «Situación actual».",
+      hoy:()=>_uext(conjuntosUsuarios().obra, usuAdh) },
+    { t:"Habilitadas en el último año",
+      d:"Extensiones con fecha de habilitación dentro de los últimos 12 meses corridos (hoy menos 365 días), con sus usuarios sucedáneos o, si no tiene, los de adhesión.",
+      hoy:()=>_uext(conjuntosUsuarios().hab, usuSucOAdh) },
+    { t:"Consolidado por zona",
+      d:"Suma, por localidad, de las tres columnas anteriores. Las localidades siguen la lista de la Gerencia, agrupadas en 6 zonas según su ubicación en la provincia de Buenos Aires. Una localidad se reconoce sin importar tildes ni mayúsculas; si tiene usuarios y no está en ninguna zona, aparece aparte.",
+      hoy:()=>{ const c = conjuntosUsuarios(); const t = a => a.reduce((x,r)=>x+(a===c.hab?usuSucOAdh(r):usuAdh(r)),0); return fmtInt(t(c.vig)+t(c.obra)+t(c.hab)) + " usuarios"; } },
+  ]},
+  { grupo:"Precios", items:[
+    { t:"Precio promedio por metro",
+      d:"Presupuesto total ÷ metros de las extensiones habilitadas del año, contando solo las que tienen presupuesto y metros cargados. Es un promedio ponderado por metros. Sin año elegido, siempre se usa el año en curso.",
+      hoy:()=>{ const y = new Date().getFullYear(), it = proyectosConPrecioDelAnio(y); return it.length ? "$ " + fmtInt(ratioSums(it)) + " /m en " + y + " (" + it.length + " proyectos)" : "sin datos en " + y; } },
+    { t:"Rango «entre $ X y $ Y»",
+      d:"Las extensiones del año se ordenan por precio por metro, se parten por la mitad y se promedia cada mitad: la más barata (X) y la más cara (Y). Si son impares, la del medio queda afuera de ambas." },
+  ]},
+  { grupo:"Tiempos y ranking (tarjeta Empresas constructoras)", items:[
+    { t:"Tiempo promedio entre etapas",
+      d:"Días promedio entre etapas consecutivas: Aceptación → Factibilidad → Recepción Proy. Const. → Envío a distribuidora → Aprobación Dist. → Recepción Legajo → Inicio de obra → Finalización → Habilitación → Anexo IV. Solo cuenta extensiones que llegaron a la etapa constructiva (con Recepción Proyecto Const.) y que tienen las dos fechas del tramo. Se descartan los tramos con fechas invertidas o de más de 5 años.",
+      hoy:()=>fmtInt(DATA.rows.filter(r=>fechaFlex(F(r,"f_recepcion_proy_const"))).length) + " extensiones con etapa constructiva" },
+    { t:"Ranking de empresas constructoras",
+      d:"Extensiones habilitadas, con empresa válida y con fecha de Aprobación Dist. y de Finalización. Días promedio = desde la aprobación del constructivo hasta la finalización; se descartan los valores negativos y los de más de 5 años.",
+      hoy:()=>fmtInt(calcularRankingEmpresas().length) + " empresas" },
+    { t:"Última actualización y su año (Filtrar extensiones)",
+      d:"La última actualización es la fecha de la etapa que figura como Estado actual; el filtro por año usa el año de esa fecha. La lista incluye las extensiones con empresa válida o con Aprobación Dist. cargada." },
+  ]},
+];
+function renderDefiniciones(){
+  document.getElementById("def-cuerpo").innerHTML = DEFINICIONES.map(g =>
+    `<div class="panel def-grupo"><h3>${esc(g.grupo)}</h3>` +
+    g.items.map(it => {
+      const hoy = it.hoy ? it.hoy() : "";
+      return `<div class="def-item"><div><span class="def-term">${esc(it.t)}</span>${hoy ? `<span class="def-hoy">Hoy: ${esc(hoy)}</span>` : ""}</div><div class="def-desc">${esc(it.d)}</div></div>`;
+    }).join("") + `</div>`).join("");
+}
+
+/* ================= CALIDAD DE DATOS =================
+   Controles sobre tbl_master. Los primeros tres grupos salen de los datos del dashboard; los de celdas
+   numéricas (y filas sin localidad) los registra actualizar.py al leer el Excel (DATA.calidad).
+   Cada hallazgo lleva el número de fila del Excel (DATA "filaExcel") para ubicarlo rápido. */
+const CAL_SEV = { error:"Error", advertencia:"Advertencia", info:"Información" };
+function calcularCalidad(){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const dias = d => (hoy - d) / 864e5;
+  const filas = DATA.rows;
+  const tieneFila = DATA.fields.includes("filaExcel");
+  const conj = conjuntosUsuarios();
+  const controles = [];
+  const nuevo = (id, sev, titulo, que, accion) => { const c = { id, sev, titulo, que, accion, hallazgos:[] }; controles.push(c); return c; };
+  const hall = (c, i, detalle) => { const r = filas[i]; c.hallazgos.push({ i, fila: tieneFila ? F(r,"filaExcel") : null, localidad:F(r,"localidad"), cliente:F(r,"cliente"), proyecto:F(r,"proyecto"), detalle }); };
+  const fecha = (r,k) => fechaFlex(F(r,k));
+
+  // --- errores
+  const cFut = nuevo("fechas_futuras","error","Fechas de proceso posteriores a hoy",
+    "Una etapa tiene una fecha posterior a hoy (por ejemplo, un año mal tipeado como 2695). Distorsiona la «Fecha estado» y los tiempos entre etapas.",
+    "Corregir la fecha en el Excel.");
+  const cHabSin = nuevo("hab_sin_fecha","error","Habilitación sin fecha válida",
+    "La celda de habilitación tiene algo que no es una fecha: la extensión cuenta como habilitada pero no tiene año, y queda fuera de los filtros por año y del precio promedio.",
+    "Cargar la fecha de habilitación.");
+  const hayFuente = Array.isArray(DATA.calidad);
+  const cIleg = hayFuente ? nuevo("num_ilegible","error","Números con texto (leídos como 0)",
+    "Una celda de usuarios, metros o presupuesto tiene texto que no es un número; el tablero la cuenta como 0.",
+    "Escribir el número en la celda.") : null;
+  const cSinLoc = hayFuente ? nuevo("sin_localidad","error","Filas sin localidad",
+    "La fila tiene datos pero no tiene localidad, así que no aparece en ninguna parte del tablero.",
+    "Completar la localidad.") : null;
+
+  // --- advertencias
+  const cOrden = nuevo("fuera_de_orden","advertencia","Etapas fuera de orden o con más de 5 años entre sí",
+    "En extensiones con etapa constructiva, dos etapas consecutivas tienen las fechas invertidas o muy distantes. Son los tramos que «Tiempo promedio entre etapas» descarta.",
+    "Revisar cuál de las dos fechas está mal cargada.");
+  const cVenAnt = nuevo("venc_antes_fact","advertencia","Vencimiento anterior a la factibilidad",
+    "La fecha de vencimiento no puede ser anterior a la de factibilidad: alguna de las dos está mal (en la mayoría de los casos, por pocos días). Hoy no cambia ningún número, pero la vigencia se calcula con el vencimiento.",
+    "Revisar las dos fechas.");
+  const cTexto = nuevo("texto_en_fecha","advertencia","Texto en lugar de fecha",
+    "Una etapa tiene un texto (no un guion) en vez de una fecha: el tablero la considera cargada, pero no puede usar su fecha (no entra en «Fecha estado» ni en los tiempos).",
+    "Poner la fecha; las aclaraciones van en OBSERVACIONES.");
+  const cInval = nuevo("fecha_invalida","advertencia","Fechas inexistentes o anteriores a 2000",
+    "La celda tiene una fecha imposible (por ejemplo 31/02) o la fecha vacía de Excel (01/01/1900).",
+    "Borrar la celda o cargar la fecha correcta.");
+  const cVsF = nuevo("venc_sin_fact","advertencia","Vencimiento sin fecha de factibilidad",
+    "Tiene fecha de vencimiento pero no de factibilidad; el tablero lo trata como pendiente de factibilidad, no como vigente.",
+    "Cargar la fecha de factibilidad o borrar el vencimiento.");
+  const cFsV = nuevo("fact_sin_venc","advertencia","Factibilidad reciente sin vencimiento (últimos 24 meses)",
+    "Factibilidad otorgada en los últimos 24 meses y sin fecha de vencimiento: no entra en «Factibilidades vigentes» aunque siga vigente.",
+    "Cargar la fecha de vencimiento.");
+  const cNomb = nuevo("nombres","advertencia","Nombres escritos de más de una forma",
+    "Empresa, localidad o partido escritos distinto (mayúsculas, tildes): el tablero los cuenta como si fueran distintos. Se listan las filas que difieren de la forma más usada.",
+    "Unificar la escritura.");
+  const cSinNum = nuevo("sin_numero","advertencia","Proyecto sin número con factibilidad o habilitación reciente (24 meses)",
+    "Falta el número de proyecto en una extensión con factibilidad o habilitación de los últimos 24 meses.",
+    "Cargar el número de proyecto.");
+  const cSinCarp = nuevo("sin_carpeta","advertencia","Habilitadas del último año sin carpeta",
+    "Extensión habilitada en los últimos 12 meses sin la carpeta de extensiones cargada.",
+    "Cargar el nombre de la carpeta.");
+  const cSinZona = nuevo("sin_zona","advertencia","Localidades con usuarios fuera de las zonas del consolidado",
+    "Una localidad con usuarios no está en ninguna de las 6 zonas (por ejemplo, una localidad nueva o mal escrita).",
+    "Agregarla a una zona (ZONAS_USUARIOS en el dashboard) o corregir el nombre.");
+  const cRep = nuevo("repetido","advertencia","Número de proyecto repetido",
+    "El mismo número de proyecto aparece en más de una fila.",
+    "Verificar si es un duplicado.");
+  const cForm = hayFuente ? nuevo("num_formato","advertencia","Números con formato de fecha o guardados como texto (valor recuperado)",
+    "Una celda de usuarios, metros o presupuesto no es un número común pero se pudo interpretar; por ejemplo, un 2 con formato de fecha (02/01/1900). El total es correcto, pero la celda está mal formateada.",
+    "Cambiar el formato de la celda a número.") : null;
+
+  // --- información
+  const cGui = nuevo("guiones","info","Guiones en lugar de fecha",
+    "Etapa con «---» en vez de fecha. El tablero la considera cargada (en «Estado actual» cuenta como etapa cumplida y, en Anexo IV, como cerrada), pero no tiene fecha.",
+    "No es un error; si se conoce la fecha, conviene cargarla.");
+  const cPro = nuevo("prorrogas","info","Vigentes con más de 12 meses desde la factibilidad",
+    "Factibilidad vigente por su fecha de vencimiento pero otorgada hace más de un año (posible prórroga o vencimiento mal cargado).",
+    "Confirmar que la prórroga es correcta.");
+
+  // --- pasada por las filas
+  const nombres = { empresa:{}, localidad:{}, partido:{} };
+  const proyectos = {};
+  filas.forEach((r,i) => {
+    // fechas: futuras / texto / guiones / inválidas
+    FLOW.forEach(([k,etq]) => {
+      const v = String(F(r,k) ?? "").trim(); if (!v) return;
+      const d = fechaFlex(v);
+      if (d) { if (d > hoy) hall(cFut, i, `${etq}: ${v}`); }
+      else if (/^-+$/.test(v)) hall(cGui, i, `${etq}: «${v}»`);
+      else if (/^\d{1,2}\/\d{1,2}\/(\d{2}|\d{4})$/.test(v)) hall(cInval, i, `${etq}: ${v}`);
+      else hall(cTexto, i, `${etq}: «${v}»`);
+    });
+    const vv = String(F(r,"f_vencimiento") ?? "").trim();
+    if (vv && !fechaFlex(vv)) {
+      if (/^\d{1,2}\/\d{1,2}\/(\d{2}|\d{4})$/.test(vv)) hall(cInval, i, `Fecha de vencimiento: ${vv}`);
+      else if (!/^-+$/.test(vv)) hall(cTexto, i, `Fecha de vencimiento: «${vv}»`);
+    }
+    const fa = fecha(r,"f_factibilidad"), ve = fecha(r,"f_vencimiento"), ha = fecha(r,"f_habilitacion");
+    if (fa && ve && ve < fa) hall(cVenAnt, i, `Factibilidad ${F(r,"f_factibilidad")} · Vencimiento ${F(r,"f_vencimiento")}`);
+    if (ve && !fa) hall(cVsF, i, `Vencimiento ${F(r,"f_vencimiento")} sin fecha de factibilidad`);
+    if (fa && !ve && dias(fa) <= 730) hall(cFsV, i, `Factibilidad ${F(r,"f_factibilidad")} sin fecha de vencimiento`);
+    if (F(r,"habilitado") && !ha) hall(cHabSin, i, `Habilitación: «${F(r,"f_habilitacion")}»`);
+    // tramos entre etapas (solo etapa constructiva; los mismos que descarta "Tiempo promedio entre etapas")
+    if (fecha(r,"f_recepcion_proy_const")) {
+      for (let j = 0; j < TIEMPOS_ETAPAS.length-1; j++) {
+        const [kA,nA] = TIEMPOS_ETAPAS[j], [kB,nB] = TIEMPOS_ETAPAS[j+1];
+        const dd = diasEntre(F(r,kA), F(r,kB));
+        if (dd !== null && (dd < 0 || dd > DIAS_MAX_PLAUSIBLE))
+          hall(cOrden, i, `${nA} (${F(r,kA)}) → ${nB} (${F(r,kB)}): ${dd} días${dd < 0 ? " · fechas invertidas" : " · más de 5 años"}`);
+      }
+    }
+    // proyecto sin número con factibilidad/habilitación reciente
+    const proy = String(F(r,"proyecto") ?? "").trim();
+    if (!/^\d/.test(proy) && ((fa && dias(fa) <= 730) || (ha && dias(ha) <= 730)))
+      hall(cSinNum, i, `Proyecto ${proy ? "«"+proy+"»" : "(vacío)"} · factibilidad ${F(r,"f_factibilidad") || "—"}`);
+    if (/^\d/.test(proy)) (proyectos[proy] = proyectos[proy] || []).push(i);
+    ["empresa","localidad","partido"].forEach(c => { const v = F(r,c); if (v) { const k = normLoc(v); (nombres[c][k] = nombres[c][k] || {}); nombres[c][k][v] = (nombres[c][k][v]||0) + 1; } });
+  });
+
+  // números de proyecto repetidos
+  Object.entries(proyectos).forEach(([p, ids]) => { if (ids.length > 1) ids.forEach(i => hall(cRep, i, `Número ${p} repetido (${ids.length} filas)`)); });
+  // nombres con más de una escritura: se listan las filas que difieren de la forma más usada
+  const ETQ_NOMB = { empresa:"Empresa", localidad:"Localidad", partido:"Partido" };
+  filas.forEach((r,i) => ["empresa","localidad","partido"].forEach(c => {
+    const v = F(r,c); if (!v) return;
+    const variantes = nombres[c][normLoc(v)]; const claves = Object.keys(variantes);
+    if (claves.length < 2) return;
+    const usual = claves.sort((a,b) => variantes[b]-variantes[a] || a.localeCompare(b))[0];
+    if (v !== usual) hall(cNomb, i, `${ETQ_NOMB[c]}: «${v}» (` + (variantes[usual] === variantes[v] ? `otra fila lo escribe «${usual}»` : `lo más usado es «${usual}», ${variantes[usual]} filas`) + ")");
+  }));
+  // habilitadas del último año sin carpeta / localidades con usuarios sin zona / vigentes prorrogadas
+  const idxDe = new Map(filas.map((r,i) => [r,i]));
+  conj.hab.forEach(r => { if (!String(F(r,"carpeta") ?? "").trim()) hall(cSinCarp, idxDe.get(r), `Habilitada el ${F(r,"f_habilitacion")}, sin carpeta cargada`); });
+  const zonas = new Set(ZONAS_USUARIOS.flatMap(z => z.localidades.map(normLoc)));
+  const sinZona = new Set();
+  [[conj.vig,usuAdh],[conj.obra,usuAdh],[conj.hab,usuSucOAdh]].forEach(([rows,fn]) => rows.forEach(r => {
+    const i = idxDe.get(r); if (!sinZona.has(i) && !zonas.has(normLoc(F(r,"localidad"))) && fn(r) > 0) { sinZona.add(i); hall(cSinZona, i, `Localidad «${F(r,"localidad")}» con usuarios: no está en ninguna zona`); } }));
+  conj.vig.forEach(r => { const fa = fecha(r,"f_factibilidad"); if (fa && dias(fa) > 365) hall(cPro, idxDe.get(r), `Factibilidad ${F(r,"f_factibilidad")} · vence ${F(r,"f_vencimiento")}`); });
+
+  // --- lo que registra actualizar.py al leer el Excel
+  if (hayFuente) {
+    const porFila = new Map(); if (tieneFila) filas.forEach((r,i) => porFila.set(F(r,"filaExcel"), i));
+    DATA.calidad.forEach(q => {
+      const i = porFila.has(q.fila) ? porFila.get(q.fila) : null;
+      const c = q.tipo === "texto_no_numerico" ? cIleg : q.tipo === "sin_localidad" ? cSinLoc : cForm;
+      const detalle = q.tipo === "texto_no_numerico" ? `${q.columna}: la celda tiene «${q.valor}» → se contó como 0`
+                    : q.tipo === "sin_localidad" ? "Fila con datos pero sin localidad (no aparece en el tablero)"
+                    : q.tipo === "formato_fecha" ? `${q.columna}: la celda tiene formato de fecha (${q.valor}) → se usó el número ${q.usado}`
+                    : `${q.columna}: número guardado como texto («${q.valor}») → se usó ${q.usado}`;
+      if (i !== null) hall(c, i, detalle);
+      else c.hallazgos.push({ i:null, fila:q.fila, localidad:q.localidad || "", cliente:q.cliente || "", proyecto:q.proyecto || "", detalle });
+    });
+  }
+
+  controles.forEach(c => c.hallazgos.sort((a,b) => (a.fila ?? a.i ?? 0) - (b.fila ?? b.i ?? 0)));
+  const claves = new Set();
+  controles.filter(c => c.sev !== "info").forEach(c => c.hallazgos.forEach(h => claves.add(h.i !== null ? "i"+h.i : "f"+h.fila)));
+  const filasPorSev = sev => { const k = new Set(); controles.filter(c => c.sev === sev).forEach(c => c.hallazgos.forEach(h => k.add(h.i !== null ? "i"+h.i : "f"+h.fila))); return k.size; };
+  return { controles, filasAfectadas: claves.size, filasPorSev, tieneFila, hayFuente };
+}
+
+function renderCalidad(){
+  const cal = calcularCalidad();
+  const con = cal.controles.filter(c => c.hallazgos.length), sin = cal.controles.filter(c => !c.hallazgos.length);
+  const nSev = sev => con.filter(c => c.sev === sev).length;
+
+  // etiqueta del encabezado
+  const badge = document.getElementById("cal-badge");
+  badge.textContent = cal.filasAfectadas ? fmtInt(cal.filasAfectadas) : "✓";
+  badge.className = "cal-badge" + (cal.filasAfectadas ? "" : " ok");
+  badge.title = cal.filasAfectadas
+    ? `${fmtInt(cal.filasAfectadas)} filas con observaciones (${fmtInt(cal.filasPorSev("error"))} con errores, ${fmtInt(cal.filasPorSev("advertencia"))} con advertencias)`
+    : "Sin hallazgos de calidad";
+  document.getElementById("cal-nota").textContent = "Controles automáticos sobre la Tabla Master · " + (cal.filasAfectadas ? fmtInt(cal.filasAfectadas) + " filas para revisar" : "sin hallazgos");
+
+  // aviso si los datos son de la versión anterior de actualizar.py
+  const viejo = !DATA.version || DATA.version < 2;
+  document.getElementById("cal-aviso").innerHTML = viejo
+    ? `<div class="cal-aviso"><b>Estos datos se generaron con una versión anterior de actualizar.py.</b> No incluyen el número de fila del Excel, ni los campos Observaciones, Dibujo, Anexo III y Estado de legajo de la ficha, ni el control de celdas numéricas mal cargadas. Ejecutá el nuevo actualizar.py para completarlos.</div>` : "";
+
+  // resumen por gravedad
+  const tile = (sev, tit) => `<div class="cal-tile ${sev}"><div class="cal-t">${tit}</div><b>${fmtInt(cal.filasPorSev(sev))}</b><span class="cal-s">${cal.filasPorSev(sev) ? `filas · ${nSev(sev)} ${nSev(sev)===1 ? "control" : "controles"} con hallazgos` : "sin hallazgos"}</span></div>`;
+  document.getElementById("cal-resumen").innerHTML = tile("error","Errores") + tile("advertencia","Advertencias") + tile("info","Información");
+
+  // exportaciones
+  const COLS_C = [{h:"Fila en Excel",t:"int"},{h:"Localidad",t:"text"},{h:"Cliente",t:"text"},{h:"Proyecto",t:"text"},{h:"Detalle",t:"text"}];
+  const filaC = h => [h.fila, h.localidad, h.cliente, h.proyecto, h.detalle];
+  con.forEach(c => { EXPORTAR["cal-"+c.id] = () => ({ archivo:"Calidad_" + c.id, hoja:c.titulo, sinFiltro:false, cols:COLS_C, filas:c.hallazgos.map(filaC) }); });
+  EXPORTAR["cal-todo"] = () => ({ archivo:"Calidad_de_datos_todos_los_hallazgos", hoja:"Hallazgos",
+    cols:[{h:"Gravedad",t:"text"},{h:"Control",t:"text"}].concat(COLS_C),
+    filas:con.flatMap(c => c.hallazgos.map(h => [CAL_SEV[c.sev], c.titulo].concat(filaC(h)))) });
+  const btn = (id, texto = "Exportar a Excel") => `<div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('${id}')" title="Exportar a Excel">${ICONO_EXPORT} ${texto}</button></div>`;
+  document.getElementById("cal-export").innerHTML = con.length ? btn("cal-todo", "Exportar todos los hallazgos a Excel") : "";
+
+  // controles con hallazgos, del más grave al menos grave
+  const orden = { error:0, advertencia:1, info:2 };
+  document.getElementById("cal-controles").innerHTML = con.slice().sort((a,b) => orden[a.sev]-orden[b.sev]).map(c => `
+    <details class="cal-check"${c.sev === "error" ? " open" : ""}>
+      <summary><span class="cal-sev ${c.sev}">${CAL_SEV[c.sev]}</span><span class="cal-ttl">${esc(c.titulo)}</span><span class="cal-n">${fmtInt(c.hallazgos.length)} ${c.hallazgos.length === 1 ? "hallazgo" : "hallazgos"}</span></summary>
+      <div class="cal-cuerpo">
+        <p>${esc(c.que)} <b>Qué hacer:</b> ${esc(c.accion)}</p>
+        ${btn("cal-"+c.id)}
+        <div class="table-scroll small"><table id="tabla-cal-${c.id}"><thead><tr><th>Fila en Excel</th><th>Localidad</th><th>Cliente</th><th>Proyecto</th><th>Detalle</th></tr></thead><tbody>${
+          c.hallazgos.map(h => `<tr><td>${h.fila ?? "—"}</td><td>${esc(h.localidad)}</td><td class="trunc" title="${esc(h.cliente)}">${esc(h.cliente)}</td><td class="trunc tight" title="${esc(h.proyecto)}">${esc(h.proyecto)}</td><td>${esc(h.detalle)}</td></tr>`).join("")
+        }</tbody></table></div>
+      </div>
+    </details>`).join("");
+
+  // controles sin hallazgos
+  document.getElementById("cal-ok").innerHTML = sin.length
+    ? `<div class="panel" style="margin-top:14px;"><h3>Controles sin hallazgos (${sin.length})</h3><ul class="cal-ok">${sin.map(c => `<li>${esc(c.titulo)}</li>`).join("")}</ul></div>` : "";
+}
+
+/* ================= RESUMEN UNIFICADO LOCALIDAD / AÑO ================= */
+let resumenSortState = { key:null, dir:1 };
+
+function setupResumenFiltros(){
+  // Solo proyectos habilitados
+  const hab = DATA.rows.filter(r => F(r,"habilitado"));
+  const locs  = [...new Set(hab.map(r=>F(r,"localidad")))].sort((a,b)=>a.localeCompare(b));
+  const years = [...new Set(hab.map(r=>F(r,"anioHabil")).filter(y=>y!==null&&y!==undefined))].sort((a,b)=>b-a);
+  const selLoc  = document.getElementById("f-localidad");
+  const selAnio = document.getElementById("f-anio");
+  selLoc.innerHTML  = '<option value="">Todas</option>' + locs.map(l=>`<option value="${esc(l)}">${esc(l)}</option>`).join("");
+  selAnio.innerHTML = '<option value="">Todos</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join("");
+  selLoc.onchange  = renderResumen;
+  selAnio.onchange = renderResumen;
+}
+
+/* La fila de encabezados de columnas queda pegada justo debajo de la fila TOTAL. Si la vista está
+   oculta la altura mide 0: en ese caso no se toca y se reajusta al mostrar la vista (showView). */
+function ajustarStickyResumen(){
+  const h = document.getElementById("totals-row").getBoundingClientRect().height;
+  if (!h) return;
+  document.querySelectorAll("#tabla-resumen thead tr:not(.totals-row) th").forEach(th => th.style.top = Math.floor(h) + "px");
+}
+function renderResumen(){
+  const loc  = document.getElementById("f-localidad").value;
+  const anio = document.getElementById("f-anio").value;
+
+  // Filtro: solo habilitados + combinación de filtros
+  let base = DATA.rows.filter(r => F(r,"habilitado"));
+  if (loc)  base = base.filter(r => F(r,"localidad") === loc);
+  if (anio) base = base.filter(r => String(F(r,"anioHabil")) === anio);
+
+  // Decidir agrupación según filtros activos
+  // sin filtros o solo filtro año → agrupar por localidad
+  // solo filtro localidad → agrupar por año
+  // ambos → fila única
+  const groupBy = (!loc && !anio) ? "localidad"
+                : (!loc && anio)  ? "localidad"
+                : (loc  && !anio) ? "anio"
+                :                   "single";
+
+  const grp = {};
+  base.forEach(r => {
+    const key = groupBy === "localidad" ? F(r,"localidad")
+              : groupBy === "anio"      ? (F(r,"anioHabil") ?? "Sin año")
+              :                           "Total";
+    if (!grp[key]) {
+      grp[key] = { grupo: String(key), cant:0, usuarios:0, metros:0 };
+      DIAM_HEADERS.forEach(k => grp[key][k] = 0);
+    }
+    grp[key].cant     += 1;
+    grp[key].usuarios += (F(r,"usuariosSuc") || 0);
+    grp[key].metros   += (F(r,"metros") || 0);
+    DIAM_HEADERS.forEach(k => { grp[key][k] += (F(r,k) || 0); });
+  });
+
+  let rows = Object.values(grp);
+  rows = applySort("tabla-resumen", rows, (r,key)=>r[key], resumenSortState);
+  if (!resumenSortState.key) {
+    if (groupBy === "anio") rows.sort((a,b) => b.grupo - a.grupo);
+    else rows.sort((a,b) => b.metros - a.metros);
+  }
+
+  // Totales
+  let totCant=0, totUsu=0, totMet=0;
+  const totDiam = Object.fromEntries(DIAM_HEADERS.map(k=>[k,0]));
+  rows.forEach(v => {
+    totCant += v.cant; totUsu += v.usuarios; totMet += v.metros;
+    DIAM_HEADERS.forEach(k => totDiam[k] += v[k]);
+  });
+
+  EXPORTAR["tabla-resumen"] = () => ({
+    archivo:"Extensiones_habilitadas" + (loc ? "_" + loc : "") + (anio ? "_" + anio : ""), hoja:"Extensiones habilitadas", sinFiltro:true,
+    cols:[{h:"Localidad / Año",t:"text"},{h:"Extensiones",t:"int"},{h:"Us. sucedáneos",t:"int"},{h:"Metros totales",t:"dec"}].concat(DIAM_HEADERS.map(k=>({h:k,t:"dec"}))),
+    filas: [["TOTAL", totCant, totUsu, totMet].concat(DIAM_HEADERS.map(k=>totDiam[k]))]
+      .concat(rows.map(v=>[(groupBy==="anio" && !isNaN(v.grupo)) ? Number(v.grupo) : v.grupo, v.cant, v.usuarios, v.metros].concat(DIAM_HEADERS.map(k=>v[k])))) });
+
+  // Actualizar fila TOTAL sticky
+  const totRow = document.getElementById("totals-row");
+  const totCells = totRow.querySelectorAll("th");
+  totCells[1].textContent = fmtInt(totCant);
+  totCells[2].textContent = fmtInt(totUsu);
+  totCells[3].textContent = fmtMetros(totMet);
+  DIAM_HEADERS.forEach((k,i) => { totCells[4+i].textContent = fmtMetros(totDiam[k]); });
+
+  // Ajustar top del header de columnas según altura real de totals-row
+  requestAnimationFrame(ajustarStickyResumen);
+  renderExtBoxes(loc, anio, totMet, totUsu);
+  renderEvolucionPrecio(loc);
+
+  // Renderizar body
+  const tbody = document.getElementById("resumen-body");
+  tbody.innerHTML = "";
+  rows.forEach(v => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${esc(v.grupo)}</td><td>${fmtInt(v.cant)}</td><td>${fmtInt(v.usuarios)}</td><td>${fmtMetros(v.metros)}</td>` +
+      DIAM_HEADERS.map(k=>`<td>${fmtMetros(v[k])}</td>`).join("");
+    tbody.appendChild(tr);
+  });
+}
+
+/* ================= Tiempo promedio entre etapas ================= */
+const DIAS_MAX_PLAUSIBLE = 1825; // 5 años: por encima de esto, casi seguro es una fecha mal cargada como texto
+/* Orden real del seguimiento (solo expedientes que llegaron a la etapa constructiva):
+   Aceptación → Factibilidad → Recepción Proy. Const. → Envío a Distribuidora → Aprobación Dist. P.C.
+   → Recepción Legajo Único → Inicio de obra → Finalización → Habilitación → Anexo IV.
+   No incluye Recepción (confunde) ni Confección. */
+const TIEMPOS_ETAPAS = [
+  ["f_aceptacion",           "Aceptación"],
+  ["f_factibilidad",         "Factibilidad"],
+  ["f_recepcion_proy_const", "Recepción Proyecto Const."],
+  ["f_envio_distrib",        "Envío a Distribuidora"],
+  ["f_aprobacion_dist",      "Aprobación Dist. P.C."],
+  ["f_recepcion_legajo",     "Recepción Legajo Único"],
+  ["f_inicio_obra",          "Inicio de obra"],
+  ["f_finalizacion",         "Finalización"],
+  ["f_habilitacion",         "Habilitación"],
+  ["anexo_iv",               "Anexo IV a ENARGAS"]
+];
+function renderTiempos(){
+  const tbody = document.querySelector("#tabla-tiempos tbody");
+  tbody.innerHTML = "";
+  const base = DATA.rows.filter(r => fechaFlex(F(r,"f_recepcion_proy_const")));
+  const filasT = [];
+  document.getElementById("tiempos-nota").textContent =
+    "Solo expedientes con etapa constructiva (" + fmtInt(base.length) + ") y ambas fechas cargadas";
+  for (let i=0; i<TIEMPOS_ETAPAS.length-1; i++){
+    const [fA, nA] = TIEMPOS_ETAPAS[i], [fB, nB] = TIEMPOS_ETAPAS[i+1];
+    const dias = [];
+    let excluidos = 0;
+    base.forEach(r=>{
+      const d = diasEntre(F(r,fA), F(r,fB));
+      if (d===null) return;
+      if (d>=0 && d<=DIAS_MAX_PLAUSIBLE) dias.push(d); else excluidos++;
+    });
+    filasT.push([nA, nB, dias.length ? Math.round(dias.reduce((a,b)=>a+b,0)/dias.length) : null, dias.length, excluidos]);
+    const tr = document.createElement("tr");
+    if (dias.length===0){
+      tr.innerHTML = `<td>${nA}</td><td>${nB}</td><td class="muted">—</td><td>0</td>`;
+    } else {
+      const avg = dias.reduce((a,b)=>a+b,0)/dias.length;
+      const nota = excluidos>0 ? ` <span class="muted" style="font-size:11px;">(${excluidos} descartados por fecha inconsistente)</span>` : "";
+      tr.innerHTML = `<td>${nA}</td><td>${nB}</td><td>${fmtInt(avg)} días${nota}</td><td>${fmtInt(dias.length)}</td>`;
+    }
+    tbody.appendChild(tr);
+  }
+  EXPORTAR["tabla-tiempos"] = () => ({ archivo:"Tiempos_entre_etapas", hoja:"Tiempos entre etapas",
+    cols:[{h:"Desde",t:"text"},{h:"Hasta",t:"text"},{h:"Días promedio",t:"int"},{h:"Expedientes",t:"int"},{h:"Descartados por fecha inconsistente",t:"int"}], filas: filasT });
+}
+
+/* ================= Ranking de empresas ================= */
+let empresasSortState = { key:null, dir:1 };
+function esEmpresaValida(nombre){
+  const n = (nombre||"").trim().toUpperCase();
+  return n.length>1 && n!=="X" && n!=="-" && n!=="--" && n!=="---";
+}
+function calcularRankingEmpresas(){
+  const rows = DATA.rows.filter(r=>F(r,"habilitado") && esEmpresaValida(F(r,"empresa")) && F(r,"f_aprobacion_dist") && F(r,"f_finalizacion"));
+  const byEmpresa = {};
+  rows.forEach(r=>{
+    const emp = F(r,"empresa");
+    const d = diasEntre(F(r,"f_aprobacion_dist"), F(r,"f_finalizacion"));
+    if (d===null || d<0 || d>DIAS_MAX_PLAUSIBLE) return;
+    if (!byEmpresa[emp]) byEmpresa[emp] = {empresa:emp, proyectos:0, diasSum:0, metros:0};
+    byEmpresa[emp].proyectos++; byEmpresa[emp].diasSum += d; byEmpresa[emp].metros += F(r,"metros");
+  });
+  return Object.values(byEmpresa).map(e=>({empresa:e.empresa, proyectos:e.proyectos, dias: Math.round(e.diasSum/e.proyectos), metros: Math.round(e.metros*100)/100}));
+}
+function renderRankingEmpresas(){
+  let rows = calcularRankingEmpresas();
+  rows = applySort("tabla-empresas", rows, (r,key)=>r[key], empresasSortState);
+  if (!empresasSortState.key) rows.sort((a,b)=>b.proyectos-a.proyectos);
+
+  EXPORTAR["tabla-empresas"] = () => ({ archivo:"Ranking_empresas_constructoras", hoja:"Ranking empresas",
+    cols:[{h:"Empresa",t:"text"},{h:"Proyectos",t:"int"},{h:"Días promedio (constructivo aprobado → fin)",t:"int"},{h:"Metros totales",t:"dec"}],
+    filas: rows.map(r=>[r.empresa, r.proyectos, r.dias, r.metros]) });
+  document.getElementById("mc-empresas").textContent = fmtInt(rows.length);
+
+  const tbody = document.querySelector("#tabla-empresas tbody");
+  tbody.innerHTML = "";
+  rows.forEach(r=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td class="trunc" title="${esc(r.empresa)}">${esc(r.empresa)}</td><td>${fmtInt(r.proyectos)}</td><td>${fmtInt(r.dias)} días</td><td>${fmtMetros(r.metros)}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ================= Filtrar extensiones (empresa / localidad / año) ================= */
+let empresaDetalleSortState = { key:null, dir:1 };
+function ultimaFechaDe(r){
+  const field = STAGE8_FIELDS[F(r,"stage")];
+  return field ? F(r,field) : "";
+}
+function anioUltimaActualizacion(r){
+  const d = fechaFlex(ultimaFechaDe(r));
+  return d ? d.getFullYear() : null;
+}
+function setupEmpresaFiltro(){
+  const base = DATA.rows.filter(r=>esEmpresaValida(F(r,"empresa")) || !!F(r,"f_aprobacion_dist"));
+  const empresas = [...new Set(base.filter(r=>esEmpresaValida(F(r,"empresa"))).map(r=>F(r,"empresa")))].sort((a,b)=>a.localeCompare(b));
+  const localidades = [...new Set(base.map(r=>F(r,"localidad")))].sort((a,b)=>a.localeCompare(b));
+  const anios = [...new Set(base.map(anioUltimaActualizacion).filter(a=>a))].sort((a,b)=>b-a);
+
+  const selE = document.getElementById("f-empresa");
+  const selL = document.getElementById("f-empresa-localidad");
+  const selA = document.getElementById("f-empresa-anio");
+  selE.innerHTML = '<option value="">Todas</option>' + empresas.map(e=>`<option value="${esc(e)}">${esc(e)}</option>`).join("");
+  selL.innerHTML = '<option value="">Todas</option>' + localidades.map(l=>`<option value="${esc(l)}">${esc(l)}</option>`).join("");
+  selA.innerHTML = '<option value="">Todos</option>' + anios.map(a=>`<option value="${a}">${a}</option>`).join("");
+  selE.onchange = renderEmpresaDetalle;
+  selL.onchange = renderEmpresaDetalle;
+  selA.onchange = renderEmpresaDetalle;
+  renderEmpresaDetalle();
+}
+function renderEmpresaDetalle(){
+  const empresa = document.getElementById("f-empresa").value;
+  const localidad = document.getElementById("f-empresa-localidad").value;
+  const anio = document.getElementById("f-empresa-anio").value;
+
+  let rows = DATA.rows.filter(r =>
+    (esEmpresaValida(F(r,"empresa")) || !!F(r,"f_aprobacion_dist")) &&
+    (empresa==="" || F(r,"empresa")===empresa) &&
+    (localidad==="" || F(r,"localidad")===localidad) &&
+    (anio==="" || String(anioUltimaActualizacion(r))===anio)
+  );
+  document.getElementById("empresa-filtro-count").textContent = fmtInt(rows.length) + " extensiones encontradas";
+
+  const getVal = (r,key) => key==="ultimaFecha" ? ultimaFechaDe(r) : F(r,key);
+  if (empresaDetalleSortState.key){
+    rows = applySort("tabla-empresa-detalle", rows, getVal, empresaDetalleSortState);
+  } else {
+    rows = rows.slice().sort((a,b)=> dateSortVal(ultimaFechaDe(b)) - dateSortVal(ultimaFechaDe(a)));
+  }
+
+  EXPORTAR["tabla-empresa-detalle"] = () => ({
+    archivo:"Filtrar_extensiones" + [empresa, localidad, anio].filter(Boolean).map(x=>"_"+x).join(""), hoja:"Extensiones",
+    cols:[{h:"Localidad",t:"text"},{h:"Cliente",t:"text"},{h:"Proyecto",t:"text"},{h:"Empresa",t:"text"},{h:"Estado actual",t:"text"},{h:"Última actualización",t:"date"},{h:"Metros",t:"dec"},{h:"Usuarios",t:"int"}],
+    filas: rows.map(r=>[F(r,"localidad"), F(r,"cliente"), F(r,"proyecto"), F(r,"empresa"), STAGE_NAMES[F(r,"stage")], fechaFlex(ultimaFechaDe(r)), F(r,"metros"), F(r,"usuariosTotal")]) });
+  const tbody = document.querySelector("#tabla-empresa-detalle tbody");
+  tbody.innerHTML = "";
+  rows.forEach(r=>{
+    const stageIdx = F(r,"stage");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${esc(F(r,"localidad"))}</td>
+      <td class="trunc" title="${esc(F(r,"cliente"))}">${esc(F(r,"cliente"))}</td>
+      <td class="trunc tight" title="${esc(F(r,"proyecto"))}">${esc(F(r,"proyecto"))}</td>
+      <td class="trunc" title="${esc(F(r,"empresa"))}">${esc(F(r,"empresa"))||'<span class="muted">—</span>'}</td>
+      <td><span class="badge" style="background:${STAGE_COLORS[stageIdx]}22;color:${STAGE_COLORS[stageIdx]}">${STAGE_NAMES[stageIdx]}</span></td>
+      <td>${esc(ultimaFechaDe(r))||'<span class="muted">—</span>'}</td>
+      <td>${fmtMetros(F(r,"metros"))}</td><td>${fmtInt(F(r,"usuariosTotal"))}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ================= INFO ACTUALES ================= */
+let iaState = { chip:"todas", search:"" };
+let iaSortState = { key:null, dir:1 };
+function initInfoActuales(){
+  const base = DATA.rows.filter(r=>F(r,"empresaAsignada") && !F(r,"anexoIVHecho"));
+  const counts = STAGE6_NAMES.map((n,i)=>base.filter(r=>F(r,"stage6")===i).length);
+  const chipsDef = [{id:"todas", label:"Todas ("+base.length+")"}];
+  STAGE6_NAMES.forEach((n,i)=>{ if(counts[i]>0) chipsDef.push({id:"s"+i, label:n+" ("+counts[i]+")"}); });
+  const el = document.getElementById("ia-chips");
+  el.innerHTML = "";
+  chipsDef.forEach(c=>{
+    const b = document.createElement("div");
+    b.className = "chip" + (iaState.chip===c.id ? " active":"");
+    b.textContent = c.label;
+    b.onclick = ()=>{ iaState.chip=c.id; renderInfoActuales(); };
+    el.appendChild(b);
+  });
+  document.getElementById("ia-search").oninput = e=>{ iaState.search=e.target.value; renderInfoActuales(); };
+  renderInfoActuales();
+}
+function renderInfoActuales(){
+  let rows = DATA.rows.filter(r=>F(r,"empresaAsignada") && !F(r,"anexoIVHecho"));
+  if (iaState.chip.startsWith("s")) {
+    const idx = parseInt(iaState.chip.slice(1));
+    rows = rows.filter(r=>F(r,"stage6")===idx);
+  }
+  const q = iaState.search.trim().toLowerCase();
+  if (q) rows = rows.filter(r => (F(r,"localidad")+" "+F(r,"cliente")+" "+F(r,"proyecto")+" "+F(r,"empresa")).toLowerCase().includes(q));
+  if (iaSortState.key){
+    rows = applySort("tabla-ia", rows, F, iaSortState);
+  } else {
+    // Por defecto: agrupado por subetapa (la más avanzada primero) y, dentro de cada
+    // subetapa, por la fecha de esa misma columna, de más antigua a más reciente.
+    const fechaDeEtapa = r => {
+      const idx = F(r,"stage6");
+      const field = STAGE6_FIELDS[idx];
+      return field ? dateSortVal(F(r,field)) : -1;
+    };
+    rows = rows.slice().sort((a,b)=> F(b,"stage6")-F(a,"stage6") || fechaDeEtapa(a)-fechaDeEtapa(b));
+  }
+
+  EXPORTAR["tabla-ia"] = () => ({ archivo:"Situacion_actual", hoja:"Situación actual",
+    cols:[{h:"Localidad",t:"text"},{h:"Cliente",t:"text"},{h:"Proyecto",t:"text"},{h:"Empresa",t:"text"},{h:"Envío distrib.",t:"date"},{h:"Aprob. dist.",t:"date"},{h:"Recep. legajo",t:"date"},{h:"Usuarios",t:"int"},{h:"Inicio obra",t:"date"},{h:"Finalización",t:"date"},{h:"Habilitación",t:"date"},{h:"Metros",t:"dec"}],
+    filas: rows.map(r=>[F(r,"localidad"), F(r,"cliente"), F(r,"proyecto"), F(r,"empresa"), fechaFlex(F(r,"f_envio_distrib")), fechaFlex(F(r,"f_aprobacion_dist")), fechaFlex(F(r,"f_recepcion_legajo")), F(r,"usuariosSuc"), fechaFlex(F(r,"f_inicio_obra")), fechaFlex(F(r,"f_finalizacion")), fechaFlex(F(r,"f_habilitacion")), F(r,"metros")]) });
+  document.getElementById("ia-count").textContent = fmtInt(rows.length) + " expedientes";
+  const tbody = document.querySelector("#tabla-ia tbody");
+  tbody.innerHTML = "";
+  rows.forEach(r=>{
+    const tr = document.createElement("tr");
+    const habilCell = F(r,"f_habilitacion") ? `<b style="color:var(--navy)">${esc(F(r,"f_habilitacion"))}</b>` : '<span class="muted">—</span>';
+    tr.innerHTML = `<td>${esc(F(r,"localidad"))}</td>
+      <td class="trunc" title="${esc(F(r,"cliente"))}">${esc(F(r,"cliente"))}</td>
+      <td class="trunc tight" title="${esc(F(r,"proyecto"))}">${esc(F(r,"proyecto"))}</td>
+      <td class="trunc" title="${esc(F(r,"empresa"))}">${esc(F(r,"empresa"))}</td>
+      <td>${esc(F(r,"f_envio_distrib"))||'<span class="muted">—</span>'}</td><td>${esc(F(r,"f_aprobacion_dist"))||'<span class="muted">—</span>'}</td>
+      <td>${esc(F(r,"f_recepcion_legajo"))||'<span class="muted">—</span>'}</td><td>${fmtInt(F(r,"usuariosSuc"))}</td>
+      <td>${esc(F(r,"f_inicio_obra"))||'<span class="muted">—</span>'}</td><td>${esc(F(r,"f_finalizacion"))||'<span class="muted">—</span>'}</td>
+      <td>${habilCell}</td><td>${fmtMetros(F(r,"metros"))}</td>`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("ia-row-count").textContent = fmtInt(rows.length) + " filas";
+}
+
+/* ================= FACTIBILIDADES VIGENTES ================= */
+let factState = { search:"" };
+let factSortState = { key:null, dir:1 };
+const FACT_PASOS = [
+  { id:"a", n:1, titulo:"Pendientes de confección", sub:"recibidos, todavía sin confección (dibujo) ni factibilidad",
+    orden: r => fechaFlex(F(r,"f_aceptacion")) || fechaFlex(F(r,"f_recepcion")) },
+  { id:"b", n:2, titulo:"Pendientes de factibilidad", sub:"con confección cargada, sin factibilidad",
+    orden: r => fechaFlex(F(r,"f_confeccion")) },
+  { id:"c", n:3, titulo:"Factibilidades vigentes", sub:"otorgadas y sin vencer",
+    orden: r => fechaFlex(F(r,"f_vencimiento")) }
+];
+function initFactibilidades(){
+  document.getElementById("fact-search").oninput = e=>{ factState.search=e.target.value; renderFactibilidades(); };
+  renderFactibilidades();
+}
+function renderFactibilidades(){
+  const bloques = factibilidadesBloques();
+  const q = factState.search.trim().toLowerCase();
+  const filtra = rows => q ? rows.filter(r => (F(r,"localidad")+" "+F(r,"cliente")+" "+F(r,"proyecto")).toLowerCase().includes(q)) : rows;
+  const getter = (r,key) => key.startsWith("f_") ? normFecha(F(r,key)) : F(r,key);
+  const t = d => d ? d.getTime() : Infinity;
+  const fecha = v => { const n = normFecha(v); return n ? esc(n) : '<span class="muted">—</span>'; };
+
+  const tbody = document.querySelector("#tabla-fact tbody");
+  tbody.innerHTML = "";
+  let total = 0;
+  const salida = [];
+  FACT_PASOS.forEach(p=>{
+    let rows = filtra(bloques[p.id]);
+    rows = factSortState.key
+      ? applySort("tabla-fact", rows, getter, factSortState)
+      : rows.slice().sort((x,y)=> t(p.orden(x)) - t(p.orden(y)) || 0);
+    total += rows.length;
+    salida.push([p, rows]);
+
+    const head = document.createElement("tr");
+    head.className = "grp grp" + p.n;
+    head.innerHTML = `<td colspan="9"><span class="grp-step">${p.n}</span>${p.titulo}<span class="grp-sub">${p.sub}</span><span class="grp-n">${rows.length}</span></td>`;
+    tbody.appendChild(head);
+
+    if (rows.length===0){
+      const vacio = document.createElement("tr");
+      vacio.className = "grp-empty";
+      vacio.innerHTML = `<td colspan="9">Sin casos</td>`;
+      tbody.appendChild(vacio);
+      return;
+    }
+    rows.forEach(r=>{
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${esc(F(r,"localidad"))}</td>
+        <td class="trunc" title="${esc(F(r,"cliente"))}">${esc(F(r,"cliente"))}</td>
+        <td class="trunc tight" title="${esc(F(r,"proyecto"))}">${esc(F(r,"proyecto"))}</td>
+        <td>${fecha(F(r,"f_recepcion"))}</td><td>${fecha(F(r,"f_aceptacion"))}</td><td>${fecha(F(r,"f_confeccion"))}</td>
+        <td>${fecha(F(r,"f_factibilidad"))}</td><td>${fecha(F(r,"f_vencimiento"))}</td><td>${fmtInt(F(r,"usuariosAdh"))}</td>`;
+      tbody.appendChild(tr);
+    });
+  });
+  EXPORTAR["tabla-fact"] = () => ({ archivo:"Factibilidades_vigentes", hoja:"Factibilidades",
+    cols:[{h:"Paso",t:"text"},{h:"Localidad",t:"text"},{h:"Cliente",t:"text"},{h:"Proyecto",t:"text"},{h:"Fecha recepción",t:"date"},{h:"Fecha aceptación",t:"date"},{h:"Fecha confección",t:"date"},{h:"Fecha factibilidad",t:"date"},{h:"Fecha vencimiento",t:"date"},{h:"Usuarios adhesión",t:"int"}],
+    filas: salida.flatMap(([p, rs]) => rs.map(r=>[p.n + " - " + p.titulo, F(r,"localidad"), F(r,"cliente"), F(r,"proyecto"), fechaFlex(F(r,"f_recepcion")), fechaFlex(F(r,"f_aceptacion")), fechaFlex(F(r,"f_confeccion")), fechaFlex(F(r,"f_factibilidad")), fechaFlex(F(r,"f_vencimiento")), F(r,"usuariosAdh")])) });
+  document.getElementById("fact-row-count").textContent = fmtInt(total) + " filas";
+}
+
+
+/* ================= BUSCADOR GENERAL ================= */
+/* Usuarios: los sucedáneos; si no tiene, los de adhesión. */
+function usuariosBusqueda(r){
+  const suc = F(r,"usuariosSuc") || 0;
+  return suc > 0 ? suc : (F(r,"usuariosAdh") || 0);
+}
+/* Último paso cargado: el más avanzado del flujo completo (FLOW) que tenga una fecha válida.
+   Es la misma lógica con la que la ficha calcula el "próximo paso". */
+function ultimoPasoCargado(r){
+  for (let i = FLOW.length-1; i >= 0; i--){
+    const f = normFecha(F(r, FLOW[i][0]));
+    if (f) return { fecha:f, etapa:FLOW[i][1] };
+  }
+  return { fecha:"", etapa:"—" };
+}
+let searchSortState = { key:null, dir:1 };
+function setupBuscador(){
+  const selStage = document.getElementById("search-stage");
+  selStage.innerHTML = '<option value="-1">Todas las etapas</option>' + STAGE_NAMES.map((n,i)=>`<option value="${i}">${n}</option>`).join("");
+  document.getElementById("search-text").oninput = renderBuscador;
+  selStage.onchange = renderBuscador;
+}
+function renderBuscador(){
+  const q = document.getElementById("search-text").value.trim().toLowerCase();
+  const stageFilter = document.getElementById("search-stage").value;
+  let rows = DATA.rows;
+  if (q) rows = rows.filter(r => (F(r,"localidad")+" "+F(r,"cliente")+" "+F(r,"proyecto")+" "+F(r,"empresa")).toLowerCase().includes(q));
+  if (stageFilter !== "-1") rows = rows.filter(r => String(F(r,"stage")) === stageFilter);
+  const getBusq = (r,key) => key==="usuarios" ? usuariosBusqueda(r)
+                          : key==="fechaEstado" ? ultimoPasoCargado(r).fecha
+                          : F(r,key);
+  rows = applySort("tabla-buscar", rows, getBusq, searchSortState);
+  EXPORTAR["tabla-buscar"] = () => ({ archivo:"Buscar_proyectos", hoja:"Proyectos",
+    cols:[{h:"Localidad",t:"text"},{h:"Cliente",t:"text"},{h:"Proyecto",t:"text"},{h:"Empresa",t:"text"},{h:"Metros",t:"dec"},{h:"Usuarios",t:"int"},{h:"Estado actual",t:"text"},{h:"Fecha estado",t:"date"}],
+    filas: rows.map(r=>[F(r,"localidad"), F(r,"cliente"), F(r,"proyecto"), F(r,"empresa"), F(r,"metros"), usuariosBusqueda(r), STAGE_NAMES[F(r,"stage")], fechaFlex(ultimoPasoCargado(r).fecha)]) });
+
+  document.getElementById("search-count").textContent = fmtInt(rows.length) + " proyectos encontrados";
+  const tbody = document.querySelector("#tabla-buscar tbody");
+  tbody.innerHTML = "";
+  rows.forEach(r => {
+    const stageIdx = F(r,"stage");
+    const ult = ultimoPasoCargado(r);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${esc(F(r,"localidad"))}</td>
+      <td class="trunc cliente-sm" title="${esc(F(r,"cliente"))}">${esc(F(r,"cliente"))}</td>
+      <td class="trunc tight" title="${esc(F(r,"proyecto"))}">${esc(F(r,"proyecto"))}</td>
+      <td class="trunc" title="${esc(F(r,"empresa"))}">${esc(F(r,"empresa"))}</td>
+      <td>${fmtMetros(F(r,"metros"))}</td><td>${fmtInt(usuariosBusqueda(r))}</td>
+      <td><span class="badge" style="background:${STAGE_COLORS[stageIdx]}22;color:${STAGE_COLORS[stageIdx]}">${STAGE_NAMES[stageIdx]}</span></td>
+      <td title="Último paso cargado: ${esc(ult.etapa)}">${ult.fecha ? esc(ult.fecha) : '<span class="muted">—</span>'}</td>`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("search-row-count").textContent = fmtInt(rows.length) + " filas";
+}
+
+/* ================= PIPELINE (clickeable) ================= */
+function renderPipeline(){
+  const max = Math.max(...DATA.stageDist, 1);
+  let bottleneckIdx=-1, bottleneckMax=-1;
+  DATA.stageDist.forEach((c,i)=>{ if (i<7 && c>bottleneckMax){ bottleneckMax=c; bottleneckIdx=i; } });
+  const el = document.getElementById("pipeline");
+  el.innerHTML = "";
+  document.getElementById("pipeline-note").textContent = "Etapa más avanzada alcanzada, sobre el total de " + fmtInt(DATA.rows.length) + " expedientes";
+  STAGE_NAMES.forEach((name,i) => {
+    const count = DATA.stageDist[i] || 0;
+    const pct = (count/max)*100;
+    const tag = i===bottleneckIdx ? '<span class="bottleneck-tag">más cargado</span>' : "";
+    const row = document.createElement("div");
+    row.className = "stage-row";
+    row.innerHTML = `
+      <div class="stage-name">${name}${tag}</div>
+      <div class="stage-track"><div class="stage-fill" style="width:${pct}%;background:${STAGE_COLORS[i]}"></div></div>
+      <div class="stage-count"><b>${fmtInt(count)}</b></div>`;
+    row.onclick = () => {
+      document.getElementById("search-stage").value = String(i);
+      document.getElementById("search-text").value = "";
+      renderBuscador();
+      const panel = document.querySelector("#view-buscador .panel");
+      if (panel && panel.scrollIntoView) panel.scrollIntoView({behavior:"smooth", block:"start"});
+    };
+    el.appendChild(row);
+  });
+}
+
+/* ================= EXPORTAR A EXCEL =================
+   Cada tabla registra en EXPORTAR una función que arma, al hacer clic, lo que se ve en pantalla
+   (mismos filtros y mismo orden): { archivo, hoja, cols:[{h,t}], filas:[[...]] }.
+   Tipos de columna: text | int | dec (2 decimales) | money | date. Los números y las fechas viajan
+   como valores reales para poder sumar/ordenar en Excel. Si la librería XLSX no cargó (sin acceso
+   a internet), se descarga un CSV (separador ;, coma decimal, UTF-8) que Excel abre igual. */
+const EXPORTAR = {};
+const ICONO_EXPORT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+const XLS_FMT = { int:"#,##0", dec:"#,##0.00", money:"$ #,##0", date:"dd/mm/yyyy" };
+function serialExcel(d){ return (Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(1899,11,30)) / 864e5; }
+function ddmmyyyy(d){ return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear(); }
+function nombreSeguro(s){
+  return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Za-z0-9_-]+/g,"_").replace(/^_+|_+$/g,"");
+}
+function avisar(msg){
+  let t = document.getElementById("toast");
+  if (!t){
+    t = document.createElement("div"); t.id = "toast";
+    t.style.cssText = "position:fixed;right:20px;bottom:20px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:6px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:1000;max-width:380px;";
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.display = "block";
+  clearTimeout(t._h); t._h = setTimeout(()=>{ t.style.display = "none"; }, 5000);
+}
+function descargar(blob, nombre){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = nombre;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+function exportarExcel(tableId){
+  const gen = EXPORTAR[tableId];
+  if (!gen) return;
+  const ex = gen();
+  if (!ex.filas.length){ avisar("No hay filas para exportar con los filtros actuales."); return; }
+  const h = new Date();
+  const stamp = h.getFullYear() + "-" + String(h.getMonth()+1).padStart(2,"0") + "-" + String(h.getDate()).padStart(2,"0");
+  const nombre = nombreSeguro(ex.archivo) + "_" + stamp;
+
+  if (typeof XLSX !== "undefined"){
+    const aoa = [ex.cols.map(c=>c.h)].concat(ex.filas.map(f => f.map((v,i) => v instanceof Date ? serialExcel(v) : (v===undefined ? null : (typeof v==="number" && (ex.cols[i].t==="dec" || ex.cols[i].t==="money")) ? Math.round(v*100)/100 : v))));
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    for (let R=1; R<aoa.length; R++){
+      ex.cols.forEach((c,C)=>{
+        const cell = ws[XLSX.utils.encode_cell({r:R, c:C})];
+        if (cell && cell.t==="n" && XLS_FMT[c.t]) cell.z = XLS_FMT[c.t];
+      });
+    }
+    ws["!cols"] = ex.cols.map((c,C)=>{
+      let w = c.h.length + 2;
+      ex.filas.slice(0,300).forEach(f=>{ const v = f[C]; const l = v instanceof Date ? 10 : String(v===null||v===undefined ? "" : v).length; if (l>w) w = l; });
+      return { wch: Math.min(48, w) };
+    });
+    if (!ex.sinFiltro) ws["!autofilter"] = { ref: ws["!ref"] };
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, String(ex.hoja).replace(/[\\\/?*\[\]:]/g,"").slice(0,31) || "Datos");
+    XLSX.writeFile(wb, nombre + ".xlsx");
+    avisar("Exportado: " + nombre + ".xlsx (" + fmtInt(ex.filas.length) + " filas)");
+  } else {
+    const cel = (v, t) => {
+      if (v===null || v===undefined || v==="") return "";
+      let s;
+      if (v instanceof Date) s = ddmmyyyy(v);
+      else if (typeof v==="number") s = t==="dec" ? v.toFixed(2).replace(".",",") : (t==="int" || t==="money") ? String(Math.round(v)) : String(v);
+      else s = String(v);
+      return /[";\r\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+    };
+    const lineas = [ex.cols.map(c=>cel(c.h,"text")).join(";")]
+      .concat(ex.filas.map(f => f.map((v,i)=>cel(v, ex.cols[i].t)).join(";")));
+    descargar(new Blob(["\ufeff" + lineas.join("\r\n")], {type:"text/csv;charset=utf-8"}), nombre + ".csv");
+    avisar("Se exportó como CSV porque no se pudo cargar la librería de Excel (sin acceso a internet). Se abre igual en Excel.");
+  }
+}
+
+/* ================= CONSULTA INDIVIDUAL ================= */
+
+// Orden cronológico para determinar PRÓXIMO PASO
+const FLOW = [
+  ["f_recepcion",           "Fecha de Recepción"],
+  ["f_aceptacion",          "Fecha de Aceptación"],
+  ["f_confeccion",          "Fecha de Confección"],
+  ["f_factibilidad",        "Fecha de Factibilidad"],
+  ["f_recepcion_proy_const","Recepción Proyecto Const."],
+  ["f_envio_distrib",       "Envío a Distribuidora"],
+  ["f_aprobacion_dist",     "Aprobación Dist. P.C."],
+  ["f_recepcion_legajo",    "Recepción Legajo Único"],
+  ["f_inicio_obra",         "Inicio de Obra"],
+  ["f_finalizacion",        "Finalización"],
+  ["f_habilitacion",        "Habilitación"],
+  ["anexo_iv",              "Anexo IV a ENARGAS"],
+];
+
+// Secciones de la ficha
+const FICHA_SECTIONS = [
+  { title:"SOLICITUD", full:false, fields:[
+    ["f_recepcion",   "Fecha de Recepción"],
+    ["clase",         "Clase"],
+    ["observaciones", "Observaciones"],
+    ["f_aceptacion",  "Fecha de Aceptación"],
+  ]},
+  { title:"FACTIBILIDAD", full:false, fields:[
+    ["f_confeccion",          "Fecha de Confección"],
+    ["dibujoPor",             "Dibujo"],
+    ["f_factibilidad",        "Fecha de Factibilidad"],
+    ["f_vencimiento",         "Fecha de Vencimiento"],
+    ["usuariosAdh",           "Usuarios Adhesión"],
+    ["empresa",               "Empresa"],
+    ["f_recepcion_proy_const","Recep. Proyecto Const."],
+    ["f_envio_distrib",       "Envío a Distribuidora"],
+    ["f_aprobacion_dist",     "Aprobación Dist. P.C."],
+  ]},
+  { title:"CONSTRUCTIVO", full:false, fields:[
+    ["f_recepcion_legajo","Recep. Legajo Único"],
+    ["estadoLegajo",      "Estado Legajo Único"],
+    ["usuariosSuc",       "Usuarios Sucedáneos"],
+    ["anexo_iii",         "Anexo III a ENARGAS"],
+    ["presupuesto",       "Presupuesto"],
+  ]},
+  { title:"EJECUCIÓN", full:false, fields:[
+    ["f_inicio_obra",  "Inicio de Obra"],
+    ["f_finalizacion", "Finalización"],
+    ["f_habilitacion", "Habilitación"],
+    ["anexo_iv",       "Anexo IV a ENARGAS"],
+  ]},
+  { title:"CAÑERÍAS", full:true, fields:[
+    ["PE Ø50","PE Ø50"],["PE Ø63","PE Ø63"],["PE Ø90","PE Ø90"],
+    ["PE Ø125","PE Ø125"],["PE Ø180","PE Ø180"],
+    ["A° Ø51","A° Ø51"],["A° Ø76","A° Ø76"],["A° Ø102","A° Ø102"],["A° Ø152","A° Ø152"],
+  ]},
+];
+
+const BASE_CARPETA = "https://bagsa.sharepoint.com/sites/Tecnica/Documentos%20compartidos/Forms/AllItems.aspx?id=/sites/Tecnica/Documentos%20compartidos/Gerencia%20Tecnica/Solicitudes%20Fact.y%20extensiones/000%20EXTENSIONES/";
+
+let consultaRows = [], consultaSelected = null;
+
+function resetConsulta(){
+  const input = document.getElementById("consulta-input");
+  if (input) input.value = "";
+  const list = document.getElementById("consulta-list");
+  if (list) list.innerHTML = "";
+  document.getElementById("ficha-placeholder").style.display="";
+  document.getElementById("ficha").classList.remove("visible");
+  consultaSelected = null;
+}
+
+function initConsulta(){
+  consultaRows = DATA.rows.map(r => ({
+    proyecto:   F(r,"proyecto"),
+    cliente:    F(r,"cliente"),
+    empresa:    F(r,"empresa"),
+    localidad:  F(r,"localidad"),
+    partido:    F(r,"partido"),
+    _row: r,
+  }));
+  // lista vacía al inicio
+  renderConsultaList(null);
+  document.getElementById("consulta-input").addEventListener("input", e => {
+    const q = e.target.value.toLowerCase().trim();
+    if (!q){ renderConsultaList(null); resetFicha(); return; }
+    renderConsultaList(q);
+  });
+}
+
+function resetFicha(){
+  document.getElementById("ficha-placeholder").style.display="";
+  document.getElementById("ficha").classList.remove("visible");
+  consultaSelected = null;
+  document.querySelectorAll(".consulta-item").forEach(el=>el.classList.remove("active"));
+}
+
+function renderConsultaList(q){
+  const list = document.getElementById("consulta-list");
+  if (!q){ list.innerHTML = ""; return; }
+  const hits = consultaRows.filter(r =>
+    (r.proyecto||"").toLowerCase().includes(q) ||
+    (r.cliente||"").toLowerCase().includes(q) ||
+    (r.empresa||"").toLowerCase().includes(q) ||
+    (r.localidad||"").toLowerCase().includes(q)
+  ).slice(0,80);
+
+  if (hits.length===0){
+    list.innerHTML = '<div class="consulta-empty">Sin resultados</div>';
+    return;
+  }
+  list.innerHTML = hits.map(r=>{
+    const idx = consultaRows.indexOf(r);
+    const activo = idx===consultaSelected ? " active" : "";
+    return `<div class="consulta-item${activo}" data-cidx="${idx}" onclick="abrirFicha(${idx})">
+      <div class="ci-proyecto">${esc(r.proyecto)||"—"}</div>
+      <div class="ci-cliente">${esc(r.cliente)||"—"}</div>
+      <div class="ci-loc">${esc(r.localidad)} · ${esc(r.partido)}</div>
+    </div>`;
+  }).join("");
+}
+
+function abrirFicha(idx){
+  consultaSelected = idx;
+  document.querySelectorAll(".consulta-item").forEach(el=>{
+    el.classList.toggle("active", parseInt(el.dataset.cidx)===idx);
+  });
+  const r = consultaRows[idx]._row;
+
+  // Header
+  document.getElementById("fh-proyecto").textContent = F(r,"proyecto")||"—";
+  document.getElementById("fh-cliente").textContent  = F(r,"cliente")||"—";
+
+  // Fecha de hoy en el header
+  const hoy = new Date();
+  document.getElementById("fh-fecha-hoy").textContent =
+    "al " + hoy.toLocaleDateString("es-AR", {day:"2-digit",month:"2-digit",year:"numeric"});
+
+  // Próximo paso: buscar de derecha a izquierda la última etapa con fecha cargada,
+  // y el próximo paso es la siguiente hacia la derecha desde ahí.
+  let pasoLabel="", terminada=false;
+  let ultimaIdx = -1;
+  for (let i = FLOW.length-1; i >= 0; i--){
+    const val = F(r, FLOW[i][0]);
+    if (val && val !== ""){
+      ultimaIdx = i;
+      break;
+    }
+  }
+  if (ultimaIdx === -1){
+    // ninguna fecha cargada — el próximo paso es la primera
+    pasoLabel = FLOW[0][1];
+  } else if (ultimaIdx === FLOW.length-1){
+    // tiene hasta la última — completada
+    terminada = true;
+    pasoLabel = "Completada";
+  } else {
+    pasoLabel = FLOW[ultimaIdx+1][1];
+  }
+
+  // Carpeta
+  const carpeta = F(r,"carpeta");
+  const carpetaUrl = (carpeta && carpeta!=="")
+    ? BASE_CARPETA + encodeURIComponent(carpeta)
+    : null;
+  const carpetaHtml = carpetaUrl
+    ? `<a class="ficha-carpeta" href="${carpetaUrl}" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        ${esc(carpeta)}
+      </a>`
+    : '<span style="color:var(--text-muted);font-size:12px;">Sin carpeta cargada</span>';
+
+  // Top: Localidad · Partido / Próximo paso · Link carpeta
+  const top = document.getElementById("ficha-top");
+  top.innerHTML = `
+    <div class="ficha-top-field">
+      <span class="ficha-top-label">Localidad</span>
+      <span class="ficha-top-val">${esc(F(r,"localidad"))||"—"}</span>
+    </div>
+    <div class="ficha-top-field">
+      <span class="ficha-top-label">Partido</span>
+      <span class="ficha-top-val">${esc(F(r,"partido"))||"—"}</span>
+    </div>
+    <div class="ficha-top-field">
+      <span class="ficha-top-label">Próximo paso</span>
+      <span class="ficha-top-val ${terminada?"paso-ok":"paso-pendiente"}">${pasoLabel}</span>
+    </div>
+    <div class="ficha-top-field">
+      <span class="ficha-top-label">Carpeta</span>
+      ${carpetaHtml}
+    </div>`;
+
+  // Secciones
+  const sec = document.getElementById("ficha-sections");
+  sec.innerHTML = FICHA_SECTIONS.map(s=>{
+    // Para CAÑERÍAS solo mostrar las que tienen valor > 0
+    let rows = s.fields;
+    if (s.title==="CAÑERÍAS") rows = rows.filter(([f])=>(F(r,f)||0)>0);
+    if (rows.length===0) return "";
+    return `<div class="ficha-section${s.full?" full":""}">
+      <div class="ficha-section-title${s.title==="CAÑERÍAS" ? " con-total" : ""}">${s.title}${s.title==="CAÑERÍAS" ? `<span class="ficha-section-total">Total metros: <b>${fmtMetros(F(r,"metros"))}</b></span>` : ""}</div>
+      ${rows.map(([f,l])=>{
+        const val = F(r,f);
+        const empty = !val || val==="" || val===0;
+        const isNext = !terminada && FLOW.find(([ff])=>ff===f) && pasoLabel===FLOW.find(([ff])=>ff===f)?.[1];
+        let cls = empty ? "muted" : "filled";
+        if (isNext) cls = "next-step";
+        const isDiam = DIAM_HEADERS.includes(f);
+        const isUsuarios = f==="usuariosAdh" || f==="usuariosSuc";
+        let display;
+        if (empty) display = "—";
+        else if (f==="presupuesto") display = "$ " + fmtInt(val);
+        else if (isDiam) display = fmtMetros(val);
+        else if (isUsuarios) display = fmtInt(val);
+        else if (typeof val==="number") display = fmtInt(val);
+        else display = esc(val);
+        return `<div class="ficha-row"><span class="ficha-row-label">${l}</span><span class="ficha-row-val ${cls}">${display}</span></div>`;
+      }).join("")}
+    </div>`;
+  }).join("");
+
+
+
+  // Mostrar ficha
+  document.getElementById("ficha-placeholder").style.display="none";
+  document.getElementById("ficha").classList.add("visible");
+}
+
+function imprimirFicha(){
+  window.print();
+}
+
+fetch("data/extensiones.json", {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(data => {
+    DATA = data;
+    document.getElementById("loading-overlay").style.display = "none";
+    render();
+  })
+  .catch(err => {
+    document.getElementById("loading-overlay").innerHTML =
+      '<div style="color:#d64545;font-family:sans-serif;padding:24px;text-align:center;">' +
+      'No se pudieron cargar los datos (' + err.message + ').<br>' +
+      'Probá recargar la página en unos minutos.</div>';
+  });
+</script>
+</body>
+</html>

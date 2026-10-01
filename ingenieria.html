@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visor de Seguimiento de Ingeniería — BAGSA</title>
+<style>
+  :root{
+    --navy:#005895; --teal:#00aec3; --teal-soft:#e3f6f8; --blue-bright:#008ed7;
+    --bg:#f3f7fa; --panel:#ffffff; --border:#dbe6ee; --border-soft:#eaf1f5;
+    --text:#16303f; --text-muted:#5c7688;
+    --red:#d64545; --red-soft:#fbe9e9;
+    --amber:#c98a12; --amber-soft:#fbf1de;
+    --green:#2f9e6e; --green-soft:#e6f6ee;
+    --radius:4px;
+    --sans: Calibri, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    --display: "Calibri Light", Calibri, "Segoe UI", -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:36px 24px 80px;}
+  .wrap{max-width:1440px;margin:0 auto;}
+
+  header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;border-bottom:3px solid var(--teal);padding-bottom:20px;margin-bottom:30px;}
+  .brand-row{display:flex;align-items:center;gap:16px;cursor:pointer;justify-self:start;}
+  .brand-row img{height:56px;width:auto;display:block;}
+  .brand-div{width:1px;height:46px;background:var(--border);}
+  .brand-title{font-size:15px;font-weight:600;color:var(--text-muted);letter-spacing:.03em;}
+  .header-center{text-align:center;}
+  h1{font-family:var(--display);font-weight:400;color:var(--navy);font-size:clamp(22px,4vw,30px);margin:0 0 4px;}
+  .subtitle{color:var(--text-muted);font-size:13.5px;margin:0 auto;max-width:60ch;}
+  .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;justify-self:end;}
+  @media (max-width:1000px){
+    header{grid-template-columns:1fr;justify-items:center;text-align:center;}
+    .brand-row,.header-right{justify-self:center;}
+    .header-right{align-items:center;}
+  }
+  .timestamp{font-size:12px;color:var(--text-muted);text-align:right;}
+  .timestamp b{color:var(--navy);font-weight:600;}
+  .header-links{display:flex;gap:16px;}
+  .link-btn{background:none;border:none;padding:0 0 1px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--teal);cursor:pointer;border-bottom:1px dashed var(--teal);}
+  .link-btn:hover{color:var(--navy);border-bottom-color:var(--navy);}
+
+  .back-link{display:none;align-items:center;gap:6px;color:var(--teal);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:18px;}
+  .back-link.show{display:inline-flex;}
+
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+  @media (max-width:900px){.menu-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.menu-grid{grid-template-columns:1fr;}}
+
+  .sector-card{background:var(--panel);border:1px solid var(--border);border-left:5px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:10px;}
+  .sector-card.listo{border-left-color:var(--green);}
+  .sector-card.bloqueado{border-left-color:var(--red);}
+  .sector-card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;flex-wrap:wrap;}
+  .sector-name{font-family:var(--display);font-size:16px;color:var(--navy);}
+  .sector-badge{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:10px;}
+  .sector-badge.listo{background:var(--green-soft);color:var(--green);}
+  .sector-badge.bloqueado{background:var(--red-soft);color:var(--red);}
+  .sector-detail{display:none;margin-top:10px;border-top:1px solid var(--border-soft);padding-top:10px;}
+  .sector-detail.open{display:block;}
+  .sector-doc-row{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .sector-doc-row:last-child{border-bottom:none;}
+  .menu-card{
+    border:none;border-radius:8px;padding:20px 20px 18px;cursor:pointer;color:#fff;
+    display:flex;flex-direction:column;gap:6px;text-align:left;
+    box-shadow:0 4px 0 rgba(0,0,0,.16), 0 6px 14px rgba(0,0,0,.10);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .menu-card:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.16), 0 10px 18px rgba(0,0,0,.12);}
+  .menu-card:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.16);}
+  .menu-card.dark{background:var(--navy);}
+  .menu-card.light{background:var(--teal);}
+  .menu-card.mid{background:var(--blue-bright);}
+  .menu-card.warn{background:var(--amber);}
+  .menu-card .mc-label{font-size:17px;font-weight:700;}
+  .menu-card .mc-note{font-size:11.5px;opacity:.92;line-height:1.5;}
+  .menu-card .mc-count{font-family:var(--display);font-size:26px;line-height:1;margin-top:8px;}
+
+  .view{display:none;}
+  .view.active{display:block;}
+
+  section{margin-bottom:32px;}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;gap:16px;flex-wrap:wrap;}
+  h2{font-family:var(--display);font-weight:400;font-size:20px;margin:0;color:var(--navy);}
+  .section-note{font-size:12.5px;color:var(--text-muted);}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px 22px 16px;}
+  .head-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--navy);padding:7px 13px;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);white-space:nowrap;}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+  .chips{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .chip{background:#fff;border:1px solid var(--border);color:var(--text-muted);padding:7px 14px;border-radius:16px;font-size:12.5px;cursor:pointer;font-weight:600;white-space:nowrap;}
+  .chip.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .filters-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
+  .filters-row input[type="text"]{flex:1;min-width:200px;}
+  .filters-row label{font-size:11.5px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px;}
+  select, input[type="text"]{background:#fff;color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;font-size:13.5px;font-family:var(--sans);}
+  select:focus, input:focus{outline:1px solid var(--teal);}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th{text-align:left;font-weight:700;color:var(--navy);font-size:10.5px;padding:8px 9px;border-bottom:2px solid var(--border);white-space:nowrap;text-transform:uppercase;letter-spacing:.02em;position:sticky;top:0;background:var(--panel);cursor:pointer;user-select:none;}
+  th:hover{color:var(--teal);}
+  th .sort-arrow{margin-left:4px;opacity:.5;font-size:9px;}
+  th.sorted .sort-arrow{opacity:1;color:var(--teal);}
+  td{padding:7px 9px;border-bottom:1px solid var(--border-soft);white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .table-scroll{overflow:auto;max-height:560px;border:1px solid var(--border-soft);border-radius:3px;}
+  .badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:10.5px;white-space:nowrap;font-weight:600;}
+  .badge.ok{background:var(--green-soft);color:var(--green);}
+  .badge.obs{background:var(--amber-soft);color:var(--amber);}
+  .badge.corr{background:var(--red-soft);color:var(--red);}
+  .badge.sin{background:var(--border-soft);color:var(--text-muted);}
+  .badge.atrasado{background:var(--red-soft);color:var(--red);margin-left:5px;}
+  .sit-bagsa{color:var(--navy);font-weight:600;}
+  .sit-litoral{color:var(--blue-bright);font-weight:600;}
+  .sit-calificado{color:var(--teal);font-weight:600;}
+  .sit-cerrado{color:var(--green);font-weight:600;}
+  .sit-sinpresentar{color:var(--amber);font-weight:600;}
+  .muted{color:var(--text-muted);}
+  .row-count{font-size:12px;color:var(--text-muted);margin-top:10px;}
+  .trunc{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  a.filelink{color:var(--teal);text-decoration:none;}
+  a.filelink:hover{text-decoration:underline;}
+
+  .stat-boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;}
+  .stat-boxes.cols-5{grid-template-columns:repeat(5,1fr);}
+  .stat-boxes.cols-2{grid-template-columns:repeat(2,1fr);}
+  @media (max-width:900px){.stat-boxes,.stat-boxes.cols-5{grid-template-columns:repeat(2,1fr);}}
+  .stat-box{background:var(--panel);border:1px solid var(--border);border-top:4px solid var(--navy);border-radius:8px;padding:14px 18px 12px;}
+  .stat-box.teal{border-top-color:var(--teal);}
+  .stat-box.green{border-top-color:var(--green);}
+  .stat-box.amber{border-top-color:var(--amber);}
+  .stat-box.red{border-top-color:var(--red);}
+  .stat-box.clickable{cursor:pointer;transition:transform .1s ease, box-shadow .1s ease;}
+  .stat-box.clickable:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.08);}
+  .stat-box.clickable.selected{outline:2px solid var(--navy);}
+  .stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;}
+  .stat-value{font-family:var(--display);font-size:28px;line-height:1.15;color:var(--navy);margin-top:4px;}
+  .stat-sub{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
+
+  .pipeline{display:flex;flex-direction:column;gap:0;}
+  .stage-row{display:grid;grid-template-columns:210px 1fr 70px;align-items:center;gap:16px;padding:10px 0;border-bottom:1px dashed var(--border-soft);}
+  .stage-row:last-child{border-bottom:none;}
+  .stage-name{font-size:14px;color:var(--text);}
+  .stage-track{position:relative;height:16px;background:var(--border-soft);border-radius:2px;overflow:hidden;}
+  .stage-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:var(--teal);}
+  .stage-count{font-size:13px;color:var(--text-muted);text-align:right;}
+  .stage-count b{color:var(--navy);font-weight:600;}
+
+  .consulta-layout{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;}
+  @media(max-width:850px){.consulta-layout{grid-template-columns:1fr;}}
+  .consulta-list{max-height:65vh;overflow-y:auto;display:flex;flex-direction:column;gap:4px;}
+  .consulta-item{padding:10px 14px;border-radius:var(--radius);border:1px solid var(--border);cursor:pointer;}
+  .consulta-item:hover{border-color:var(--teal);}
+  .consulta-item.active{border-color:var(--navy);background:var(--teal-soft);}
+  .ci-nomen{font-family:var(--display);font-size:13px;font-weight:700;color:var(--navy);}
+  .ci-desc{font-size:11.5px;color:var(--text);margin-top:2px;}
+  .consulta-empty{color:var(--text-muted);font-size:13px;padding:20px 0;text-align:center;}
+
+  .ficha{display:none;}
+  .ficha.visible{display:block;}
+  .ficha-header{background:var(--navy);color:#fff;padding:14px 20px;border-radius:var(--radius) var(--radius) 0 0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .ficha-header h3{margin:0 0 3px;font-size:17px;font-weight:800;letter-spacing:.3px;}
+  .ficha-header p{margin:0;font-size:12px;color:rgba(255,255,255,.8);}
+  .ficha-header .btn-ghost{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff;flex-shrink:0;}
+  .ficha-header .btn-ghost:hover{background:rgba(255,255,255,.28);}
+  .ficha-body{background:var(--bg);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:18px;}
+  .ficha-narrativa{background:var(--teal-soft);border:1px solid var(--border);border-radius:var(--radius);padding:14px 17px;font-size:16px;line-height:1.6;color:var(--text);margin-bottom:16px;}
+  .ficha-steps{display:flex;flex-direction:column;gap:0;margin-bottom:16px;}
+  .ficha-step{display:flex;justify-content:space-between;align-items:baseline;padding:9px 4px;border-bottom:1px solid var(--border-soft);gap:12px;}
+  .ficha-step:last-child{border-bottom:none;}
+  .ficha-step-label{font-size:12.5px;color:var(--text-muted);}
+  .ficha-step-val{font-size:13px;font-weight:600;color:var(--text);text-align:right;}
+  .ficha-step-val.filled{color:var(--navy);}
+  .ficha-step-val.next{color:var(--teal);font-weight:700;}
+  .ficha-file{margin-top:14px;font-size:12.5px;}
+  .ficha-hist-title{font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;margin:6px 0 8px;}
+
+  .def-grupo{margin-bottom:16px;}
+  .def-item{padding:11px 0;border-bottom:1px solid var(--border-soft);}
+  .def-item:last-child{border-bottom:none;padding-bottom:2px;}
+  .def-grupo h3{margin:0 0 4px;font-family:var(--display);font-weight:400;font-size:16px;color:var(--navy);}
+  .def-term{font-weight:700;color:var(--navy);font-size:13.5px;}
+  .def-desc{font-size:13px;color:var(--text);margin-top:3px;line-height:1.5;}
+  .def-hoy{display:inline-block;background:var(--teal-soft);color:var(--navy);border-radius:10px;padding:1px 10px;font-size:11.5px;font-weight:600;margin-left:10px;}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media print{
+    body.print-mode *{ visibility:hidden !important; }
+    body.print-mode .print-target, body.print-mode .print-target *{ visibility:visible !important; }
+    body.print-mode .print-target{ position:absolute; left:0; top:0; width:100%; }
+    .btn-ghost{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="loading-overlay" style="position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;font-family:var(--sans);color:var(--text-muted);font-size:15px;flex-direction:column;gap:10px;">
+  <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style="animation:spin 1s linear infinite;"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5V6h-3.5" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span>Cargando datos…</span>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="brand-row" onclick="showView('menu')">
+      <img src="data:image/png;base64,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" alt="BAGSA">
+      <div class="brand-div"></div>
+      <div class="brand-title">GERENCIA TÉCNICA</div>
+    </div>
+    <div class="header-center">
+      <h1>Seguimiento de Ingeniería</h1>
+      <p class="subtitle" id="subtitle-obra">Documentación constructiva — Obra</p>
+    </div>
+    <div class="header-right">
+      <div class="timestamp">Datos al <b id="ts-date">—</b> <span id="ts-time"></span><br><span id="ts-file"></span></div>
+      <div class="header-links">
+        <button type="button" class="link-btn" onclick="showView('definiciones')">Definiciones</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="back-link" id="back-link" onclick="showView('menu')">← Volver al menú</div>
+
+  <!-- ===== PANTALLA PRINCIPAL ===== -->
+  <div class="view active" id="view-menu">
+    <div class="menu-grid">
+      <div class="menu-card mid" onclick="showView('buscador')">
+        <div class="mc-label">Buscador Individual</div>
+        <div class="mc-note">Buscá un documento por número o código y mirá su recorrido completo por el circuito</div>
+      </div>
+      <div class="menu-card dark" onclick="showView('resumen')">
+        <div class="mc-label">Resumen y Estado</div>
+        <div class="mc-note">Avance por etapa y cuántos documentos hay en cada situación — incluye Sin presentar</div>
+      </div>
+      <div class="menu-card light" onclick="showView('estadisticas')">
+        <div class="mc-label">Estadísticas</div>
+        <div class="mc-note">Qué combinaciones sector · disciplina están listas para ejecutar, y calidad de los datos de origen</div>
+        <div class="mc-count" id="mc-estadisticas">—</div>
+      </div>
+    </div>
+
+    <section id="home-planilla">
+      <div class="section-head">
+        <h2>Planilla General</h2>
+        <div class="head-actions">
+          <button class="btn-ghost" onclick="exportarPlanillaCSV()">⬇ Exportar a Excel</button>
+          <button class="btn-ghost" onclick="imprimir('planilla-contenido')">🖨 Imprimir</button>
+          <button class="btn-ghost" id="planilla-toggle-btn" onclick="toggleColapso('planilla-contenido', this)">▾ Colapsar</button>
+        </div>
+      </div>
+      <div id="planilla-contenido">
+        <div class="stat-boxes">
+          <div class="stat-box green"><div class="stat-label">Cumplimiento OK</div><div class="stat-value" id="pl-ok">—</div><div class="stat-sub">Aprobado / Visto / Sin corrección</div></div>
+          <div class="stat-box amber"><div class="stat-label">Con observaciones</div><div class="stat-value" id="pl-obs">—</div></div>
+          <div class="stat-box red"><div class="stat-label">Requiere corrección</div><div class="stat-value" id="pl-corr">—</div><div class="stat-sub">Observado / Rechazado</div></div>
+          <div class="stat-box"><div class="stat-label">Atrasados</div><div class="stat-value" id="pl-atrasados-n">—</div><div class="stat-sub" id="pl-atrasados-nota"></div></div>
+        </div>
+        <div class="panel">
+          <div class="filters-row">
+            <label>Sector
+              <select id="pl-sector"></select>
+            </label>
+            <label>Disciplina
+              <select id="pl-disciplina"></select>
+            </label>
+            <input type="text" id="pl-buscar" placeholder="Buscar por código, archivo o descripción...">
+          </div>
+          <div class="chips" id="pl-situacion-chips"></div>
+          <div class="chips">
+            <div class="chip" id="pl-solo-atrasados" data-on="0">Solo atrasados</div>
+          </div>
+          <div class="table-scroll">
+            <table id="tabla-planilla">
+              <thead><tr>
+                <th data-key="nro">Nº<span class="sort-arrow">▾</span></th>
+                <th data-key="disciplina">Disciplina<span class="sort-arrow">▾</span></th>
+                <th data-key="sector">Sector<span class="sort-arrow">▾</span></th>
+                <th data-key="situacion">Situación<span class="sort-arrow">▾</span></th>
+                <th data-key="fDesdeContratista">Desde Contratista<span class="sort-arrow">▾</span></th>
+                <th data-key="fParaLitoral" id="th-etapa2">Para Revisor<span class="sort-arrow">▾</span></th>
+                <th data-key="fDesdeLitoral" id="th-etapa3">Desde Revisor<span class="sort-arrow">▾</span></th>
+                <th data-key="calificacion">Calificación<span class="sort-arrow">▾</span></th>
+                <th data-key="fParaContratista">Para Contratista<span class="sort-arrow">▾</span></th>
+                <th data-key="archivoTxt">Archivo / descripción<span class="sort-arrow">▾</span></th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="row-count" id="planilla-count"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== RESUMEN Y ESTADO ===== -->
+  <div class="view" id="view-resumen">
+    <section>
+      <div class="section-head">
+        <h2>Resumen y Estado</h2>
+        <div class="head-actions">
+          <button class="btn-ghost" onclick="imprimir('resumen-contenido')">🖨 Imprimir</button>
+        </div>
+      </div>
+      <div id="resumen-contenido">
+        <div class="stat-boxes cols-2">
+          <div class="stat-box">
+            <div class="stat-label">Esperados (Maestro)</div>
+            <div class="stat-value" id="rs-esperados">—</div>
+            <div class="stat-sub">documentos que la obra debería tener</div>
+          </div>
+          <div class="stat-box teal">
+            <div class="stat-label">Con actividad</div>
+            <div class="stat-value" id="rs-actividad">—</div>
+            <div class="stat-sub" id="rs-actividad-pct">— del total esperado</div>
+          </div>
+        </div>
+        <div class="panel" style="margin-bottom:18px;">
+          <div class="section-note" style="margin-bottom:10px;">Avance por etapa del circuito (documentos con actividad, última revisión)</div>
+          <div class="pipeline" id="pipeline"></div>
+        </div>
+        <div class="section-note" style="margin-bottom:10px;">Hacé click en una situación para ver el detalle acá mismo</div>
+        <div class="stat-boxes cols-5" id="re-boxes"></div>
+        <div class="panel" id="re-drilldown" style="display:none;margin-top:16px;">
+          <div class="section-head">
+            <h2 id="re-drill-title" style="font-size:16px;">—</h2>
+            <div class="head-actions">
+              <button class="btn-ghost" onclick="exportarReDrillCSV()">⬇ Exportar a Excel</button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table id="tabla-re-drill">
+              <thead><tr>
+                <th data-key="nro">Nº<span class="sort-arrow">▾</span></th>
+                <th data-key="disciplina">Disciplina<span class="sort-arrow">▾</span></th>
+                <th data-key="sector">Sector<span class="sort-arrow">▾</span></th>
+                <th data-key="calificacion">Calificación<span class="sort-arrow">▾</span></th>
+                <th data-key="archivoTxt">Archivo / descripción<span class="sort-arrow">▾</span></th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="row-count" id="re-drill-count"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== ESTADÍSTICAS (sectores listos + calidad de datos) ===== -->
+  <div class="view" id="view-estadisticas">
+    <section>
+      <div class="section-head">
+        <h2>Sectores / Plantas — listos para ejecutar</h2>
+        <div class="head-actions">
+          <button class="btn-ghost" onclick="imprimir('estadisticas-contenido')">🖨 Imprimir</button>
+        </div>
+      </div>
+      <div id="estadisticas-contenido">
+        <div class="section-note" id="sectores-nota" style="margin-bottom:14px;"></div>
+        <div id="sectores-grid"></div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><h2>Calidad de datos</h2><span class="section-note">Cosas raras encontradas en el Excel al actualizar — vale la pena revisarlas</span></div>
+      <div class="panel">
+        <div id="calidad-vacio" class="muted" style="display:none;">Sin anomalías detectadas en la última actualización. 👍</div>
+        <div class="table-scroll" id="calidad-tabla-cont">
+          <table id="tabla-calidad">
+            <thead><tr>
+              <th data-key="nro">Nº<span class="sort-arrow">▾</span></th>
+              <th data-key="disciplina">Disciplina<span class="sort-arrow">▾</span></th>
+              <th data-key="sector">Sector<span class="sort-arrow">▾</span></th>
+              <th data-key="carpeta">Carpeta<span class="sort-arrow">▾</span></th>
+              <th data-key="tipo">Tipo<span class="sort-arrow">▾</span></th>
+              <th data-key="detalle">Detalle<span class="sort-arrow">▾</span></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== BUSCADOR ===== -->
+  <div class="view" id="view-buscador">
+    <section>
+      <div class="section-head"><h2>Buscador de documentos</h2></div>
+      <div class="consulta-layout">
+        <div>
+          <input type="text" id="buscador-input" placeholder="Buscar por Nº, código o archivo..." style="width:100%;margin-bottom:10px;">
+          <div class="consulta-list" id="buscador-list"></div>
+        </div>
+        <div>
+          <div class="ficha" id="ficha">
+            <div class="ficha-header">
+              <div>
+                <h3 id="ficha-titulo">—</h3>
+                <p id="ficha-sub">—</p>
+              </div>
+              <button class="btn-ghost" onclick="imprimir('ficha')">🖨 Imprimir</button>
+            </div>
+            <div class="ficha-body">
+              <div class="ficha-narrativa" id="ficha-narrativa"></div>
+              <div class="ficha-steps" id="ficha-steps"></div>
+              <div class="ficha-hist-title">Historial completo (todas las revisiones)</div>
+              <div class="table-scroll" style="max-height:280px;">
+                <table id="tabla-ficha-historial">
+                  <thead><tr>
+                    <th>Rev.</th><th>Ubicación</th><th>Fecha</th><th>Calificación</th>
+                  </tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="ficha-file" id="ficha-file"></div>
+            </div>
+          </div>
+          <div class="consulta-empty" id="buscador-empty">Elegí un documento de la lista para ver su recorrido completo.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== DEFINICIONES ===== -->
+  <div class="view" id="view-definiciones">
+    <section>
+      <div class="section-head"><h2>Definiciones</h2><span class="section-note">Qué significa cada número del visor y cómo se calcula</span></div>
+      <div id="def-cuerpo"></div>
+    </section>
+  </div>
+
+</div>
+
+<script>
+let DATA = null;
+
+const ENTIDAD = DATA.entidadRevisora || "Revisor";
+const ETAPA_LABEL = {0:"Sin actividad",1:"Desde Contratista",2:"Para "+ENTIDAD,3:"Desde "+ENTIDAD,4:"Para Contratista"};
+const ETAPA_COLOR = {1:"var(--navy)",2:"var(--blue-bright)",3:"var(--teal)",4:"var(--green)"};
+const CAL_LABEL = {OK:"OK", OBS:"Con observaciones", CORR:"Requiere corrección", SIN:"Sin calificar", "":"—"};
+const CAL_TEXTO_CODIGO = {A:"Aprobado", R:"Rechazado", AO:"Aprobado con observación", V:"Visto", VO:"Visto con observación", SC:"Sin corrección"};
+const SIT_CLASS = {"BAGSA":"sit-bagsa","REVISOR":"sit-litoral","CALIFICADO":"sit-calificado","CERRADO":"sit-cerrado","SIN_PRESENTAR":"sit-sinpresentar"};
+const SITUACIONES = ["Sin presentar","En BAGSA","En "+ENTIDAD,"Calificado","Cerrado"];
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+function clave(s){
+  return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim().toUpperCase();
+}
+function toObjects(rows, fields){
+  return rows.map(r => { const o = {}; fields.forEach((k,i) => o[k] = r[i]); return o; });
+}
+const ROWS = toObjects(DATA.rows, DATA.fields);
+const ACTIVOS = ROWS.filter(r => r.esUltima);
+const PEND = toObjects(DATA.pendientes, DATA.pendFields);
+const PLANILLA = toObjects(DATA.planilla, DATA.planillaFields).map(r => {
+  r.archivoTxt = r.archivo || r.descripcion || "";
+  return r;
+});
+const EVENTOS = toObjects(DATA.eventos, DATA.eventoFields);
+const EVENTOS_BY_NRO = new Map();
+EVENTOS.forEach(e => {
+  if(!EVENTOS_BY_NRO.has(e.nro)) EVENTOS_BY_NRO.set(e.nro, []);
+  EVENTOS_BY_NRO.get(e.nro).push(e);
+});
+
+function showView(id){
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.getElementById("view-"+id).classList.add("active");
+  document.getElementById("back-link").classList.toggle("show", id !== "menu");
+  window.scrollTo(0,0);
+}
+
+function badgeCal(balde){
+  const cls = {OK:"ok",OBS:"obs",CORR:"corr",SIN:"sin","":"sin"}[balde] || "sin";
+  return balde ? `<span class="badge ${cls}">${CAL_LABEL[balde] || "—"}</span>` : "—";
+}
+function fileLink(nombre, url){
+  const txt = nombre || "—";
+  if(url) return `<a class="filelink" href="${url}" target="_blank" title="${txt}">${txt}</a>`;
+  return `<span title="${txt}">${txt}</span>`;
+}
+function situacionTexto(r){
+  let txt = `<span class="${SIT_CLASS[r.situacionClave]||''}">${r.situacion}</span>`;
+  if(r.stage>0 && r.stage<4 && r.diasAtraso >= DATA.diasAtrasoUmbral) txt += `<span class="badge atrasado">${r.diasAtraso} d</span>`;
+  return txt;
+}
+
+/* ---------- exportar / imprimir ---------- */
+function descargarCSV(nombre, headers, filas){
+  const esc = v => '"' + String(v==null?"":v).replace(/"/g,'""') + '"';
+  const csv = [headers.map(esc).join(";")].concat(filas.map(f=>f.map(esc).join(";"))).join("\r\n");
+  const blob = new Blob(["\ufeff"+csv], {type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = nombre;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function imprimir(id){
+  document.querySelectorAll(".print-target").forEach(e => e.classList.remove("print-target"));
+  document.getElementById(id).classList.add("print-target");
+  document.body.classList.add("print-mode");
+  window.print();
+}
+window.addEventListener("afterprint", () => document.body.classList.remove("print-mode"));
+
+function toggleColapso(id, btn){
+  const el = document.getElementById(id);
+  const oculto = el.style.display === "none";
+  el.style.display = oculto ? "" : "none";
+  if(btn) btn.textContent = oculto ? "▾ Colapsar" : "▸ Expandir";
+}
+
+/* ---------- MENU / header ---------- */
+function pintarHeader(){
+  document.getElementById("ts-date").textContent = DATA.generatedAt || "—";
+  document.getElementById("ts-time").textContent = DATA.generatedTime || "";
+  document.getElementById("ts-file").textContent = DATA.sourceFile || "";
+  document.getElementById("subtitle-obra").textContent =
+    "Documentación constructiva" + (DATA.obra ? " — Obra " + DATA.obra : "");
+  document.getElementById("th-etapa2").childNodes[0].textContent = "Para " + ENTIDAD;
+  document.getElementById("th-etapa3").childNodes[0].textContent = "Desde " + ENTIDAD;
+}
+
+/* ---------- RESUMEN Y ESTADO ---------- */
+let reFiltro = null;
+
+function pintarResumen(){
+  document.getElementById("rs-esperados").textContent = DATA.totalEsperados;
+  document.getElementById("rs-actividad").textContent = DATA.totalConActividad;
+  const pct = DATA.totalEsperados ? Math.round(DATA.totalConActividad/DATA.totalEsperados*100) : 0;
+  document.getElementById("rs-actividad-pct").textContent = pct + "% del total esperado";
+
+  const max = Math.max(1, ...DATA.stageDist);
+  const cont = document.getElementById("pipeline");
+  cont.innerHTML = "";
+  [1,2,3,4].forEach(i => {
+    const n = DATA.stageDist[i-1];
+    const div = document.createElement("div");
+    div.className = "stage-row";
+    div.innerHTML = `
+      <div class="stage-name">${ETAPA_LABEL[i]}</div>
+      <div class="stage-track"><div class="stage-fill" style="width:${n/max*100}%;background:${ETAPA_COLOR[i]}"></div></div>
+      <div class="stage-count"><b>${n}</b></div>`;
+    cont.appendChild(div);
+  });
+
+  const conteoSituacion = {"Sin presentar": PEND.length, ["En BAGSA"]: DATA.stageDist[0],
+    ["En "+ENTIDAD]: DATA.stageDist[1], "Calificado": DATA.stageDist[2], "Cerrado": DATA.stageDist[3]};
+  const claveDeSituacion = {"Sin presentar":"SIN_PRESENTAR", ["En BAGSA"]:"BAGSA", ["En "+ENTIDAD]:"REVISOR", "Calificado":"CALIFICADO", "Cerrado":"CERRADO"};
+  const boxClass = {"SIN_PRESENTAR":"amber","BAGSA":"","REVISOR":"teal","CALIFICADO":"","CERRADO":"green"};
+  const boxSub = {"Sin presentar":"", ["En BAGSA"]:"recibido, no enviado a "+ENTIDAD, ["En "+ENTIDAD]:"enviado, sin devolución",
+    "Calificado":"devuelto por "+ENTIDAD+", falta reenviar", "Cerrado":"devuelto al contratista"};
+  const cont2 = document.getElementById("re-boxes");
+  cont2.innerHTML = SITUACIONES.map(s => {
+    const ck = claveDeSituacion[s];
+    return `<div class="stat-box clickable ${boxClass[ck]}" data-sit="${s}" onclick="toggleReDrill('${s.replace(/'/g,"\\'")}')">
+      <div class="stat-label">${s}</div>
+      <div class="stat-value">${conteoSituacion[s]}</div>
+      <div class="stat-sub">${boxSub[s]}</div>
+    </div>`;
+  }).join("");
+}
+
+let reDatosActuales = [];
+function toggleReDrill(situacion){
+  reFiltro = (reFiltro === situacion) ? null : situacion;
+  document.querySelectorAll("#re-boxes .stat-box").forEach(b => b.classList.toggle("selected", b.dataset.sit === reFiltro));
+  const panel = document.getElementById("re-drilldown");
+  if(!reFiltro){ panel.style.display = "none"; return; }
+  panel.style.display = "";
+  document.getElementById("re-drill-title").textContent = situacion + " — detalle";
+  reDatosActuales = PLANILLA.filter(r => r.situacion === situacion);
+  armarTabla("tabla-re-drill", reDatosActuales, r => `<tr>
+      <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
+      <td>${badgeCal(r.calBalde)}</td>
+      <td class="trunc">${r.url ? fileLink(r.archivo, r.url) : (r.descripcion||"—")}</td></tr>`, "nro");
+  document.getElementById("re-drill-count").textContent = reDatosActuales.length + " documento(s)";
+}
+function exportarReDrillCSV(){
+  const headers = ["Nº","Disciplina","Sector","Calificación","Archivo / descripción"];
+  const filas = reDatosActuales.map(r => [r.nro, r.disciplina, r.sector, r.calificacion, r.archivo||r.descripcion]);
+  descargarCSV("resumen_" + (reFiltro||"situacion").replace(/\s+/g,"_") + ".csv", headers, filas);
+}
+
+/* ---------- tabla genérica con orden por click en encabezado ---------- */
+function armarTabla(tablaId, datos, renderRow, sortDefault){
+  const tabla = document.getElementById(tablaId);
+  const tbody = tabla.querySelector("tbody");
+  let sortKey = sortDefault, sortDir = 1;
+  function pintar(){
+    const ordenados = [...datos].sort((a,b) => {
+      const va = a[sortKey], vb = b[sortKey];
+      if(typeof va === "number" && typeof vb === "number") return (va-vb)*sortDir;
+      return String(va||"").localeCompare(String(vb||""))*sortDir;
+    });
+    tbody.innerHTML = ordenados.map(renderRow).join("") || `<tr><td colspan="12" class="muted">Sin resultados.</td></tr>`;
+    tabla.querySelectorAll("th[data-key]").forEach(th => {
+      th.classList.toggle("sorted", th.dataset.key === sortKey);
+      const arrow = th.querySelector(".sort-arrow");
+      if(arrow) arrow.textContent = (th.dataset.key===sortKey && sortDir===1) ? "▴" : "▾";
+    });
+  }
+  tabla.querySelectorAll("th[data-key]").forEach(th => {
+    th.onclick = () => {
+      if(sortKey === th.dataset.key) sortDir *= -1; else { sortKey = th.dataset.key; sortDir = -1; }
+      pintar();
+    };
+  });
+  pintar();
+  return pintar;
+}
+
+/* ---------- PLANILLA GENERAL ---------- */
+let plFiltroSituacion = "";
+let plSoloAtrasados = false;
+let plDatosActuales = [];
+
+function esAtrasado(r){ return r.stage>0 && r.stage<4 && r.diasAtraso >= DATA.diasAtrasoUmbral; }
+
+function plRender(){
+  const selSector = document.getElementById("pl-sector");
+  const selDisc = document.getElementById("pl-disciplina");
+  const q = document.getElementById("pl-buscar").value.trim().toLowerCase();
+  plDatosActuales = PLANILLA.filter(r =>
+    (!selSector.value || r.sector === selSector.value) &&
+    (!selDisc.value || r.disciplina === selDisc.value) &&
+    (!plFiltroSituacion || r.situacion === plFiltroSituacion) &&
+    (!plSoloAtrasados || esAtrasado(r)) &&
+    (!q || String(r.nro).includes(q) || (r.nomenclatura||"").toLowerCase().includes(q) ||
+          (r.archivo||"").toLowerCase().includes(q) || (r.descripcion||"").toLowerCase().includes(q)));
+  armarTabla("tabla-planilla", plDatosActuales, r => `<tr>
+      <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
+      <td>${situacionTexto(r)}</td>
+      <td>${r.fDesdeContratista||"—"}</td><td>${r.fParaLitoral||"—"}</td><td>${r.fDesdeLitoral||"—"}</td>
+      <td>${badgeCal(r.calBalde)}</td><td>${r.fParaContratista||"—"}</td>
+      <td class="trunc">${r.url ? fileLink(r.archivo, r.url) : (r.descripcion||"—")}</td></tr>`, "nro");
+  document.getElementById("planilla-count").textContent = plDatosActuales.length + " de " + PLANILLA.length + " documento(s)";
+}
+
+function setSituacionFiltro(s){
+  plFiltroSituacion = s;
+  document.querySelectorAll("#pl-situacion-chips .chip").forEach(c => c.classList.toggle("active", c.dataset.s === s));
+  plRender();
+}
+
+function irAPlanillaFiltrada(situacion){
+  showView("menu");
+  const contenido = document.getElementById("planilla-contenido");
+  if(contenido.style.display === "none") toggleColapso("planilla-contenido", document.getElementById("planilla-toggle-btn"));
+  setSituacionFiltro(situacion);
+  setTimeout(() => document.getElementById("home-planilla").scrollIntoView({behavior:"smooth", block:"start"}), 50);
+}
+
+function exportarPlanillaCSV(){
+  const headers = ["Nº","Disciplina","Sector","Situación","Desde Contratista","Para "+ENTIDAD,"Desde "+ENTIDAD,"Calificación","Para Contratista","Archivo / descripción"];
+  const filas = plDatosActuales.map(r => [r.nro, r.disciplina, r.sector, r.situacion,
+    r.fDesdeContratista, r.fParaLitoral, r.fDesdeLitoral, r.calificacion, r.fParaContratista, r.archivo || r.descripcion]);
+  descargarCSV("planilla_general_" + (DATA.obra||"obra") + ".csv", headers, filas);
+}
+
+function pintarPlanilla(){
+  document.getElementById("pl-ok").textContent = DATA.calDist.OK;
+  document.getElementById("pl-obs").textContent = DATA.calDist.OBS;
+  document.getElementById("pl-corr").textContent = DATA.calDist.CORR;
+  const atrasados = ACTIVOS.filter(esAtrasado);
+  document.getElementById("pl-atrasados-n").textContent = atrasados.length;
+  document.getElementById("pl-atrasados-nota").textContent = "≥ " + DATA.diasAtrasoUmbral + " días sin moverse";
+
+  const selSector = document.getElementById("pl-sector");
+  const selDisc = document.getElementById("pl-disciplina");
+  selSector.innerHTML = `<option value="">Todos los sectores</option>` + DATA.sectores.map(s=>`<option>${s}</option>`).join("");
+  selDisc.innerHTML = `<option value="">Todas las disciplinas</option>` + DATA.disciplinas.map(d=>`<option>${d}</option>`).join("");
+
+  const chipsCont = document.getElementById("pl-situacion-chips");
+  chipsCont.innerHTML = `<div class="chip active" data-s="">Todas las situaciones</div>` +
+    SITUACIONES.map(s => `<div class="chip" data-s="${s}">${s}</div>`).join("");
+  chipsCont.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => setSituacionFiltro(c.dataset.s)));
+
+  const chipAtrasados = document.getElementById("pl-solo-atrasados");
+  chipAtrasados.addEventListener("click", () => {
+    plSoloAtrasados = !plSoloAtrasados;
+    chipAtrasados.classList.toggle("active", plSoloAtrasados);
+    plRender();
+  });
+
+  selSector.addEventListener("change", plRender);
+  selDisc.addEventListener("change", plRender);
+  document.getElementById("pl-buscar").addEventListener("input", plRender);
+  plRender();
+}
+
+/* ---------- BUSCADOR ---------- */
+function pintarBuscador(){
+  const input = document.getElementById("buscador-input");
+  const list = document.getElementById("buscador-list");
+  function itemsFiltrados(){
+    const q = input.value.trim().toLowerCase();
+    if(!q) return ACTIVOS;
+    return ACTIVOS.filter(r =>
+      String(r.nro).includes(q) || r.nomenclatura.toLowerCase().includes(q) || (r.archivo||"").toLowerCase().includes(q));
+  }
+  function render(){
+    const items = [...itemsFiltrados()].sort((a,b) => a.nro - b.nro);
+    list.innerHTML = items.map(r => `<div class="consulta-item" data-nro="${r.nro}">
+        <div class="ci-nomen">${String(r.nro).padStart(3,'0')} - ${r.revision||"—"} - ${r.descripcion || r.archivo || "—"}</div>
+        <div class="ci-desc">${r.disciplina||"—"} · ${r.sector||"—"}</div></div>`).join("")
+      || `<div class="consulta-empty">Sin resultados.</div>`;
+    list.querySelectorAll(".consulta-item").forEach(el => el.addEventListener("click", () => {
+      list.querySelectorAll(".consulta-item").forEach(x=>x.classList.remove("active"));
+      el.classList.add("active");
+      mostrarFicha(parseInt(el.dataset.nro));
+    }));
+  }
+  input.addEventListener("input", render);
+  render();
+}
+
+function fechaEnPalabras(ddmmyyyy){
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(ddmmyyyy||"");
+  if(!m) return ddmmyyyy || "una fecha sin registrar";
+  return parseInt(m[1],10) + " de " + MESES[parseInt(m[2],10)-1] + " de " + m[3];
+}
+function calTexto(codigoOTexto){
+  if(!codigoOTexto) return "sin calificar todavía";
+  const up = codigoOTexto.trim().toUpperCase();
+  return (CAL_TEXTO_CODIGO[up] || codigoOTexto).toLowerCase();
+}
+function accionPorUbicacion(ubicRaw){
+  const k = clave(ubicRaw);
+  if(k === clave(DATA.etapaNombres[0])) return "recibido para revisión en BAGSA";
+  if(k === clave(DATA.etapaNombres[1])) return "enviado a " + ENTIDAD;
+  if(k === clave(DATA.etapaNombres[2])) return "recibido desde " + ENTIDAD;
+  if(k === clave(DATA.etapaNombres[3])) return "devuelto a contratista";
+  return "movido a " + ubicRaw;
+}
+function estadoPorUbicacion(ubicRaw){
+  const k = clave(ubicRaw);
+  if(k === clave(DATA.etapaNombres[0])) return "en revisión en BAGSA";
+  if(k === clave(DATA.etapaNombres[1])) return "en revisión en " + ENTIDAD;
+  if(k === clave(DATA.etapaNombres[2])) return "en revisión en BAGSA tras devolución de " + ENTIDAD;
+  if(k === clave(DATA.etapaNombres[3])) return "en poder de la contratista";
+  return "en " + ubicRaw;
+}
+
+function mostrarFicha(nro){
+  const eventos = EVENTOS_BY_NRO.get(nro) || [];
+  const actualRow = ACTIVOS.find(r => r.nro === nro);
+  if(!eventos.length || !actualRow) return;
+  const ultimo = eventos[0];
+
+  document.getElementById("buscador-empty").style.display = "none";
+  const ficha = document.getElementById("ficha");
+  ficha.classList.add("visible");
+  document.getElementById("ficha-titulo").textContent =
+    String(nro).padStart(3,'0') + " - " + (actualRow.revision||"—") + " - " + (actualRow.descripcion || actualRow.archivo || "—");
+  const revsDistintas = new Set(eventos.map(e=>e.revision)).size;
+  document.getElementById("ficha-sub").textContent =
+    (actualRow.disciplina||"—") + " · " + (actualRow.sector || "sin sector") +
+    (revsDistintas>1 ? " · "+revsDistintas+" revisiones" : "");
+
+  document.getElementById("ficha-narrativa").textContent =
+    `El documento Nº ${nro}, en su revisión "${ultimo.revision}", el ${fechaEnPalabras(ultimo.fecha)} fue ` +
+    `${accionPorUbicacion(ultimo.ubicacion)}, con una calificación de ${calTexto(ultimo.calificacion)}. ` +
+    `Actualmente se encuentra ${estadoPorUbicacion(ultimo.ubicacion)}.`;
+
+  const steps = document.getElementById("ficha-steps");
+  const campos = [
+    ["Desde Contratista", actualRow.fDesdeContratista, 1],
+    ["Para "+ENTIDAD, actualRow.fParaLitoral, 2],
+    ["Desde "+ENTIDAD, actualRow.fDesdeLitoral, 3],
+    ["Para Contratista", actualRow.fParaContratista, 4],
+  ];
+  steps.innerHTML = campos.map(([label,val,st]) => {
+    const cls = val ? "filled" : (st === actualRow.stage+1 ? "next" : "");
+    return `<div class="ficha-step"><div class="ficha-step-label">${label}</div><div class="ficha-step-val ${cls}">${val || (st===actualRow.stage+1 ? "pendiente" : "—")}</div></div>`;
+  }).join("");
+
+  document.querySelector("#tabla-ficha-historial tbody").innerHTML = eventos.map(e => `<tr>
+      <td>${e.revision}</td><td>${e.ubicacion}</td><td>${e.fecha||"—"}</td>
+      <td>${e.calificacion ? (CAL_TEXTO_CODIGO[e.calificacion.toUpperCase()]||e.calificacion) : "Sin cal."}</td></tr>`).join("");
+
+  document.getElementById("ficha-file").innerHTML = "Último archivo: " + fileLink(ultimo.archivo, ultimo.url);
+}
+
+/* ---------- SECTORES / PLANTAS (listos para ejecutar) ---------- */
+function esAlta(r){ return (r.importancia||"").trim().toLowerCase()==="alta"; }
+function pesoDoc(r){ return (typeof r.ponderacion === "number" && r.ponderacion > 0) ? r.ponderacion : 1; }
+
+function pintarSectores(){
+  const cont = document.getElementById("sectores-grid");
+  const nota = document.getElementById("sectores-nota");
+  const umbral = DATA.umbralAvanceListo || 85;
+  nota.textContent = `Avance ponderado: cada documento pesa según su Ponderación (hoja ANALITICO, de 1 a 5; sin ANALITICO, todos pesan igual). Cada combinación Sector · Disciplina queda "Lista" cuando su avance ponderado llega a ${umbral}% o más. Dentro del detalle, los pendientes más pesados/críticos (mayor Ponderación, Impacto, o Importancia Alta) aparecen primero y resaltados ⚠. Click en una fila para ver el detalle.`;
+  const sectores = DATA.sectores.length ? DATA.sectores : [...new Set(PLANILLA.map(r=>r.sector).filter(Boolean))].sort();
+  let listas = 0, total = 0, html = "";
+  sectores.forEach(sector => {
+    const docsSector = PLANILLA.filter(r => r.sector === sector);
+    const disciplinas = [...new Set(docsSector.map(r => r.disciplina || "(sin disciplina)"))].sort();
+    html += `<h3 style="font-family:var(--display);font-weight:400;font-size:17px;color:var(--navy);margin:18px 0 8px;">${sector}</h3>`;
+    disciplinas.forEach((disc, idx) => {
+      const docs = docsSector.filter(r => (r.disciplina || "(sin disciplina)") === disc);
+      const pendientes = docs.filter(r => r.situacionClave !== "CERRADO");
+      const pesoTotal = docs.reduce((a,r) => a + pesoDoc(r), 0);
+      const pesoHecho = docs.filter(r => r.situacionClave === "CERRADO").reduce((a,r) => a + pesoDoc(r), 0);
+      const pct = pesoTotal ? Math.round(pesoHecho/pesoTotal*100) : 100;
+      const lista = pct >= umbral;
+      total++;
+      if(lista) listas++;
+      const ordenados = [...pendientes].sort((a,b) => {
+        const critA = (esAlta(a) || pesoDoc(a) >= 4) ? 0 : 1;
+        const critB = (esAlta(b) || pesoDoc(b) >= 4) ? 0 : 1;
+        return (critA - critB) || (pesoDoc(b) - pesoDoc(a)) || (a.nro - b.nro);
+      });
+      const id = "sec-" + sector.replace(/[^a-z0-9]/gi,"_") + "-" + idx;
+      html += `<div class="sector-card ${lista?'listo':'bloqueado'}">
+        <div class="sector-card-head" onclick="document.getElementById('${id}').classList.toggle('open')">
+          <div><span class="sector-name">${disc}</span>
+            <span class="sector-badge ${lista?'listo':'bloqueado'}" style="margin-left:10px;">${lista?'Lista':'Bloqueada'} · ${pct}%</span>
+          </div>
+          <div class="section-note">${pendientes.length} pendiente(s) de ${docs.length}</div>
+        </div>
+        <div class="sector-detail" id="${id}">
+          ${pendientes.length ? ordenados.map(r => {
+            const critico = esAlta(r) || pesoDoc(r) >= 4;
+            const tag = r.impacto || (esAlta(r) ? "Alta" : "");
+            return `<div class="sector-doc-row"${critico?' style="font-weight:700;"':''}>
+              <span>${critico?'⚠ ':''}${r.nro} — ${r.archivo||r.descripcion||'—'}${tag?` <span class="badge corr">${tag}</span>`:''}</span>
+              <span class="muted">${r.situacion}</span></div>`;
+          }).join("") : '<span class="muted">Sin pendientes.</span>'}
+        </div>
+      </div>`;
+    });
+  });
+  cont.innerHTML = html || `<span class="muted">No hay sectores cargados en el Maestro.</span>`;
+  document.getElementById("mc-estadisticas").textContent = listas + " de " + total + " listas";
+}
+
+/* ---------- CALIDAD DE DATOS ---------- */
+const CALIDAD_TIPO_LABEL = {
+  "mas_de_una_fecha": "Fecha duplicada",
+  "calificacion_no_reconocida": "Calificación no reconocida",
+};
+function pintarCalidad(){
+  const items = (DATA.calidad || []).map(c => ({
+    nro: parseInt((c.nomenclatura||"").match(/\d+/)?.[0] || "0", 10),
+    disciplina: c.disciplina || "—",
+    sector: c.sector || "—",
+    carpeta: c.ubicacion || "—",
+    tipo: CALIDAD_TIPO_LABEL[c.tipo] || c.tipo,
+    detalle: (c.nomenclatura ? c.nomenclatura + ": " : "") + (c.detalle || ""),
+  }));
+  document.getElementById("calidad-vacio").style.display = items.length ? "none" : "";
+  document.getElementById("calidad-tabla-cont").style.display = items.length ? "" : "none";
+  if(items.length) armarTabla("tabla-calidad", items, c =>
+    `<tr><td>${c.nro||"—"}</td><td>${c.disciplina}</td><td>${c.sector}</td><td>${c.carpeta}</td><td>${c.tipo}</td><td>${c.detalle}</td></tr>`, "nro");
+}
+
+/* ---------- DEFINICIONES ---------- */
+function renderDefiniciones(){
+  const grupos = [
+    { grupo:"Los datos", items:[
+      { t:"Fuente y fecha de los datos",
+        d:"Todo sale de las hojas «BASE» (Listados, sincronizada con SharePoint) y «MAESTRO_DOC» del Excel de la obra, que se copian al visor con actualizar_ingenieria.py. «Datos al» indica cuándo se hizo esa copia.",
+        hoy: "datos al " + (DATA.generatedAt || "—") },
+      { t:"Documento (Nro)",
+        d:"Cada número de documento del listado maestro de la obra. Puede tener más de una revisión (A, B, C...) a lo largo del tiempo.",
+        hoy: DATA.totalEsperados + " documentos esperados" },
+      { t:"Circuito de 4 etapas",
+        d:"Todo documento recorre 4 carpetas en SharePoint, en este orden: Desde Contratista → Para " + ENTIDAD + " → Desde " + ENTIDAD + " → Para Contratista. El nombre del revisor externo (" + ENTIDAD + ") se detecta solo, leyendo los datos de esta obra." },
+    ]},
+    { grupo:"Situación y atraso", items:[
+      { t:"Situación (5 niveles)",
+        d:"En BAGSA: recibido del contratista, todavía no enviado a " + ENTIDAD + ". En " + ENTIDAD + ": enviado, sin devolución. Calificado: " + ENTIDAD + " ya lo calificó, falta reenviarlo al contratista. Cerrado: ya vuelve al contratista. Sin presentar: está en el Maestro pero nunca entró al circuito." },
+      { t:"Atrasado",
+        d:"Un documento que no llegó a \"Cerrado\" y no se movió de su etapa actual en " + DATA.diasAtrasoUmbral + " días o más.",
+        hoy: ACTIVOS.filter(esAtrasado).length + " atrasados hoy" },
+      { t:"Cumplimiento OK / Con observaciones / Requiere corrección",
+        d:"Se calculan sobre la calificación que puso " + ENTIDAD + ": OK agrupa Aprobado/Visto/Sin corrección; Con observaciones agrupa Aprobado u Visto con observación; Requiere corrección agrupa Observado/Rechazado.",
+        hoy: DATA.calDist.OK + " OK · " + DATA.calDist.OBS + " con obs. · " + DATA.calDist.CORR + " a corregir" },
+    ]},
+    { grupo:"Planilla General y Buscador", items:[
+      { t:"Planilla General",
+        d:"Una fila por documento: los que tienen actividad muestran sus 4 fechas; los que nunca se presentaron aparecen con las fechas en blanco y situación «Sin presentar». Filtra por Sector, Disciplina y Situación." },
+      { t:"Buscador individual",
+        d:"Muestra el historial COMPLETO de un documento: todas sus revisiones y todos los pasos por las 4 carpetas, ordenados del más reciente al más antiguo — igual que el buscador que existía en el Excel." },
+      { t:"Sectores / Plantas — listos para ejecutar (dentro de Estadísticas)",
+        d:"La unidad es Sector · Disciplina (ej. \"ERP 25-1,5 · Eléctrica\"), porque cada disciplina de un sector puede avanzar en forma independiente. Queda \"Lista\" cuando TODOS sus documentos llegaron a Cerrado; un solo pendiente (incluso Sin presentar) la deja \"Bloqueada\", sin importar su Importancia. Dentro del detalle de una bloqueada, los documentos de Importancia Alta se muestran primero y resaltados con ⚠, solo para priorizar cuál atacar antes — no cambian si está lista o no." },
+      { t:"Calidad de datos (dentro de Estadísticas)",
+        d:"Anomalías que actualizar_ingenieria.py detecta al leer el Excel: fechas duplicadas para la misma ubicación (se usa la más reciente) y calificaciones que no matchean ningún balde conocido (OK/OBS/CORR)." },
+      { t:"Nomenclatura inválida",
+        d:"Un archivo cuyo nombre no sigue el formato «Nro_Revisión ...» esperado. Se detecta en la hoja BASE del Excel (columna NomenclaturaValida) y evita que ese archivo rompa la actualización de toda la planilla." },
+    ]},
+  ];
+  document.getElementById("def-cuerpo").innerHTML = grupos.map(g =>
+    `<div class="panel def-grupo"><h3>${g.grupo}</h3>` +
+    g.items.map(it => `<div class="def-item"><div><span class="def-term">${it.t}</span>${it.hoy?`<span class="def-hoy">Hoy: ${it.hoy}</span>`:""}</div><div class="def-desc">${it.d}</div></div>`).join("") +
+    `</div>`).join("");
+}
+
+/* ---------- init ---------- */
+const OBRA = new URLSearchParams(location.search).get("obra") || "anchorena";
+fetch(`data/ingenieria_${OBRA}.json`, {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(data => {
+    DATA = data;
+    pintarHeader();
+    pintarResumen();
+    pintarPlanilla();
+    pintarBuscador();
+    pintarSectores();
+    pintarCalidad();
+    renderDefiniciones();
+    document.getElementById("loading-overlay").style.display = "none";
+  })
+  .catch(err => {
+    document.getElementById("loading-overlay").innerHTML =
+      '<div style="color:#d64545;font-family:sans-serif;padding:24px;text-align:center;">' +
+      'No se pudieron cargar los datos de la obra "' + OBRA + '" (' + err.message + ').<br>' +
+      'Probá recargar la página en unos minutos.</div>';
+  });
+</script>
+</body>
+</html>

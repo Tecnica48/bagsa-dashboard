@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gerencia Técnica — BAGSA</title>
+<style>
+  :root{
+    --navy:#005895; --teal:#00aec3; --teal-soft:#e3f6f8;
+    --bg:#f3f7fa; --panel:#ffffff; --border:#dbe6ee;
+    --text:#16303f; --text-muted:#5c7688;
+    --sans: Calibri, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans);
+    padding:calc(36px + env(safe-area-inset-top,0px)) 24px calc(60px + env(safe-area-inset-bottom,0px));
+  }
+  .wrap{max-width:960px;margin:0 auto;}
+  h1{font-weight:400;color:var(--navy);font-size:clamp(22px,4vw,30px);margin:0 0 6px;}
+  .subtitle{color:var(--text-muted);font-size:14px;margin:0 0 32px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  a.card{
+    display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#fff;
+    background:var(--navy);border-radius:8px;padding:20px 20px 18px;
+    box-shadow:0 4px 0 rgba(0,0,0,.16),0 6px 14px rgba(0,0,0,.10);
+    transition:transform .12s ease;
+  }
+  a.card:hover{transform:translateY(-2px);}
+  a.card.light{background:var(--teal);}
+  .card .t{font-size:17px;font-weight:700;}
+  .card .d{font-size:12px;opacity:.9;line-height:1.5;}
+  footer{margin-top:40px;font-size:11.5px;color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Gerencia Técnica</h1>
+  <p class="subtitle">Paneles de seguimiento — los datos se actualizan automáticamente desde los Excel de cada área.</p>
+  <div class="grid">
+    <a class="card dark" href="extensiones.html">
+      <span class="t">Seguimiento de Extensiones</span>
+      <span class="d">Estado por etapa, usuarios, metros de red y proyectos de extensión.</span>
+    </a>
+    <a class="card light" href="ingenieria.html?obra=anchorena">
+      <span class="t">Ingeniería — Anchorena</span>
+      <span class="d">Seguimiento de documentación de ingeniería de obra.</span>
+    </a>
+    <a class="card light" href="ingenieria.html?obra=mechita">
+      <span class="t">Ingeniería — Mechita</span>
+      <span class="d">Seguimiento de documentación de ingeniería de obra.</span>
+    </a>
+    <a class="card light" href="ingenieria.html?obra=chascomus">
+      <span class="t">Ingeniería — Chascomús</span>
+      <span class="d">Seguimiento de documentación de ingeniería de obra.</span>
+    </a>
+  </div>
+  <footer>Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
+</div>
+</body>
+</html>
