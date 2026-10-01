@@ -453,19 +453,27 @@ function clave(s){
 function toObjects(rows, fields){
   return rows.map(r => { const o = {}; fields.forEach((k,i) => o[k] = r[i]); return o; });
 }
-const ROWS = toObjects(DATA.rows, DATA.fields);
-const ACTIVOS = ROWS.filter(r => r.esUltima);
-const PEND = toObjects(DATA.pendientes, DATA.pendFields);
-const PLANILLA = toObjects(DATA.planilla, DATA.planillaFields).map(r => {
-  r.archivoTxt = r.archivo || r.descripcion || "";
-  return r;
-});
-const EVENTOS = toObjects(DATA.eventos, DATA.eventoFields);
-const EVENTOS_BY_NRO = new Map();
-EVENTOS.forEach(e => {
-  if(!EVENTOS_BY_NRO.has(e.nro)) EVENTOS_BY_NRO.set(e.nro, []);
-  EVENTOS_BY_NRO.get(e.nro).push(e);
-});
+let ROWS = [];
+let ACTIVOS = [];
+let PEND = [];
+let PLANILLA = [];
+let EVENTOS = [];
+let EVENTOS_BY_NRO = new Map();
+function buildDerivadosDatos(){
+  ROWS = toObjects(DATA.rows, DATA.fields);
+  ACTIVOS = ROWS.filter(r => r.esUltima);
+  PEND = toObjects(DATA.pendientes, DATA.pendFields);
+  PLANILLA = toObjects(DATA.planilla, DATA.planillaFields).map(r => {
+    r.archivoTxt = r.archivo || r.descripcion || "";
+    return r;
+  });
+  EVENTOS = toObjects(DATA.eventos, DATA.eventoFields);
+  EVENTOS_BY_NRO = new Map();
+  EVENTOS.forEach(e => {
+    if(!EVENTOS_BY_NRO.has(e.nro)) EVENTOS_BY_NRO.set(e.nro, []);
+    EVENTOS_BY_NRO.get(e.nro).push(e);
+  });
+}
 
 function showView(id){
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
@@ -909,6 +917,7 @@ fetch(`data/ingenieria_${OBRA}.json`, {cache: "no-store"})
   .then(data => {
     DATA = data;
     buildDerivados();
+    buildDerivadosDatos();
     pintarHeader();
     pintarResumen();
     pintarPlanilla();
