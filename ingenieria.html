@@ -433,13 +433,18 @@
 <script>
 let DATA = null;
 
-const ENTIDAD = DATA.entidadRevisora || "Revisor";
-const ETAPA_LABEL = {0:"Sin actividad",1:"Desde Contratista",2:"Para "+ENTIDAD,3:"Desde "+ENTIDAD,4:"Para Contratista"};
+let ENTIDAD = "Revisor";
+let ETAPA_LABEL = {};
+let SITUACIONES = [];
+function buildDerivados(){
+  ENTIDAD = DATA.entidadRevisora || "Revisor";
+  ETAPA_LABEL = {0:"Sin actividad",1:"Desde Contratista",2:"Para "+ENTIDAD,3:"Desde "+ENTIDAD,4:"Para Contratista"};
+  SITUACIONES = ["Sin presentar","En BAGSA","En "+ENTIDAD,"Calificado","Cerrado"];
+}
 const ETAPA_COLOR = {1:"var(--navy)",2:"var(--blue-bright)",3:"var(--teal)",4:"var(--green)"};
 const CAL_LABEL = {OK:"OK", OBS:"Con observaciones", CORR:"Requiere corrección", SIN:"Sin calificar", "":"—"};
 const CAL_TEXTO_CODIGO = {A:"Aprobado", R:"Rechazado", AO:"Aprobado con observación", V:"Visto", VO:"Visto con observación", SC:"Sin corrección"};
 const SIT_CLASS = {"BAGSA":"sit-bagsa","REVISOR":"sit-litoral","CALIFICADO":"sit-calificado","CERRADO":"sit-cerrado","SIN_PRESENTAR":"sit-sinpresentar"};
-const SITUACIONES = ["Sin presentar","En BAGSA","En "+ENTIDAD,"Calificado","Cerrado"];
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
 function clave(s){
@@ -903,6 +908,7 @@ fetch(`data/ingenieria_${OBRA}.json`, {cache: "no-store"})
   .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(data => {
     DATA = data;
+    buildDerivados();
     pintarHeader();
     pintarResumen();
     pintarPlanilla();
