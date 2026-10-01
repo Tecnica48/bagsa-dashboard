@@ -759,7 +759,6 @@ const DIAM_HEADERS = ["PE Ø50","PE Ø63","PE Ø90","PE Ø125","PE Ø180","A° �
 let DATA = null;
 let FIELD_IDX = {};
 function buildFieldIdx(){ FIELD_IDX = {}; DATA.fields.forEach((f,i)=>FIELD_IDX[f]=i); }
-buildFieldIdx();
 function F(row, name){ return row[FIELD_IDX[name]]; }
 
 const fmtInt = n => Math.round(n).toLocaleString("es-AR");
@@ -2175,6 +2174,7 @@ fetch("data/extensiones.json", {cache: "no-store"})
   .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(data => {
     DATA = data;
+    buildFieldIdx();
     document.getElementById("loading-overlay").style.display = "none";
     render();
   })
