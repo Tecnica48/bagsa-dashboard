@@ -48,6 +48,12 @@
   @media (max-width:900px){.menu-grid{grid-template-columns:1fr 1fr;}}
   @media (max-width:600px){.menu-grid{grid-template-columns:1fr;}}
 
+  .sector-group{margin-bottom:6px;}
+  .sector-group-head{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 2px;user-select:none;flex-wrap:wrap;}
+  .sector-group-arrow{font-size:12px;color:var(--navy);transition:transform .2s;display:inline-block;}
+  .sector-group-head.open .sector-group-arrow{transform:rotate(180deg);}
+  .sector-group-body{display:none;}
+  .sector-group-body.open{display:block;}
   .sector-card{background:var(--panel);border:1px solid var(--border);border-left:5px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:10px;}
   .sector-card.listo{border-left-color:var(--green);}
   .sector-card.bloqueado{border-left-color:var(--red);}
@@ -93,8 +99,10 @@
   .chip.active{background:var(--navy);border-color:var(--navy);color:#fff;}
 
   .filters-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
-  .filters-row input[type="text"]{flex:1;min-width:200px;}
   .filters-row label{font-size:11.5px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px;}
+  .filters-row label.search-field{flex:1;min-width:200px;}
+  .filters-row label.search-field .label-ghost{visibility:hidden;}
+  .filters-row label.search-field input[type="text"]{width:100%;}
   select, input[type="text"]{background:#fff;color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;font-size:13.5px;font-family:var(--sans);}
   select:focus, input:focus{outline:1px solid var(--teal);}
 
@@ -252,10 +260,10 @@
       </div>
       <div id="planilla-contenido">
         <div class="stat-boxes">
-          <div class="stat-box green"><div class="stat-label">Cumplimiento OK</div><div class="stat-value" id="pl-ok">—</div><div class="stat-sub">Aprobado / Visto / Sin corrección</div></div>
-          <div class="stat-box amber"><div class="stat-label">Con observaciones</div><div class="stat-value" id="pl-obs">—</div></div>
-          <div class="stat-box red"><div class="stat-label">Requiere corrección</div><div class="stat-value" id="pl-corr">—</div><div class="stat-sub">Observado / Rechazado</div></div>
-          <div class="stat-box"><div class="stat-label">Atrasados</div><div class="stat-value" id="pl-atrasados-n">—</div><div class="stat-sub" id="pl-atrasados-nota"></div></div>
+          <div class="stat-box green clickable" data-cal="OK" onclick="setCalFiltro('OK')"><div class="stat-label">Cumplimiento OK</div><div class="stat-value" id="pl-ok">—</div><div class="stat-sub">Aprobado / Visto / Sin corrección</div></div>
+          <div class="stat-box amber clickable" data-cal="OBS" onclick="setCalFiltro('OBS')"><div class="stat-label">Con observaciones</div><div class="stat-value" id="pl-obs">—</div><div class="stat-sub">Aprobado u visto, con algo para tener en cuenta a futuro</div></div>
+          <div class="stat-box red clickable" data-cal="CORR" onclick="setCalFiltro('CORR')"><div class="stat-label">Requiere corrección</div><div class="stat-value" id="pl-corr">—</div><div class="stat-sub">Observado / Rechazado</div></div>
+          <div class="stat-box clickable" id="pl-atrasados-box" onclick="toggleAtrasados()"><div class="stat-label">Atrasados</div><div class="stat-value" id="pl-atrasados-n">—</div><div class="stat-sub" id="pl-atrasados-nota"></div></div>
         </div>
         <div class="panel">
           <div class="filters-row">
@@ -265,7 +273,10 @@
             <label>Disciplina
               <select id="pl-disciplina"></select>
             </label>
-            <input type="text" id="pl-buscar" placeholder="Buscar por código, archivo o descripción...">
+            <label class="search-field">
+              <span class="label-ghost" aria-hidden="true">Buscar</span>
+              <input type="text" id="pl-buscar" placeholder="Buscar por código, archivo o descripción...">
+            </label>
           </div>
           <div class="chips" id="pl-situacion-chips"></div>
           <div class="chips">
@@ -444,7 +455,14 @@ function buildDerivados(){
 }
 const ETAPA_COLOR = {1:"var(--navy)",2:"var(--blue-bright)",3:"var(--teal)",4:"var(--green)"};
 const CAL_LABEL = {OK:"OK", OBS:"Con observaciones", CORR:"Requiere corrección", SIN:"Sin calificar", "":"—"};
-const CAL_TEXTO_CODIGO = {A:"Aprobado", R:"Rechazado", AO:"Aprobado con observación", V:"Visto", VO:"Visto con observación", SC:"Sin corrección"};
+const CAL_TEXTO_CODIGO = {A:"Aprobado", R:"Rechazado", AO:"Aprobado con observación", V:"Visto", VO:"Visto con observación", SC:"Sin corrección", O:"Observado"};
+/* Normaliza cualquier forma en que venga cargada la calificación (sigla o texto completo,
+   con o sin tildes/mayúsculas) a su sigla corta, para mostrarla como iniciales en la tabla. */
+const CAL_CODIGO_CORTO = {
+  "APROBADO":"A", "VISTO":"V", "SIN CORRECCION":"SC", "A":"A", "V":"V", "SC":"SC",
+  "APROBADO CON OBSERVACIONES":"AO", "VISTO CON OBSERVACION":"VO", "AO":"AO", "VO":"VO",
+  "OBSERVADO":"O", "RECHAZADO":"R", "O":"O", "R":"R"
+};
 const SIT_CLASS = {"BAGSA":"sit-bagsa","REVISOR":"sit-litoral","CALIFICADO":"sit-calificado","CERRADO":"sit-cerrado","SIN_PRESENTAR":"sit-sinpresentar"};
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
@@ -480,12 +498,29 @@ function showView(id){
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
   document.getElementById("view-"+id).classList.add("active");
   document.getElementById("back-link").classList.toggle("show", id !== "menu");
+  if (id === "menu" && typeof resetBuscador === "function") resetBuscador();
   window.scrollTo(0,0);
 }
 
-function badgeCal(balde){
+/* Limpia la búsqueda del buscador de documentos (consulta individual) al volver al menú. */
+function resetBuscador(){
+  const input = document.getElementById("buscador-input");
+  if(!input) return;
+  input.value = "";
+  input.dispatchEvent(new Event("input"));
+  document.querySelectorAll("#buscador-list .consulta-item").forEach(x => x.classList.remove("active"));
+  const ficha = document.getElementById("ficha");
+  if(ficha) ficha.classList.remove("visible");
+  const vacio = document.getElementById("buscador-empty");
+  if(vacio) vacio.style.display = "";
+}
+
+function badgeCal(balde, calificacionRaw){
+  if(!balde) return "—";
   const cls = {OK:"ok",OBS:"obs",CORR:"corr",SIN:"sin","":"sin"}[balde] || "sin";
-  return balde ? `<span class="badge ${cls}">${CAL_LABEL[balde] || "—"}</span>` : "—";
+  const sigla = CAL_CODIGO_CORTO[clave(calificacionRaw)] || "?";
+  const titulo = calTexto(calificacionRaw);
+  return `<span class="badge ${cls}" title="${titulo}">${sigla}</span>`;
 }
 function fileLink(nombre, url){
   const txt = nombre || "—";
@@ -586,7 +621,7 @@ function toggleReDrill(situacion){
   reDatosActuales = PLANILLA.filter(r => r.situacion === situacion);
   armarTabla("tabla-re-drill", reDatosActuales, r => `<tr>
       <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
-      <td>${badgeCal(r.calBalde)}</td>
+      <td>${badgeCal(r.calBalde, r.calificacion)}</td>
       <td class="trunc">${r.url ? fileLink(r.archivo, r.url) : (r.descripcion||"—")}</td></tr>`, "nro");
   document.getElementById("re-drill-count").textContent = reDatosActuales.length + " documento(s)";
 }
@@ -626,6 +661,7 @@ function armarTabla(tablaId, datos, renderRow, sortDefault){
 
 /* ---------- PLANILLA GENERAL ---------- */
 let plFiltroSituacion = "";
+let plFiltroCal = "";
 let plSoloAtrasados = false;
 let plDatosActuales = [];
 
@@ -639,6 +675,7 @@ function plRender(){
     (!selSector.value || r.sector === selSector.value) &&
     (!selDisc.value || r.disciplina === selDisc.value) &&
     (!plFiltroSituacion || r.situacion === plFiltroSituacion) &&
+    (!plFiltroCal || r.calBalde === plFiltroCal) &&
     (!plSoloAtrasados || esAtrasado(r)) &&
     (!q || String(r.nro).includes(q) || (r.nomenclatura||"").toLowerCase().includes(q) ||
           (r.archivo||"").toLowerCase().includes(q) || (r.descripcion||"").toLowerCase().includes(q)));
@@ -646,7 +683,7 @@ function plRender(){
       <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
       <td>${situacionTexto(r)}</td>
       <td>${r.fDesdeContratista||"—"}</td><td>${r.fParaLitoral||"—"}</td><td>${r.fDesdeLitoral||"—"}</td>
-      <td>${badgeCal(r.calBalde)}</td><td>${r.fParaContratista||"—"}</td>
+      <td>${badgeCal(r.calBalde, r.calificacion)}</td><td>${r.fParaContratista||"—"}</td>
       <td class="trunc">${r.url ? fileLink(r.archivo, r.url) : (r.descripcion||"—")}</td></tr>`, "nro");
   document.getElementById("planilla-count").textContent = plDatosActuales.length + " de " + PLANILLA.length + " documento(s)";
 }
@@ -654,6 +691,20 @@ function plRender(){
 function setSituacionFiltro(s){
   plFiltroSituacion = s;
   document.querySelectorAll("#pl-situacion-chips .chip").forEach(c => c.classList.toggle("active", c.dataset.s === s));
+  plRender();
+}
+
+function setCalFiltro(balde){
+  plFiltroCal = (plFiltroCal === balde) ? "" : balde;
+  document.querySelectorAll("#home-planilla .stat-boxes .stat-box[data-cal]").forEach(b =>
+    b.classList.toggle("selected", b.dataset.cal === plFiltroCal));
+  plRender();
+}
+
+function toggleAtrasados(){
+  plSoloAtrasados = !plSoloAtrasados;
+  document.getElementById("pl-atrasados-box").classList.toggle("selected", plSoloAtrasados);
+  document.getElementById("pl-solo-atrasados").classList.toggle("active", plSoloAtrasados);
   plRender();
 }
 
@@ -690,12 +741,7 @@ function pintarPlanilla(){
     SITUACIONES.map(s => `<div class="chip" data-s="${s}">${s}</div>`).join("");
   chipsCont.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => setSituacionFiltro(c.dataset.s)));
 
-  const chipAtrasados = document.getElementById("pl-solo-atrasados");
-  chipAtrasados.addEventListener("click", () => {
-    plSoloAtrasados = !plSoloAtrasados;
-    chipAtrasados.classList.toggle("active", plSoloAtrasados);
-    plRender();
-  });
+  document.getElementById("pl-solo-atrasados").addEventListener("click", toggleAtrasados);
 
   selSector.addEventListener("change", plRender);
   selDisc.addEventListener("change", plRender);
@@ -807,10 +853,12 @@ function pintarSectores(){
   nota.textContent = `Avance ponderado: cada documento pesa según su Ponderación (hoja ANALITICO, de 1 a 5; sin ANALITICO, todos pesan igual). Cada combinación Sector · Disciplina queda "Lista" cuando su avance ponderado llega a ${umbral}% o más. Dentro del detalle, los pendientes más pesados/críticos (mayor Ponderación, Impacto, o Importancia Alta) aparecen primero y resaltados ⚠. Click en una fila para ver el detalle.`;
   const sectores = DATA.sectores.length ? DATA.sectores : [...new Set(PLANILLA.map(r=>r.sector).filter(Boolean))].sort();
   let listas = 0, total = 0, html = "";
-  sectores.forEach(sector => {
+  sectores.forEach((sector, sIdx) => {
     const docsSector = PLANILLA.filter(r => r.sector === sector);
     const disciplinas = [...new Set(docsSector.map(r => r.disciplina || "(sin disciplina)"))].sort();
-    html += `<h3 style="font-family:var(--display);font-weight:400;font-size:17px;color:var(--navy);margin:18px 0 8px;">${sector}</h3>`;
+    const sectorId = "sector-" + sector.replace(/[^a-z0-9]/gi,"_") + "-" + sIdx;
+    let sectorListas = 0;
+    let discHtml = "";
     disciplinas.forEach((disc, idx) => {
       const docs = docsSector.filter(r => (r.disciplina || "(sin disciplina)") === disc);
       const pendientes = docs.filter(r => r.situacionClave !== "CERRADO");
@@ -819,14 +867,14 @@ function pintarSectores(){
       const pct = pesoTotal ? Math.round(pesoHecho/pesoTotal*100) : 100;
       const lista = pct >= umbral;
       total++;
-      if(lista) listas++;
+      if(lista){ listas++; sectorListas++; }
       const ordenados = [...pendientes].sort((a,b) => {
         const critA = (esAlta(a) || pesoDoc(a) >= 4) ? 0 : 1;
         const critB = (esAlta(b) || pesoDoc(b) >= 4) ? 0 : 1;
         return (critA - critB) || (pesoDoc(b) - pesoDoc(a)) || (a.nro - b.nro);
       });
       const id = "sec-" + sector.replace(/[^a-z0-9]/gi,"_") + "-" + idx;
-      html += `<div class="sector-card ${lista?'listo':'bloqueado'}">
+      discHtml += `<div class="sector-card ${lista?'listo':'bloqueado'}">
         <div class="sector-card-head" onclick="document.getElementById('${id}').classList.toggle('open')">
           <div><span class="sector-name">${disc}</span>
             <span class="sector-badge ${lista?'listo':'bloqueado'}" style="margin-left:10px;">${lista?'Lista':'Bloqueada'} · ${pct}%</span>
@@ -837,16 +885,36 @@ function pintarSectores(){
           ${pendientes.length ? ordenados.map(r => {
             const critico = esAlta(r) || pesoDoc(r) >= 4;
             const tag = r.impacto || (esAlta(r) ? "Alta" : "");
-            return `<div class="sector-doc-row"${critico?' style="font-weight:700;"':''}>
+            return `<div class="sector-doc-row" style="cursor:pointer;${critico?'font-weight:700;':''}" onclick="irABuscadorDoc(${r.nro})" title="Ver en Buscador de documentos">
               <span>${critico?'⚠ ':''}${r.nro} — ${r.archivo||r.descripcion||'—'}${tag?` <span class="badge corr">${tag}</span>`:''}</span>
               <span class="muted">${r.situacion}</span></div>`;
           }).join("") : '<span class="muted">Sin pendientes.</span>'}
         </div>
       </div>`;
     });
+    html += `<div class="sector-group">
+      <div class="sector-group-head" id="${sectorId}-head" onclick="document.getElementById('${sectorId}-head').classList.toggle('open'); document.getElementById('${sectorId}-body').classList.toggle('open');">
+        <span class="sector-group-arrow">▼</span>
+        <h3 style="font-family:var(--display);font-weight:400;font-size:17px;color:var(--navy);margin:0;">${sector}</h3>
+        <span class="section-note">${sectorListas} de ${disciplinas.length} disciplinas listas</span>
+      </div>
+      <div class="sector-group-body" id="${sectorId}-body">${discHtml}</div>
+    </div>`;
   });
   cont.innerHTML = html || `<span class="muted">No hay sectores cargados en el Maestro.</span>`;
   document.getElementById("mc-estadisticas").textContent = listas + " de " + total + " listas";
+}
+
+/* Desde un documento en Sectores/Estadísticas: abre el Buscador de documentos
+   (consulta individual) directamente sobre ese expediente. */
+function irABuscadorDoc(nro){
+  showView("buscador");
+  const input = document.getElementById("buscador-input");
+  if(input){ input.value = String(nro); input.dispatchEvent(new Event("input")); }
+  setTimeout(() => {
+    const item = document.querySelector('#buscador-list .consulta-item[data-nro="'+nro+'"]');
+    if(item) item.click();
+  }, 0);
 }
 
 /* ---------- CALIDAD DE DATOS ---------- */
