@@ -976,10 +976,14 @@ function cerrarPopoverDoc(){
 function irABuscadorDoc(nro){
   showView("buscador");
   const input = document.getElementById("buscador-input");
-  if(input){ input.value = String(nro); input.dispatchEvent(new Event("input")); }
+  // Vacía el buscador en vez de poner el número: un número suelto filtraría también
+  // 17, 27, 70-79, etc. (coincidencia de texto), y acá necesitamos el documento exacto.
+  if(input){ input.value = ""; input.dispatchEvent(new Event("input")); }
+  mostrarFicha(nro);
   setTimeout(() => {
+    document.querySelectorAll("#buscador-list .consulta-item").forEach(x => x.classList.remove("active"));
     const item = document.querySelector('#buscador-list .consulta-item[data-nro="'+nro+'"]');
-    if(item) item.click();
+    if(item){ item.classList.add("active"); item.scrollIntoView({block:"center"}); }
   }, 0);
 }
 
