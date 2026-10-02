@@ -787,21 +787,31 @@ function pintarPlanilla(){
 }
 
 /* ---------- BUSCADOR ---------- */
+/* Lista completa del Buscador de documentos: los activos (con eventos cargados) +
+   los "Sin presentar" (sin ningún movimiento todavía), que ACTIVOS no incluye. */
+function listaBuscadorCompleta(){
+  const nrosActivos = new Set(ACTIVOS.map(r => r.nro));
+  const sinPresentar = PLANILLA.filter(r => r.situacionClave === "SIN_PRESENTAR" && !nrosActivos.has(r.nro));
+  return [...ACTIVOS, ...sinPresentar];
+}
 function pintarBuscador(){
   const input = document.getElementById("buscador-input");
   const list = document.getElementById("buscador-list");
+  const todos = listaBuscadorCompleta();
   function itemsFiltrados(){
     const q = input.value.trim().toLowerCase();
-    if(!q) return ACTIVOS;
-    return ACTIVOS.filter(r =>
-      String(r.nro).includes(q) || r.nomenclatura.toLowerCase().includes(q) || (r.archivo||"").toLowerCase().includes(q));
+    if(!q) return todos;
+    return todos.filter(r =>
+      String(r.nro).includes(q) || (r.nomenclatura||"").toLowerCase().includes(q) || (r.archivo||"").toLowerCase().includes(q) || (r.descripcion||"").toLowerCase().includes(q));
   }
   function render(){
     const items = [...itemsFiltrados()].sort((a,b) => a.nro - b.nro);
-    list.innerHTML = items.map(r => `<div class="consulta-item" data-nro="${r.nro}">
-        <div class="ci-nomen">${String(r.nro).padStart(3,'0')} - ${r.revision||"—"} - ${r.descripcion || r.archivo || "—"}</div>
-        <div class="ci-desc">${r.disciplina||"—"} · ${r.sector||"—"}</div></div>`).join("")
-      || `<div class="consulta-empty">Sin resultados.</div>`;
+    list.innerHTML = items.map(r => {
+      const sinPresentar = r.situacionClave === "SIN_PRESENTAR";
+      return `<div class="consulta-item" data-nro="${r.nro}">
+        <div class="ci-nomen">${String(r.nro).padStart(3,'0')} - ${sinPresentar ? "Sin presentar" : (r.revision||"—")} - ${r.descripcion || r.archivo || "—"}</div>
+        <div class="ci-desc">${r.disciplina||"—"} · ${r.sector||"—"}</div></div>`;
+    }).join("") || `<div class="consulta-empty">Sin resultados.</div>`;
     list.querySelectorAll(".consulta-item").forEach(el => el.addEventListener("click", () => {
       list.querySelectorAll(".consulta-item").forEach(x=>x.classList.remove("active"));
       el.classList.add("active");
@@ -841,19 +851,28 @@ function estadoPorUbicacion(ubicRaw){
 
 function mostrarFicha(nro){
   const eventos = EVENTOS_BY_NRO.get(nro) || [];
-  const actualRow = ACTIVOS.find(r => r.nro === nro);
-  if(!eventos.length || !actualRow) return;
-  const ultimo = eventos[0];
+  const actualRow = ACTIVOS.find(r => r.nro === nro) || PLANILLA.find(r => r.nro === nro);
+  if(!actualRow) return;
 
   document.getElementById("buscador-empty").style.display = "none";
   const ficha = document.getElementById("ficha");
   ficha.classList.add("visible");
   document.getElementById("ficha-titulo").textContent =
-    String(nro).padStart(3,'0') + " - " + (actualRow.revision||"—") + " - " + (actualRow.descripcion || actualRow.archivo || "—");
+    String(nro).padStart(3,'0') + " - " + (eventos.length ? (actualRow.revision||"—") : "Sin presentar") + " - " + (actualRow.descripcion || actualRow.archivo || "—");
   const revsDistintas = new Set(eventos.map(e=>e.revision)).size;
   document.getElementById("ficha-sub").textContent =
     (actualRow.disciplina||"—") + " · " + (actualRow.sector || "sin sector") +
     (revsDistintas>1 ? " · "+revsDistintas+" revisiones" : "");
+
+  if(!eventos.length){
+    document.getElementById("ficha-narrativa").textContent =
+      `El documento Nº ${String(nro).padStart(3,'0')} todavía no fue presentado por la contratista — no hay ningún movimiento cargado.`;
+    document.getElementById("ficha-steps").innerHTML = "";
+    document.querySelector("#tabla-ficha-historial tbody").innerHTML = "";
+    document.getElementById("ficha-file").innerHTML = "";
+    return;
+  }
+  const ultimo = eventos[0];
 
   document.getElementById("ficha-narrativa").textContent =
     `El documento Nº ${nro}, en su revisión "${ultimo.revision}", el ${fechaEnPalabras(ultimo.fecha)} fue ` +
