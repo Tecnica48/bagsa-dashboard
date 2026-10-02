@@ -112,7 +112,6 @@
   .stage-count b{color:var(--navy);font-weight:600;}
   .stage-hint{font-size:11.5px;color:var(--text-muted);margin-top:10px;}
 
-
   /* Collapsibles */
   .collapsible-section{border:none;}
   .collapsible-header{display:flex;align-items:baseline;gap:10px;cursor:pointer;list-style:none;padding:4px 0;user-select:none;}
@@ -179,12 +178,32 @@
   /* Vista Extensiones habilitadas: recuadros de resumen */
   .ext-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px;}
   .ext-box{background:var(--panel);border:1px solid var(--border);border-top:4px solid var(--navy);border-radius:8px;padding:14px 18px 12px;}
-  .ext-box.price{border-top-color:var(--teal);}
+  .ext-box.price{border-top-color:var(--teal);position:relative;overflow:visible;}
   .ext-label{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;}
   .ext-value{font-family:var(--display);font-size:32px;line-height:1.15;color:var(--navy);margin-top:4px;}
   .ext-sub{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
   .ext-nota{margin:0 0 18px;}
   @media (max-width:800px){.ext-boxes{grid-template-columns:1fr;}}
+
+  /* Evolución del precio: desplegable flotante dentro de la tarjeta de precio,
+     no empuja el resto de la página hacia abajo. */
+  .price-evol{margin-top:10px;}
+  .price-evol summary.price-evol-toggle{
+    cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:5px;
+    font-size:11.5px;font-weight:700;color:var(--teal);user-select:none;
+  }
+  .price-evol summary.price-evol-toggle::-webkit-details-marker{display:none;}
+  .price-evol[open] summary.price-evol-toggle{color:var(--navy);}
+  .price-evol #evol-arrow{transition:transform .2s;flex:none;}
+  .price-evol[open] #evol-arrow{transform:rotate(180deg);}
+  .price-evol-panel{
+    position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:60;
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    box-shadow:0 10px 28px rgba(0,0,0,.20); padding:14px;
+  }
+  @media (max-width:800px){
+    .price-evol-panel{position:static; box-shadow:none; margin-top:10px; padding:0;}
+  }
 
   /* Vista Factibilidades vigentes: tres pasos en una sola tabla */
   #tabla-fact tr.grp td{background:var(--teal-soft);color:var(--navy);font-weight:700;padding:10px 12px;border-top:2px solid var(--border);border-left:5px solid var(--teal);}
@@ -318,17 +337,17 @@
   <div class="view active" id="view-menu">
     <div class="menu-grid">
       <!-- Columna 1 · búsqueda (azul) -->
-      <div class="menu-card dark" onclick="showView('buscador')">
-        <div class="mc-label">Buscar por expediente</div>
-        <div class="mc-note">Búsqueda general con estado de situación por etapa de cada expediente</div>
-        <div class="mc-count" id="mc-total">—</div>
-      </div>
       <div class="menu-card dark" onclick="showView('consulta')">
         <div class="mc-label">Consulta individual</div>
         <div class="mc-note">Ficha técnica completa de un expediente con todas sus etapas y fechas</div>
         <div class="mc-count">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
         </div>
+      </div>
+      <div class="menu-card dark" onclick="showView('buscador')">
+        <div class="mc-label">Búsqueda General</div>
+        <div class="mc-note">Listado completo de expedientes, filtrable por etapa, con el estado de situación de cada uno</div>
+        <div class="mc-count" id="mc-total">—</div>
       </div>
       <!-- Columna 2 · datos actuales (celeste claro) -->
       <div class="menu-card light" onclick="showView('info-actuales')">
@@ -374,6 +393,19 @@
         <div class="ext-label">Precio promedio por metro</div>
         <div class="ext-value" id="ext-precio">—</div>
         <div class="ext-sub" id="ext-precio-sub"></div>
+        <details class="price-evol">
+          <summary class="price-evol-toggle">
+            <svg id="evol-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span id="evol-titulo">Evolución por año</span>
+          </summary>
+          <div class="price-evol-panel">
+            <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-evolucion-precio')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+            <div class="table-scroll small" style="margin-top:10px;"><table id="tabla-evolucion-precio">
+                <thead><tr><th>Año</th><th>Precio promedio /m</th></tr></thead>
+                <tbody></tbody>
+              </table></div>
+          </div>
+        </details>
       </div>
     </div>
     <p class="section-note ext-nota" id="ext-precio-nota"></p>
@@ -412,68 +444,11 @@
       </table></div>
     </div>
 
+    
 
-    <div class="panel" style="margin-top:22px;">
-      <details>
-        <summary style="cursor:pointer;font-size:13px;font-weight:600;color:var(--navy);list-style:none;display:flex;align-items:center;gap:6px;">
-          <svg id="evol-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span id="evol-titulo">Evolución del precio promedio por año</span>
-        </summary>
-        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-evolucion-precio')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
-      <div class="table-scroll small" style="margin-top:12px;"><table id="tabla-evolucion-precio">
-          <thead><tr><th>Año</th><th>Precio promedio /m</th></tr></thead>
-          <tbody></tbody>
-        </table></div>
-      </details>
-    </div>
+    
 
-    <details class="collapsible-section" style="margin-top:22px;">
-      <summary class="collapsible-header">
-        <span class="coll-arrow">▼</span>
-        <h2>Consolidado de usuarios por localidad y zona</h2>
-        <span class="section-note">Vigentes sin empresa + con empresa sin habilitar + habilitadas en el último año</span>
-      </summary>
-      <div class="panel" style="margin-top:12px;">
-        <p class="section-note ext-nota">Suma de usuarios por localidad: <b>Vigentes sin empresa</b> (adhesión de las factibilidades otorgadas con vencimiento posterior a hoy y sin empresa), <b>Con empresa, sin habilitar</b> (adhesión de las extensiones con empresa y sin fecha de habilitación) y <b>Habilitadas último año</b> (usuarios sucedáneos —si no tiene, los de adhesión— de las habilitadas en los últimos 12 meses). Las localidades siguen el orden de la lista de la Gerencia, agrupadas por zona según su ubicación en la provincia de Buenos Aires; bajo cada zona figuran los partidos que incluye. Lo que tenga usuarios y no figure en ninguna zona aparece aparte, en rojo.</p>
-        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-cons')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
-        <div class="table-scroll"><table id="tabla-ul-cons" class="tot-arriba">
-          <thead>
-            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th><th></th><th></th></tr>
-            <tr>
-              <th>Zona / Localidad</th>
-              <th>Vigentes sin empresa</th>
-              <th>Con empresa, sin habilitar</th>
-              <th>Habilitadas último año</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table></div>
-      </div>
-    </details>
-
-    <details class="collapsible-section" style="margin-top:22px;">
-      <summary class="collapsible-header">
-        <span class="coll-arrow">▼</span>
-        <h2>Usuarios por localidad · habilitadas en el último año</h2>
-        <span class="section-note">Habilitadas en los últimos 12 meses corridos · usuarios sucedáneos (si no tiene, los de adhesión)</span>
-      </summary>
-      <div class="panel" style="margin-top:12px;">
-        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios sucedáneos tiene cada localidad entre las habilitadas en los últimos 12 meses (según la fecha de habilitación, contando hacia atrás desde hoy). Si una extensión no tiene usuarios sucedáneos cargados, se cuentan los de adhesión.</p>
-        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-hab')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
-        <div class="table-scroll small"><table id="tabla-ul-hab" class="tot-arriba">
-          <thead>
-            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
-            <tr>
-              <th data-key="localidad" data-type="text">Localidad</th>
-              <th data-key="cant" data-type="number">Extensiones</th>
-              <th data-key="usuarios" data-type="number">Usuarios sucedáneos</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table></div>
-      </div>
-    </details>
+    
 
   </div>
 
@@ -533,6 +508,77 @@
       </div>
     </details>
 
+<details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Consolidado de usuarios por localidad y zona</h2>
+        <span class="section-note">Vigentes sin empresa + con empresa sin habilitar + habilitadas en el último año</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Suma de usuarios por localidad: <b>Vigentes sin empresa</b> (adhesión de las factibilidades otorgadas con vencimiento posterior a hoy y sin empresa), <b>Con empresa, sin habilitar</b> (adhesión de las extensiones con empresa y sin fecha de habilitación) y <b>Habilitadas último año</b> (usuarios sucedáneos —si no tiene, los de adhesión— de las habilitadas en los últimos 12 meses). Las localidades siguen el orden de la lista de la Gerencia, agrupadas por zona según su ubicación en la provincia de Buenos Aires; bajo cada zona figuran los partidos que incluye. Lo que tenga usuarios y no figure en ninguna zona aparece aparte, en rojo.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-cons')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll"><table id="tabla-ul-cons" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th><th></th><th></th></tr>
+            <tr>
+              <th>Zona / Localidad</th>
+              <th>Vigentes sin empresa</th>
+              <th>Con empresa, sin habilitar</th>
+              <th>Habilitadas último año</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
+<details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Usuarios por localidad · vigentes sin empresa</h2>
+        <span class="section-note">Factibilidades otorgadas con vencimiento posterior a hoy y sin empresa asignada · usuarios de adhesión</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios de adhesión tiene cada localidad entre las factibilidades ya otorgadas que siguen vigentes (fecha de vencimiento posterior a hoy) y todavía no tienen empresa constructora. Se calcula sola con la fecha de hoy: no hace falta tildar fechas.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-vig')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll small"><table id="tabla-ul-vig" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
+            <tr>
+              <th data-key="localidad" data-type="text">Localidad</th>
+              <th data-key="cant" data-type="number">Extensiones</th>
+              <th data-key="usuarios" data-type="number">Usuarios adhesión</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
+<details class="collapsible-section" style="margin-top:22px;">
+      <summary class="collapsible-header">
+        <span class="coll-arrow">▼</span>
+        <h2>Usuarios por localidad · habilitadas en el último año</h2>
+        <span class="section-note">Habilitadas en los últimos 12 meses corridos · usuarios sucedáneos (si no tiene, los de adhesión)</span>
+      </summary>
+      <div class="panel" style="margin-top:12px;">
+        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios sucedáneos tiene cada localidad entre las habilitadas en los últimos 12 meses (según la fecha de habilitación, contando hacia atrás desde hoy). Si una extensión no tiene usuarios sucedáneos cargados, se cuentan los de adhesión.</p>
+        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-hab')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
+        <div class="table-scroll small"><table id="tabla-ul-hab" class="tot-arriba">
+          <thead>
+            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
+            <tr>
+              <th data-key="localidad" data-type="text">Localidad</th>
+              <th data-key="cant" data-type="number">Extensiones</th>
+              <th data-key="usuarios" data-type="number">Usuarios sucedáneos</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </details>
+
     <details class="collapsible-section" style="margin-top:22px;">
       <summary class="collapsible-header">
         <span class="coll-arrow">▼</span>
@@ -573,28 +619,7 @@
       <div class="row-count" id="fact-row-count"></div>
     </div>
 
-    <details class="collapsible-section" style="margin-top:22px;">
-      <summary class="collapsible-header">
-        <span class="coll-arrow">▼</span>
-        <h2>Usuarios por localidad · vigentes sin empresa</h2>
-        <span class="section-note">Factibilidades otorgadas con vencimiento posterior a hoy y sin empresa asignada · usuarios de adhesión</span>
-      </summary>
-      <div class="panel" style="margin-top:12px;">
-        <p class="section-note ext-nota">Cuántas extensiones y cuántos usuarios de adhesión tiene cada localidad entre las factibilidades ya otorgadas que siguen vigentes (fecha de vencimiento posterior a hoy) y todavía no tienen empresa constructora. Se calcula sola con la fecha de hoy: no hace falta tildar fechas.</p>
-        <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-ul-vig')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
-        <div class="table-scroll small"><table id="tabla-ul-vig" class="tot-arriba">
-          <thead>
-            <tr class="totals-row"><th class="totals-label">TOTAL</th><th></th><th></th></tr>
-            <tr>
-              <th data-key="localidad" data-type="text">Localidad</th>
-              <th data-key="cant" data-type="number">Extensiones</th>
-              <th data-key="usuarios" data-type="number">Usuarios adhesión</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table></div>
-      </div>
-    </details>
+    
   </div>
 
   <!-- ===== EMPRESAS Y TIEMPOS DE OBRA ===== -->
@@ -743,8 +768,6 @@
       </details>
     </section>
   </div>
-
-
 
 </div>
 
@@ -1121,7 +1144,7 @@ const DEFINICIONES = [
     { t:"Metros",
       d:"Suma de los 9 diámetros de cada extensión (PE Ø50, Ø63, Ø90, Ø125, Ø180 y A° Ø51, Ø76, Ø102, Ø152). Se muestran con 2 decimales y sin unidad." },
     { t:"Usuarios de adhesión, sucedáneos y total",
-      d:"Adhesión: columna USUARIOS ADHESION. Sucedáneos: columna USUARIOS SUCEDANEOS. Total: la suma de ambos. En «Buscar por expediente» la columna Usuarios muestra los sucedáneos y, si no tiene, los de adhesión." },
+      d:"Adhesión: columna USUARIOS ADHESION. Sucedáneos: columna USUARIOS SUCEDANEOS. Total: la suma de ambos. En «Búsqueda General» la columna Usuarios muestra los sucedáneos y, si no tiene, los de adhesión." },
     { t:"Con empresa y empresa válida",
       d:"«Con empresa asignada»: la columna EMPRESA tiene algo cargado. «Empresa válida» (rankings, tiempos y «con empresa, sin habilitar») descarta además los marcadores «X», «-», «--» y «---»." },
     { t:"Habilitada y año de habilitación",
@@ -1788,7 +1811,6 @@ function renderFactibilidades(){
   document.getElementById("fact-row-count").textContent = fmtInt(total) + " filas";
 }
 
-
 /* ================= BUSCADOR GENERAL ================= */
 /* Usuarios: los sucedáneos; si no tiene, los de adhesión. */
 function usuariosBusqueda(r){
@@ -1804,7 +1826,7 @@ function ultimoPasoCargado(r){
   }
   return { fecha:"", etapa:"—" };
 }
-let searchSortState = { key:null, dir:1 };
+let searchSortState = { key:"fechaEstado", dir:-1 };
 function setupBuscador(){
   const selStage = document.getElementById("search-stage");
   selStage.innerHTML = '<option value="-1">Todas las etapas</option>' + STAGE_NAMES.map((n,i)=>`<option value="${i}">${n}</option>`).join("");
@@ -2166,8 +2188,6 @@ function abrirFicha(idx){
       }).join("")}
     </div>`;
   }).join("");
-
-
 
   // Mostrar ficha
   document.getElementById("ficha-placeholder").style.display="none";
