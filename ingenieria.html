@@ -48,6 +48,25 @@
   @media (max-width:900px){.menu-grid{grid-template-columns:1fr 1fr;}}
   @media (max-width:600px){.menu-grid{grid-template-columns:1fr;}}
 
+  /* Popover de documento (vista rápida desde Estadísticas) */
+  .doc-popover-backdrop{display:none;position:fixed;inset:0;background:rgba(10,30,45,.35);z-index:200;}
+  .doc-popover-backdrop.show{display:block;}
+  .doc-popover{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    background:var(--panel);border-radius:10px;box-shadow:0 16px 40px rgba(0,0,0,.28);
+    padding:20px 22px;width:340px;max-width:92vw;z-index:201;}
+  .doc-popover.show{display:block;}
+  .doc-popover-close{position:absolute;top:10px;right:12px;border:none;background:none;
+    font-size:16px;color:var(--text-muted);cursor:pointer;line-height:1;padding:4px;}
+  .doc-popover-nro{font-size:11.5px;font-weight:700;color:var(--teal);letter-spacing:.03em;}
+  .doc-popover-titulo{font-family:var(--display);font-size:16px;color:var(--navy);margin:2px 0 12px;
+    line-height:1.3;padding-right:18px;}
+  .doc-popover-row{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;
+    padding:6px 0;border-bottom:1px solid var(--border-soft);}
+  .doc-popover-row span{color:var(--text-muted);}
+  .doc-popover-row b{font-weight:600;text-align:right;}
+  .doc-popover-actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .doc-popover-actions a{font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;}
+  .doc-popover-actions a:hover{text-decoration:underline;}
   .sector-group{margin-bottom:6px;}
   .sector-group-head{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 2px;user-select:none;flex-wrap:wrap;}
   .sector-group-arrow{font-size:12px;color:var(--navy);transition:transform .2s;display:inline-block;}
@@ -442,6 +461,23 @@
 
 </div>
 
+<!-- ===== POPOVER DE DOCUMENTO (vista rápida desde Sectores/Estadísticas) ===== -->
+<div class="doc-popover-backdrop" id="doc-popover-backdrop" onclick="cerrarPopoverDoc()"></div>
+<div class="doc-popover" id="doc-popover">
+  <button type="button" class="doc-popover-close" onclick="cerrarPopoverDoc()" aria-label="Cerrar">✕</button>
+  <div class="doc-popover-nro" id="dp-nro">—</div>
+  <div class="doc-popover-titulo" id="dp-titulo">—</div>
+  <div class="doc-popover-row"><span>Sector</span><b id="dp-sector">—</b></div>
+  <div class="doc-popover-row"><span>Disciplina</span><b id="dp-disciplina">—</b></div>
+  <div class="doc-popover-row"><span>Fecha último movimiento</span><b id="dp-fecha">—</b></div>
+  <div class="doc-popover-row"><span>Situación</span><b id="dp-situacion">—</b></div>
+  <div class="doc-popover-row"><span>Calificación</span><b id="dp-calificacion">—</b></div>
+  <div class="doc-popover-actions">
+    <span id="dp-link"></span>
+    <a href="#" id="dp-full" onclick="cerrarPopoverDoc(); irABuscadorDoc(dpNroActual); return false;">Ver ficha completa →</a>
+  </div>
+</div>
+
 <script>
 let DATA = null;
 
@@ -499,6 +535,7 @@ function showView(id){
   document.getElementById("view-"+id).classList.add("active");
   document.getElementById("back-link").classList.toggle("show", id !== "menu");
   if (id === "menu" && typeof resetBuscador === "function") resetBuscador();
+  if (typeof cerrarPopoverDoc === "function") cerrarPopoverDoc();
   window.scrollTo(0,0);
 }
 
@@ -620,7 +657,7 @@ function toggleReDrill(situacion){
   document.getElementById("re-drill-title").textContent = situacion + " — detalle";
   reDatosActuales = PLANILLA.filter(r => r.situacion === situacion);
   armarTabla("tabla-re-drill", reDatosActuales, r => `<tr>
-      <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
+      <td>${String(r.nro).padStart(3,'0')}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
       <td>${badgeCal(r.calBalde, r.calificacion)}</td>
       <td class="trunc">${r.url ? fileLink(r.archivo, r.url) : (r.descripcion||"—")}</td></tr>`, "nro");
   document.getElementById("re-drill-count").textContent = reDatosActuales.length + " documento(s)";
@@ -680,7 +717,7 @@ function plRender(){
     (!q || String(r.nro).includes(q) || (r.nomenclatura||"").toLowerCase().includes(q) ||
           (r.archivo||"").toLowerCase().includes(q) || (r.descripcion||"").toLowerCase().includes(q)));
   armarTabla("tabla-planilla", plDatosActuales, r => `<tr>
-      <td>${r.nro}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
+      <td>${String(r.nro).padStart(3,'0')}</td><td>${r.disciplina||"—"}</td><td>${r.sector||"—"}</td>
       <td>${situacionTexto(r)}</td>
       <td>${r.fDesdeContratista||"—"}</td><td>${r.fParaLitoral||"—"}</td><td>${r.fDesdeLitoral||"—"}</td>
       <td>${badgeCal(r.calBalde, r.calificacion)}</td><td>${r.fParaContratista||"—"}</td>
@@ -885,8 +922,8 @@ function pintarSectores(){
           ${pendientes.length ? ordenados.map(r => {
             const critico = esAlta(r) || pesoDoc(r) >= 4;
             const tag = r.impacto || (esAlta(r) ? "Alta" : "");
-            return `<div class="sector-doc-row" style="cursor:pointer;${critico?'font-weight:700;':''}" onclick="irABuscadorDoc(${r.nro})" title="Ver en Buscador de documentos">
-              <span>${critico?'⚠ ':''}${r.nro} — ${r.archivo||r.descripcion||'—'}${tag?` <span class="badge corr">${tag}</span>`:''}</span>
+            return `<div class="sector-doc-row" style="cursor:pointer;${critico?'font-weight:700;':''}" onclick="mostrarPopoverDoc(${r.nro})" title="Ver datos del documento">
+              <span>${critico?'⚠ ':''}${String(r.nro).padStart(3,'0')} — ${r.archivo||r.descripcion||'—'}${tag?` <span class="badge corr">${tag}</span>`:''}</span>
               <span class="muted">${r.situacion}</span></div>`;
           }).join("") : '<span class="muted">Sin pendientes.</span>'}
         </div>
@@ -905,7 +942,36 @@ function pintarSectores(){
   document.getElementById("mc-estadisticas").textContent = listas + " de " + total + " listas";
 }
 
-/* Desde un documento en Sectores/Estadísticas: abre el Buscador de documentos
+/* Popover rápido de documento, desde Sectores/Estadísticas: muestra lo esencial
+   (fecha, situación, calificación, link) sin salir de la vista. */
+let dpNroActual = null;
+function mostrarPopoverDoc(nro){
+  const r = PLANILLA.find(x => x.nro === nro);
+  if(!r) return;
+  dpNroActual = nro;
+  const eventos = EVENTOS_BY_NRO.get(nro) || [];
+  const ultimaFecha = eventos.length ? eventos[0].fecha : "—";
+
+  document.getElementById("dp-nro").textContent = String(nro).padStart(3,'0');
+  document.getElementById("dp-titulo").textContent = r.archivo || r.descripcion || "—";
+  document.getElementById("dp-sector").textContent = r.sector || "—";
+  document.getElementById("dp-disciplina").textContent = r.disciplina || "—";
+  document.getElementById("dp-fecha").textContent = ultimaFecha || "—";
+  document.getElementById("dp-situacion").innerHTML = situacionTexto(r);
+  document.getElementById("dp-calificacion").innerHTML = badgeCal(r.calBalde, r.calificacion);
+  document.getElementById("dp-link").innerHTML = r.url
+    ? `<a class="filelink" href="${r.url}" target="_blank">Abrir archivo ↗</a>`
+    : `<span class="muted">Sin archivo cargado</span>`;
+
+  document.getElementById("doc-popover-backdrop").classList.add("show");
+  document.getElementById("doc-popover").classList.add("show");
+}
+function cerrarPopoverDoc(){
+  document.getElementById("doc-popover-backdrop").classList.remove("show");
+  document.getElementById("doc-popover").classList.remove("show");
+}
+
+/* Desde el popover ("Ver ficha completa"): abre el Buscador de documentos
    (consulta individual) directamente sobre ese expediente. */
 function irABuscadorDoc(nro){
   showView("buscador");
