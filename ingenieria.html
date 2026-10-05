@@ -479,6 +479,14 @@
 </div>
 
 <script>
+/* Filtro de acceso casual (ver nota en index.html): si no se desbloqueó
+   el grupo "ingenieria" desde la portada, vuelve ahí en vez de mostrar datos. */
+(function(){
+  try{
+    const grupos = JSON.parse(localStorage.getItem("bagsa_access") || "[]");
+    if(!grupos.includes("ingenieria")) location.href = "index.html";
+  } catch(e){ location.href = "index.html"; }
+})();
 let DATA = null;
 
 let ENTIDAD = "Revisor";
