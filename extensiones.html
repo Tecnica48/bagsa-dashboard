@@ -773,6 +773,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
+/* Filtro de acceso casual (ver nota en index.html): si no se desbloqueó
+   el grupo "extensiones" desde la portada, vuelve ahí en vez de mostrar datos. */
+(function(){
+  try{
+    const grupos = JSON.parse(localStorage.getItem("bagsa_access") || "[]");
+    if(!grupos.includes("extensiones")) location.href = "index.html";
+  } catch(e){ location.href = "index.html"; }
+})();
 const STAGE_NAMES = ["Recepción","Aceptación","Proyecto constructivo","Aprobación distrib.","Legajo único","Inicio de obra","Finalización","Habilitación"];
 const STAGE_COLORS = ["#005895","#0a6aa1","#1f7bab","#3b8fb6","#5aa3bf","#7bb8c1","#9dccc2","#00aec3"];
 const STAGE6_NAMES = ["Envío a Distribuidora","Aprobación Dist.","Recepción Legajo Único","Inicio de Obra","Finalización","Habilitación"];
