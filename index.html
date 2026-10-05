@@ -51,6 +51,48 @@
 
   footer{margin-top:8px;font-size:11.5px;color:var(--text-muted);
     border-top:1px solid var(--border);padding-top:16px;}
+
+  /* Tarjetas sin acceso: en gris, no clickeables */
+  a.card.locked{
+    background:#aab6bf !important; color:#eef2f4; cursor:not-allowed;
+    box-shadow:0 4px 0 rgba(0,0,0,.08),0 6px 14px rgba(0,0,0,.05);
+    pointer-events:none; filter:grayscale(.3);
+  }
+  a.card.locked .arrow{opacity:.7;}
+  a.card.locked .arrow::before{content:"🔒 "; }
+
+  .access-note{
+    display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted);
+    margin:-28px 0 20px;
+  }
+  .access-note button{
+    font:inherit; font-size:12px; color:var(--navy); background:none; border:none;
+    text-decoration:underline; cursor:pointer; padding:0;
+  }
+
+  /* Modal de acceso */
+  .access-backdrop{
+    position:fixed; inset:0; background:rgba(10,30,45,.55); z-index:300;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .access-modal{
+    background:var(--panel); border-radius:10px; max-width:360px; width:100%;
+    padding:28px 26px; box-shadow:0 20px 50px rgba(0,0,0,.3);
+  }
+  .access-modal h2{font-family:var(--display);font-weight:400;color:var(--navy);
+    font-size:20px;margin:0 0 6px;}
+  .access-modal p{font-size:13px;color:var(--text-muted);margin:0 0 18px;line-height:1.5;}
+  .access-modal input{
+    width:100%; font-size:15px; padding:10px 12px; border:1px solid var(--border);
+    border-radius:6px; margin-bottom:10px; box-sizing:border-box;
+  }
+  .access-modal button.ingresar{
+    width:100%; background:var(--navy); color:#fff; border:none; border-radius:6px;
+    padding:10px; font-size:14px; font-weight:700; cursor:pointer;
+  }
+  .access-modal button.ingresar:hover{background:var(--blue-bright);}
+  .access-error{color:#c0392b; font-size:12.5px; margin:-4px 0 10px; display:none;}
+  .access-error.show{display:block;}
 </style>
 </head>
 <body>
@@ -72,9 +114,11 @@
     estado actualizado.
   </p>
 
+  <div class="access-note" id="access-note" style="display:none;"><span id="access-note-text"></span> · <button type="button" onclick="cerrarAcceso()">cambiar código</button></div>
+
   <h2 class="section-title">Extensiones de red</h2>
   <div class="grid">
-    <a class="card dark" href="extensiones.html">
+    <a class="card dark" href="extensiones.html" data-group="extensiones">
       <span class="t">Seguimiento de Extensiones</span>
       <span class="d">Estado por etapa, usuarios, metros de red y proyectos de extensión menores de gas.</span>
       <span class="arrow">Ver panel →</span>
@@ -83,17 +127,17 @@
 
   <h2 class="section-title">Ingeniería de obra</h2>
   <div class="grid">
-    <a class="card light" href="ingenieria.html?obra=anchorena">
+    <a class="card light" href="ingenieria.html?obra=anchorena" data-group="ingenieria">
       <span class="t">Anchorena</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
-    <a class="card light" href="ingenieria.html?obra=mechita">
+    <a class="card light" href="ingenieria.html?obra=mechita" data-group="ingenieria">
       <span class="t">Mechita</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
-    <a class="card light" href="ingenieria.html?obra=chascomus">
+    <a class="card light" href="ingenieria.html?obra=chascomus" data-group="ingenieria">
       <span class="t">Chascomús</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
@@ -102,5 +146,87 @@
 
   <footer>Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
 </div>
+
+<!-- ===== Filtro de acceso (casual, no es seguridad real: ver nota para el admin) ===== -->
+<div class="access-backdrop" id="access-backdrop">
+  <div class="access-modal">
+    <h2>Acceso</h2>
+    <p>Ingresá el código que te dieron para ver tu panel correspondiente.</p>
+    <div class="access-error" id="access-error">Código no reconocido. Probá de nuevo.</div>
+    <input type="password" id="access-input" placeholder="Código de acceso" autocomplete="off">
+    <button type="button" class="ingresar" onclick="intentarAcceso()">Ingresar</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Filtro de acceso casual — NO es seguridad real.
+   Cualquiera que abra "Ver código fuente" puede leer estos
+   códigos. Sirve solo para que alguien que entra sin querer,
+   o a quien se le compartió el link por error, no vea de
+   entrada secciones que no le corresponden.
+
+   Para cambiar los códigos, editar las 3 líneas de abajo.
+   Cada código habilita uno o más grupos ("extensiones",
+   "ingenieria"). Un mismo código puede listar varios grupos.
+   ============================================================ */
+const CODIGOS_ACCESO = {
+  "CODIGO_EXTENSIONES": ["extensiones"],
+  "CODIGO_INGENIERIA":  ["ingenieria"],
+  "CODIGO_TODO":        ["extensiones", "ingenieria"],
+};
+
+const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería" };
+
+function gruposHabilitados(){
+  try { return JSON.parse(localStorage.getItem("bagsa_access") || "[]"); }
+  catch(e){ return []; }
+}
+
+function aplicarAcceso(){
+  const grupos = gruposHabilitados();
+  document.querySelectorAll("a.card[data-group]").forEach(card => {
+    const habilitado = grupos.includes(card.dataset.group);
+    card.classList.toggle("locked", !habilitado);
+  });
+  const note = document.getElementById("access-note");
+  if(grupos.length){
+    note.style.display = "flex";
+    document.getElementById("access-note-text").textContent =
+      "Acceso: " + grupos.map(g => NOMBRE_GRUPO[g] || g).join(" + ");
+  } else {
+    note.style.display = "none";
+  }
+  document.getElementById("access-backdrop").style.display = grupos.length ? "none" : "flex";
+}
+
+function intentarAcceso(){
+  const input = document.getElementById("access-input");
+  const codigo = input.value.trim();
+  const grupos = CODIGOS_ACCESO[codigo];
+  const error = document.getElementById("access-error");
+  if(!grupos){
+    error.classList.add("show");
+    input.value = "";
+    input.focus();
+    return;
+  }
+  error.classList.remove("show");
+  localStorage.setItem("bagsa_access", JSON.stringify(grupos));
+  aplicarAcceso();
+}
+
+function cerrarAcceso(){
+  localStorage.removeItem("bagsa_access");
+  aplicarAcceso();
+  document.getElementById("access-input").value = "";
+}
+
+document.getElementById("access-input").addEventListener("keydown", e => {
+  if(e.key === "Enter") intentarAcceso();
+});
+
+aplicarAcceso();
+</script>
 </body>
 </html>
