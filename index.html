@@ -19,7 +19,7 @@
     -webkit-font-smoothing:antialiased;
     padding:calc(40px + env(safe-area-inset-top,0px)) 24px calc(60px + env(safe-area-inset-bottom,0px));
   }
-  .wrap{max-width:1040px;margin:0 auto;}
+  .wrap{max-width:1280px;margin:0 auto;}
 
   header{
     display:flex; align-items:center; gap:20px;
@@ -31,12 +31,13 @@
   .brand-text h1{font-family:var(--display);font-weight:400;color:var(--navy);
     font-size:clamp(24px,4vw,32px);margin:2px 0 0;}
 
-  .intro{max-width:72ch;color:var(--text-muted);font-size:14.5px;line-height:1.6;margin:22px 0 40px;}
+  .intro{max-width:none;color:var(--text-muted);font-size:14.5px;line-height:1.6;margin:22px 0 40px;}
 
   h2.section-title{font-family:var(--display);font-weight:400;font-size:17px;color:var(--navy);
-    margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border-soft,var(--border));}
+    margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border-soft,var(--border));}
+  h2.section-title:first-of-type{margin-top:0;}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:44px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:8px;}
   a.card{
     display:flex;flex-direction:column;gap:8px;text-decoration:none;color:#fff;
     background:var(--navy);border-radius:8px;padding:22px 22px 20px;
@@ -93,6 +94,16 @@
   .access-modal button.ingresar:hover{background:var(--blue-bright);}
   .access-error{color:#c0392b; font-size:12.5px; margin:-4px 0 10px; display:none;}
   .access-error.show{display:block;}
+
+  .access-input-wrap{position:relative;}
+  .access-input-wrap input{padding-right:40px;}
+  .access-eye{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    border:none; background:none; cursor:pointer; font-size:16px; line-height:1;
+    padding:6px; color:var(--text-muted); opacity:.6;
+  }
+  .access-eye:hover{opacity:1;}
+
 </style>
 </head>
 <body>
@@ -144,6 +155,15 @@
     </a>
   </div>
 
+  <h2 class="section-title">Visor</h2>
+  <div class="grid">
+    <a class="card dark" href="visor-ubicacion.html" data-group="visor">
+      <span class="t">Visor Ubicación</span>
+      <span class="d">Mapa de infraestructura: ubicación de ramales, cañerías y válvulas sobre el terreno.</span>
+      <span class="arrow">Ver panel →</span>
+    </a>
+  </div>
+
   <footer>Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
 </div>
 
@@ -153,7 +173,10 @@
     <h2>Acceso</h2>
     <p>Ingresá el código que te dieron para ver tu panel correspondiente.</p>
     <div class="access-error" id="access-error">Código no reconocido. Probá de nuevo.</div>
-    <input type="password" id="access-input" placeholder="Código de acceso" autocomplete="off">
+    <div class="access-input-wrap">
+      <input type="password" id="access-input" placeholder="Código de acceso" autocomplete="off">
+      <button type="button" class="access-eye" id="access-eye" onclick="toggleVerCodigo()" aria-label="Mostrar/ocultar código" title="Mostrar/ocultar código">👁</button>
+    </div>
     <button type="button" class="ingresar" onclick="intentarAcceso()">Ingresar</button>
   </div>
 </div>
@@ -173,10 +196,11 @@
 const CODIGOS_ACCESO = {
   "Extensiones":         ["extensiones"],
   "ProyectosIngenieria": ["ingenieria"],
-  "Tecnica48":           ["extensiones", "ingenieria"],
+  "Visor":               ["visor"],
+  "Tecnica48":           ["extensiones", "ingenieria", "visor"],
 };
 
-const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería" };
+const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Visor" };
 
 function gruposHabilitados(){
   try { return JSON.parse(localStorage.getItem("bagsa_access") || "[]"); }
@@ -198,6 +222,11 @@ function aplicarAcceso(){
     note.style.display = "none";
   }
   document.getElementById("access-backdrop").style.display = grupos.length ? "none" : "flex";
+}
+
+function toggleVerCodigo(){
+  const input = document.getElementById("access-input");
+  input.type = (input.type === "password") ? "text" : "password";
 }
 
 function intentarAcceso(){
