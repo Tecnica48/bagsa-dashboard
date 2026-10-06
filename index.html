@@ -112,6 +112,14 @@
   }
   .access-eye:hover{opacity:1;}
 
+
+  a.card{position:relative;}
+  .health-dot{
+    position:absolute; top:14px; right:16px; font-size:11px; line-height:1;
+    color:#9aa7ae; /* gris mientras no se sabe */
+  }
+  .health-dot.ok{color:#5fd68a;}
+  .health-dot.atrasado{color:#ff8a7a;}
 </style>
 </head>
 <body>
@@ -141,8 +149,8 @@
 
   <h2 class="section-title">Extensiones de red</h2>
   <div class="grid">
-    <a class="card dark" href="extensiones.html" data-group="extensiones">
-      <span class="t">Seguimiento de Extensiones</span>
+    <a class="card dark" href="extensiones.html" data-group="extensiones" data-json="data/extensiones.json">
+      <span class="t">Seguimiento de Extensiones</span><span class="health-dot" title="Verificando...">●</span>
       <span class="d">Estado por etapa, usuarios, metros de red y proyectos de extensión menores de gas.</span>
       <span class="arrow">Ver panel →</span>
     </a>
@@ -150,18 +158,18 @@
 
   <h2 class="section-title">Ingeniería de obra</h2>
   <div class="grid">
-    <a class="card light" href="ingenieria.html?obra=anchorena" data-group="ingenieria">
-      <span class="t">Anchorena</span>
+    <a class="card light" href="ingenieria.html?obra=anchorena" data-group="ingenieria" data-json="data/ingenieria_anchorena.json">
+      <span class="t">Anchorena</span><span class="health-dot" title="Verificando...">●</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
-    <a class="card light" href="ingenieria.html?obra=mechita" data-group="ingenieria">
-      <span class="t">Mechita</span>
+    <a class="card light" href="ingenieria.html?obra=mechita" data-group="ingenieria" data-json="data/ingenieria_mechita.json">
+      <span class="t">Mechita</span><span class="health-dot" title="Verificando...">●</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
-    <a class="card light" href="ingenieria.html?obra=chascomus" data-group="ingenieria">
-      <span class="t">Chascomús</span>
+    <a class="card light" href="ingenieria.html?obra=chascomus" data-group="ingenieria" data-json="data/ingenieria_chascomus.json">
+      <span class="t">Chascomús</span><span class="health-dot" title="Verificando...">●</span>
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
@@ -327,6 +335,46 @@ function cerrarAcceso(){
 document.getElementById("access-input").addEventListener("keydown", e => {
   if(e.key === "Enter") intentarAcceso();
 });
+
+/* ============================================================
+   Puntito de salud: verde si el panel se actualizó en las
+   últimas 24hs, rojo si no. Lee la fecha que cada JSON ya trae
+   (generatedAt/generatedTime) — no agrega ningún dato nuevo,
+   solo chequea esos dos campos.
+   El panel de Infraestructura no tiene punto: ese archivo se
+   edita a mano, no se autogenera.
+   ============================================================ */
+function parseFechaHora(fecha, hora){
+  const [d, m, y] = fecha.split("/").map(Number);
+  const [hh, mm] = (hora || "00:00").split(":").map(Number);
+  return new Date(y, m - 1, d, hh, mm);
+}
+
+async function cargarSalud(){
+  const tarjetas = document.querySelectorAll("a.card[data-json]");
+  for (const card of tarjetas){
+    const dot = card.querySelector(".health-dot");
+    try {
+      const resp = await fetch(card.dataset.json, { cache: "no-store" });
+      if(!resp.ok) throw new Error("HTTP " + resp.status);
+      const data = await resp.json();
+      const fecha = parseFechaHora(data.generatedAt, data.generatedTime);
+      const horas = (Date.now() - fecha.getTime()) / 3600000;
+      if(horas <= 24){
+        dot.classList.add("ok");
+        dot.title = "Actualizado: " + data.generatedAt + " " + (data.generatedTime || "");
+      } else {
+        dot.classList.add("atrasado");
+        const dias = Math.floor(horas / 24);
+        dot.title = "Sin actualizar hace " + (dias >= 1 ? dias + " día(s)" : Math.round(horas) + "hs") +
+          " (" + data.generatedAt + " " + (data.generatedTime || "") + ") — revisar sync";
+      }
+    } catch(e){
+      dot.title = "No se pudo verificar la actualización.";
+    }
+  }
+}
+cargarSalud();
 
 aplicarAcceso();
 (function(){
