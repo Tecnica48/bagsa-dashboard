@@ -42,7 +42,9 @@
     margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border-soft,var(--border));}
   h2.section-title:first-of-type{margin-top:0;}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,260px);gap:18px;margin-bottom:8px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:8px;}
+  @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.grid{grid-template-columns:1fr;}}
   a.card{
     display:flex;flex-direction:column;gap:8px;text-decoration:none;color:#fff;
     background:var(--navy);border-radius:8px;padding:22px 22px 20px;
@@ -165,10 +167,10 @@
     </a>
   </div>
 
-  <h2 class="section-title">Visor</h2>
+  <h2 class="section-title">Infraestructura</h2>
   <div class="grid">
     <a class="card dark" href="visor-ubicacion.html" data-group="visor">
-      <span class="t">Visor Ubicación</span>
+      <span class="t">Visor Infraestructura</span>
       <span class="d">Mapa de infraestructura: ubicación de ramales, cañerías y válvulas sobre el terreno.</span>
       <span class="arrow">Ver panel →</span>
     </a>
@@ -216,7 +218,7 @@ const CODIGOS_HASH = {
   "9c1305e1d9da697e7c6b3adca43127c0824a7b5716421842590b718e031a9fff": ["extensiones", "ingenieria", "visor"],
 };
 
-const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Visor" };
+const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Infraestructura" };
 
 async function sha256Hex(texto){
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
