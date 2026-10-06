@@ -97,6 +97,7 @@
     padding:10px; font-size:14px; font-weight:700; cursor:pointer;
   }
   .access-modal button.ingresar:hover{background:var(--blue-bright);}
+  .access-modal button.ingresar:disabled{background:#aab6bf;cursor:not-allowed;}
   .access-error{color:#c0392b; font-size:12.5px; margin:-4px 0 10px; display:none;}
   .access-error.show{display:block;}
 
@@ -186,7 +187,7 @@
       <input type="password" id="access-input" placeholder="Código de acceso" autocomplete="off">
       <button type="button" class="access-eye" id="access-eye" onclick="toggleVerCodigo()" aria-label="Mostrar/ocultar código" title="Mostrar/ocultar código">👁</button>
     </div>
-    <button type="button" class="ingresar" onclick="intentarAcceso()">Ingresar</button>
+    <button type="button" class="ingresar" id="access-ingresar-btn" onclick="intentarAcceso()">Ingresar</button>
   </div>
 </div>
 
@@ -202,14 +203,57 @@
    Cada código habilita uno o más grupos ("extensiones",
    "ingenieria"). Un mismo código puede listar varios grupos.
    ============================================================ */
-const CODIGOS_ACCESO = {
-  "Extensiones":         ["extensiones"],
-  "ProyectosIngenieria": ["ingenieria"],
-  "Visor":               ["visor"],
-  "Tecnica48":           ["extensiones", "ingenieria", "visor"],
+/* Los códigos ya NO están en texto plano: cada clave es el hash SHA-256
+   del código real, no el código en sí. Para agregar o cambiar un código:
+   1) Calculá su hash (podés pedírselo a Claude, o en la consola del navegador
+      escribir: await crypto.subtle.digest("SHA-256", new TextEncoder().encode("TUCODIGO"))
+      .then(b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""))
+   2) Reemplazá la clave de abajo por ese hash. */
+const CODIGOS_HASH = {
+  "f8980f8b253d6f4b894a716fdc47f40163efb74d08677e2f9b72e7403a51fb3b": ["extensiones"],
+  "d2ccf842bbdc073befa1067dc22ee1b81ca356aefea7cc5f691a35dfe482bbbf": ["ingenieria"],
+  "b11b8edc58c4426f1a79b168d2a28e028f38d54e9b8d7586422ff61402aa50af": ["visor"],
+  "9c1305e1d9da697e7c6b3adca43127c0824a7b5716421842590b718e031a9fff": ["extensiones", "ingenieria", "visor"],
 };
 
 const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Visor" };
+
+async function sha256Hex(texto){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+/* Bloqueo tras intentos fallidos: frena el "voy probando a ver si adivino". */
+const MAX_INTENTOS = 5;
+const BLOQUEO_MS = 60000;
+
+function estadoIntentos(){
+  try { return JSON.parse(localStorage.getItem("bagsa_access_intentos") || "") || {fallos:0, bloqueadoHasta:0}; }
+  catch(e){ return {fallos:0, bloqueadoHasta:0}; }
+}
+function guardarIntentos(e){ localStorage.setItem("bagsa_access_intentos", JSON.stringify(e)); }
+
+let bloqueoTimer = null;
+function mostrarBloqueo(msRestantes){
+  const error = document.getElementById("access-error");
+  const btn = document.getElementById("access-ingresar-btn");
+  btn.disabled = true;
+  clearInterval(bloqueoTimer);
+  function tick(){
+    const seg = Math.ceil(msRestantes/1000);
+    if(seg <= 0){
+      error.classList.remove("show");
+      btn.disabled = false;
+      clearInterval(bloqueoTimer);
+      return;
+    }
+    error.textContent = "Demasiados intentos. Probá de nuevo en " + seg + "s.";
+    error.classList.add("show");
+    msRestantes -= 1000;
+  }
+  tick();
+  bloqueoTimer = setInterval(tick, 1000);
+}
 
 function gruposHabilitados(){
   try { return JSON.parse(localStorage.getItem("bagsa_access") || "[]"); }
@@ -238,17 +282,35 @@ function toggleVerCodigo(){
   input.type = (input.type === "password") ? "text" : "password";
 }
 
-function intentarAcceso(){
+async function intentarAcceso(){
+  const estado = estadoIntentos();
+  const ahora = Date.now();
+  if(estado.bloqueadoHasta > ahora){
+    mostrarBloqueo(estado.bloqueadoHasta - ahora);
+    return;
+  }
   const input = document.getElementById("access-input");
   const codigo = input.value.trim();
-  const grupos = CODIGOS_ACCESO[codigo];
+  const hash = await sha256Hex(codigo);
+  const grupos = CODIGOS_HASH[hash];
   const error = document.getElementById("access-error");
   if(!grupos){
-    error.classList.add("show");
+    estado.fallos = (estado.fallos || 0) + 1;
+    if(estado.fallos >= MAX_INTENTOS){
+      estado.bloqueadoHasta = ahora + BLOQUEO_MS;
+      estado.fallos = 0;
+      guardarIntentos(estado);
+      mostrarBloqueo(BLOQUEO_MS);
+    } else {
+      guardarIntentos(estado);
+      error.textContent = "Código no reconocido. Probá de nuevo.";
+      error.classList.add("show");
+    }
     input.value = "";
     input.focus();
     return;
   }
+  guardarIntentos({fallos:0, bloqueadoHasta:0});
   error.classList.remove("show");
   localStorage.setItem("bagsa_access", JSON.stringify(grupos));
   aplicarAcceso();
@@ -265,6 +327,10 @@ document.getElementById("access-input").addEventListener("keydown", e => {
 });
 
 aplicarAcceso();
+(function(){
+  const estado = estadoIntentos();
+  if(estado.bloqueadoHasta > Date.now()) mostrarBloqueo(estado.bloqueadoHasta - Date.now());
+})();
 </script>
 </body>
 </html>
