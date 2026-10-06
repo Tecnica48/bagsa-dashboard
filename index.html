@@ -175,6 +175,25 @@
     </a>
   </div>
 
+  <h2 class="section-title">Seguimiento de Certificaciones</h2>
+  <div class="grid">
+    <a class="card light" href="certificaciones.html?obra=anchorena" data-group="certificaciones">
+      <span class="t">Anchorena</span>
+      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
+      <span class="arrow">Ver panel →</span>
+    </a>
+    <a class="card light" href="certificaciones.html?obra=mechita" data-group="certificaciones">
+      <span class="t">Mechita</span>
+      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
+      <span class="arrow">Ver panel →</span>
+    </a>
+    <a class="card light" href="certificaciones.html?obra=chascomus" data-group="certificaciones">
+      <span class="t">Chascomús</span>
+      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
+      <span class="arrow">Ver panel →</span>
+    </a>
+  </div>
+
   <h2 class="section-title">Infraestructura</h2>
   <div class="grid">
     <a class="card dark" href="visor-ubicacion.html" data-group="visor">
@@ -223,10 +242,11 @@ const CODIGOS_HASH = {
   "f8980f8b253d6f4b894a716fdc47f40163efb74d08677e2f9b72e7403a51fb3b": ["extensiones"],
   "d2ccf842bbdc073befa1067dc22ee1b81ca356aefea7cc5f691a35dfe482bbbf": ["ingenieria"],
   "b11b8edc58c4426f1a79b168d2a28e028f38d54e9b8d7586422ff61402aa50af": ["visor"],
-  "9c1305e1d9da697e7c6b3adca43127c0824a7b5716421842590b718e031a9fff": ["extensiones", "ingenieria", "visor"],
+  "9c1305e1d9da697e7c6b3adca43127c0824a7b5716421842590b718e031a9fff": ["extensiones", "ingenieria", "visor", "certificaciones"],
+  "f30b7b6d9bb9980b57c835752d57cade697b1b7fd82723196eb58bd3bd55ac4e": ["certificaciones"],
 };
 
-const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Infraestructura" };
+const NOMBRE_GRUPO = { extensiones: "Extensiones", ingenieria: "Ingeniería", visor: "Infraestructura", certificaciones: "Certificaciones" };
 
 async function sha256Hex(texto){
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
