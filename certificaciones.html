@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seguimiento de Certificaciones — BAGSA</title>
+<style>
+  :root{
+    --navy:#005895; --teal:#00aec3; --bg:#f3f7fa; --panel:#ffffff; --border:#dbe6ee;
+    --text:#16303f; --text-muted:#5c7688;
+    --sans: Calibri, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    --display: "Calibri Light", Calibri, "Segoe UI", -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    padding:calc(40px + env(safe-area-inset-top,0px)) 24px calc(60px + env(safe-area-inset-bottom,0px));
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{display:flex;align-items:center;gap:20px;border-bottom:3px solid var(--teal);padding-bottom:24px;margin-bottom:8px;cursor:pointer;}
+  header img{height:84px;width:auto;display:block;}
+  .brand-div{width:1px;align-self:stretch;background:var(--border);}
+  .brand-text .empresa{font-size:13px;letter-spacing:.04em;color:var(--text-muted);text-transform:uppercase;}
+  .brand-text h1{font-family:var(--display);font-weight:400;color:var(--navy);font-size:clamp(22px,4vw,30px);margin:2px 0 0;}
+  .back-link{font-size:12.5px;color:var(--navy);cursor:pointer;margin:18px 0 0;display:inline-block;}
+  .placeholder{
+    margin-top:60px; text-align:center; background:var(--panel); border:1px solid var(--border);
+    border-radius:10px; padding:60px 30px;
+  }
+  .placeholder .icono{font-size:40px;margin-bottom:16px;}
+  .placeholder h2{font-family:var(--display);font-weight:400;color:var(--navy);font-size:24px;margin:0 0 10px;}
+  .placeholder p{color:var(--text-muted);font-size:14px;line-height:1.6;max-width:50ch;margin:0 auto;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header onclick="location.href='index.html'">
+    <img src="data:image/png;base64,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" alt="BAGSA">
+    <div class="brand-div"></div>
+    <div class="brand-text">
+      <div class="empresa">Buenos Aires Gas S.A.</div>
+      <h1 id="titulo-obra">Seguimiento de Certificaciones</h1>
+    </div>
+  </header>
+  <a class="back-link" onclick="location.href='index.html'">← Volver al inicio</a>
+
+  <div class="placeholder">
+    <div class="icono">🚧</div>
+    <h2>Próximamente</h2>
+    <p>
+      Este panel va a mostrar el avance de certificaciones, avance físico y avance
+      financiero de <b id="nombre-obra">esta obra</b>. Todavía no está cargado — en
+      cuanto esté la fuente de datos lista, esta página se actualiza sola, igual que
+      los demás paneles.
+    </p>
+  </div>
+</div>
+<script>
+const OBRAS = { anchorena:"Anchorena", mechita:"Mechita", chascomus:"Chascomús" };
+const obra = new URLSearchParams(location.search).get("obra") || "";
+const nombre = OBRAS[obra] || "esta obra";
+document.getElementById("nombre-obra").textContent = nombre;
+document.title = "Certificaciones " + nombre + " — BAGSA";
+</script>
+</body>
+</html>
