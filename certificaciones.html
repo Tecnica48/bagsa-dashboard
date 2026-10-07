@@ -166,23 +166,143 @@
   @media (prefers-reduced-motion:no-preference){
     .linea .avance-fill{transition:width .9s ease-out;}
   }
+
+  /* ===== Vistas, navegación y acciones ===== */
+  [hidden]{display:none!important;}
+  .marca{display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;border-radius:6px;}
+  .marca:hover .area{text-decoration:underline;}
+  nav.secciones .nav-acc{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .nav-btn{font:inherit;font-size:13.5px;background:#fff;border:1px solid var(--border);color:var(--navy);padding:6px 14px;border-radius:999px;cursor:pointer;}
+  .nav-btn:hover{background:var(--teal-soft);}
+  .nav-btn[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .nav-btn.pdf{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700;}
+  .nav-btn.pdf:hover{background:var(--navy2);}
+  @media (max-width:600px){ .marca{gap:12px;} nav.secciones .nav-acc{margin-left:0;width:100%;} }
+  .vista-titulo{margin:26px 0 18px;}
+  .vista-titulo h1{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,44px);line-height:1.05;color:var(--navy);margin:0;}
+  .vista-titulo p{color:var(--text-muted);font-size:14px;margin:8px 0 0;max-width:80ch;line-height:1.5;}
+  .solo-print{display:none;}
+
+  /* ===== Consulta individual ===== */
+  .consulta{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:16px;align-items:start;}
+  @media (max-width:900px){.consulta{grid-template-columns:1fr;}}
+  .cons-lista{position:sticky;top:64px;max-height:calc(100vh - 90px);overflow:auto;padding:14px;}
+  @media (max-width:900px){.cons-lista{position:static;max-height:340px;}}
+  .cons-lista input{width:100%;font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;background:#fff;color:var(--text);}
+  .cons-g{font-size:12.5px;color:var(--text-muted);font-weight:700;margin:14px 0 4px;}
+  .cons-it{display:grid;grid-template-columns:1fr auto;gap:1px 8px;width:100%;text-align:left;font:inherit;background:none;border:none;border-radius:6px;padding:7px 8px;cursor:pointer;color:var(--text);}
+  .cons-it:hover{background:var(--bg);}
+  .cons-it.sel{background:var(--teal-soft);}
+  .cons-it .t{font-weight:700;font-size:13.5px;}
+  .cons-it .s{grid-column:1;font-size:12px;color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .cons-it .est{font-size:11.5px;color:var(--text-muted);align-self:center;grid-row:1/3;grid-column:2;text-align:right;max-width:110px;}
+  .cons-it .est.abierto{color:var(--amber);font-weight:700;}
+  .cons-vacio{font-size:13px;color:var(--text-muted);padding:10px 4px;line-height:1.5;}
+  .ficha{padding:22px 24px;min-height:200px;}
+  .ficha .f-tit{font-family:var(--display);font-weight:400;font-size:28px;color:var(--navy);margin:0;}
+  .ficha .f-sub{color:var(--text-muted);font-size:14px;margin:4px 0 6px;line-height:1.45;}
+  .f-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
+  @media (max-width:760px){.f-cols{grid-template-columns:1fr;}}
+  .f-sec h4{font-size:14px;margin:18px 0 6px;color:var(--navy2);}
+  .f-fila{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--grid);font-size:13.5px;align-items:baseline;}
+  .f-fila > span:first-child{color:var(--text-muted);}
+  .f-fila .v{font-weight:700;text-align:right;}
+  .f-fila.total{border-bottom:2px solid var(--border);}
+  .f-fila.total > span:first-child{color:var(--text);font-weight:700;}
+  .f-fila .v.alerta{color:var(--amber);}
+  .f-nota{font-size:12.5px;color:var(--text-muted);line-height:1.5;margin:8px 0 0;}
+  .f-nota b{color:var(--text);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
+  .chip{font:inherit;font-size:12.5px;border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:999px;padding:2px 10px;cursor:pointer;}
+  .chip:hover{background:var(--teal-soft);}
+  .f-pasos td.d{color:var(--text-muted);}
+  .f-vacio{color:var(--text-muted);text-align:center;padding:70px 10px;font-size:14px;line-height:1.6;}
+  .f-ancho{margin-top:6px;}
+  .disc-ficha .disc{grid-template-columns:110px 1fr 46px;}
+
+  /* ===== Definiciones ===== */
+  .def-grupo{margin-bottom:16px;}
+  .def-grupo h3{margin:0 0 4px;font-size:17px;color:var(--navy);}
+  .def-item{padding:12px 0;border-bottom:1px solid var(--grid);}
+  .def-item:last-child{border-bottom:none;padding-bottom:2px;}
+  .def-term{font-weight:700;color:var(--navy);font-size:14.5px;}
+  .def-desc{font-size:13.5px;color:var(--text);margin-top:3px;line-height:1.55;max-width:90ch;}
+  .def-hoy{display:inline-block;background:var(--teal-soft);color:var(--navy);border-radius:10px;padding:1px 10px;font-size:12px;font-weight:600;margin-left:10px;}
+
+  /* ===== Diálogo de exportación ===== */
+  dialog#dlg-pdf{border:none;border-radius:12px;padding:24px 26px;max-width:500px;width:calc(100% - 32px);color:var(--text);font-family:var(--sans);box-shadow:0 12px 40px rgba(0,0,0,.28);}
+  dialog#dlg-pdf::backdrop{background:rgba(10,30,45,.45);}
+  dialog#dlg-pdf h3{margin:0 0 4px;font-family:var(--display);font-weight:400;font-size:24px;color:var(--navy);}
+  dialog#dlg-pdf .nota{font-size:13px;color:var(--text-muted);line-height:1.5;margin:0 0 10px;}
+  .pdf-op{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:14px;line-height:1.35;cursor:pointer;}
+  .pdf-op input{margin-top:3px;accent-color:var(--navy);}
+  .pdf-op small{display:block;color:var(--text-muted);font-size:12.5px;margin-top:1px;}
+  .dlg-acc{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
+  .btn{font:inherit;font-size:14px;border-radius:8px;padding:8px 18px;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--navy);}
+  .btn.prim{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700;}
+  .btn.prim:hover{background:var(--navy2);}
+
+  /* ===== Impresión / PDF (A4 vertical) ===== */
+  @media print{
+    @page{size:A4 portrait;margin:12mm 11mm;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{background:#fff;padding:0;}
+    .wrap{max-width:none;}
+    nav.secciones,.volver,footer,.filtro,dialog,.no-print,#vista-consulta,#vista-def{display:none!important;}
+    .pdf-oculto{display:none!important;}
+    header{padding-bottom:10px;border-bottom-width:2px;}
+    header img{height:50px;}
+    .marca{pointer-events:none;}
+    .solo-print{display:block;}
+    .emision{font-size:12px;color:var(--text-muted);margin:10px 0 0;}
+    .cierre{margin-top:26px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.5;}
+    .obra-head{margin:12px 0 14px;}
+    .obra-head h1{font-size:42px;}
+    .linea{box-shadow:none;padding:20px 22px 16px;break-inside:avoid;}
+    .linea .graf{overflow:visible;}
+    .linea svg,.chart svg,.chart.ancho svg{min-width:0!important;}
+    .chart{overflow:visible;}
+    .kpis{break-inside:avoid;}
+    section{margin-top:24px;}
+    h2,h3{break-after:avoid;}
+    .panel{break-inside:avoid;box-shadow:none;}
+    .panel[data-pdf="items"],.panel[data-pdf="historial"]{break-inside:auto;}
+    tr{break-inside:avoid;}
+    .tabla-wrap{overflow:visible;}
+    table{font-size:10.5px;}
+    .globales{gap:10px;}
+    details > summary{display:none;}
+    details[open]{margin-top:0;}
+    section > h2,section > .bajada,.panel > h3,.panel > .nota,.solo-print.sub{break-after:avoid;}
+    .solo-print.sub{font-size:13px;font-weight:700;color:var(--navy2);margin:14px 0 6px;}
+    .linea svg text{font-size:15px;}
+    thead{display:table-header-group;}
+    #avance,#valores,#proyeccion{break-before:page;}
+    #g-escalera svg,#g-cobro svg{max-width:520px;margin:0 auto;}
+    td,th{padding:3px 6px;}
+    .desc-item{max-width:none;}
+  }
+
+  .consulta > .panel + .panel{margin-top:0;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <img src="data:image/png;base64,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" alt="BAGSA">
-    <div class="brand-div"></div>
-    <div class="brand-text">
-      <div class="empresa">Buenos Aires Gas S.A.</div>
-      <div class="area">Gerencia Técnica</div>
-    </div>
+    <a class="marca" href="index.html" title="Ir al portal" aria-label="BAGSA, ir al portal">
+      <img src="data:image/png;base64,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" alt="BAGSA">
+      <div class="brand-div"></div>
+      <div class="brand-text">
+        <div class="empresa">Buenos Aires Gas S.A.</div>
+        <div class="area">Gerencia Técnica</div>
+      </div>
+    </a>
     <a class="volver" href="index.html">Volver al portal</a>
   </header>
 
   <div id="app"></div>
 
-  <footer>Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
+  <footer id="pie">Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
 </div>
 
 <script>
@@ -251,20 +371,23 @@ function render(d){
   document.title = `Certificaciones ${o.nombre} — BAGSA`;
 
   if(!d.certificados.length){
-    app.innerHTML = `${cabecera(d)}<div class="estado-msg"><h2>La obra todavía no tiene certificados</h2>
+    app.innerHTML = `${obraHeadHTML(d)}<div class="estado-msg"><h2>La obra todavía no tiene certificados</h2>
       <p>El panel se completa a partir del primer certificado cargado en el Excel de certificación.</p></div>`;
     return;
   }
 
   app.innerHTML = `
-    ${cabecera(d)}
+    ${navHTML(d)}
+    <div id="vista-panel">
+    <p class="solo-print emision">Informe emitido el ${new Date().toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit",year:"numeric"})}.</p>
+    ${obraHeadHTML(d)}
     <div class="linea" id="linea"></div>
     <div class="kpis">${kpis(d)}</div>
 
     <section id="avance">
       <h2>Avance</h2>
       <p class="bajada">El porcentaje certificado pondera cada ítem por su monto. Las cantidades muestran el avance físico real de cada ítem.</p>
-      <div class="panel">
+      <div class="panel" data-pdf="curva">
         <h3>Curva de avance</h3>
         <p class="nota">Avance acumulado certificado frente al plan de trabajos original. El plan reprogramado todavía no está cargado.</p>
         <div class="chart ancho" id="g-curva"></div>
@@ -275,10 +398,10 @@ function render(d){
           <span><i class="dash" style="border-color:${C.navy2};opacity:.5"></i>Necesario para el fin vigente</span>
         </div>
       </div>
-      ${d.globales.length ? `<div class="panel"><h3>Estaciones</h3>
+      ${d.globales.length ? `<div class="panel" data-pdf="estaciones"><h3>Estaciones</h3>
         <p class="nota">Ítems globales medidos por disciplina, según la metodología de medición del certificado ${k.ultimoCert}.</p>
         <div class="globales">${d.globales.map(globalHTML).join("")}</div></div>` : ""}
-      <div class="panel">
+      <div class="panel" data-pdf="items">
         <h3>Avance por ítem</h3>
         <p class="nota">Cantidades acumuladas al certificado ${k.ultimoCert}. El saldo está valuado a precios de la última redeterminación, sin IVA.</p>
         <label class="filtro"><input type="checkbox" id="solo-pend"> Mostrar solo ítems con saldo</label>
@@ -286,7 +409,7 @@ function render(d){
       </div>
     </section>
 
-    <section id="valores">
+    <section id="valores" data-pdf="valores">
       <h2>Valores</h2>
       <p class="bajada">Cómo cambió el monto del contrato con cada redeterminación y cuánto se certificó cada mes.</p>
       <div class="dos">
@@ -319,7 +442,7 @@ function render(d){
     <section id="proyeccion">
       <h2>Proyección y cobros</h2>
       <p class="bajada">Lo que falta ejecutar, cuándo terminaría la obra y qué pagos están en camino.</p>
-      <div class="dos">
+      <div class="dos" data-pdf="proyeccion">
         <div class="panel">
           <h3>Dónde está el saldo</h3>
           <p class="nota">Ítems con más monto pendiente, a precios vigentes sin IVA. Total con IVA: ${fmtM(p.saldoObraConIva)}.</p>
@@ -331,20 +454,39 @@ function render(d){
           <div id="pendientes"></div>
         </div>
       </div>
-      <div class="panel">
+      <div class="panel" data-pdf="historial">
         <h3>Historial de certificados y pagos</h3>
         <p class="nota">Circuito de cada comprobante: acta de medición, envío al contratista, factura, Tesorería y pago.</p>
         <details><summary>Ver los ${d.tramites.length} comprobantes</summary>
+          <h4 class="solo-print sub">Certificados, ajustes y anticipos</h4>
           <div class="tabla-wrap"><table id="t-tramites"></table></div>
         </details>
         ${d.otrosPagos.length ? `<details><summary>Otros pagos de la obra (${d.otrosPagos.length})</summary>
+          <h4 class="solo-print sub">Otros pagos de la obra</h4>
           <div class="tabla-wrap"><table id="t-otros"></table></div></details>` : ""}
       </div>
     </section>
 
-    ${d.avisos.length ? `<details class="panel" style="margin-top:32px"><summary>Control de datos (${d.avisos.length})</summary>
+    ${d.avisos.length ? `<details class="panel no-print" style="margin-top:32px"><summary>Control de datos (${d.avisos.length})</summary>
       <p class="nota">Diferencias detectadas entre el Excel de certificación y el seguimiento. No afectan los valores del panel.</p>
       <ul class="avisos">${d.avisos.map(a => `<li>${esc(a)}</li>`).join("")}</ul></details>` : ""}
+    <div class="solo-print cierre">Elaborado por la Gerencia Técnica de Buenos Aires Gas S.A. con las planillas de certificación de la obra y de seguimiento de certificaciones, datos al ${esc(d.generatedAt)}. El avance certificado pondera cada ítem por su monto y no equivale al avance físico. La curva se compara con el plan de trabajos original; el plan reprogramado todavía no está cargado.</div>
+    </div>
+
+    <div id="vista-consulta" hidden>
+      <div class="vista-titulo"><h1>Consulta individual</h1>
+        <p>Buscá un certificado, un ajuste, un anticipo, una redeterminación o un ítem del presupuesto y mirá su ficha completa.</p></div>
+      <div class="consulta">
+        <div class="panel cons-lista" id="cons-lista">
+          <input type="search" id="cons-q" placeholder="cert 12, ajuste 3, redet IV, cañería…" autocomplete="off" aria-label="Buscar">
+          <div id="cons-res"></div>
+        </div>
+        <div class="panel ficha" id="cons-ficha"><div class="f-vacio">Elegí un comprobante, una redeterminación o un ítem de la lista para ver su ficha.</div></div>
+      </div>
+    </div>
+
+    <div id="vista-def" hidden></div>
+    ${dialogoPDF()}
   `;
 
   lineaObra(d);
@@ -357,25 +499,7 @@ function render(d){
   pendientes(d);
   tramitesTabla(d);
   if(d.otrosPagos.length) otrosTabla(d);
-}
-
-function cabecera(d){
-  const o = d.obra;
-  return `
-    <nav class="secciones">
-      <a href="#avance">Avance</a><a href="#valores">Valores</a><a href="#proyeccion">Proyección y cobros</a>
-      <span class="act">Actualizado ${esc(d.generatedAt)} ${esc(d.generatedTime||"")}</span>
-    </nav>
-    <div class="obra-head">
-      <h1>${esc(o.nombre)}</h1>
-      <p class="desc">${esc(o.descripcion||"")}</p>
-      <div class="meta">
-        <span>Contratista <b>${esc(o.contratista||"—")}</b></span>
-        <span>Contrato <b>${fmtFecha(o.fechaContrato)}</b></span>
-        <span>Plazo <b>${o.plazoDias ?? "—"} días</b></span>
-        <span>Anticipo <b>${fmtPct(o.anticipoPct,0)}</b></span>
-      </div>
-    </div>`;
+  iniciarVistas(d);
 }
 
 function kpis(d){
@@ -702,6 +826,436 @@ function otrosTabla(d){
   }
   t.innerHTML = html + "</tbody>";
 }
+
+/* ============================================================
+   Vistas (panel, consulta, definiciones), consulta individual y exportación a PDF
+   ============================================================ */
+let D = null, ENTRADAS = [], ENT = {}, SEL = null;
+const MESES_LARGO = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const nrm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const romanoDe = n => (ROM[n] || "").toLowerCase();
+const fmtPesos = v => v == null ? "—" : "$ " + fmtNum(v, 2);
+const mesesEntre = (a, b) => (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+
+function navHTML(d){
+  return `
+    <nav class="secciones" aria-label="Secciones">
+      <a href="#avance" data-ir="avance">Avance</a><a href="#valores" data-ir="valores">Valores</a><a href="#proyeccion" data-ir="proyeccion">Proyección y cobros</a>
+      <div class="nav-acc">
+        <button type="button" class="nav-btn" data-vista="consulta" aria-pressed="false">Consulta individual</button>
+        <button type="button" class="nav-btn" data-vista="def" aria-pressed="false">Definiciones</button>
+        <button type="button" class="nav-btn pdf" id="btn-pdf">Exportar PDF</button>
+      </div>
+    </nav>`;
+}
+
+function obraHeadHTML(d){
+  const o = d.obra;
+  return `
+    <div class="obra-head">
+      <h1>${esc(o.nombre)}</h1>
+      <p class="desc">${esc(o.descripcion||"")}</p>
+      <div class="meta">
+        <span>Contratista <b>${esc(o.contratista||"—")}</b></span>
+        <span>Contrato <b>${fmtFecha(o.fechaContrato)}</b></span>
+        <span>Plazo <b>${o.plazoDias ?? "—"} días</b></span>
+        <span>Anticipo <b>${fmtPct(o.anticipoPct,0)}</b></span>
+        <span>Datos al <b>${esc(d.generatedAt)} ${esc(d.generatedTime||"")}</b></span>
+      </div>
+    </div>`;
+}
+
+/* ---------------- vistas ---------------- */
+function mostrar(v){
+  for(const x of ["panel","consulta","def"]){ const e = document.getElementById("vista-" + x); if(e) e.hidden = (x !== v); }
+  document.querySelectorAll(".nav-btn[data-vista]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.vista === v)));
+}
+
+function iniciarVistas(d){
+  D = d;
+  construirIndice(d);
+  renderDefiniciones(d);
+
+  document.querySelectorAll("nav.secciones [data-ir]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault(); mostrar("panel");
+    history.replaceState(null, "", "#" + a.dataset.ir);
+    document.getElementById(a.dataset.ir).scrollIntoView();
+  }));
+  document.querySelectorAll(".nav-btn[data-vista]").forEach(b => b.addEventListener("click", () => {
+    const activo = b.getAttribute("aria-pressed") === "true";
+    if(activo){ mostrar("panel"); history.replaceState(null, "", location.pathname + location.search); }
+    else {
+      mostrar(b.dataset.vista);
+      history.replaceState(null, "", b.dataset.vista === "def" ? "#definiciones" : (SEL ? "#" + SEL : "#consulta"));
+      if(b.dataset.vista === "consulta") document.getElementById("cons-q").focus({preventScroll:true});
+    }
+    window.scrollTo(0, 0);
+  }));
+  document.getElementById("btn-pdf").addEventListener("click", () => document.getElementById("dlg-pdf").showModal());
+  document.getElementById("pdf-cancelar").addEventListener("click", () => document.getElementById("dlg-pdf").close());
+  document.getElementById("pdf-generar").addEventListener("click", generarPDF);
+
+  const q = document.getElementById("cons-q");
+  q.addEventListener("input", () => listarConsulta(q.value));
+  document.getElementById("cons-lista").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if(b) seleccionar(b.dataset.id); });
+  document.getElementById("cons-ficha").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if(b) seleccionar(b.dataset.id, {scroll:false}); });
+  listarConsulta("");
+
+  window.addEventListener("hashchange", aplicarHash);
+  aplicarHash();
+}
+
+function aplicarHash(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  if(!h) return;
+  if(h === "definiciones"){ mostrar("def"); return; }
+  if(h === "consulta"){ mostrar("consulta"); return; }
+  if(["avance","valores","proyeccion"].includes(h)){ mostrar("panel"); const s = document.getElementById(h); if(s) s.scrollIntoView(); return; }
+  if(ENT[h]){ mostrar("consulta"); seleccionar(h, {hash:false, scroll:false}); }
+}
+
+/* ---------------- índice de búsqueda ---------------- */
+function estadoCorto(t){ return t ? t.estado : ""; }
+
+function construirIndice(d){
+  const E = [];
+  const tram = (tipo, f) => d.tramites.find(t => t.tipo === tipo && f(t));
+  [...d.certificados].reverse().forEach(c => {
+    const t = tram("certificado", x => x.n === c.n), f = parseISO(c.mes + "-01");
+    E.push({id:`cert-${c.n}`, g:"Certificados", t:`Certificado Nº ${c.n}`, s:`${fmtMes(c.mes+"-01")}, neto ${fmtM(c.neto)}`,
+      est:estadoCorto(t), pend:!!t && t.estado !== "Pagado",
+      hay:nrm(`certificado cert ${c.n} ${fmtMes(c.mes+"-01")} ${MESES_LARGO[f.getMonth()]} ${f.getFullYear()}`), html:() => fichaCert(c, t)});
+  });
+  [...d.ajustes].reverse().forEach(a => {
+    const t = tram("ajuste", x => x.redet === a.redet);
+    E.push({id:`ajuste-${a.redet}`, g:"Ajustes por redeterminación", t:`Ajuste por Redet. ${ROM[a.redet] || a.redet}`,
+      s:`${fmtFecha(a.fecha)}, ${fmtM(a.netoConAnticipo ?? a.neto)}`, est:estadoCorto(t), pend:!!t && t.estado !== "Pagado",
+      hay:nrm(`ajuste ajustes redet ${a.redet} ${romanoDe(a.redet)} ${fmtFecha(a.fecha)}`), html:() => fichaAjuste(a, t)});
+  });
+  d.anticipos.forEach(a => {
+    const pct = Math.round(a.pct * 100), t = tram("anticipo", x => x.nombre === `Anticipo ${pct} %`);
+    E.push({id:`anticipo-${pct}`, g:"Anticipos", t:`Anticipo ${pct} %`, s:`${fmtFecha(a.fecha)}, ${fmtM(a.monto)}`,
+      est:estadoCorto(t), pend:!!t && t.estado !== "Pagado", hay:nrm(`anticipo anticipos financiero ${pct}`), html:() => fichaAnticipo(a, t)});
+  });
+  d.redeterminaciones.filter(r => r.redet > 0).forEach(r => {
+    E.push({id:`redet-${r.redet}`, g:"Redeterminaciones", t:`Redeterminación ${ROM[r.redet] || r.redet}`,
+      s:`Salto ${fmtMes(r.mesSalto)}, contrato ${fmtM(r.monto)}`, est:"", pend:false,
+      hay:nrm(`redeterminacion redeterminaciones redet ${r.redet} ${romanoDe(r.redet)} salto ${fmtMes(r.mesSalto)}`), html:() => fichaRedet(r)});
+  });
+  d.items.forEach(i => {
+    E.push({id:`item-${i.codigo}`, g:"Ítems del presupuesto", t:`Ítem ${i.codigo}`, s:i.descripcion,
+      est:fmtNum((i.pctAcum||0)*100, 0) + " %", pend:false,
+      hay:nrm(`item items ${i.codigo} ${i.descripcion} ${i.grupo||""} ${i.rubro||""} ${i.unidad}`), html:() => fichaItem(i)});
+  });
+  ENTRADAS = E; ENT = {};
+  for(const e of E) ENT[e.id] = e;
+}
+
+function listarConsulta(q){
+  const toks = nrm(q).split(" ").filter(Boolean);
+  const cumple = e => { const w = e.hay.split(" ");
+    return toks.every(t => (/^\d+$/.test(t) || /^[ivx]+$/.test(t)) ? w.includes(t) : w.some(x => x.startsWith(t))); };
+  const res = ENTRADAS.filter(cumple);
+  let h = "", g = null;
+  for(const e of res){
+    if(e.g !== g){ g = e.g; h += `<div class="cons-g">${esc(g)}</div>`; }
+    h += `<button type="button" class="cons-it${e.id === SEL ? " sel" : ""}" data-id="${esc(e.id)}"><span class="t">${esc(e.t)}</span>` +
+         `<span class="est${e.pend ? " abierto" : ""}">${esc(e.est || "")}</span><span class="s">${esc(e.s)}</span></button>`;
+  }
+  if(!res.length) h = `<div class="cons-vacio">No hay resultados para «${esc(q)}». Probá con «cert 12», «ajuste 3», «redet IV» o parte del nombre de un ítem.</div>`;
+  document.getElementById("cons-res").innerHTML = h;
+}
+
+function seleccionar(id, {hash = true, scroll = true} = {}){
+  const e = ENT[id]; if(!e) return;
+  SEL = id;
+  const fi = document.getElementById("cons-ficha");
+  fi.innerHTML = e.html();
+  document.querySelectorAll(".cons-it").forEach(b => b.classList.toggle("sel", b.dataset.id === id));
+  if(hash) history.replaceState(null, "", "#" + id);
+  if(scroll && window.matchMedia("(max-width:900px)").matches) fi.scrollIntoView({block:"start"});
+}
+
+/* ---------------- fichas ---------------- */
+const fila = (l, v, cls = "", vcls = "") => `<div class="f-fila ${cls}"><span>${l}</span><span class="v ${vcls}">${v}</span></div>`;
+const chip = (id, txt) => ENT[id] ? `<button type="button" class="chip" data-id="${esc(id)}">${esc(txt)}</button>` : esc(txt);
+const fHead = (tit, sub) => `<h3 class="f-tit">${esc(tit)}</h3><p class="f-sub">${sub}</p>`;
+
+function circuito(t){
+  if(!t) return `<p class="f-nota">Este comprobante no figura en la TABLA MASTER del seguimiento.</p>`;
+  const et = [["fechaCert","Emitido"],["acta","Acta de medición"],["envio","Enviado al contratista"],["entrada","Factura recibida"],["tesoreria","Entregado a Tesorería"],["pago","Pagado"]];
+  const pasos = et.filter(([k]) => t[k]).map(([k, l]) => ({l, f:t[k]})).sort((a, b) => a.f.localeCompare(b.f));
+  let prev = null, h = `<div class="tabla-wrap"><table class="f-pasos"><thead><tr><th>Etapa</th><th>Fecha</th><th class="n">Días desde la anterior</th></tr></thead><tbody>`;
+  for(const p of pasos){
+    const dias = prev ? Math.round((parseISO(p.f) - parseISO(prev)) / 864e5) : null;
+    h += `<tr><td>${p.l}</td><td>${fmtFecha(p.f)}</td><td class="n d">${dias == null ? "—" : dias}</td></tr>`;
+    prev = p.f;
+  }
+  h += `</tbody></table></div>`;
+  h += t.estado === "Pagado"
+    ? `<p class="f-nota">Desde la emisión hasta el pago: <b>${t.diasCertAPago ?? "—"} días</b>.</p>`
+    : `<p class="f-nota">En trámite: <b>${esc(t.estado)}</b>. Pago estimado: <b>${fmtFecha(t.pagoEstimado)}</b>.</p>`;
+  return h;
+}
+function extrasT(t){
+  if(!t) return "";
+  let h = "";
+  if(t.factura) h += `<div class="f-sec"><h4>Factura</h4><p class="f-nota">${esc(t.factura)}</p></div>`;
+  if(t.poliza) h += `<div class="f-sec"><h4>Garantías</h4><p class="f-nota">${esc(t.poliza)}</p></div>`;
+  if(t.obs) h += `<div class="f-sec"><h4>Observaciones del seguimiento</h4><p class="f-nota">${esc(t.obs)}</p></div>`;
+  return h;
+}
+const NOTA_POLIZA = `<p class="f-nota">La póliza de caución es el 5 % del importe y sustituye al fondo de reparo: por eso no se resta del neto a pagar.</p>`;
+
+function fichaCert(c, t){
+  const pol = c.polizaCaucion ?? c.fondoReparo;
+  return `${fHead(`Certificado Nº ${c.n}`, `Trabajos de ${fmtMes(c.mes+"-01")}, emitido el ${fmtFecha(c.fecha)}, ${c.redet ? `con los precios de la redeterminación ${ROM[c.redet] || c.redet}` : "a precios de contrato"}.`)}
+    <div class="f-cols">
+      <div class="f-sec"><h4>Importes</h4>
+        ${fila("A precios de contrato", fmtM(c.base))}
+        ${fila("A precios redeterminados", fmtM(c.conRedet))}
+        ${fila("Diferencia por redeterminación", fmtM(c.difRedet))}
+        ${fila("Anticipo financiero descontado", fmtM(c.anticipoDesc))}
+        ${fila("Neto a pagar", fmtM(c.neto), "total")}
+        ${fila("Póliza de caución (5 %)", fmtM(pol))}
+        ${NOTA_POLIZA}
+      </div>
+      <div class="f-sec"><h4>Avance</h4>
+        ${fila("Del mes, sobre el contrato original", fmtPct(c.pct, 2))}
+        ${fila("Acumulado", fmtPct(c.pctAcum, 2))}
+        <p class="f-nota">Se calcula con el importe a precios de contrato. Es un avance ponderado por monto, no el avance físico.</p>
+      </div>
+    </div>
+    <div class="f-sec"><h4>Circuito de cobro</h4>${circuito(t)}</div>
+    ${extrasT(t)}`;
+}
+
+function fichaAjuste(a, t){
+  const pol = a.polizaCaucion ?? a.fondoReparo;
+  const certs = (a.certRangos || []).flatMap(([x, y]) => Array.from({length: y - x + 1}, (_, i) => x + i));
+  return `${fHead(`Ajuste por Redet. ${ROM[a.redet] || a.redet}`, `Certificado complementario emitido el ${fmtFecha(a.fecha)}. Paga la diferencia de precio de certificados que se habían emitido con precios anteriores.`)}
+    <div class="f-cols">
+      <div class="f-sec"><h4>Importes</h4>
+        ${fila("Importe del ajuste", fmtM(a.monto))}
+        ${fila("Anticipo financiero descontado", fmtM(a.anticipoDesc))}
+        ${fila("Neto del ajuste", fmtM(a.neto))}
+        ${fila("Ajuste del anticipo financiero", fmtM(a.ajusteAnticipo))}
+        ${fila("Total a cobrar", fmtM(a.netoConAnticipo ?? a.neto), "total")}
+        ${fila("Póliza de caución (5 %)", fmtM(pol))}
+        ${NOTA_POLIZA}
+      </div>
+      <div class="f-sec"><h4>Alcance</h4>
+        ${fila("Redeterminación", `<span class="chips">${chip(`redet-${a.redet}`, `Redet. ${ROM[a.redet] || a.redet}`)}</span>`)}
+        ${certs.length ? fila("Corrige los certificados", `<span class="chips">${certs.map(n => chip(`cert-${n}`, String(n))).join("")}</span>`) : ""}
+        ${a.desdeCert ? fila("Precios nuevos directos desde", `<span class="chips">${chip(`cert-${a.desdeCert}`, `Certificado ${a.desdeCert}`)}</span>`) : ""}
+      </div>
+    </div>
+    <div class="f-sec"><h4>Circuito de cobro</h4>${circuito(t)}</div>
+    ${extrasT(t)}`;
+}
+
+function fichaAnticipo(a, t){
+  const pct = Math.round(a.pct * 100), total = Math.round((D.obra.anticipoPct || 0) * 100);
+  return `${fHead(`Anticipo financiero ${pct} %`, `Emitido el ${fmtFecha(a.fecha)}. Pago adelantado a cuenta de la obra.`)}
+    <div class="f-cols">
+      <div class="f-sec"><h4>Importes</h4>
+        ${fila("Importe", fmtM(a.monto), "total")}
+        ${fila("Porcentaje del contrato", fmtPct(a.pct, 0))}
+        <p class="f-nota">Se recupera descontando ${total ? total + " %" : "el porcentaje pactado"} de cada certificado y de cada ajuste.</p>
+      </div>
+    </div>
+    <div class="f-sec"><h4>Circuito de cobro</h4>${circuito(t)}</div>
+    ${extrasT(t)}`;
+}
+
+function fichaRedet(r){
+  const prev = D.redeterminaciones.find(x => x.redet === r.redet - 1);
+  const aum = prev && prev.monto ? r.monto / prev.monto - 1 : null;
+  const aumTot = D.obra.montoContrato ? r.monto / D.obra.montoContrato - 1 : null;
+  const c1 = r.primerCert ? D.certificados.find(c => c.n === r.primerCert) : null;
+  const dem = c1 && r.mesSalto ? mesesEntre(parseISO(r.mesSalto), parseISO(c1.fecha)) : null;
+  const aj = D.ajustes.find(a => a.redet === r.redet);
+  const certs = D.certificados.filter(c => c.redet === r.redet).map(c => c.n);
+  return `${fHead(`Redeterminación ${ROM[r.redet] || r.redet}`, `Actualización de precios con salto en ${fmtMes(r.mesSalto)}.`)}
+    <div class="f-cols">
+      <div class="f-sec"><h4>Efecto en el contrato</h4>
+        ${fila("Monto antes", fmtM(prev ? prev.monto : null))}
+        ${fila("Monto con esta redeterminación", fmtM(r.monto), "total")}
+        ${fila("Aumento sobre la anterior", aum == null ? "—" : "+" + fmtPct(aum, 2))}
+        ${fila("Aumento sobre el contrato original", aumTot == null ? "—" : "+" + fmtPct(aumTot, 2))}
+      </div>
+      <div class="f-sec"><h4>Cómo se aplicó</h4>
+        ${fila("Mes de salto", fmtMes(r.mesSalto))}
+        ${fila("Primer certificado con estos precios", c1 ? `<span class="chips">${chip(`cert-${c1.n}`, `Certificado ${c1.n}`)}</span>` : "—")}
+        ${fila("Demora hasta aplicarse", dem == null ? "—" : `${dem} ${dem === 1 ? "mes" : "meses"}`, "", dem >= 4 ? "alerta" : "")}
+        ${fila("Certificado de ajuste", aj ? `<span class="chips">${chip(`ajuste-${aj.redet}`, `Ajuste ${fmtFecha(aj.fecha)}`)}</span>` : "Sin ajuste emitido")}
+      </div>
+    </div>
+    ${certs.length ? `<div class="f-sec"><h4>Certificados emitidos con estos precios</h4><div class="chips" style="justify-content:flex-start">${certs.map(n => chip(`cert-${n}`, String(n))).join("")}</div></div>` : ""}
+    <p class="f-nota">La demora es el tiempo entre el mes de salto y la emisión del primer certificado que ya usa los precios nuevos. Hasta entonces, la diferencia se cobra con el certificado de ajuste.</p>`;
+}
+
+function fichaItem(i){
+  const g = (D.globales || []).find(x => x.codigo === i.codigo);
+  const pct = i.pctAcum ?? 0, exc = (i.saldoCant ?? 0) < 0;
+  const cls = pct > 1.0001 ? "excede" : (pct >= .9999 ? "completo" : "");
+  const sub = [i.rubro, i.grupo].filter(Boolean).map(esc).join(", ");
+  return `${fHead(`Ítem ${i.codigo}`, `${esc(i.descripcion)}${sub ? `<br>${sub}` : ""}`)}
+    <div class="f-cols">
+      <div class="f-sec"><h4>Cantidades</h4>
+        ${fila("Cantidad de contrato", `${fmtCant(i.cantidad)} ${esc(i.unidad)}`)}
+        ${fila("Ejecutado acumulado", `${fmtCant(i.cantAcum)} ${esc(i.unidad)}`)}
+        ${fila("Avance", fmtPct(pct, 1), "", pct > 1.0001 ? "alerta" : "")}
+        <div class="barra ${cls}" style="margin:8px 0 2px"><span style="width:${Math.min(100, pct*100)}%"></span></div>
+        ${fila(exc ? "Excedido en" : "Saldo en cantidad", `${fmtCant(Math.abs(i.saldoCant))} ${esc(i.unidad)}`, "", exc ? "alerta" : "")}
+        ${i.noSeEjecutaCant ? fila("No se ejecuta", `${fmtCant(i.noSeEjecutaCant)} ${esc(i.unidad)}`) : ""}
+      </div>
+      <div class="f-sec"><h4>Importes a precios vigentes, sin IVA</h4>
+        ${fila("Precio unitario", fmtPesos(i.precioVigente))}
+        ${fila("Total del ítem", fmtM(i.totalVigente))}
+        ${fila("Peso sobre el total de ítems", fmtPct(i.peso, 2))}
+        ${fila("Saldo en monto", fmtM(i.saldoMonto), "total", exc ? "alerta" : "")}
+      </div>
+    </div>
+    ${g ? `<div class="f-sec disc-ficha"><h4>Avance por disciplina (ítem global, total ${fmtPct(g.total, 1)})</h4>${g.disciplinas.map(x => `<div class="disc"><span>${esc(x.nombre)} <span class="peso">${fmtPct(x.peso, 0)}</span></span>
+      <div class="barra ${x.avance >= .9999 ? "completo" : ""}"><span style="width:${Math.min(100, (x.avance||0)*100)}%"></span></div><span class="n pct-txt">${fmtNum((x.avance||0)*100, 0)}%</span></div>`).join("")}</div>` : ""}`;
+}
+
+/* ---------------- definiciones ---------------- */
+function definiciones(d){
+  const o = d.obra, k = d.kpis, p = d.proyeccion || {};
+  const terminados = d.items.filter(i => (i.pctAcum ?? 0) >= .9999 && (i.pctAcum ?? 0) <= 1.0001).length;
+  const excedidos = d.items.filter(i => (i.pctAcum ?? 0) > 1.0001).length;
+  const ult = d.certificados[d.certificados.length - 1];
+  const inc = o.montoContrato ? o.montoVigente / o.montoContrato - 1 : null;
+  return [
+    { grupo:"Los datos", items:[
+      { t:"Fuente y fecha de los datos",
+        d:"Salen de dos planillas: la de certificación de la obra (Resumen General, Resumen Ajuste, Saldo de Obra, Presupuesto, Metodología de medición y C I Comparativa) y la de seguimiento de certificaciones (TABLA MASTER y SALDO). Se copian al panel con actualizar_certificaciones.py. El panel toma los valores que ya calculó el Excel y no recalcula nada. «Datos al» indica cuándo se hizo esa copia.",
+        hoy:`datos al ${d.generatedAt} ${d.generatedTime || ""}` },
+      { t:"Certificado, ajuste y anticipo",
+        d:"Certificado: medición mensual de lo ejecutado, calculada a precios de contrato y con los precios de la redeterminación vigente. Ajuste: certificado complementario que paga la diferencia de precio de certificados ya emitidos cuando se aprueba una redeterminación. Anticipo: pago adelantado a cuenta de la obra, que después se descuenta de cada certificado.",
+        hoy:`${d.certificados.length} certificados, ${d.ajustes.length} ajustes, ${d.anticipos.length} anticipos` },
+    ]},
+    { grupo:"Montos", items:[
+      { t:"Monto del contrato y monto vigente",
+        d:"Monto del contrato: el importe original adjudicado, sin redeterminar. Monto vigente: el contrato más los importes de todas las redeterminaciones aprobadas hasta hoy. El aumento compara ambos.",
+        hoy:`${fmtM(o.montoContrato)} original, ${fmtM(o.montoVigente)} vigente${inc != null ? ` (+${fmtPct(inc)})` : ""}` },
+      { t:"A precios de contrato y a precios redeterminados",
+        d:"Cada certificado se calcula dos veces: con los precios originales del contrato, que es la base para medir el avance, y con los precios de la redeterminación vigente en ese certificado. La diferencia es el efecto de la redeterminación en ese mes.",
+        hoy:`${fmtM(k.certificadoPreciosContrato)} certificado a precios de contrato` },
+      { t:"Certificado a la fecha",
+        d:"Suma de todos los certificados a precios redeterminados más los ajustes emitidos. No descuenta anticipos.",
+        hoy:fmtM(k.certificadoPreciosVigentes) },
+      { t:"Anticipo financiero",
+        d:"Pagos adelantados por el porcentaje pactado en el contrato. Se recupera descontando ese mismo porcentaje de cada certificado y de cada ajuste. El «ajuste del anticipo financiero» es la actualización del anticipo por una redeterminación y se cobra junto con el certificado de ajuste.",
+        hoy:`${fmtPct(o.anticipoPct, 0)} del contrato: ${d.anticipos.map(a => `${fmtPct(a.pct, 0)} el ${fmtFecha(a.fecha)}`).join(" y ")}` },
+      { t:"Póliza de caución",
+        d:"El 5 % de cada certificado y de cada ajuste. El contratista lo cubre con una póliza de seguro de caución en garantía de sustitución del fondo de reparo, así que no se retiene del pago ni se resta del neto a pagar. El Excel lo informa como «monto de la póliza de caución»." },
+      { t:"Neto a pagar",
+        d:"Lo que se le paga al contratista por un certificado: el importe a precios redeterminados menos el anticipo descontado. En un ajuste se suma además el ajuste del anticipo financiero." },
+      { t:"Pagado y en trámite",
+        d:"Pagado: suma de los comprobantes que tienen fecha de pago en la TABLA MASTER (certificados, ajustes y anticipos). En trámite: lo certificado que todavía no tiene fecha de pago. Pagado más en trámite da el neto certificado.",
+        hoy:`${fmtM(k.pagado)} pagado, ${fmtM(k.porCobrar)} en trámite` },
+    ]},
+    { grupo:"Avance", items:[
+      { t:"Avance certificado",
+        d:"Certificado a precios de contrato dividido por el monto original del contrato. Pondera cada ítem por su monto, así que no es el avance físico: un ítem de poco costo terminado pesa poco, aunque en obra sea necesario.",
+        hoy:`${fmtPct(k.pctAvance)} al certificado ${k.ultimoCert}` },
+      { t:"Porcentaje del mes y acumulado",
+        d:"Del mes: el certificado a precios de contrato sobre el monto original del contrato. Acumulado: la suma hasta ese certificado.",
+        hoy:ult ? `certificado ${ult.n}: ${fmtPct(ult.pct, 2)} del mes, ${fmtPct(ult.pctAcum, 2)} acumulado` : "" },
+      { t:"Avance por ítem",
+        d:"Cantidad ejecutada acumulada dividida por la cantidad de contrato de cada ítem. Puede pasar de 100 % si se ejecutó más de lo previsto; en ese caso el saldo en cantidad es negativo y se marca como excedido.",
+        hoy:`${terminados} de ${d.items.length} ítems al 100 %, ${excedidos} ${excedidos === 1 ? "excedido" : "excedidos"}` },
+      { t:"Estaciones",
+        d:"Ítems globales que se miden por disciplina (civil, mecánica y eléctrica) y por tareas, según la metodología de medición del último certificado. El porcentaje grande es el avance total del ítem.",
+        hoy:`${(d.globales || []).length} ítems` },
+      { t:"Curva y plan original",
+        d:"La curva real une el avance acumulado de cada certificado, ubicado en el mes de ejecución. El plan original es el plan de trabajos de la oferta (hoja C I Comparativa). El plan reprogramado todavía no está cargado, por eso no figura." },
+      { t:"Ritmo reciente y ritmo necesario",
+        d:"Reciente: promedio del porcentaje mensual de los últimos tres certificados. Necesario: lo que falta certificar dividido por los meses que quedan hasta el fin vigente.",
+        hoy:p.ritmoNecesario ? `${fmtPct(p.ritmoReciente)} por mes contra ${fmtPct(p.ritmoNecesario)} necesarios` : "" },
+      { t:"Fin contractual, fin vigente y fin al ritmo actual",
+        d:"Contractual: fecha del contrato más el plazo en días. Vigente: mes de finalización que figura en la hoja SALDO del seguimiento (plan vigente). Al ritmo actual: mes en que se llegaría al 100 % si se siguiera certificando el ritmo reciente.",
+        hoy:`${fmtMes(p.finContractual)} contractual, ${fmtMes(p.finPlanVigente)} vigente, ${fmtMes(p.finEstimadoRitmo)} al ritmo actual` },
+      { t:"Saldo de obra",
+        d:"Lo que falta ejecutar de cada ítem (cantidad de contrato menos ejecutada), valuado a los precios de la última redeterminación y sin IVA. Los ítems excedidos tienen saldo negativo.",
+        hoy:`${fmtM(p.saldoObraConIva)} con IVA` },
+    ]},
+    { grupo:"Redeterminaciones", items:[
+      { t:"Redeterminación y mes de salto",
+        d:"Actualización de los precios del contrato por la variación de costos, calculada con las fórmulas polinómicas y los índices del INDEC que están en las hojas del Excel. El mes de salto es el mes desde el que rigen los precios nuevos.",
+        hoy:`${o.redetVigente} redeterminaciones` },
+      { t:"Ajuste por redeterminación",
+        d:"Una redeterminación se aprueba después de su mes de salto, así que los certificados emitidos mientras tanto quedaron con precios anteriores. El ajuste paga esa diferencia y actualiza el anticipo. Indica a qué certificados alcanza y desde qué certificado los precios nuevos ya se usan directo." },
+      { t:"Demora hasta aplicarse",
+        d:"Meses entre el mes de salto y la emisión del primer certificado que ya usa los precios nuevos." },
+    ]},
+    { grupo:"Circuito de cobro", items:[
+      { t:"Etapas",
+        d:"Emisión, acta de medición, envío al contratista, factura recibida, entrega a Tesorería y pago. Las fechas salen de la TABLA MASTER del seguimiento. En el detalle de cada comprobante las etapas se ordenan por fecha." },
+      { t:"Días hasta el pago y pago estimado",
+        d:"Días desde la emisión del comprobante hasta su pago. Para lo que está en trámite, el pago estimado suma a la última etapa cumplida la mediana de días que esta obra tardó, históricamente, desde esa etapa hasta el pago. Si la obra no tiene datos suficientes se usa la mediana de todas las obras.",
+        hoy:p.diasMedianosAPago && p.diasMedianosAPago.certificado ? `mediana de ${p.diasMedianosAPago.certificado} días desde la emisión` : "" },
+      { t:"Otros pagos de la obra",
+        d:"Renglones de la TABLA MASTER de esta obra que no son del contratista (hoy, de T.G.S.: cuotas del acuerdo y diferencias de cambio). No entran en los totales del panel.",
+        hoy:`${d.otrosPagos.length} renglones` },
+      { t:"Control de datos",
+        d:"Compara el neto de cada certificado y ajuste del Excel de certificación con el monto de la TABLA MASTER, y avisa si las fechas de las etapas están en desorden. No cambia ningún valor del panel.",
+        hoy:`${d.avisos.length} avisos` },
+    ]},
+  ];
+}
+function renderDefiniciones(d){
+  document.getElementById("vista-def").innerHTML =
+    `<div class="vista-titulo"><h1>Definiciones</h1><p>Qué significa cada número del panel y cómo se calcula. «Hoy» muestra el valor con los datos actuales de ${esc(d.obra.nombre)}.</p></div>` +
+    definiciones(d).map(g => `<div class="panel def-grupo"><h3>${esc(g.grupo)}</h3>` + g.items.map(it =>
+      `<div class="def-item"><div><span class="def-term">${esc(it.t)}</span>${it.hoy ? `<span class="def-hoy">Hoy: ${esc(it.hoy)}</span>` : ""}</div><div class="def-desc">${esc(it.d)}</div></div>`).join("") + `</div>`).join("");
+}
+
+/* ---------------- exportar a PDF ---------------- */
+function dialogoPDF(){
+  const op = (v, t, s, ch = true) => `<label class="pdf-op"><input type="checkbox" value="${v}"${ch ? " checked" : ""}><span>${t}${s ? `<small>${s}</small>` : ""}</span></label>`;
+  return `<dialog id="dlg-pdf">
+    <h3>Exportar a PDF</h3>
+    <p class="nota">El resumen con el avance, los indicadores y la línea de obra siempre se incluye. Elegí qué más mostrar.</p>
+    ${op("curva", "Curva de avance", "Real contra plan original, con las proyecciones.")}
+    ${op("estaciones", "Estaciones", "Avance por disciplina de los ítems globales.")}
+    ${op("items", "Avance por ítem", "Tabla completa con cantidades y saldo.")}
+    ${op("valores", "Valores", "Redeterminaciones, certificado y cobrado, certificación mensual.")}
+    ${op("proyeccion", "Saldo y pagos en trámite", "Dónde está el saldo y qué pagos están en camino.")}
+    ${op("historial", "Historial de comprobantes", "Circuito de cada certificado, ajuste y anticipo, y otros pagos de la obra.")}
+    <p class="nota" style="margin-top:12px">Se abre la ventana de impresión del navegador: elegí «Guardar como PDF», tamaño A4.</p>
+    <div class="dlg-acc"><button type="button" class="btn" id="pdf-cancelar">Cancelar</button><button type="button" class="btn prim" id="pdf-generar">Generar PDF</button></div>
+  </dialog>`;
+}
+
+function generarPDF(){
+  const dlg = document.getElementById("dlg-pdf");
+  const marcados = new Set([...dlg.querySelectorAll("input:checked")].map(i => i.value));
+  dlg.close();
+  mostrar("panel");
+  const tocados = [], abiertos = [];
+  document.querySelectorAll("#vista-panel [data-pdf]").forEach(el => { if(!marcados.has(el.dataset.pdf)){ el.classList.add("pdf-oculto"); tocados.push(el); } });
+  document.querySelectorAll("#vista-panel section").forEach(sec => {
+    const hijos = sec.querySelectorAll("[data-pdf]");
+    if(hijos.length && [...hijos].every(h => h.classList.contains("pdf-oculto"))){ sec.classList.add("pdf-oculto"); tocados.push(sec); }
+  });
+  if(marcados.has("historial")) document.querySelectorAll('[data-pdf="historial"] details').forEach(x => { abiertos.push([x, x.open]); x.open = true; });
+  const tituloPrevio = document.title;
+  document.title = `Certificaciones ${D.obra.nombre} - datos al ${String(D.generatedAt).replace(/\//g, "-")}`;
+  const limpiar = () => {
+    tocados.forEach(el => el.classList.remove("pdf-oculto"));
+    abiertos.forEach(([x, v]) => { x.open = v; });
+    document.title = tituloPrevio;
+    window.removeEventListener("afterprint", limpiar);
+  };
+  window.addEventListener("afterprint", limpiar);
+  window.scrollTo(0, 0);
+  setTimeout(() => window.print(), 80);
+}
+
 </script>
 </body>
 </html>
