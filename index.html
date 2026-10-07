@@ -149,6 +149,7 @@
 
   <div class="access-note" id="access-note" style="display:none;"><span id="access-note-text"></span> · <button type="button" onclick="cerrarAcceso()">cambiar código</button></div>
 
+  <div class="seccion" data-group-section="extensiones">
   <h2 class="section-title">Extensiones de red</h2>
   <div class="grid">
     <a class="card dark" href="extensiones.html" data-group="extensiones" data-json="data/extensiones.json">
@@ -157,7 +158,9 @@
       <span class="arrow">Ver panel →</span>
     </a>
   </div>
+  </div>
 
+  <div class="seccion" data-group-section="certificaciones">
   <h2 class="section-title">Seguimiento de Certificaciones</h2>
   <div class="grid">
     <a class="card mid" href="certificaciones.html?obra=anchorena" data-group="certificaciones" data-json="data/certificaciones_anchorena.json">
@@ -176,7 +179,9 @@
       <span class="arrow">Ver panel →</span>
     </a>
   </div>
+  </div>
 
+  <div class="seccion" data-group-section="visor">
   <h2 class="section-title">Infraestructura</h2>
   <div class="grid">
     <a class="card deep" href="visor-ubicacion.html" data-group="visor">
@@ -185,7 +190,9 @@
       <span class="arrow">Ver panel →</span>
     </a>
   </div>
+  </div>
 
+  <div class="seccion" data-group-section="ingenieria">
   <h2 class="section-title">Ingeniería de obra</h2>
   <div class="grid">
     <a class="card light" href="ingenieria.html?obra=anchorena" data-group="ingenieria" data-json="data/ingenieria_anchorena.json">
@@ -203,6 +210,7 @@
       <span class="d">Seguimiento de documentación de ingeniería del circuito de revisión de la obra.</span>
       <span class="arrow">Ver panel →</span>
     </a>
+  </div>
   </div>
 
   <footer>Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
@@ -244,6 +252,7 @@ const CODIGOS_HASH = {
   "f8980f8b253d6f4b894a716fdc47f40163efb74d08677e2f9b72e7403a51fb3b": ["extensiones"],
   "d2ccf842bbdc073befa1067dc22ee1b81ca356aefea7cc5f691a35dfe482bbbf": ["ingenieria"],
   "b11b8edc58c4426f1a79b168d2a28e028f38d54e9b8d7586422ff61402aa50af": ["visor"],
+  "e60adba3156eaa4ebaf30767a5b20891ba0718d548e5934aa47b6aa5d6128419": ["extensiones", "visor"],
   "9c1305e1d9da697e7c6b3adca43127c0824a7b5716421842590b718e031a9fff": ["extensiones", "ingenieria", "visor", "certificaciones"],
   "f30b7b6d9bb9980b57c835752d57cade697b1b7fd82723196eb58bd3bd55ac4e": ["certificaciones"],
 };
@@ -294,9 +303,8 @@ function gruposHabilitados(){
 
 function aplicarAcceso(){
   const grupos = gruposHabilitados();
-  document.querySelectorAll("a.card[data-group]").forEach(card => {
-    const habilitado = grupos.includes(card.dataset.group);
-    card.classList.toggle("locked", !habilitado);
+  document.querySelectorAll(".seccion[data-group-section]").forEach(sec => {
+    sec.style.display = grupos.includes(sec.dataset.groupSection) ? "" : "none";
   });
   const note = document.getElementById("access-note");
   if(grupos.length){
