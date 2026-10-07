@@ -1,0 +1,2106 @@
+{
+ "generatedAt": "07/10/2026",
+ "generatedTime": "15:35",
+ "obra": {
+  "clave": "mechita",
+  "nombre": "Mechita",
+  "descripcion": "SUMINISTRO DE GAS NATURAL A LA LOCALIDAD DE MECHITA - Pdo. BRAGADO Y ALBERTI - PROVINCIA DE BUENOS AIRES",
+  "comitente": "BAGSA S.A",
+  "contratista": "VTS CONSTRUCCIONES S.R.L.",
+  "localidad": "MECHITA",
+  "montoContrato": 4993791121.0,
+  "plazoDias": 570,
+  "fechaContrato": "2024-12-30",
+  "anticipoPct": 0.3,
+  "montoVigente": 6146526833.38,
+  "redetVigente": 7
+ },
+ "kpis": {
+  "pctAvance": 0.921009,
+  "ultimoCert": 20,
+  "ultimoCertFecha": "2026-10-08",
+  "certificadoPreciosVigentes": 5906303953.73,
+  "certificadoPreciosContrato": 4599324835.78,
+  "netoCertificado": 5745738525.74,
+  "pagado": 5488467391.25,
+  "porCobrar": 257271134.49,
+  "anticipoDescontado": 1942119547.41,
+  "anticipoAprobado": 1943657603.68
+ },
+ "certificados": [
+  {
+   "n": 1,
+   "redet": 0,
+   "fecha": "2025-02-10",
+   "mes": "2025-01",
+   "base": 128836859.34,
+   "conRedet": 128836859.34,
+   "difRedet": 0,
+   "anticipoDesc": 38651057.8,
+   "polizaCaucion": 6441842.97,
+   "neto": 90185801.54,
+   "acumConRedet": 128836859.34,
+   "pct": 0.025799,
+   "pctAcum": 0.025799
+  },
+  {
+   "n": 2,
+   "redet": 0,
+   "fecha": "2025-03-07",
+   "mes": "2025-02",
+   "base": 123881595.52,
+   "conRedet": 123881595.52,
+   "difRedet": 0,
+   "anticipoDesc": 37164478.66,
+   "polizaCaucion": 6194079.78,
+   "neto": 86717116.87,
+   "acumConRedet": 252718454.87,
+   "pct": 0.024807,
+   "pctAcum": 0.050607
+  },
+  {
+   "n": 3,
+   "redet": 0,
+   "fecha": "2025-04-01",
+   "mes": "2025-03",
+   "base": 1337921.23,
+   "conRedet": 1337921.23,
+   "difRedet": 0,
+   "anticipoDesc": 401376.37,
+   "polizaCaucion": 66896.06,
+   "neto": 936544.86,
+   "acumConRedet": 254056376.1,
+   "pct": 0.000268,
+   "pctAcum": 0.050874
+  },
+  {
+   "n": 4,
+   "redet": 0,
+   "fecha": "2025-06-06",
+   "mes": "2025-05",
+   "base": 109744227.84,
+   "conRedet": 109744227.84,
+   "difRedet": 0,
+   "anticipoDesc": 32923268.35,
+   "polizaCaucion": 5487211.39,
+   "neto": 76820959.49,
+   "acumConRedet": 363800603.94,
+   "pct": 0.021976,
+   "pctAcum": 0.072851
+  },
+  {
+   "n": 5,
+   "redet": 1,
+   "fecha": "2025-07-11",
+   "mes": "2025-06",
+   "base": 194696775.26,
+   "conRedet": 206459310.76,
+   "difRedet": 11762535.5,
+   "anticipoDesc": 61937793.23,
+   "polizaCaucion": 10322965.54,
+   "neto": 144521517.53,
+   "acumConRedet": 570259914.7,
+   "pct": 0.038988,
+   "pctAcum": 0.111838
+  },
+  {
+   "n": 6,
+   "redet": 2,
+   "fecha": "2025-08-08",
+   "mes": "2025-07",
+   "base": 228350201.74,
+   "conRedet": 255124931.92,
+   "difRedet": 26774730.18,
+   "anticipoDesc": 76537479.58,
+   "polizaCaucion": 12756246.6,
+   "neto": 178587452.34,
+   "acumConRedet": 825384846.62,
+   "pct": 0.045727,
+   "pctAcum": 0.157565
+  },
+  {
+   "n": 7,
+   "redet": 2,
+   "fecha": "2025-09-09",
+   "mes": "2025-08",
+   "base": 225094965.05,
+   "conRedet": 250786818.2,
+   "difRedet": 25691853.15,
+   "anticipoDesc": 75236045.46,
+   "polizaCaucion": 12539340.91,
+   "neto": 175550772.74,
+   "acumConRedet": 1076171664.82,
+   "pct": 0.045075,
+   "pctAcum": 0.20264
+  },
+  {
+   "n": 8,
+   "redet": 2,
+   "fecha": "2025-10-09",
+   "mes": "2025-09",
+   "base": 640447160.63,
+   "conRedet": 710966131.33,
+   "difRedet": 70518970.7,
+   "anticipoDesc": 213289839.4,
+   "polizaCaucion": 35548306.57,
+   "neto": 497676291.93,
+   "acumConRedet": 1787137796.15,
+   "pct": 0.128249,
+   "pctAcum": 0.330889
+  },
+  {
+   "n": 9,
+   "redet": 3,
+   "fecha": "2025-11-07",
+   "mes": "2025-10",
+   "base": 547863290.13,
+   "conRedet": 647032809.67,
+   "difRedet": 99169519.54,
+   "anticipoDesc": 194109842.9,
+   "polizaCaucion": 32351640.48,
+   "neto": 452922966.77,
+   "acumConRedet": 2434170605.82,
+   "pct": 0.109709,
+   "pctAcum": 0.440598
+  },
+  {
+   "n": 10,
+   "redet": 3,
+   "fecha": "2025-12-11",
+   "mes": "2025-11",
+   "base": 679172584.55,
+   "conRedet": 801548176.55,
+   "difRedet": 122375592.0,
+   "anticipoDesc": 240464452.96,
+   "polizaCaucion": 40077408.83,
+   "neto": 561083723.58,
+   "acumConRedet": 3235718782.36,
+   "pct": 0.136003,
+   "pctAcum": 0.576601
+  },
+  {
+   "n": 11,
+   "redet": 4,
+   "fecha": "2026-01-09",
+   "mes": "2025-12",
+   "base": 241694695.0,
+   "conRedet": 309224120.15,
+   "difRedet": 67529425.15,
+   "anticipoDesc": 92767236.04,
+   "polizaCaucion": 15461206.01,
+   "neto": 216456884.1,
+   "acumConRedet": 3544942902.51,
+   "pct": 0.048399,
+   "pctAcum": 0.625
+  },
+  {
+   "n": 12,
+   "redet": 4,
+   "fecha": "2026-02-09",
+   "mes": "2026-01",
+   "base": 149031664.16,
+   "conRedet": 192128183.46,
+   "difRedet": 43096519.29,
+   "anticipoDesc": 57638455.04,
+   "polizaCaucion": 9606409.17,
+   "neto": 134489728.42,
+   "acumConRedet": 3737071085.97,
+   "pct": 0.029843,
+   "pctAcum": 0.654844
+  },
+  {
+   "n": 13,
+   "redet": 4,
+   "fecha": "2026-03-09",
+   "mes": "2026-02",
+   "base": 293015366.38,
+   "conRedet": 379104111.19,
+   "difRedet": 86088744.81,
+   "anticipoDesc": 113731233.36,
+   "polizaCaucion": 18955205.56,
+   "neto": 265372877.84,
+   "acumConRedet": 4116175197.16,
+   "pct": 0.058676,
+   "pctAcum": 0.713519
+  },
+  {
+   "n": 14,
+   "redet": 4,
+   "fecha": "2026-04-08",
+   "mes": "2026-03",
+   "base": 210656709.88,
+   "conRedet": 271845704.85,
+   "difRedet": 61188994.97,
+   "anticipoDesc": 81553711.46,
+   "polizaCaucion": 13592285.24,
+   "neto": 190291993.4,
+   "acumConRedet": 4388020902.02,
+   "pct": 0.042184,
+   "pctAcum": 0.755703
+  },
+  {
+   "n": 15,
+   "redet": 4,
+   "fecha": "2026-05-08",
+   "mes": "2026-04",
+   "base": 180955333.16,
+   "conRedet": 234695957.23,
+   "difRedet": 53740624.07,
+   "anticipoDesc": 70408787.17,
+   "polizaCaucion": 11734797.86,
+   "neto": 164287170.06,
+   "acumConRedet": 4622716859.25,
+   "pct": 0.036236,
+   "pctAcum": 0.791939
+  },
+  {
+   "n": 16,
+   "redet": 5,
+   "fecha": "2026-06-09",
+   "mes": "2026-05",
+   "base": 156532138.54,
+   "conRedet": 208681134.8,
+   "difRedet": 52148996.26,
+   "anticipoDesc": 62604340.44,
+   "polizaCaucion": 10434056.74,
+   "neto": 146076794.36,
+   "acumConRedet": 4831397994.04,
+   "pct": 0.031345,
+   "pctAcum": 0.823285
+  },
+  {
+   "n": 17,
+   "redet": 5,
+   "fecha": "2026-07-08",
+   "mes": "2026-06",
+   "base": 126262444.94,
+   "conRedet": 168281911.49,
+   "difRedet": 42019466.55,
+   "anticipoDesc": 50484573.45,
+   "polizaCaucion": 8414095.57,
+   "neto": 117797338.04,
+   "acumConRedet": 4999679905.53,
+   "pct": 0.025284,
+   "pctAcum": 0.848569
+  },
+  {
+   "n": 18,
+   "redet": 6,
+   "fecha": "2026-08-11",
+   "mes": "2026-07",
+   "base": 116936557.9,
+   "conRedet": 172660454.99,
+   "difRedet": 55723897.09,
+   "anticipoDesc": 51798136.5,
+   "polizaCaucion": 8633022.75,
+   "neto": 120862318.5,
+   "acumConRedet": 5172340360.52,
+   "pct": 0.023416,
+   "pctAcum": 0.871985
+  },
+  {
+   "n": 19,
+   "redet": 6,
+   "fecha": "2026-09-09",
+   "mes": "2026-08",
+   "base": 156065259.78,
+   "conRedet": 219325985.23,
+   "difRedet": 63260725.45,
+   "anticipoDesc": 65797795.57,
+   "polizaCaucion": 10966299.26,
+   "neto": 153528189.66,
+   "acumConRedet": 5391666345.76,
+   "pct": 0.031252,
+   "pctAcum": 0.903237
+  },
+  {
+   "n": 20,
+   "redet": 7,
+   "fecha": "2026-10-08",
+   "mes": "2026-09",
+   "base": 88749084.74,
+   "conRedet": 128200497.74,
+   "difRedet": 39451413.0,
+   "anticipoDesc": 38460149.32,
+   "polizaCaucion": 6410024.89,
+   "neto": 89740348.42,
+   "acumConRedet": 5519866843.5,
+   "pct": 0.017772,
+   "pctAcum": 0.921009
+  }
+ ],
+ "anticipos": [
+  {
+   "pct": 0.2,
+   "fecha": "2025-01-08",
+   "monto": 998758224.2,
+   "neto": 998758224.2
+  },
+  {
+   "pct": 0.1,
+   "fecha": "2025-04-11",
+   "monto": 499379112.1,
+   "neto": 499379112.1
+  }
+ ],
+ "ajustes": [
+  {
+   "redet": 1,
+   "desdeCert": 5,
+   "fecha": "2025-06-09",
+   "monto": 20580322.43,
+   "anticipoDesc": 6174096.73,
+   "polizaCaucion": 1029016.12,
+   "neto": 14406225.7,
+   "ajusteAnticipo": 85585092.14,
+   "netoConAnticipo": 99991317.84,
+   "certRangos": [
+    [
+     1,
+     4
+    ]
+   ]
+  },
+  {
+   "redet": 2,
+   "desdeCert": 6,
+   "fecha": "2025-07-30",
+   "monto": 17313436.39,
+   "anticipoDesc": 5194030.92,
+   "polizaCaucion": 865671.82,
+   "neto": 12119405.48,
+   "ajusteAnticipo": 27603329.68,
+   "netoConAnticipo": 39722735.16,
+   "certRangos": [
+    [
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "redet": 3,
+   "desdeCert": 9,
+   "fecha": "2025-11-03",
+   "monto": 72181239.02,
+   "anticipoDesc": 21654371.71,
+   "polizaCaucion": 3609061.95,
+   "neto": 50526867.31,
+   "ajusteAnticipo": 0,
+   "netoConAnticipo": 50526867.31,
+   "certRangos": [
+    [
+     6,
+     8
+    ]
+   ]
+  },
+  {
+   "redet": 4,
+   "desdeCert": 11,
+   "fecha": "2025-12-23",
+   "monto": 182915118.24,
+   "anticipoDesc": 54874535.47,
+   "polizaCaucion": 9145755.91,
+   "neto": 128040582.77,
+   "ajusteAnticipo": 0,
+   "netoConAnticipo": 128040582.77,
+   "certRangos": [
+    [
+     8,
+     10
+    ]
+   ]
+  },
+  {
+   "redet": 5,
+   "desdeCert": 16,
+   "fecha": "2026-05-11",
+   "monto": 39433233.51,
+   "anticipoDesc": 11829970.05,
+   "polizaCaucion": 1971661.68,
+   "neto": 27603263.46,
+   "ajusteAnticipo": 0,
+   "netoConAnticipo": 27603263.46,
+   "certRangos": [
+    [
+     13,
+     15
+    ]
+   ]
+  },
+  {
+   "redet": 6,
+   "desdeCert": 18,
+   "fecha": "2026-07-29",
+   "monto": 34010051.48,
+   "anticipoDesc": 10203015.44,
+   "polizaCaucion": 1700502.57,
+   "neto": 23807036.04,
+   "ajusteAnticipo": 0,
+   "netoConAnticipo": 23807036.04,
+   "certRangos": [
+    [
+     15,
+     17
+    ]
+   ]
+  },
+  {
+   "redet": 7,
+   "desdeCert": 20,
+   "fecha": "2026-10-02",
+   "monto": 20003709.16,
+   "anticipoDesc": 6001112.75,
+   "polizaCaucion": 1000185.46,
+   "neto": 14002596.41,
+   "ajusteAnticipo": 0,
+   "netoConAnticipo": 14002596.41,
+   "certRangos": [
+    [
+     17,
+     19
+    ]
+   ]
+  }
+ ],
+ "redeterminaciones": [
+  {
+   "redet": 0,
+   "mesSalto": "2024-12-30",
+   "monto": 4993791121.0,
+   "primerCert": 1,
+   "ajuste": null
+  },
+  {
+   "redet": 1,
+   "mesSalto": "2025-01-01",
+   "monto": 5279074761.47,
+   "primerCert": 5,
+   "ajuste": 20580322.43
+  },
+  {
+   "redet": 2,
+   "mesSalto": "2025-04-01",
+   "monto": 5499901398.92,
+   "primerCert": 6,
+   "ajuste": 17313436.39
+  },
+  {
+   "redet": 3,
+   "mesSalto": "2025-07-01",
+   "monto": 5714404857.49,
+   "primerCert": 9,
+   "ajuste": 72181239.02
+  },
+  {
+   "redet": 4,
+   "mesSalto": "2025-09-01",
+   "monto": 5984484893.88,
+   "primerCert": 11,
+   "ajuste": 182915118.24
+  },
+  {
+   "redet": 5,
+   "mesSalto": "2026-02-01",
+   "monto": 6056093859.04,
+   "primerCert": 16,
+   "ajuste": 39433233.51
+  },
+  {
+   "redet": 6,
+   "mesSalto": "2026-04-01",
+   "monto": 6118329159.38,
+   "primerCert": 18,
+   "ajuste": 34010051.48
+  },
+  {
+   "redet": 7,
+   "mesSalto": "2026-06-01",
+   "monto": 6146526833.38,
+   "primerCert": 20,
+   "ajuste": 20003709.16
+  }
+ ],
+ "curva": {
+  "real": [
+   {
+    "n": 1,
+    "mes": "2025-01",
+    "pct": 0.025799,
+    "pctAcum": 0.025799
+   },
+   {
+    "n": 2,
+    "mes": "2025-02",
+    "pct": 0.024807,
+    "pctAcum": 0.050607
+   },
+   {
+    "n": 3,
+    "mes": "2025-03",
+    "pct": 0.000268,
+    "pctAcum": 0.050874
+   },
+   {
+    "n": 4,
+    "mes": "2025-05",
+    "pct": 0.021976,
+    "pctAcum": 0.072851
+   },
+   {
+    "n": 5,
+    "mes": "2025-06",
+    "pct": 0.038988,
+    "pctAcum": 0.111838
+   },
+   {
+    "n": 6,
+    "mes": "2025-07",
+    "pct": 0.045727,
+    "pctAcum": 0.157565
+   },
+   {
+    "n": 7,
+    "mes": "2025-08",
+    "pct": 0.045075,
+    "pctAcum": 0.20264
+   },
+   {
+    "n": 8,
+    "mes": "2025-09",
+    "pct": 0.128249,
+    "pctAcum": 0.330889
+   },
+   {
+    "n": 9,
+    "mes": "2025-10",
+    "pct": 0.109709,
+    "pctAcum": 0.440598
+   },
+   {
+    "n": 10,
+    "mes": "2025-11",
+    "pct": 0.136003,
+    "pctAcum": 0.576601
+   },
+   {
+    "n": 11,
+    "mes": "2025-12",
+    "pct": 0.048399,
+    "pctAcum": 0.625
+   },
+   {
+    "n": 12,
+    "mes": "2026-01",
+    "pct": 0.029843,
+    "pctAcum": 0.654844
+   },
+   {
+    "n": 13,
+    "mes": "2026-02",
+    "pct": 0.058676,
+    "pctAcum": 0.713519
+   },
+   {
+    "n": 14,
+    "mes": "2026-03",
+    "pct": 0.042184,
+    "pctAcum": 0.755703
+   },
+   {
+    "n": 15,
+    "mes": "2026-04",
+    "pct": 0.036236,
+    "pctAcum": 0.791939
+   },
+   {
+    "n": 16,
+    "mes": "2026-05",
+    "pct": 0.031345,
+    "pctAcum": 0.823285
+   },
+   {
+    "n": 17,
+    "mes": "2026-06",
+    "pct": 0.025284,
+    "pctAcum": 0.848569
+   },
+   {
+    "n": 18,
+    "mes": "2026-07",
+    "pct": 0.023416,
+    "pctAcum": 0.871985
+   },
+   {
+    "n": 19,
+    "mes": "2026-08",
+    "pct": 0.031252,
+    "pctAcum": 0.903237
+   },
+   {
+    "n": 20,
+    "mes": "2026-09",
+    "pct": 0.017772,
+    "pctAcum": 0.921009
+   }
+  ],
+  "plan": [
+   {
+    "mes": "2025-01",
+    "pctAcum": 0.025799,
+    "pct": 0.025799
+   },
+   {
+    "mes": "2025-02",
+    "pctAcum": 0.025799,
+    "pct": 0.0
+   },
+   {
+    "mes": "2025-03",
+    "pctAcum": 0.051033,
+    "pct": 0.025234
+   },
+   {
+    "mes": "2025-04",
+    "pctAcum": 0.051316,
+    "pct": 0.000283
+   },
+   {
+    "mes": "2025-05",
+    "pctAcum": 0.061533,
+    "pct": 0.010217
+   },
+   {
+    "mes": "2025-06",
+    "pctAcum": 0.075091,
+    "pct": 0.013558
+   },
+   {
+    "mes": "2025-07",
+    "pctAcum": 0.085269,
+    "pct": 0.010179
+   },
+   {
+    "mes": "2025-08",
+    "pctAcum": 0.115108,
+    "pct": 0.029839
+   },
+   {
+    "mes": "2025-09",
+    "pctAcum": 0.154999,
+    "pct": 0.039891
+   },
+   {
+    "mes": "2025-10",
+    "pctAcum": 0.197759,
+    "pct": 0.04276
+   },
+   {
+    "mes": "2025-11",
+    "pctAcum": 0.242403,
+    "pct": 0.044644
+   },
+   {
+    "mes": "2025-12",
+    "pctAcum": 0.291389,
+    "pct": 0.048985
+   },
+   {
+    "mes": "2026-01",
+    "pctAcum": 0.371736,
+    "pct": 0.080348
+   },
+   {
+    "mes": "2026-02",
+    "pctAcum": 0.454331,
+    "pct": 0.082594
+   },
+   {
+    "mes": "2026-03",
+    "pctAcum": 0.553592,
+    "pct": 0.099262
+   },
+   {
+    "mes": "2026-04",
+    "pctAcum": 0.664842,
+    "pct": 0.111249
+   },
+   {
+    "mes": "2026-05",
+    "pctAcum": 0.813701,
+    "pct": 0.148859
+   },
+   {
+    "mes": "2026-06",
+    "pctAcum": 0.992826,
+    "pct": 0.179125
+   },
+   {
+    "mes": "2026-07",
+    "pctAcum": 1.0,
+    "pct": 0.007174
+   }
+  ],
+  "planNombre": "PLAN DE TRABAJO - R IV",
+  "planFin": "2026-07",
+  "planOriginal": [
+   {
+    "mes": "2025-01",
+    "pctAcum": 0.025799,
+    "pct": 0.025799
+   },
+   {
+    "mes": "2025-02",
+    "pctAcum": 0.025799,
+    "pct": 0.0
+   },
+   {
+    "mes": "2025-03",
+    "pctAcum": 0.051033,
+    "pct": 0.025234
+   },
+   {
+    "mes": "2025-04",
+    "pctAcum": 0.051316,
+    "pct": 0.000283
+   },
+   {
+    "mes": "2025-05",
+    "pctAcum": 0.061533,
+    "pct": 0.010217
+   },
+   {
+    "mes": "2025-06",
+    "pctAcum": 0.075091,
+    "pct": 0.013558
+   },
+   {
+    "mes": "2025-07",
+    "pctAcum": 0.110004,
+    "pct": 0.034913
+   },
+   {
+    "mes": "2025-08",
+    "pctAcum": 0.150747,
+    "pct": 0.040743
+   },
+   {
+    "mes": "2025-09",
+    "pctAcum": 0.192323,
+    "pct": 0.041576
+   },
+   {
+    "mes": "2025-10",
+    "pctAcum": 0.236767,
+    "pct": 0.044444
+   },
+   {
+    "mes": "2025-11",
+    "pctAcum": 0.281832,
+    "pct": 0.045065
+   },
+   {
+    "mes": "2025-12",
+    "pctAcum": 0.331239,
+    "pct": 0.049407
+   },
+   {
+    "mes": "2026-01",
+    "pctAcum": 0.409481,
+    "pct": 0.078242
+   },
+   {
+    "mes": "2026-02",
+    "pctAcum": 0.488959,
+    "pct": 0.079478
+   },
+   {
+    "mes": "2026-03",
+    "pctAcum": 0.585273,
+    "pct": 0.096314
+   },
+   {
+    "mes": "2026-04",
+    "pctAcum": 0.685197,
+    "pct": 0.099924
+   },
+   {
+    "mes": "2026-05",
+    "pctAcum": 0.835319,
+    "pct": 0.150122
+   },
+   {
+    "mes": "2026-06",
+    "pctAcum": 0.992826,
+    "pct": 0.157507
+   },
+   {
+    "mes": "2026-07",
+    "pctAcum": 1.0,
+    "pct": 0.007174
+   }
+  ],
+  "planOriginalFin": "2026-07",
+  "planOriginalArchivo": "Plan_de_trabajos_e_inversion_v1.xls"
+ },
+ "items": [
+  {
+   "codigo": "1a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Provisión e instalación de cañerias de Polietileno",
+   "descripcion": "Cañeria diámetro nominal 50 mm",
+   "unidad": "ml",
+   "cantidad": 12160.0,
+   "precioVigente": 47400.72,
+   "totalVigente": 576392755.2,
+   "peso": 0.090496,
+   "pctAcum": 0.907163,
+   "cantAcum": 11031.1,
+   "saldoCant": 1128.9,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 53510672.81,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "1b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Provisión e instalación de cañerias de Polietileno",
+   "descripcion": "Cañeria diámetro nominal 63 mm",
+   "unidad": "ml",
+   "cantidad": 4260.0,
+   "precioVigente": 51148.95,
+   "totalVigente": 217894527.0,
+   "peso": 0.033817,
+   "pctAcum": 1.110225,
+   "cantAcum": 4729.56,
+   "saldoCant": -469.56,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": -24017500.96,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "1c",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Provisión e instalación de cañerias de Polietileno",
+   "descripcion": "Cañeria diámetro nominal 90 mm",
+   "unidad": "ml",
+   "cantidad": 2160.0,
+   "precioVigente": 63480.1,
+   "totalVigente": 137117016.0,
+   "peso": 0.021433,
+   "pctAcum": 0.926204,
+   "cantAcum": 2000.6,
+   "saldoCant": 159.4,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 10118727.94,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "1d",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Provisión e instalación de cañerias de Polietileno",
+   "descripcion": "Cañeria diámetro nominal 125 mm",
+   "unidad": "ml",
+   "cantidad": 1100.0,
+   "precioVigente": 83117.05,
+   "totalVigente": 91428755.0,
+   "peso": 0.01419,
+   "pctAcum": 0.927636,
+   "cantAcum": 1020.4,
+   "saldoCant": 79.6,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 6616117.18,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "1e",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Provisión e instalación de cañerias de Polietileno",
+   "descripcion": "Cañeria diámetro nominal 180 mm",
+   "unidad": "ml",
+   "cantidad": 970.0,
+   "precioVigente": 105191.89,
+   "totalVigente": 102036133.3,
+   "peso": 0.016844,
+   "pctAcum": 0.875567,
+   "cantAcum": 849.3,
+   "saldoCant": 120.7,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 12696661.12,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "2a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Reconstrucción de contra-pisos y veredas",
+   "descripcion": "Contra-piso con alisado de cemento",
+   "unidad": "ml",
+   "cantidad": 2000.0,
+   "precioVigente": 15446.59,
+   "totalVigente": 30893180.0,
+   "peso": 0.004961,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 2000.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 30893180.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "2b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Reconstrucción de contra-pisos y veredas",
+   "descripcion": "Vereda de mosaico de cualquier tipo, incluyendo contra-piso",
+   "unidad": "ml",
+   "cantidad": 2000.0,
+   "precioVigente": 24714.55,
+   "totalVigente": 49429100.0,
+   "peso": 0.007938,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 2000.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 49429100.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "3a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Válvula de bloqueo de Red",
+   "descripcion": "Instalación de válvula esférica diámetro 90 mm. y accesorios",
+   "unidad": "N°",
+   "cantidad": 1.0,
+   "precioVigente": 1031028.76,
+   "totalVigente": 1031028.76,
+   "peso": 0.000161,
+   "pctAcum": 1.0,
+   "cantAcum": 1.0,
+   "saldoCant": 0.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 0.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "3b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Válvula de bloqueo de Red",
+   "descripcion": "Instalación de válvula esférica diámetro 125 mm. y accesorios",
+   "unidad": "N°",
+   "cantidad": 1.0,
+   "precioVigente": 1403785.34,
+   "totalVigente": 1403785.34,
+   "peso": 0.00022,
+   "pctAcum": 1.0,
+   "cantAcum": 1.0,
+   "saldoCant": 0.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 0.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "4",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación de servicios domiciliarios",
+   "unidad": "N°",
+   "cantidad": 10.0,
+   "precioVigente": 542989.27,
+   "totalVigente": 5429892.7,
+   "peso": 0.000868,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 10.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 5429892.7,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "5a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Cruces Especiales",
+   "descripcion": "Cruce de ruta",
+   "unidad": "N°",
+   "cantidad": 1.0,
+   "precioVigente": 5915559.63,
+   "totalVigente": 5915559.63,
+   "peso": 0.001116,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 1.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 5915559.63,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "5b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Cruces Especiales",
+   "descripcion": "Cruce de via",
+   "unidad": "N°",
+   "cantidad": 1.0,
+   "precioVigente": 12395070.9,
+   "totalVigente": 12395070.9,
+   "peso": 0.002208,
+   "pctAcum": 0.95,
+   "cantAcum": 0.95,
+   "saldoCant": 0.05,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 619753.54,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "5c",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Cruces Especiales",
+   "descripcion": "Cruce de curso de agua",
+   "unidad": "N°",
+   "cantidad": 3.0,
+   "precioVigente": 9201361.74,
+   "totalVigente": 27604085.22,
+   "peso": 0.004763,
+   "pctAcum": 0.966667,
+   "cantAcum": 2.9,
+   "saldoCant": 0.1,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 920136.17,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "5d",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Cruces Especiales",
+   "descripcion": "Cruce de ruta",
+   "unidad": "N°",
+   "cantidad": 1.0,
+   "precioVigente": 8194962.79,
+   "totalVigente": 8194962.79,
+   "peso": 0.001414,
+   "pctAcum": 0.95,
+   "cantAcum": 0.95,
+   "saldoCant": 0.05,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 409748.14,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "6",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación de Gasoducto de interconexión Tramo A-B",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 389256561.93,
+   "totalVigente": 389256561.93,
+   "peso": 0.064499,
+   "pctAcum": 0.8,
+   "cantAcum": 0.8,
+   "saldoCant": 0.2,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 77851312.39,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "7",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación ramal de alimentación TRAMO B-C",
+   "unidad": "m",
+   "cantidad": 19500.0,
+   "precioVigente": 144393.22,
+   "totalVigente": 2815667790.0,
+   "peso": 0.461003,
+   "pctAcum": 0.990096,
+   "cantAcum": 19306.87875,
+   "saldoCant": 193.12125,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 27885399.14,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "8",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación de Estación de medición EMED TGS",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 489655037.45,
+   "totalVigente": 489655037.45,
+   "peso": 0.086825,
+   "pctAcum": 0.859715,
+   "cantAcum": 0.859715,
+   "saldoCant": 0.140285,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 68691256.93,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "9",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación de Estación reductora de presión y odorización ERP-70-25 kg/cm2",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 391587813.54,
+   "totalVigente": 391587813.54,
+   "peso": 0.06822,
+   "pctAcum": 0.87235,
+   "cantAcum": 0.87235,
+   "saldoCant": 0.12765,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 49986184.4,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "10",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión e instalación de estación reductora de presión y odorización ERP-25-1,5 KG/CM2, en recinto techado",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 274036855.82,
+   "totalVigente": 274036855.82,
+   "peso": 0.044653,
+   "pctAcum": 0.937,
+   "cantAcum": 0.937,
+   "saldoCant": 0.063,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 17264321.92,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "11a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Pruebas de resistencia y hermeticidad hidraulica y/o neumatica",
+   "descripcion": "Gasoducto de interconexión",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 5332680.91,
+   "totalVigente": 5332680.91,
+   "peso": 0.000769,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 1.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 5332680.91,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "11b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Pruebas de resistencia y hermeticidad hidraulica y/o neumatica",
+   "descripcion": "Ramal B-C",
+   "unidad": "m",
+   "cantidad": 19500.0,
+   "precioVigente": 2924.38,
+   "totalVigente": 57025410.0,
+   "peso": 0.008224,
+   "pctAcum": 0.973041,
+   "cantAcum": 18974.3,
+   "saldoCant": 525.7,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 1537346.57,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "11c",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Pruebas de resistencia y hermeticidad hidraulica y/o neumatica",
+   "descripcion": "Red de distribución",
+   "unidad": "m",
+   "cantidad": 20650.0,
+   "precioVigente": 436.92,
+   "totalVigente": 9022398.0,
+   "peso": 0.001301,
+   "pctAcum": 0.484262,
+   "cantAcum": 10000.0,
+   "saldoCant": 10650.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 4653198.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "12",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Provisión de materiales y equipos",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 51192246.73,
+   "totalVigente": 51192246.73,
+   "peso": 0.011659,
+   "pctAcum": 0.1,
+   "cantAcum": 0.1,
+   "saldoCant": 0.9,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 46073022.06,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "13",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Cartel de obra",
+   "unidad": "N°",
+   "cantidad": 2.0,
+   "precioVigente": 80226745.44,
+   "totalVigente": 160453490.88,
+   "peso": 0.025799,
+   "pctAcum": 1.0,
+   "cantAcum": 2.0,
+   "saldoCant": 0.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 0.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "14a",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Oficina, movilidad y elementos para la Inspección",
+   "descripcion": "Oficina para la inspeccion de obra",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 3026635.44,
+   "totalVigente": 3026635.44,
+   "peso": 0.000496,
+   "pctAcum": 0.96,
+   "cantAcum": 0.96,
+   "saldoCant": 0.04,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 121065.42,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "14b",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Oficina, movilidad y elementos para la Inspección",
+   "descripcion": "Movilidad para la inspeccion de obra",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 151331772.18,
+   "totalVigente": 151331772.18,
+   "peso": 0.024807,
+   "pctAcum": 1.0,
+   "cantAcum": 1.0,
+   "saldoCant": 0.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 0.0,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "14c",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": "Oficina, movilidad y elementos para la Inspección",
+   "descripcion": "Elementos para la inspeccion de obra",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 1937355.72,
+   "totalVigente": 1937355.72,
+   "peso": 0.000447,
+   "pctAcum": 0.6,
+   "cantAcum": 0.6,
+   "saldoCant": 0.4,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 774942.29,
+   "noSeEjecutaMonto": 0.0
+  },
+  {
+   "codigo": "15",
+   "rubro": "RED DE DISTRIBUCION",
+   "grupo": null,
+   "descripcion": "Planos conforme a obra",
+   "unidad": "Global",
+   "cantidad": 1.0,
+   "precioVigente": 5644664.33,
+   "totalVigente": 5644664.33,
+   "peso": 0.000868,
+   "pctAcum": 0.0,
+   "cantAcum": 0.0,
+   "saldoCant": 1.0,
+   "noSeEjecutaCant": 0.0,
+   "saldoMonto": 5644664.33,
+   "noSeEjecutaMonto": 0.0
+  }
+ ],
+ "globales": [
+  {
+   "codigo": "8",
+   "descripcion": "Provisión e instalación de Estación de medición EMED TGS",
+   "disciplinas": [
+    {
+     "nombre": "Civil",
+     "peso": 0.15,
+     "avance": 0.9625,
+     "tareas": [
+      {
+       "tarea": "Plateas",
+       "peso": 0.3,
+       "avance": 0.9
+      },
+      {
+       "tarea": "Caminos",
+       "peso": 0.55,
+       "avance": 1.0
+      },
+      {
+       "tarea": "Alambrados",
+       "peso": 0.15,
+       "avance": 0.95
+      }
+     ]
+    },
+    {
+     "nombre": "Mecánica",
+     "peso": 0.7,
+     "avance": 0.9362,
+     "tareas": []
+    },
+    {
+     "nombre": "Eléctrica",
+     "peso": 0.15,
+     "avance": 0.4,
+     "tareas": []
+    }
+   ],
+   "total": 0.859715
+  },
+  {
+   "codigo": "9",
+   "descripcion": "Provisión e instalación de Estación reductora de presión y odorización ERP-70-25 kg/cm2",
+   "disciplinas": [
+    {
+     "nombre": "Civil",
+     "peso": 0.15,
+     "avance": 0.959,
+     "tareas": [
+      {
+       "tarea": "Plateas",
+       "peso": 0.3,
+       "avance": 0.98
+      },
+      {
+       "tarea": "Caminos y muros",
+       "peso": 0.55,
+       "avance": 0.95
+      },
+      {
+       "tarea": "Alambrados",
+       "peso": 0.15,
+       "avance": 0.95
+      }
+     ]
+    },
+    {
+     "nombre": "Mecánica",
+     "peso": 0.7,
+     "avance": 0.955,
+     "tareas": []
+    },
+    {
+     "nombre": "Eléctrica",
+     "peso": 0.15,
+     "avance": 0.4,
+     "tareas": []
+    }
+   ],
+   "total": 0.87235
+  },
+  {
+   "codigo": "10",
+   "descripcion": "Provisión e instalación de estación reductora de presión y odorización ERP-25-1,5 KG/CM2, en recinto techado",
+   "disciplinas": [
+    {
+     "nombre": "Civil",
+     "peso": 0.25,
+     "avance": 0.94,
+     "tareas": [
+      {
+       "tarea": "Plateas, veredas y bases",
+       "peso": 0.3,
+       "avance": 0.95
+      },
+      {
+       "tarea": "Muros y alambrados",
+       "peso": 0.5,
+       "avance": 0.95
+      },
+      {
+       "tarea": "Camaras",
+       "peso": 0.2,
+       "avance": 0.9
+      }
+     ]
+    },
+    {
+     "nombre": "Mecánica",
+     "peso": 0.6,
+     "avance": 0.97,
+     "tareas": []
+    },
+    {
+     "nombre": "Eléctrica",
+     "peso": 0.15,
+     "avance": 0.8,
+     "tareas": []
+    }
+   ],
+   "total": 0.937
+  }
+ ],
+ "tramites": [
+  {
+   "nombre": "Anticipo 20 %",
+   "tipo": "anticipo",
+   "n": null,
+   "redet": null,
+   "tema": "1 er Anticipo 20%",
+   "monto": 998758224.2,
+   "fechaCert": "2025-01-08",
+   "acta": null,
+   "envio": "2025-01-08",
+   "entrada": "2025-01-09",
+   "tesoreria": "2025-01-10",
+   "pago": "2025-01-15",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 7,
+   "factura": "FA 0002-00000690 por $ 998.758.224,20 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 79.266 en garantía de anticipo financiero. - Póliza de seguro de caución de TUTELAR n.º 79.264 en garantía de ejecuc…",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 1",
+   "tipo": "certificado",
+   "n": 1,
+   "redet": 0,
+   "tema": "Certificado Nº 1 s Redet.",
+   "monto": 90185801.54,
+   "fechaCert": "2025-02-10",
+   "acta": "2025-02-07",
+   "envio": "2025-02-11",
+   "entrada": "2025-02-14",
+   "tesoreria": "2025-02-17",
+   "pago": "2025-03-21",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 39,
+   "factura": "FA A 00002-00000691 por $ 128.836.859,33 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 81.176 en garantía de sustitución de fondo de reparo. –",
+   "obs": "14/2 la contratista envia la documentacion del personal, se reenvia a bagsa rrhh - 17/2/2025 da la validacion de personal rrhh"
+  },
+  {
+   "nombre": "Certificado Nº 2",
+   "tipo": "certificado",
+   "n": 2,
+   "redet": 0,
+   "tema": "Certificado Nº 2 s Redet.",
+   "monto": 86717116.87,
+   "fechaCert": "2025-03-07",
+   "acta": "2025-03-06",
+   "envio": null,
+   "entrada": "2025-03-11",
+   "tesoreria": "2025-03-12",
+   "pago": "2025-04-25",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 49,
+   "factura": "FA A 00002-00000693 por $ 123.881.595,52 IVA incluido. –-NC A 00002-00000274 por $ 37.164.478,66 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 82.505 en garantía de sustitución de fondo de reparo. –-Factura Honorarios por representación técnica de la contrati…",
+   "obs": "EN ESTE CERTIFICADO SOLO SE ENTREGO EL VEHICULO- MEMO- NO LLEVA VALIDACION DE PERSONAL."
+  },
+  {
+   "nombre": "Certificado Nº 3",
+   "tipo": "certificado",
+   "n": 3,
+   "redet": 0,
+   "tema": "Certificado Nº 3 s Redet.",
+   "monto": 936544.86,
+   "fechaCert": "2025-04-01",
+   "acta": "2025-04-01",
+   "envio": "2025-04-03",
+   "entrada": "2025-04-08",
+   "tesoreria": "2025-04-08",
+   "pago": "2025-05-09",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 38,
+   "factura": "FA A 00002-00000699 por $ 1.337.921,22 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 85.482 en garantía de sustitución de fondo de reparo. –",
+   "obs": "Se certifico solo entrega de impresoras y pc- No lleva validacion de personal -OK"
+  },
+  {
+   "nombre": "Anticipo 10 %",
+   "tipo": "anticipo",
+   "n": null,
+   "redet": null,
+   "tema": "2 do Anticipo 10%",
+   "monto": 499379112.1,
+   "fechaCert": "2025-04-11",
+   "acta": null,
+   "envio": "2025-04-11",
+   "entrada": "2025-04-15",
+   "tesoreria": "2025-04-15",
+   "pago": "2025-05-09",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 28,
+   "factura": "FA 0002-00000700 por $ 499.379.112,10 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 86.399 en garantía de anticipo financiero en contrato de obra",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 4",
+   "tipo": "certificado",
+   "n": 4,
+   "redet": 0,
+   "tema": "Certificado Nº 4 s Redet.",
+   "monto": 76820959.49,
+   "fechaCert": "2025-06-06",
+   "acta": "2025-06-05",
+   "envio": "2025-06-06",
+   "entrada": "2025-06-24",
+   "tesoreria": "2025-06-25",
+   "pago": "2025-07-23",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 47,
+   "factura": "FA A 00002-00000706 por $ 109.744.227,83 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 90.969 en garantía de sustitución de fondo de reparo. –",
+   "obs": "17-6 la contratista envia la documentacion de personal / pendiente la firma de listado de personal hay demora por las personas en el listado jefe-inspeccion/ 23-6 se envia la documentacion a revision de rrhh bagsa / 24-6 validacion de la documentacion de personal"
+  },
+  {
+   "nombre": "Ajuste por Redet. I",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 1,
+   "tema": "AJUSTE I por Redet. I",
+   "monto": 99991317.84,
+   "fechaCert": "2025-06-09",
+   "acta": null,
+   "envio": "2025-06-09",
+   "entrada": "2025-06-17",
+   "tesoreria": "2025-06-18",
+   "pago": "2025-07-23",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 44,
+   "factura": "FA A 0002-00000704 por $ 20.580.322,43 IVA incluido. - (Por ajuste de obra ejecutada). NC A 0002-00000280 por $ 6.174.0…",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 90.970 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 5",
+   "tipo": "certificado",
+   "n": 5,
+   "redet": 1,
+   "tema": "Certificado Nº 5 con redet I",
+   "monto": 144521517.53,
+   "fechaCert": "2025-07-11",
+   "acta": "2025-07-10",
+   "envio": "2025-07-11",
+   "entrada": "2025-07-31",
+   "tesoreria": "2025-07-31",
+   "pago": "2025-08-20",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 40,
+   "factura": "FA A 00002-00000712 por $ 206.459.310,76 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 95.620 en garantía de sustitución de fondo de reparo. –",
+   "obs": "22-7 contratista envio documentacion de personal / 23-7 se envia la documentacion a rrhh bagsa/ 24-7 se reenvia observacion de rrhh bagsa a contratista / 25-7 se reenvio la observacion de rrhh a contratista(fondo de desempleo no pueden abrir cuenta para el pago de cese laboral)/31-7 la contratista envio la documentacion del personal faltante se reenvio a rrhh/ 31-7 validacion del personal."
+  },
+  {
+   "nombre": "Ajuste por Redet. II",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 2,
+   "tema": "AJUSTE II por Redet. II",
+   "monto": 39722735.16,
+   "fechaCert": "2025-07-30",
+   "acta": null,
+   "envio": "2025-07-30",
+   "entrada": "2025-08-07",
+   "tesoreria": "2025-08-07",
+   "pago": "2025-09-24",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 56,
+   "factura": "FA A 0002-00000714 por $ 17.313.436,38 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 98.856 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 6",
+   "tipo": "certificado",
+   "n": 6,
+   "redet": 2,
+   "tema": "Certificado Nº 6 con redet II",
+   "monto": 178587452.34,
+   "fechaCert": "2025-08-08",
+   "acta": "2025-08-08",
+   "envio": "2025-08-11",
+   "entrada": "2025-08-28",
+   "tesoreria": "2025-08-28",
+   "pago": "2025-09-24",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 47,
+   "factura": "FA A 00002-00000720 por $ 255.124.931,92 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 101.289 en garantía de sustitución de fondo de reparo. –",
+   "obs": "26/8 se envia la documentacion del personal a rrhh bagsa - 28/8/2025 validacion del personal rrhh bagsa."
+  },
+  {
+   "nombre": "Certificado Nº 7",
+   "tipo": "certificado",
+   "n": 7,
+   "redet": 2,
+   "tema": "Certificado Nº 7 con redet II",
+   "monto": 175550772.74,
+   "fechaCert": "2025-09-09",
+   "acta": "2025-09-08",
+   "envio": "2025-09-11",
+   "entrada": "2025-09-19",
+   "tesoreria": "2025-09-19",
+   "pago": "2025-10-30",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 51,
+   "factura": "FA A 00002-00000723 por $ 250.786.818,20 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 107.373 en garantía de sustitución de fondo de reparo. –",
+   "obs": "16-9 contratista envia la documentacion del personal / 18-9 se envio la documentacion a rrhh bagsa/ 19-9 validacion del personal."
+  },
+  {
+   "nombre": "Certificado Nº 8",
+   "tipo": "certificado",
+   "n": 8,
+   "redet": 2,
+   "tema": "Certificado Nº 8 con redet II",
+   "monto": 497676291.93,
+   "fechaCert": "2025-10-09",
+   "acta": "2025-10-08",
+   "envio": "2025-10-13",
+   "entrada": "2025-10-21",
+   "tesoreria": "2025-10-21",
+   "pago": "2025-12-02",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 54,
+   "factura": "FA A 00002-00000725 por $ 710.966.131,33 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 113.414 en garantía de sustitución de fondo de reparo. –",
+   "obs": "14-10 contratista envio documentacion del personal/ 15-10 se envia la documentacion a rrhh bagsa/ 16-10 se envia observaciones del personal a contratista/20-10 se envia la contestacion a rrhhbagsa/ 21-10 validacion del personal."
+  },
+  {
+   "nombre": "Ajuste por Redet. III",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 3,
+   "tema": "AJUSTE III por Redet. III",
+   "monto": 50526867.31,
+   "fechaCert": "2025-11-03",
+   "acta": null,
+   "envio": "2025-10-31",
+   "entrada": "2025-11-05",
+   "tesoreria": "2025-11-05",
+   "pago": "2025-12-02",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 29,
+   "factura": "FA A 0002-00000727 por $ 72.181.239,01 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 121.316 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 9",
+   "tipo": "certificado",
+   "n": 9,
+   "redet": 3,
+   "tema": "Certificado Nº 9 con redet III",
+   "monto": 452922966.77,
+   "fechaCert": "2025-11-07",
+   "acta": "2025-11-07",
+   "envio": "2025-11-10",
+   "entrada": "2025-11-17",
+   "tesoreria": "2025-11-18",
+   "pago": "2025-12-22",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 45,
+   "factura": "FA A 00002-00000728 por $ 647.032.809,68 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 122.569 en garantía de sustitución de fondo de reparo. – Factura Honorarios por representación técnica de la contrat…",
+   "obs": "13-11 contratista envia documentacion de rrhh /14-11 se envio la documentacion a rrhh para la validacion / 17-11 validacion del personal - ok"
+  },
+  {
+   "nombre": "Certificado Nº 10",
+   "tipo": "certificado",
+   "n": 10,
+   "redet": 3,
+   "tema": "Certificado Nº 10 con redet III",
+   "monto": 561083723.58,
+   "fechaCert": "2025-12-11",
+   "acta": "2025-12-11",
+   "envio": "2025-12-11",
+   "entrada": "2025-12-18",
+   "tesoreria": "2025-12-18",
+   "pago": "2026-01-19",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 39,
+   "factura": "FA A 00002-00000729 por $ 801.548.176,56 IVA incluido. - NC A 00002-00000302 por $ 240.464.452,96 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 129.137 en garantía de sustitución de fondo de reparo. –",
+   "obs": "18/12/2025 validacion del personal"
+  },
+  {
+   "nombre": "Ajuste por Redet. IV",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 4,
+   "tema": "AJUSTE IV por Redet. IV",
+   "monto": 128040582.77,
+   "fechaCert": "2025-12-23",
+   "acta": null,
+   "envio": "2025-12-23",
+   "entrada": "2026-01-06",
+   "tesoreria": "2026-01-06",
+   "pago": "2026-02-19",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 58,
+   "factura": "FA A 0002-00000731 por $ 182.915.118,23 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 131.160 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 11",
+   "tipo": "certificado",
+   "n": 11,
+   "redet": 4,
+   "tema": "Certificado Nº 11 con redet IV",
+   "monto": 216456884.1,
+   "fechaCert": "2026-01-09",
+   "acta": "2026-01-07",
+   "envio": "2026-01-09",
+   "entrada": "2026-01-15",
+   "tesoreria": "2026-01-15",
+   "pago": "2026-02-19",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 41,
+   "factura": "FA A 00002-00000732 por $ 309.224.120,15 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 132.017 en garantía de sustitución de fondo de reparo. –",
+   "obs": "12-1 la contratista envia documentacion de personal el monotributo de Campos vence el 20 /14-1 se envia la documentacion a rrhh bagsa/15-1 dan la validacion del personal.- a espera de la trazabilidad de ramal."
+  },
+  {
+   "nombre": "Certificado Nº 12",
+   "tipo": "certificado",
+   "n": 12,
+   "redet": 4,
+   "tema": "Certificado Nº 12 con redet IV",
+   "monto": 134489728.42,
+   "fechaCert": "2026-02-09",
+   "acta": "2026-02-06",
+   "envio": "2026-02-09",
+   "entrada": "2026-02-23",
+   "tesoreria": "2026-02-23",
+   "pago": "2026-03-18",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 37,
+   "factura": "FA A 00002-00000735 por $ 192.128.183,47 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 134.097 en garantía de sustitución de fondo de reparo. –",
+   "obs": "13-2 la contratista envia la documentacion / se reenvia la documentacion a rrhh bagsa/18-2 se envia las observaciones a la contratista/20-2 se envia respuesta de contratista a rrhh bagsa/ 23-2 validacion del personal."
+  },
+  {
+   "nombre": "Certificado Nº 13",
+   "tipo": "certificado",
+   "n": 13,
+   "redet": 4,
+   "tema": "Certificado Nº 13 con redet IV",
+   "monto": 265372877.84,
+   "fechaCert": "2026-03-09",
+   "acta": "2026-03-06",
+   "envio": "2026-03-09",
+   "entrada": "2026-03-16",
+   "tesoreria": "2026-03-16",
+   "pago": "2026-04-27",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 49,
+   "factura": "FA A 00002-00000738 por $ 379.104.111,19 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 137.188 en garantía de sustitución de fondo de reparo. –",
+   "obs": "10-3 la contratista envia documentacion (falta documentacion)/12-3 se envio la documentacion de personal a RRHH Bagsa/16-3 se envia observaciones a la contratista/16-3 validacion del personal."
+  },
+  {
+   "nombre": "Certificado Nº 14",
+   "tipo": "certificado",
+   "n": 14,
+   "redet": 4,
+   "tema": "Certificado Nº 14 con redet IV",
+   "monto": 190291993.4,
+   "fechaCert": "2026-04-08",
+   "acta": "2026-04-07",
+   "envio": "2026-04-09",
+   "entrada": "2026-04-16",
+   "tesoreria": "2026-04-16",
+   "pago": "2026-05-20",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 42,
+   "factura": "FA A 00002-00000740 por $ 271.845.704,84 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 139.256 en garantía de sustitución de fondo de reparo. –",
+   "obs": "14-4 La contratista envia documentacion/ 14-4 se envia la documentacion a rrhh bagsa/16-4 validacion del personal rrhh"
+  },
+  {
+   "nombre": "Certificado Nº 15",
+   "tipo": "certificado",
+   "n": 15,
+   "redet": 4,
+   "tema": "Certificado Nº 15 con redet IV",
+   "monto": 164287170.06,
+   "fechaCert": "2026-05-08",
+   "acta": "2026-05-07",
+   "envio": "2026-05-08",
+   "entrada": "2026-05-18",
+   "tesoreria": "2026-05-18",
+   "pago": "2026-06-24",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 47,
+   "factura": "FA A 00002-00000742 por $ 164.287.170,06 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 142.234 en garantía de sustitución de fondo de reparo. –",
+   "obs": "13-5 la contratista envia la documentacion/ 14-5 se envia la documentacion del personal a rrhh/ 15-5 se reenvia las obsservaciones a la contratista/ 18-5 se envia la contestacion a rrhh bagsa y se obtiene la validacion del personal."
+  },
+  {
+   "nombre": "Ajuste por Redet. V",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 5,
+   "tema": "AJUSTE V por Redet. V",
+   "monto": 27603263.46,
+   "fechaCert": "2026-05-11",
+   "acta": null,
+   "envio": "2026-05-11",
+   "entrada": "2026-05-14",
+   "tesoreria": "2026-05-14",
+   "pago": "2026-06-24",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 44,
+   "factura": "FA A 0002-00000731 por $ 27.603.263,45 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 142.256 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 16",
+   "tipo": "certificado",
+   "n": 16,
+   "redet": 5,
+   "tema": "Certificado Nº 16 con redet V",
+   "monto": 146076794.36,
+   "fechaCert": "2026-06-09",
+   "acta": "2026-06-08",
+   "envio": "2026-06-09",
+   "entrada": "2026-06-17",
+   "tesoreria": "2026-06-17",
+   "pago": "2026-07-29",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 50,
+   "factura": "FA A 00002-00000745 por $ 146.076.794,36 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 155.330 en garantía de sustitución de fondo de reparo. –",
+   "obs": "12-6 contratista envia documentacion/ 16-6 se envia documentacion a rrhh / 16-6 comentarios a la contratista/ 17-6 envia contestacion y validacion del personal."
+  },
+  {
+   "nombre": "Certificado Nº 17",
+   "tipo": "certificado",
+   "n": 17,
+   "redet": 5,
+   "tema": "Certificado Nº 17 con redet V",
+   "monto": 117797338.04,
+   "fechaCert": "2026-07-08",
+   "acta": "2026-07-06",
+   "envio": "2026-07-06",
+   "entrada": "2026-07-08",
+   "tesoreria": "2026-07-21",
+   "pago": "2026-08-31",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 54,
+   "factura": "FA A 00002-00000751 por $ 117.797.338,04 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 159.459 en garantía de sustitución de fondo de reparo. –",
+   "obs": "16-6 la contratista envia la documentacion del personal, se reenvia a RRHH Bagsa para revisíon / el 21-7 rrhh envia el memo corregido la fecha de ejecucion de tareas( quedo la fecha del memo de la 1 era version)"
+  },
+  {
+   "nombre": "Ajuste por Redet. VI",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 6,
+   "tema": "AJUSTE VI por Redet. VI",
+   "monto": 23807036.04,
+   "fechaCert": "2026-07-29",
+   "acta": null,
+   "envio": "2026-07-29",
+   "entrada": "2026-08-06",
+   "tesoreria": "2026-08-06",
+   "pago": "2026-09-16",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 49,
+   "factura": "FA A 0002-00000754 por $ 23.807.036,04 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 163.330 en garantía de sustitución de fondo de reparo",
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 18",
+   "tipo": "certificado",
+   "n": 18,
+   "redet": 6,
+   "tema": "Certificado Nº 18 con redet VI",
+   "monto": 120862318.5,
+   "fechaCert": "2026-08-11",
+   "acta": "2026-08-10",
+   "envio": "2026-08-11",
+   "entrada": "2026-08-19",
+   "tesoreria": "2026-08-19",
+   "pago": "2026-09-16",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 36,
+   "factura": "FA A 00002-00000756 por $ 120.862.318,50 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 164.550 en garantía de sustitución de fondo de reparo. –",
+   "obs": "12-8 Contrastista envia la documentacion/ 13-8 se reenvia documentacion mas listado firmado a RRHH Bagsa/18-8 se envio comentarios respecto de documentacion faltante a la contratista/19-8 Validacion del personal de RRHH"
+  },
+  {
+   "nombre": "Certificado Nº 19",
+   "tipo": "certificado",
+   "n": 19,
+   "redet": 6,
+   "tema": "Certificado Nº 19 con redet VI",
+   "monto": 153528189.66,
+   "fechaCert": "2026-09-09",
+   "acta": "2026-09-09",
+   "envio": "2026-09-09",
+   "entrada": "2026-09-17",
+   "tesoreria": "2026-09-17",
+   "pago": null,
+   "estado": "En Tesorería",
+   "pagoEstimado": "2026-10-21",
+   "diasCertAPago": null,
+   "factura": "FA A 00002-00000758 por $ 153.528.189,66 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 171.449 en garantía de sustitución de fondo de reparo. –",
+   "obs": "14-9 se envia la documentacion de RRHH de la contratista a RRHH Bagsa S.A / 14-9 se envia comentarios de documentacion faltante a la contratista/ 17-9 se envia la documentaciones por parte de la contratista/ 17-9 Validacion de personal."
+  },
+  {
+   "nombre": "Ajuste por Redet. VII",
+   "tipo": "ajuste",
+   "n": null,
+   "redet": 7,
+   "tema": "AJUSTE VII por Redet. VII",
+   "monto": 14002596.41,
+   "fechaCert": "2026-10-02",
+   "acta": null,
+   "envio": null,
+   "entrada": null,
+   "tesoreria": null,
+   "pago": null,
+   "estado": "Certificado emitido",
+   "pagoEstimado": "2026-11-15",
+   "diasCertAPago": null,
+   "factura": null,
+   "poliza": null,
+   "obs": null
+  },
+  {
+   "nombre": "Certificado Nº 20",
+   "tipo": "certificado",
+   "n": 20,
+   "redet": 7,
+   "tema": "Certificado Nº 20 con redet VII",
+   "monto": 89740348.42,
+   "fechaCert": "2026-10-08",
+   "acta": "2026-10-06",
+   "envio": null,
+   "entrada": null,
+   "tesoreria": null,
+   "pago": null,
+   "estado": "Acta de medición",
+   "pagoEstimado": "2026-11-21",
+   "diasCertAPago": null,
+   "factura": null,
+   "poliza": null,
+   "obs": null
+  }
+ ],
+ "otrosPagos": [
+  {
+   "tema": "50% A LOS 15 DIAS CORRIDOS ACUERDO",
+   "empresa": "T.G.S.",
+   "monto": 149545920.7,
+   "entrada": "2025-04-15",
+   "pago": "2025-05-09"
+  },
+  {
+   "tema": "45% A LOS 60 DIAS CORRIDOS ACUERDO",
+   "empresa": "T.G.S.",
+   "monto": 142006216.16,
+   "entrada": "2025-07-08",
+   "pago": "2025-08-20"
+  },
+  {
+   "tema": "Diferencia de cambio factura Nº 102A00067103",
+   "empresa": "T.G.S.",
+   "monto": -10485690.6,
+   "entrada": "2025-06-11",
+   "pago": "2025-08-20"
+  },
+  {
+   "tema": "Diferencia de cambio factura Nº 102A00068482",
+   "empresa": "T.G.S.",
+   "monto": 3201880.67,
+   "entrada": "2025-09-05",
+   "pago": "2025-09-24"
+  },
+  {
+   "tema": "5% A LOS 90 DIAS CORRIDOS ACUERDO",
+   "empresa": "T.G.S.",
+   "monto": 18333903.08,
+   "entrada": "2026-01-08",
+   "pago": null
+  },
+  {
+   "tema": "Diferencia de cambio - FA 00102 - 00071944",
+   "empresa": "T.G.S.",
+   "monto": -893270.23,
+   "entrada": "2026-03-09",
+   "pago": null
+  }
+ ],
+ "proyeccion": {
+  "saldoPct": 0.078991,
+  "ritmoReciente": 0.024147,
+  "ritmoRecienteCerts": [
+   18,
+   19,
+   20
+  ],
+  "ultimoMes": "2026-09",
+  "finContractual": "2026-07-23",
+  "finPlanVigente": "2026-11-01",
+  "mesesHastaFinVigente": 2,
+  "ritmoNecesario": 0.039496,
+  "finEstimadoRitmo": "2027-01-01",
+  "saldoObraConIva": 567427870.97,
+  "saldoObraAPagar": 397199509.68,
+  "diasMedianosAPago": {
+   "acta": 46,
+   "envio": 44,
+   "entrada": 35,
+   "tesoreria": 34,
+   "certificado": 44
+  }
+ },
+ "seguimientoSaldo": {
+  "finPlanVigente": "2026-11-01",
+  "montoActualizado": 6146526833.38,
+  "saldoAPagar": 400788307.64
+ },
+ "avisos": []
+}
