@@ -281,6 +281,11 @@
     #g-escalera svg,#g-cobro svg{max-width:520px;margin:0 auto;}
     td,th{padding:3px 6px;}
     .desc-item{max-width:none;}
+    .globales{grid-template-columns:repeat(3,1fr);gap:12px;}
+    .global .tot{font-size:24px;}
+    .global h4{font-size:12px;}
+    .globales .disc{grid-template-columns:92px minmax(0,1fr) 36px;font-size:11.5px;gap:6px;}
+    .globales .barra{min-width:0;}
   }
 
   .consulta > .panel + .panel{margin-top:0;}
@@ -306,14 +311,6 @@
 </div>
 
 <script>
-/* Filtro de acceso casual (ver nota en index.html): si no se desbloqueó
-   el grupo "certificaciones" desde la portada, vuelve ahí en vez de mostrar datos. */
-(function(){
-  try{
-    const grupos = JSON.parse(localStorage.getItem("bagsa_access") || "[]");
-    if(!grupos.includes("certificaciones")) location.href = "index.html";
-  } catch(e){ location.href = "index.html"; }
-})();
 /* ============================================================
    Panel de certificaciones de una obra.
    Lee data/certificaciones_<obra>.json (lo genera actualizar_certificaciones.py)
@@ -345,7 +342,7 @@ function tip(e, text){ el(e, "title", {}, text); return e; }
 function niceMax(v){ const p = Math.pow(10, Math.floor(Math.log10(v))); for(const m of [1,1.2,1.5,2,2.5,3,4,5,6,8,10]) if(m*p >= v) return m*p; return 10*p; }
 
 const C = { navy:"#005895", navy2:"#0b4c7b", teal:"#00aec3", bright:"#008ed7", grid:"#e9f0f5", border:"#dbe6ee",
-            muted:"#5c7688", text:"#16303f", amber:"#d9822b", plan:"#9fb4c4" };
+            muted:"#5c7688", text:"#16303f", amber:"#d9822b", plan:"#9fb4c4", orig:"#6f8aa3" };
 
 /* ---------------- arranque ---------------- */
 const app = document.getElementById("app");
@@ -389,14 +386,16 @@ function render(d){
       <p class="bajada">El porcentaje certificado pondera cada ítem por su monto. Las cantidades muestran el avance físico real de cada ítem.</p>
       <div class="panel" data-pdf="curva">
         <h3>Curva de avance</h3>
-        <p class="nota">Avance acumulado certificado frente al plan de trabajos original. El plan reprogramado todavía no está cargado.</p>
+        <p class="nota">${notaPlanes(d)}</p>
         <div class="chart ancho" id="g-curva"></div>
         <div class="leyenda">
           <span><i style="border-color:${C.teal}"></i>Real certificado</span>
-          <span><i class="dash" style="border-color:${C.plan}"></i>Plan original</span>
+          ${hayOrig(d) ? `<span><i style="border-color:${C.orig}"></i>Plan original</span>` : ""}
+          <span><i class="dash" style="border-color:${C.plan}"></i>${planNombre(d)}${hayOrig(d) ? " (reprogramado)" : ""}</span>
           <span><i class="dash" style="border-color:${C.amber}"></i>Al ritmo de los últimos 3 meses</span>
           <span><i class="dash" style="border-color:${C.navy2};opacity:.5"></i>Necesario para el fin vigente</span>
         </div>
+        ${hayOrig(d) ? `<details class="no-print"><summary>Ver mes a mes</summary><div class="tabla-wrap"><table id="t-planes"></table></div></details>` : ""}
       </div>
       ${d.globales.length ? `<div class="panel" data-pdf="estaciones"><h3>Estaciones</h3>
         <p class="nota">Ítems globales medidos por disciplina, según la metodología de medición del certificado ${k.ultimoCert}.</p>
@@ -470,7 +469,7 @@ function render(d){
     ${d.avisos.length ? `<details class="panel no-print" style="margin-top:32px"><summary>Control de datos (${d.avisos.length})</summary>
       <p class="nota">Diferencias detectadas entre el Excel de certificación y el seguimiento. No afectan los valores del panel.</p>
       <ul class="avisos">${d.avisos.map(a => `<li>${esc(a)}</li>`).join("")}</ul></details>` : ""}
-    <div class="solo-print cierre">Elaborado por la Gerencia Técnica de Buenos Aires Gas S.A. con las planillas de certificación de la obra y de seguimiento de certificaciones, datos al ${esc(d.generatedAt)}. El avance certificado pondera cada ítem por su monto y no equivale al avance físico. La curva se compara con el plan de trabajos original; el plan reprogramado todavía no está cargado.</div>
+    <div class="solo-print cierre">Elaborado por la Gerencia Técnica de Buenos Aires Gas S.A. con las planillas de certificación de la obra y de seguimiento de certificaciones, datos al ${esc(d.generatedAt)}. El avance certificado pondera cada ítem por su monto y no equivale al avance físico. ${cierrePlanes(d)}</div>
     </div>
 
     <div id="vista-consulta" hidden>
@@ -492,6 +491,7 @@ function render(d){
   lineaObra(d);
   curva(d);
   itemsTabla(d);
+  tablaPlanes(d);
   escalera(d);
   cobro(d);
   mensual(d);
@@ -587,8 +587,9 @@ function lineaObra(d){
 
 /* ---------------- curva S ---------------- */
 function curva(d){
-  const real = d.curva.real, plan = d.curva.planOriginal, p = d.proyeccion;
-  const meses = [...real.map(r => r.mes), ...plan.map(r => r.mes)];
+  const real = d.curva.real, plan = d.curva.plan || d.curva.planOriginal, p = d.proyeccion;
+  const orig = d.curva.plan ? (d.curva.planOriginal || []) : [];
+  const meses = [...real.map(r => r.mes), ...plan.map(r => r.mes), ...orig.map(r => r.mes)];
   if(p.finPlanVigente) meses.push(p.finPlanVigente.slice(0,7));
   if(p.finEstimadoRitmo) meses.push(p.finEstimadoRitmo.slice(0,7));
   const i0 = Math.min(...meses.map(m => mesIdx(m+"-01"))), i1 = Math.max(...meses.map(m => mesIdx(m+"-01")));
@@ -606,6 +607,7 @@ function curva(d){
     el(s, "text", {x:X(i), y:H-12, "text-anchor":"middle", "font-size":12, fill:C.muted}, fmtMes(idxMes(i)+"-01"));
   }
   const linea = (pts, attrs) => el(s, "polyline", {points:pts.map(([x,y]) => `${x},${y}`).join(" "), fill:"none", ...attrs});
+  if(orig.length) linea(orig.map(r => [X(mesIdx(r.mes+"-01")), Y(r.pctAcum)]), {stroke:C.orig, "stroke-width":2});
   if(plan.length) linea(plan.map(r => [X(mesIdx(r.mes+"-01")), Y(r.pctAcum)]), {stroke:C.plan, "stroke-width":2.5, "stroke-dasharray":"6 5"});
   // proyecciones desde el último punto real
   const ult = real[real.length-1], iu = mesIdx(ult.mes+"-01");
@@ -836,6 +838,49 @@ const nrm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, ""
 const romanoDe = n => (ROM[n] || "").toLowerCase();
 const fmtPesos = v => v == null ? "—" : "$ " + fmtNum(v, 2);
 const mesesEntre = (a, b) => (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+
+
+/* ---------------- plan de trabajo ---------------- */
+function planNombre(d){
+  const n = d.curva && d.curva.planNombre;
+  return n ? n.replace(/PLAN DE TRABAJO/i, "Plan de trabajo").replace(/\s*-\s*/, " ").trim() : "Plan de trabajo";
+}
+function planFin(d){
+  const c = d.curva || {}, pl = c.plan || c.planOriginal || [];
+  const m = c.planFin || (pl.length ? pl[pl.length - 1].mes : null);
+  return m ? m + "-01" : null;
+}
+
+function hayOrig(d){ const c = d.curva || {}; return !!(c.plan && c.planOriginal && c.planOriginal.length); }
+function finOrig(d){ const c = d.curva || {}; return c.planOriginalFin ? c.planOriginalFin + "-01" : null; }
+function notaPlanes(d){
+  const fin = fmtMes(planFin(d));
+  if(!hayOrig(d)) return `Avance acumulado certificado frente al ${planNombre(d)}, que prevé terminar en ${fin}. El fin vigente viene de la hoja SALDO del seguimiento.`;
+  const fo = finOrig(d), igual = fo === planFin(d);
+  return `Avance acumulado certificado frente al plan original y al ${planNombre(d)} (reprogramado). ${igual ? `Los dos prevén terminar en ${fin}` : `El original prevé terminar en ${fmtMes(fo)} y el reprogramado en ${fin}`}. El fin vigente viene de la hoja SALDO del seguimiento.`;
+}
+function cierrePlanes(d){
+  const fin = fmtMes(planFin(d));
+  if(!hayOrig(d)) return `La curva se compara con el ${planNombre(d)}, que prevé terminar en ${fin}.`;
+  return `La curva se compara con el plan original y con el ${planNombre(d)} (reprogramado); ${finOrig(d) === planFin(d) ? `ambos prevén terminar en ${fin}` : `terminan en ${fmtMes(finOrig(d))} y ${fin}`}.`;
+}
+function tablaPlanes(d){
+  const t = document.getElementById("t-planes"); if(!t) return;
+  const c = d.curva, real = c.real, plan = c.plan, orig = c.planOriginal;
+  const idx = m => mesIdx(m + "-01");
+  const acumEn = (serie, m) => { let v = null; for(const x of serie){ if(idx(x.mes) <= idx(m)) v = x.pctAcum; else break; } return v; };
+  const todos = [...real.map(r => r.mes), ...plan.map(r => r.mes), ...orig.map(r => r.mes)];
+  const i0 = Math.min(...todos.map(idx)), i1 = Math.max(...real.map(r => idx(r.mes)));
+  const dev = (a, b) => { if(a == null || b == null) return "—"; const v = (a - b) * 100;
+    return `<span class="${v < -0.05 ? "excede-txt" : ""}">${v < -0.05 ? "−" : "+"}${fmtNum(Math.abs(v), 1)} pts</span>`; };
+  let h = `<thead><tr><th>Mes</th><th class="n">Certificado</th><th class="n">Real</th><th class="n">Plan original</th><th class="n">${esc(planNombre(d))}</th><th class="n">Real contra original</th><th class="n">Real contra ${esc(planNombre(d))}</th></tr></thead><tbody>`;
+  for(let i = i0; i <= i1; i++){
+    const m = idxMes(i), r = acumEn(real, m), po = acumEn(orig, m) ?? 0, pp = acumEn(plan, m) ?? 0;
+    const cert = real.find(x => x.mes === m);
+    h += `<tr><td>${fmtMes(m + "-01")}</td><td class="n">${cert ? cert.n : "—"}</td><td class="n">${fmtPct(r)}</td><td class="n">${fmtPct(po)}</td><td class="n">${fmtPct(pp)}</td><td class="n">${dev(r, po)}</td><td class="n">${dev(r, pp)}</td></tr>`;
+  }
+  t.innerHTML = h + "</tbody>";
+}
 
 function navHTML(d){
   return `
@@ -1171,8 +1216,16 @@ function definiciones(d){
       { t:"Estaciones",
         d:"Ítems globales que se miden por disciplina (civil, mecánica y eléctrica) y por tareas, según la metodología de medición del último certificado. El porcentaje grande es el avance total del ítem.",
         hoy:`${(d.globales || []).length} ítems` },
-      { t:"Curva y plan original",
-        d:"La curva real une el avance acumulado de cada certificado, ubicado en el mes de ejecución. El plan original es el plan de trabajos de la oferta (hoja C I Comparativa). El plan reprogramado todavía no está cargado, por eso no figura." },
+      { t:"Curva y planes de trabajo",
+        d:(() => {
+          const c = d.curva || {};
+          const dif = hayOrig(d) ? c.plan.filter(x => { const o = c.planOriginal.find(y => y.mes === x.mes); return o && Math.abs(o.pctAcum - x.pctAcum) > 0.0005; }).map(x => x.mes) : [];
+          const tramo = dif.length ? ` Difieren entre ${fmtMes(dif[0] + "-01")} y ${fmtMes(dif[dif.length - 1] + "-01")}; antes y después coinciden.` : "";
+          const base = "La curva real une el avance acumulado de cada certificado, ubicado en el mes de ejecución. Los planes muestran el avance acumulado que se previó mes a mes. ";
+          if(!hayOrig(d)) return base + `El plan es la hoja «P.T.Propuesta %» de la planilla de certificación, rotulada «${c.planNombre || "plan de trabajo"}».`;
+          return base + `El plan original es el de la oferta${c.planOriginalArchivo ? ` (archivo «${c.planOriginalArchivo}»)` : ""}. El ${planNombre(d)} es el reprogramado y es el que figura en la hoja «P.T.Propuesta %» de la planilla de certificación.${tramo}`;
+        })(),
+        hoy:hayOrig(d) ? `original hasta ${fmtMes(finOrig(d))}, ${planNombre(d)} hasta ${fmtMes(planFin(d))}` : `${planNombre(d)}, prevé terminar en ${fmtMes(planFin(d))}` },
       { t:"Ritmo reciente y ritmo necesario",
         d:"Reciente: promedio del porcentaje mensual de los últimos tres certificados. Necesario: lo que falta certificar dividido por los meses que quedan hasta el fin vigente.",
         hoy:p.ritmoNecesario ? `${fmtPct(p.ritmoReciente)} por mes contra ${fmtPct(p.ritmoNecesario)} necesarios` : "" },
@@ -1220,7 +1273,7 @@ function dialogoPDF(){
   return `<dialog id="dlg-pdf">
     <h3>Exportar a PDF</h3>
     <p class="nota">El resumen con el avance, los indicadores y la línea de obra siempre se incluye. Elegí qué más mostrar.</p>
-    ${op("curva", "Curva de avance", "Real contra plan original, con las proyecciones.")}
+    ${op("curva", "Curva de avance", "Real contra los planes de trabajo, con las proyecciones y la tabla mes a mes.")}
     ${op("estaciones", "Estaciones", "Avance por disciplina de los ítems globales.")}
     ${op("items", "Avance por ítem", "Tabla completa con cantidades y saldo.")}
     ${op("valores", "Valores", "Redeterminaciones, certificado y cobrado, certificación mensual.")}
