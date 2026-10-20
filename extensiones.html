@@ -227,9 +227,9 @@
   .zona-partidos{display:block;font-weight:400;font-size:11.5px;color:var(--text-muted);margin-top:2px;white-space:normal;max-width:560px;}
 
   /* Enlaces del encabezado: Definiciones / Calidad de datos */
-  .header-links{display:flex;gap:18px;justify-content:flex-end;flex-wrap:wrap;}
-  .link-btn{background:none;border:none;padding:0 0 1px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--teal);cursor:pointer;border-bottom:1px dashed var(--teal);display:inline-flex;align-items:center;gap:6px;}
-  .link-btn:hover{color:var(--navy);border-bottom-color:var(--navy);}
+  .header-links{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
+  .hdr-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--sans);font-size:12.5px;font-weight:700;line-height:1.2;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .15s;}
+  .hdr-btn:hover{background:var(--navy);}
   .cal-badge{background:var(--red);color:#fff;border-radius:10px;padding:0 7px;font-size:11px;line-height:17px;font-weight:700;}
   .cal-badge.ok{background:#3aa676;}
   @media (max-width:1100px){.header-links{justify-content:center;}}
@@ -270,6 +270,40 @@
   .cal-ok li:before{content:"✓";color:#3aa676;font-weight:700;margin-right:8px;}
   @media (max-width:800px){.cal-resumen{grid-template-columns:1fr;}.cal-ok{columns:1;}}
 
+  /* Guía de uso */
+  .guia-hoja{max-width:920px;margin:0 auto;padding:30px 38px;color:var(--text);}
+  .guia-cab{display:flex;align-items:center;gap:20px;border-bottom:3px solid var(--teal);padding-bottom:14px;margin-bottom:6px;}
+  .guia-cab img{height:56px;}
+  .guia-cab-tit{flex:1;}
+  .guia-t1{font-family:var(--display);font-size:26px;color:var(--navy);line-height:1.15;}
+  .guia-t2{font-size:12.5px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+  .guia-t3{font-size:12px;color:var(--text-muted);}
+  .guia-fecha{font-size:12px;color:var(--text-muted);align-self:flex-start;white-space:nowrap;}
+  .guia-hoja h3{font-size:17px;color:var(--navy);margin:24px 0 6px;padding:0;}
+  .guia-hoja h4{font-size:14px;color:var(--navy);margin:14px 0 3px;}
+  .guia-hoja p{margin:0 0 8px;font-size:13.5px;line-height:1.55;}
+  .guia-hoja ol,.guia-hoja ul{margin:4px 0 10px 22px;padding:0;font-size:13.5px;line-height:1.55;}
+  .guia-hoja li{margin:3px 0;}
+  .guia-tabla{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:13px;}
+  .guia-tabla th{position:static;background:var(--navy);color:#fff;text-align:left;padding:7px 12px;font-size:12.5px;}
+  .guia-tabla td{padding:7px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .guia-tabla td:first-child{font-weight:700;color:var(--navy);white-space:nowrap;}
+  .guia-aviso{background:var(--teal-soft);border-left:4px solid var(--teal);border-radius:6px;padding:10px 14px;font-size:13px;line-height:1.5;margin:10px 0;}
+  @media print{
+    body.print-guia header,body.print-guia #back-link,body.print-guia .export-row,body.print-guia #view-guia>.section-head{display:none!important;}
+    body.print-guia .view:not(#view-guia){display:none!important;}
+    body.print-guia #view-guia{display:block!important;}
+    body.print-guia{background:#fff!important;margin:0!important;padding:0!important;min-height:0!important;height:auto!important;}
+    body.print-guia .wrap{padding:0!important;margin:0!important;max-width:none!important;min-height:0!important;}
+    body.print-guia #view-guia{margin:0!important;padding:0!important;}
+    body.print-guia .guia-hoja{border:none!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin:0!important;max-width:none!important;font-family:Calibri,Carlito,"Segoe UI",Arial,sans-serif!important;}
+    body.print-guia .guia-hoja *{font-family:inherit!important;}
+    body.print-guia .guia-hoja p,body.print-guia .guia-hoja li,body.print-guia .guia-hoja td{font-size:10.5pt!important;}
+    body.print-guia .guia-hoja h3{font-size:14pt!important;break-after:avoid;}
+    body.print-guia .guia-hoja h4{font-size:11.5pt!important;break-after:avoid;}
+    body.print-guia .guia-tabla,body.print-guia .guia-tabla tr,body.print-guia .guia-aviso,body.print-guia .guia-cab{break-inside:avoid;}
+  }
+
   /* Botón Exportar a Excel */
   .export-row{display:flex;justify-content:flex-end;margin-bottom:8px;}
   .btn-export{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:var(--radius);padding:5px 12px;font-size:12px;font-weight:600;font-family:var(--sans);cursor:pointer;}
@@ -277,7 +311,7 @@
 
   @media print{
     .export-row,#toast{display:none!important;}
-    @page{margin:15mm 12mm;}
+    @page{size:A4;margin:15mm 12mm;}
     header,#back-link,.consulta-sidebar,.ficha-actions,.view:not(#view-consulta),.menu-grid{display:none!important;}
     .consulta-layout{display:block!important;}
     .ficha{display:block!important;}
@@ -325,8 +359,9 @@
     <div class="header-right">
       <div class="timestamp">Datos al <b id="ts-date">—</b><br><span id="ts-file"></span></div>
       <div class="header-links">
-        <a href="index.html" class="link-btn" style="text-decoration:none;display:inline-block;">← Inicio</a>
-        <button type="button" class="link-btn" onclick="showView('definiciones')">Definiciones</button>
+        <a href="index.html" class="hdr-btn">← Inicio</a>
+        <button type="button" class="hdr-btn" onclick="showView('definiciones')">Definiciones</button>
+        <button type="button" class="hdr-btn" onclick="showView('guia')">Guía de uso</button>
       </div>
     </div>
   </header>
@@ -450,6 +485,90 @@
 
     
 
+  </div>
+
+  <!-- ===== GUÍA DE USO ===== -->
+  <div class="view" id="view-guia">
+    <div class="section-head"><h2>Guía de uso</h2><span class="section-note">Cómo consultar el tablero, paso a paso</span></div>
+    <div class="export-row"><button type="button" class="btn-export" onclick="imprimirGuia()" title="Imprimir la guía o guardarla como PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Imprimir guía</button></div>
+    <div class="panel guia-hoja">
+      <div class="guia-cab">
+        <img id="guia-logo" alt="BAGSA">
+        <div class="guia-cab-tit">
+          <div class="guia-t1">Guía de uso</div>
+          <div class="guia-t2">Seguimiento de Extensiones · Gerencia Técnica</div>
+          <div class="guia-t3">BAGSA · Guía para el personal</div>
+        </div>
+        <div class="guia-fecha">Guía de uso · 20/10/2026</div>
+      </div>
+
+      <h3>Sobre el tablero</h3>
+      <p>Es una herramienta de consulta para seguir el estado de los proyectos de extensiones menores de redes de distribución de gas: en qué etapa está cada expediente, qué empresa lo construye, qué factibilidades siguen vigentes y qué extensiones ya se habilitaron, con sus metros, usuarios y precios.</p>
+      <p>El objetivo es facilitar el seguimiento y brindar información de carácter orientativo. Su contenido no deberá utilizarse como única fuente para trámites o decisiones: ante cualquier verificación puntual, debe contrastarse con el expediente y la documentación oficial. La Gerencia Técnica se encuentra a disposición para realizar las verificaciones correspondientes.</p>
+
+      <h3>Cómo entrar</h3>
+      <p>Abrir en el navegador el enlace que comparte la Gerencia Técnica (se recomienda Chrome o Edge actualizado). No hay nada que instalar. Para exportar tablas a Excel hace falta conexión a Internet; sin ella, la tabla se descarga igual como archivo CSV, que Excel también abre.</p>
+
+      <h3>Menú principal</h3>
+      <p>El menú organiza las funciones en tarjetas, y el número de cada tarjeta indica cuántos registros contiene. Dentro de cada pantalla, usar “← Volver al menú” para regresar. Arriba a la derecha figura la fecha de los datos (“Datos al”) y los botones “Definiciones”, que explica en palabras cómo se calcula cada número, y “Guía de uso”.</p>
+      <table class="guia-tabla">
+        <thead><tr><th>Tarjeta</th><th>Para qué sirve</th></tr></thead>
+        <tbody>
+          <tr><td>Consulta individual</td><td>Ver la ficha completa de un expediente, con todas sus etapas y fechas.</td></tr>
+          <tr><td>Situación actual</td><td>Ver los expedientes con empresa asignada que están pendientes de cierre (sin Anexo IV).</td></tr>
+          <tr><td>Empresas constructoras</td><td>Consultar el ranking por volumen de obra y los tiempos promedio entre etapas.</td></tr>
+          <tr><td>Búsqueda General</td><td>Listar todos los expedientes, filtrables por etapa, con el estado de situación de cada uno.</td></tr>
+          <tr><td>Factibilidades vigentes</td><td>Seguir las solicitudes pendientes de confección, las pendientes de factibilidad y las factibilidades vigentes.</td></tr>
+          <tr><td>Extensiones habilitadas</td><td>Consultar metros, usuarios y precio promedio por localidad y año.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>1. Consultar un expediente</h3>
+      <h4>Consulta individual</h4>
+      <ol>
+        <li>Entrar en “Consulta individual” y escribir una parte del número de proyecto, del cliente, de la empresa o de la localidad.</li>
+        <li>Hacer click en el expediente que corresponda en la lista de la izquierda.</li>
+        <li>Se abre la ficha, con la localidad, el partido, el próximo paso (el que sigue en el flujo del expediente), el enlace a su carpeta (si está cargada) y las secciones Solicitud, Factibilidad, Constructivo, Ejecución y Cañerías, esta última con el total de metros. Un guion (—) indica que ese dato no está cargado.</li>
+        <li>“Imprimir / Guardar PDF” genera la ficha lista para imprimir o guardar.</li>
+      </ol>
+
+      <h3>2. Buscar y listar expedientes</h3>
+      <h4>Búsqueda General</h4>
+      <p>Escribir un cliente, proyecto, localidad o empresa: el listado se filtra mientras se escribe. El selector de etapa deja solo los expedientes cuya etapa más avanzada sea la elegida. Cada fila indica localidad, cliente, proyecto, empresa, metros, usuarios, estado actual y fecha de ese estado. Hacer click en el título de una columna ordena el listado.</p>
+      <p>Al pie, el desplegable “¿Dónde está parado cada expediente?” muestra cuántos expedientes hay en cada etapa; con un click sobre una etapa se ve la lista de proyectos que están ahí.</p>
+
+      <h3>3. Situación actual</h3>
+      <p>Muestra los expedientes con empresa constructora asignada que todavía no cerraron (sin Anexo IV). Los botones superiores filtran por etapa (Envío a Distribuidora, Aprobación Dist., Inicio de Obra, Finalización, Habilitación) e indican cuántos expedientes hay en cada una; el buscador filtra por cliente, proyecto, localidad o empresa.</p>
+      <p>Más abajo hay desplegables (se abren con un click en el título) con la cantidad de extensiones y de usuarios por localidad: los que ya tienen empresa y todavía no se habilitaron, las factibilidades vigentes sin empresa y las habilitadas en el último año. El “Consolidado de usuarios por localidad y zona” los suma y los agrupa en zonas de la provincia de Buenos Aires.</p>
+
+      <h3>4. Factibilidades vigentes</h3>
+      <p>Una sola tabla ordenada en tres pasos, desde la solicitud hasta la factibilidad vigente:</p>
+      <ul>
+        <li><b>1 · Pendientes de confección:</b> recibidos, todavía sin confección (dibujo) ni factibilidad.</li>
+        <li><b>2 · Pendientes de factibilidad:</b> con confección cargada, sin factibilidad.</li>
+        <li><b>3 · Factibilidades vigentes:</b> otorgadas, con vencimiento posterior a hoy y sin empresa asignada.</li>
+      </ul>
+      <p>Los pasos 1 y 2 muestran los últimos 12 meses; el paso 3, todas las vigentes. Dentro de cada paso se ordena del más antiguo al más nuevo. El buscador filtra por cliente, proyecto o localidad.</p>
+
+      <h3>5. Empresas constructoras</h3>
+      <ul>
+        <li><b>Tiempo promedio entre etapas:</b> días entre etapas consecutivas, de la aceptación al Anexo IV, de las extensiones con etapa constructiva habilitadas en los últimos 3 años. Se informa el promedio y el rango típico (P25–P75), que es el 50% central de los casos y evita que unos pocos valores extremos distorsionen el resultado.</li>
+        <li><b>Ranking de empresas constructoras:</b> por empresa, la cantidad de proyectos, los días promedio desde la aprobación del constructivo hasta la finalización y los metros totales.</li>
+        <li><b>Filtrar extensiones:</b> lista las extensiones y permite filtrarlas por empresa, localidad y año de la última actualización.</li>
+      </ul>
+
+      <h3>6. Extensiones habilitadas</h3>
+      <p>Resume lo ya habilitado. Los recuadros superiores muestran metros, usuarios y precio promedio por metro. Los filtros “Localidad” y “Año” recalculan los recuadros y la tabla, que detalla extensiones, usuarios y metros totales y por diámetro (PE y acero). Metros y usuarios incluyen todos los años salvo que se elija uno; sin año elegido, el precio promedio corresponde al año en curso. En el recuadro de precio, “Evolución por año” despliega el precio promedio de cada año.</p>
+
+      <h3>Exportar e imprimir</h3>
+      <p>Cada tabla tiene el botón “Exportar a Excel”, que descarga lo que se ve en pantalla, con los filtros aplicados. La ficha de Consulta individual y esta guía se pueden imprimir o guardar como PDF.</p>
+
+      <h3>Actualización de la información</h3>
+      <div class="guia-aviso">La información puede estar desactualizada. Antes de usar un dato, chequear la fecha “Datos al” que figura arriba a la derecha: indica el último corte incorporado, y pueden existir novedades posteriores que todavía no estén reflejadas. Si se necesita información más reciente, pedir a la Gerencia Técnica que actualice el tablero.</div>
+
+      <h3>Si algo no funciona</h3>
+      <p>Si una pantalla no carga o un botón no responde, recargar la página. Si el inconveniente persiste, informar a la Gerencia Técnica qué consulta se estaba haciendo y el mensaje que se muestra.</p>
+    </div>
   </div>
 
   <!-- ===== DEFINICIONES ===== -->
@@ -858,12 +977,26 @@ function wireSortableHeaders(tableId, sortState, renderFn){
   });
 }
 
+/* Guía de uso: el logo se toma del encabezado (así el documento impreso lleva la marca). */
+function prepararGuia(){
+  const l = document.getElementById("guia-logo");
+  if (!l.getAttribute("src")) l.src = document.querySelector("header .brand-row img").src;
+}
+/* Imprime solo la guía (hoja A4); la clase se quita sola al cerrar el diálogo de impresión. */
+function imprimirGuia(){
+  prepararGuia();
+  document.body.classList.add("print-guia");
+  const quitar = () => { document.body.classList.remove("print-guia"); window.removeEventListener("afterprint", quitar); };
+  window.addEventListener("afterprint", quitar);
+  window.print();
+}
 function showView(id){
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
   document.getElementById("view-"+id).classList.add("active");
   document.getElementById("back-link").classList.toggle("show", id!=="menu");
   if (id==="menu" && typeof resetConsulta==="function") resetConsulta();
   if (id==="extensiones") ajustarStickyResumen();
+  if (id==="guia") prepararGuia();
   ajustarStickyTodas();
   window.scrollTo(0,0);
 }
