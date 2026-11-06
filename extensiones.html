@@ -487,12 +487,12 @@
         <details class="price-evol">
           <summary class="price-evol-toggle">
             <svg id="evol-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span id="evol-titulo">Evolución por año</span>
+            <span id="evol-titulo">Evolución por trimestre</span>
           </summary>
           <div class="price-evol-panel">
             <div class="export-row"><button type="button" class="btn-export" onclick="exportarExcel('tabla-evolucion-precio')" title="Exportar a Excel lo que se ve en pantalla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exportar a Excel</button></div>
             <div class="table-scroll small" style="margin-top:10px;"><table id="tabla-evolucion-precio">
-                <thead><tr><th>Año</th><th>Precio promedio /m</th></tr></thead>
+                <thead><tr><th>Trimestre</th><th>Precio promedio /m</th><th>Proyectos</th></tr></thead>
                 <tbody></tbody>
               </table></div>
           </div>
@@ -614,7 +614,7 @@
       </ul>
 
       <h3>6. Extensiones habilitadas</h3>
-      <p>Resume lo ya habilitado. Los recuadros superiores muestran metros, usuarios y precio promedio por metro. Los filtros “Localidad” y “Año” recalculan los recuadros y la tabla, que detalla extensiones, usuarios y metros totales y por diámetro (PE y acero). Metros y usuarios incluyen todos los años salvo que se elija uno; sin año elegido, el precio promedio corresponde al año en curso. En el recuadro de precio, “Evolución por año” despliega el precio promedio de cada año.</p>
+      <p>Resume lo ya habilitado. Los recuadros superiores muestran metros, usuarios y precio promedio por metro. Los filtros “Localidad” y “Año” recalculan los recuadros y la tabla, que detalla extensiones, usuarios y metros totales y por diámetro (PE y acero). Metros y usuarios incluyen todos los años salvo que se elija uno; sin año elegido, el precio promedio corresponde al último trimestre cerrado con datos. En el recuadro de precio, “Evolución por trimestre” despliega el precio promedio de cada trimestre y la cantidad de proyectos; con menos de 3 proyectos se marca “pocos casos”.</p>
 
       <h3>Exportar e imprimir</h3>
       <p>Cada tabla tiene el botón “Exportar a Excel”, que descarga lo que se ve en pantalla, con los filtros aplicados. La ficha de Consulta individual y esta guía se pueden imprimir o guardar como PDF.</p>
@@ -1113,57 +1113,116 @@ function ratioSums(list){
   return m>0 ? p/m : 0;
 }
 
+/* ================= Precio por TRIMESTRE =================
+   El trimestre sale de la fecha de habilitación (1.º: ene-mar, 2.º: abr-jun, 3.º: jul-sep, 4.º: oct-dic).
+   Con menos de PRECIO_POCOS_CASOS proyectos con precio el número se marca "pocos casos". */
+const PRECIO_POCOS_CASOS = 3;
+const trimLabel = (y,q) => q + ".º trim. " + y;
+function trimestreHoy(){ const h = new Date(); return { y:h.getFullYear(), q:Math.floor(h.getMonth()/3)+1 }; }
+function trimestreAnterior(y,q){ return q===1 ? { y:y-1, q:4 } : { y, q:q-1 }; }
+function trimestreHabilitacion(r){
+  const d = fechaFlex(F(r,"f_habilitacion"));
+  return d ? { y:d.getFullYear(), q:Math.floor(d.getMonth()/3)+1 } : null;
+}
+function conPrecio(r){ return F(r,"habilitado") && F(r,"presupuesto")>0 && F(r,"metros")>0; }
+function proyectosConPrecioDelTrimestre(y, q, loc){
+  return DATA.rows.filter(r=>{
+    if (!conPrecio(r) || (loc && F(r,"localidad")!==loc)) return false;
+    const t = trimestreHabilitacion(r);
+    return !!t && t.y===y && t.q===q;
+  }).map(r=>({precio:F(r,"presupuesto")/F(r,"metros"), presupuesto:F(r,"presupuesto"), metros:F(r,"metros")}))
+    .sort((a,b)=>a.precio-b.precio);
+}
+/* Trimestre que muestra el recuadro: sin año elegido, el último trimestre cerrado con datos;
+   con año elegido, el último trimestre de ese año con datos (el año en curso no mira el trimestre abierto). */
+function trimestreReferencia(anio, loc){
+  const hoy = trimestreHoy();
+  let t, soloAnio = null;
+  if (anio){
+    const y = parseInt(anio);
+    soloAnio = y;
+    if (y === hoy.y){ const ant = trimestreAnterior(hoy.y, hoy.q); t = ant.y===y ? ant : hoy; }
+    else t = { y, q:4 };
+  } else t = trimestreAnterior(hoy.y, hoy.q);
+  const inicio = t;
+  for (let i=0; i<12; i++){
+    if (soloAnio!==null && t.y!==soloAnio) break;
+    const items = proyectosConPrecioDelTrimestre(t.y, t.q, loc);
+    if (items.length) return { y:t.y, q:t.q, items };
+    t = trimestreAnterior(t.y, t.q);
+  }
+  return { y:inicio.y, q:inicio.q, items:[] };
+}
+
 /* Recuadros de la vista "Extensiones habilitadas". Metros y usuarios siguen los filtros de la tabla.
    El precio promedio ($/m = presupuesto total ÷ metros, de los habilitados con presupuesto cargado)
-   toma el año elegido; si no hay año elegido toma SIEMPRE el año en curso (no se promedian años). */
+   es TRIMESTRAL (ver trimestreReferencia); el trimestre en curso se informa aparte porque está incompleto. */
 function renderExtBoxes(loc, anio, totMet, totUsu){
-  const anioActual = new Date().getFullYear();
-  const yearPrecio = anio ? parseInt(anio) : anioActual;
   const locTxt = loc || "Todas las localidades";
-  const anioTxt = "Año " + yearPrecio + (anio ? "" : " (en curso)");
 
   document.getElementById("ext-metros").textContent = fmtMetros(totMet);
   document.getElementById("ext-usuarios").textContent = fmtInt(totUsu);
   document.querySelectorAll(".ext-alcance").forEach(el => el.textContent = locTxt + " · " + (anio ? "Año " + anio : "Todos los años"));
 
-  const items = proyectosConPrecioDelAnio(yearPrecio, loc);
+  const ref = trimestreReferencia(anio, loc), items = ref.items;
   const elP = document.getElementById("ext-precio"), elS = document.getElementById("ext-precio-sub");
   if (items.length===0){
     elP.textContent = "Sin datos";
-    elS.textContent = anioTxt + " · " + locTxt + " · sin proyectos habilitados con presupuesto";
+    elS.textContent = trimLabel(ref.y, ref.q) + " · " + locTxt + " · sin proyectos habilitados con presupuesto";
   } else {
     const half = Math.max(1, Math.floor(items.length/2));
     const avg = ratioSums(items);
     const avgLow = ratioSums(items.slice(0, half));
     const avgHigh = ratioSums(items.slice(items.length-half));
     elP.textContent = "$ " + fmtInt(avg) + " /m";
-    elS.textContent = anioTxt + " · " + locTxt + " · entre $ " + fmtInt(avgLow) + " y $ " + fmtInt(avgHigh) + " · " + items.length + " proyecto" + (items.length===1 ? "" : "s");
+    elS.textContent = trimLabel(ref.y, ref.q) + " · " + locTxt + " · entre $ " + fmtInt(avgLow) + " y $ " + fmtInt(avgHigh) + " · " +
+      items.length + " proyecto" + (items.length===1 ? "" : "s") + (items.length < PRECIO_POCOS_CASOS ? " · pocos casos" : "");
   }
-  document.getElementById("ext-precio-nota").textContent = anio
-    ? "Precio promedio calculado sobre los proyectos habilitados en " + anio + " con presupuesto cargado (presupuesto total ÷ metros)."
-    : "Sin elegir un año, el precio promedio corresponde siempre al año en curso (" + anioActual + "); elegí un año para ver otro. Metros y usuarios incluyen todos los años.";
+
+  const hoyT = trimestreHoy();
+  let nota = anio
+    ? "Precio promedio del último trimestre de " + anio + " con proyectos habilitados y presupuesto cargado (presupuesto total ÷ metros). La tabla “Evolución por trimestre” muestra todos los trimestres."
+    : "Sin elegir un año, el precio promedio corresponde al último trimestre cerrado con datos; elegí un año para ver otro. Metros y usuarios incluyen todos los años.";
+  if (!anio || parseInt(anio)===hoyT.y){
+    const cur = proyectosConPrecioDelTrimestre(hoyT.y, hoyT.q, loc);
+    nota += " El trimestre en curso (" + trimLabel(hoyT.y, hoyT.q) + ") " + (cur.length
+      ? "lleva " + cur.length + " proyecto" + (cur.length===1 ? "" : "s") + " con precio: $ " + fmtInt(ratioSums(cur)) + " /m (parcial)."
+      : "todavía no tiene proyectos con precio.");
+  }
+  document.getElementById("ext-precio-nota").textContent = nota;
 }
 
-/* Evolución del precio promedio por metro, año a año; sigue el filtro de localidad. */
+/* Evolución del precio promedio por metro, trimestre a trimestre; sigue el filtro de localidad.
+   Lista los trimestres con proyectos con precio, más el trimestre en curso. */
 function renderEvolucionPrecio(loc){
-  const anios = [...new Set(DATA.rows.filter(r=>F(r,"habilitado") && F(r,"anioHabil") && (!loc || F(r,"localidad")===loc)).map(r=>F(r,"anioHabil")))].sort((a,b)=>b-a);
-  document.getElementById("evol-titulo").textContent = "Evolución del precio promedio por año — " + (loc || "todas las localidades");
+  const hoyT = trimestreHoy();
+  const claves = new Map();
+  DATA.rows.forEach(r=>{
+    if (!conPrecio(r) || (loc && F(r,"localidad")!==loc)) return;
+    const tr = trimestreHabilitacion(r);
+    if (tr) claves.set(tr.y + "-" + tr.q, tr);
+  });
+  claves.set(hoyT.y + "-" + hoyT.q, hoyT);
+  const trims = [...claves.values()].sort((a,b)=> b.y-a.y || b.q-a.q);
+  document.getElementById("evol-titulo").textContent = "Evolución del precio promedio por trimestre — " + (loc || "todas las localidades");
   const tbody = document.querySelector("#tabla-evolucion-precio tbody");
   tbody.innerHTML = "";
   const filasEvol = [];
-  anios.forEach(year=>{
-    const items = proyectosConPrecioDelAnio(year, loc);
-    filasEvol.push([year, items.length ? ratioSums(items) : null]);
-    const tr = document.createElement("tr");
-    if (items.length===0){
-      tr.innerHTML = `<td>${year}</td><td class="muted">—</td>`;
-    } else {
-      tr.innerHTML = `<td>${year}</td><td>$ ${fmtInt(ratioSums(items))} /m</td>`;
-    }
-    tbody.appendChild(tr);
+  trims.forEach(tr=>{
+    const items = proyectosConPrecioDelTrimestre(tr.y, tr.q, loc);
+    const enCurso = tr.y===hoyT.y && tr.q===hoyT.q;
+    const etiqueta = trimLabel(tr.y, tr.q) + (enCurso ? " (en curso)" : "");
+    const precio = items.length ? ratioSums(items) : null;
+    filasEvol.push([etiqueta, precio, items.length]);
+    const trEl = document.createElement("tr");
+    const pocos = items.length>0 && items.length<PRECIO_POCOS_CASOS ? ' <span class="muted">· pocos casos</span>' : "";
+    trEl.innerHTML = items.length===0
+      ? `<td>${etiqueta}</td><td class="muted">—</td><td class="muted">0</td>`
+      : `<td>${etiqueta}</td><td>$ ${fmtInt(precio)} /m${pocos}</td><td>${items.length}</td>`;
+    tbody.appendChild(trEl);
   });
-  EXPORTAR["tabla-evolucion-precio"] = () => ({ archivo:"Evolucion_precio_promedio" + (loc ? "_" + loc : ""), hoja:"Evolución del precio",
-    cols:[{h:"Año",t:"text"},{h:"Precio promedio por metro ($)",t:"money"}], filas: filasEvol });
+  EXPORTAR["tabla-evolucion-precio"] = () => ({ archivo:"Evolucion_precio_promedio_trimestral" + (loc ? "_" + loc : ""), hoja:"Evolución del precio",
+    cols:[{h:"Trimestre",t:"text"},{h:"Precio promedio por metro ($)",t:"money"},{h:"Proyectos con precio",t:"int"}], filas: filasEvol });
 }
 
 /* ================= Factibilidades vigentes: 3 pasos, solo el último año =================
@@ -1385,10 +1444,10 @@ const DEFINICIONES = [
   ]},
   { grupo:"Precios", items:[
     { t:"Precio promedio por metro",
-      d:"Presupuesto total ÷ metros de las extensiones habilitadas del año, contando solo las que tienen presupuesto y metros cargados. Es un promedio ponderado por metros. Sin año elegido, siempre se usa el año en curso.",
-      hoy:()=>{ const y = new Date().getFullYear(), it = proyectosConPrecioDelAnio(y); return it.length ? "$ " + fmtInt(ratioSums(it)) + " /m en " + y + " (" + it.length + " proyectos)" : "sin datos en " + y; } },
+      d:"Presupuesto total ÷ metros de las extensiones habilitadas en el trimestre (según la fecha de habilitación), contando solo las que tienen presupuesto y metros cargados. Es un promedio ponderado por metros. Sin año elegido se usa el último trimestre cerrado con datos; el trimestre en curso se informa aparte porque está incompleto. Con menos de 3 proyectos el número se marca “pocos casos”.",
+      hoy:()=>{ const r = trimestreReferencia(null); return r.items.length ? "$ " + fmtInt(ratioSums(r.items)) + " /m en " + trimLabel(r.y, r.q) + " (" + r.items.length + " proyectos)" : "sin datos en " + trimLabel(r.y, r.q); } },
     { t:"Rango «entre $ X y $ Y»",
-      d:"Las extensiones del año se ordenan por precio por metro, se parten por la mitad y se promedia cada mitad: la más barata (X) y la más cara (Y). Si son impares, la del medio queda afuera de ambas." },
+      d:"Las extensiones del trimestre se ordenan por precio por metro, se parten por la mitad y se promedia cada mitad: la más barata (X) y la más cara (Y). Si son impares, la del medio queda afuera de ambas." },
   ]},
   { grupo:"Tiempos y ranking (tarjeta Empresas constructoras)", items:[
     { t:"Tiempo promedio entre etapas",
