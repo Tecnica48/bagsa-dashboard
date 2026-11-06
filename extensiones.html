@@ -334,7 +334,47 @@
     .ficha-row-val.filled{color:var(--navy)!important;}
     .ficha-carpeta{color:var(--teal)!important;}
   }
-</style>
+  /* ===== CALENDARIO ===== */
+  .cal-wrap{display:grid;grid-template-columns:minmax(0,3.4fr) minmax(220px,1fr);gap:16px;margin-bottom:36px;align-items:start;}
+  @media (max-width:900px){.cal-wrap{grid-template-columns:1fr;}}
+  .cal-main,.cal-side-box{background:var(--panel);border:1px solid var(--border);border-radius:8px;}
+  .cal-main{padding:14px 14px 12px;}
+  .cal-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .cal-title{font-size:22px;font-weight:700;color:var(--navy);min-width:170px;text-align:center;}
+  .cal-btn{border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:6px;padding:5px 12px;font:inherit;font-size:14px;cursor:pointer;}
+  .cal-btn:hover{background:var(--teal-soft);}
+  .cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--text-muted);}
+  .cal-dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid rgba(0,0,0,.18);}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;}
+  .cal-dow{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:3px 0;}
+  .cal-cell{min-height:122px;border:1px solid var(--border-soft);border-radius:5px;padding:3px;background:#fff;cursor:pointer;overflow:hidden;}
+  .cal-cell.out{background:transparent;border-color:transparent;cursor:default;}
+  .cal-cell.we{background:#f8fbfd;}
+  .cal-cell.hoy{border:2px solid var(--teal);}
+  .cal-cell.sel{box-shadow:0 0 0 2px var(--navy);}
+  .cal-num{font-size:12px;font-weight:700;color:var(--text-muted);margin:0 2px 2px;}
+  .cal-cell.hoy .cal-num{color:var(--teal);}
+  .cal-ev{border-radius:4px;padding:3px 5px;margin-bottom:3px;border-left:4px solid;font-size:12px;line-height:1.25;overflow:hidden;cursor:pointer;color:var(--text);}
+  .cal-ev b,.cal-ev span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cal-ev span{opacity:.85;font-size:11px;}
+  .ev-apr{background:#fff6c9;border-color:#e6c235;}
+  .ev-leg{background:#ffe0c2;border-color:#ee9a4a;}
+  .ev-ini{background:#d4efd6;border-color:#4fae5a;}
+  .ev-fin{background:#e8dcf7;border-color:#9a74d0;}
+  .cal-mas{font-size:11px;color:var(--navy);font-weight:700;padding:0 4px;}
+  .cal-side{display:flex;flex-direction:column;gap:12px;}
+  .cal-side-box{padding:10px 12px;}
+  .cal-side-box h3{margin:0 0 2px;font-size:15px;color:var(--navy);display:flex;justify-content:space-between;gap:8px;}
+  .cal-side-note{font-size:11.5px;color:var(--text-muted);margin-bottom:6px;}
+  .cal-list{max-height:230px;overflow:auto;}
+  .cal-item{border-left-width:4px;border-left-style:solid;border-radius:4px;padding:4px 7px;margin-bottom:4px;font-size:12px;line-height:1.3;cursor:pointer;color:var(--text);}
+  .cal-item:hover{filter:brightness(.96);}
+  .cal-item b{display:block;}
+  .cal-item small{color:var(--text-muted);font-size:11px;display:block;}
+  .cal-vacio{font-size:12px;color:var(--text-muted);padding:4px 0;}
+  .cal-dia{margin-top:10px;border-top:1px solid var(--border);padding-top:8px;}
+  .cal-dia h4{margin:0 0 6px;font-size:14px;color:var(--navy);}
+    </style>
 </head>
 <body>
 <!-- overlay mientras carga el JSON -->
@@ -406,6 +446,22 @@
         <div class="mc-note">Metros, usuarios y precio promedio por localidad y año</div>
         <div class="mc-count" id="mc-extensiones">—</div>
       </div>
+    </div>
+    <!-- ===== CALENDARIO ===== -->
+    <div class="section-head"><h2>Calendario de obras</h2><span class="section-note">Constructivo aprobado, legajo e inicio de ejecución · con las flechas se navega mes a mes</span></div>
+    <div class="cal-wrap">
+      <div class="cal-main">
+        <div class="cal-head">
+          <button type="button" class="cal-btn" onclick="calMover(-1)" title="Mes anterior">‹</button>
+          <div class="cal-title" id="cal-title"></div>
+          <button type="button" class="cal-btn" onclick="calMover(1)" title="Mes siguiente">›</button>
+          <button type="button" class="cal-btn" onclick="calHoy()">Hoy</button>
+          <div class="cal-legend" id="cal-legend"></div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-dia" id="cal-dia" style="display:none"></div>
+      </div>
+      <div class="cal-side" id="cal-side"></div>
     </div>
   </div>
 
@@ -2339,6 +2395,125 @@ function imprimirFicha(){
   window.print();
 }
 
+/* ===== CALENDARIO ===== */
+const CAL_TIPOS = [
+  {campo:"f_aprobacion_dist",  cls:"ev-apr", nombre:"Constructivo aprobado"},
+  {campo:"f_recepcion_legajo", cls:"ev-leg", nombre:"Legajo recibido"},
+  {campo:"f_inicio_obra",      cls:"ev-ini", nombre:"Inicio de ejecución"},
+  {campo:"f_finalizacion",     cls:"ev-fin", nombre:"Finalización"}
+];
+let calAnio = 0, calMes = 0, calSel = null, calEventos = {};
+const escA = s => esc(s).replace(/"/g, "&quot;");
+const calKey = d => d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+
+function calArmarEventos(){
+  calEventos = {};
+  DATA.rows.forEach((r, idx) => {
+    // Con fecha de habilitación el proyecto sale completo del calendario
+    if (fechaFlex(F(r, "f_habilitacion"))) return;
+    // Cada proyecto muestra solo su etapa más avanzada y la inmediata anterior
+    const fechas = CAL_TIPOS.map(t => fechaFlex(F(r, t.campo)));
+    let max = -1;
+    fechas.forEach((d, i) => { if (d) max = i; });
+    CAL_TIPOS.forEach((t, ti) => {
+      const d = fechas[ti];
+      if (!d || ti < max - 1) return;
+      const k = calKey(d);
+      if (!calEventos[k]) calEventos[k] = [];
+      calEventos[k].push({idx, ti});
+    });
+  });
+  Object.values(calEventos).forEach(arr => arr.sort((a, b) =>
+    a.ti - b.ti || String(F(DATA.rows[a.idx], "cliente")||"").localeCompare(String(F(DATA.rows[b.idx], "cliente")||""))));
+}
+function calAbrir(idx){ showView("consulta"); abrirFicha(idx); }
+function calTexto(idx){
+  const r = DATA.rows[idx];
+  return {cliente: F(r,"cliente")||"—", proyecto: F(r,"proyecto")||"—", empresa: F(r,"empresa")||"sin empresa", localidad: F(r,"localidad")||""};
+}
+function calChip(ev){
+  const t = CAL_TIPOS[ev.ti], x = calTexto(ev.idx);
+  const tip = t.nombre + " · " + x.cliente + " · " + x.proyecto + " · " + x.empresa + (x.localidad ? " · " + x.localidad : "");
+  return `<div class="cal-ev ${t.cls}" title="${escA(tip)}" onclick="event.stopPropagation();calAbrir(${ev.idx})"><b>${esc(x.cliente)}</b><span>${esc(x.proyecto)}</span><span>${esc(x.empresa)}</span></div>`;
+}
+function calItem(ev, linea3){
+  const t = CAL_TIPOS[ev.ti], x = calTexto(ev.idx);
+  return `<div class="cal-item ${t.cls}" onclick="calAbrir(${ev.idx})"><b>${esc(x.cliente)}</b><small>${esc(x.proyecto)} · ${esc(x.empresa)}${x.localidad ? " · " + esc(x.localidad) : ""}</small><small>${linea3}</small></div>`;
+}
+function calHoy(){ const h = new Date(); calAnio = h.getFullYear(); calMes = h.getMonth(); calSel = null; calRender(); }
+function calMover(n){
+  calMes += n;
+  while (calMes < 0){ calMes += 12; calAnio--; }
+  while (calMes > 11){ calMes -= 12; calAnio++; }
+  calSel = null; calRender();
+}
+function calElegirDia(k){ calSel = (calSel === k) ? null : k; calRender(); }
+
+function calRender(){
+  const hoy = new Date(), hoyK = calKey(hoy);
+  const primero = new Date(calAnio, calMes, 1);
+  const dias = new Date(calAnio, calMes + 1, 0).getDate();
+  const offset = (primero.getDay() + 6) % 7;          // semana desde el lunes
+  const tit = primero.toLocaleDateString("es-AR", {month:"long", year:"numeric"});
+  document.getElementById("cal-title").textContent = tit.charAt(0).toUpperCase() + tit.slice(1);
+
+  const cuenta = CAL_TIPOS.map(() => 0);
+  let html = ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(n => `<div class="cal-dow">${n}</div>`).join("");
+  for (let i = 0; i < offset; i++) html += '<div class="cal-cell out"></div>';
+  for (let n = 1; n <= dias; n++){
+    const d = new Date(calAnio, calMes, n), k = calKey(d);
+    const evs = calEventos[k] || [];
+    evs.forEach(e => cuenta[e.ti]++);
+    const dow = (d.getDay() + 6) % 7;
+    const cls = "cal-cell" + (dow >= 5 ? " we" : "") + (k === hoyK ? " hoy" : "") + (k === calSel ? " sel" : "");
+    const visibles = evs.slice(0, 3).map(calChip).join("");
+    const mas = evs.length > 3 ? `<div class="cal-mas">+${evs.length - 3} más…</div>` : "";
+    html += `<div class="${cls}" onclick="calElegirDia('${k}')"><div class="cal-num">${n}</div>${visibles}${mas}</div>`;
+  }
+  document.getElementById("cal-grid").innerHTML = html;
+  document.getElementById("cal-legend").innerHTML = CAL_TIPOS.map((t, i) =>
+    `<span><span class="cal-dot ${t.cls}"></span>${t.nombre} (${cuenta[i]})</span>`).join("");
+
+  const box = document.getElementById("cal-dia");
+  if (calSel && calEventos[calSel]){
+    const [y, m, d] = calSel.split("-").map(Number);
+    const evs = calEventos[calSel];
+    const lf = new Date(y, m, d).toLocaleDateString("es-AR", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+    box.innerHTML = `<h4>${lf.charAt(0).toUpperCase() + lf.slice(1)}</h4>` +
+      evs.map(e => calItem(e, CAL_TIPOS[e.ti].nombre)).join("");
+    box.style.display = "";
+  } else if (calSel){
+    box.innerHTML = '<div class="cal-vacio">Sin movimientos ese día.</div>'; box.style.display = "";
+  } else { box.style.display = "none"; }
+}
+
+function calListas(){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const hace12 = new Date(hoy); hace12.setFullYear(hace12.getFullYear() - 1);
+  const A = [], B = [], C = [];
+  DATA.rows.forEach((r, idx) => {
+    if (F(r,"habilitado") || fechaFlex(F(r,"f_habilitacion"))) return;
+    const apr = fechaFlex(F(r,"f_aprobacion_dist")), leg = fechaFlex(F(r,"f_recepcion_legajo"));
+    const ini = fechaFlex(F(r,"f_inicio_obra")), fin = fechaFlex(F(r,"f_finalizacion"));
+    if (fin) return;
+    if (ini && ini >= hoy) A.push({idx, ti:2, f:ini});
+    else if (leg && !ini) B.push({idx, ti:1, f:leg});
+    else if (apr && !leg && !ini && apr >= hace12) C.push({idx, ti:0, f:apr});
+  });
+  const ord = (a, b) => a.f - b.f;
+  [A, B, C].forEach(l => l.sort(ord));
+  const caja = (titulo, nota, lista, linea) =>
+    `<div class="cal-side-box"><h3><span>${titulo}</span><span>${lista.length}</span></h3><div class="cal-side-note">${nota}</div><div class="cal-list">` +
+    (lista.length ? lista.map(e => calItem(e, linea(e))).join("") : '<div class="cal-vacio">Nada pendiente.</div>') + "</div></div>";
+  const ff = (r, c) => normFecha(F(r, c));
+  document.getElementById("cal-side").innerHTML =
+    caja("Próximas a ejecutarse", "Con fecha de inicio de hoy en adelante", A, e => "Inicio " + ff(DATA.rows[e.idx], "f_inicio_obra")) +
+    caja("Con legajo, sin fecha de inicio", "Legajo recibido y todavía sin fecha de ejecución", B,
+         e => "Legajo " + ff(DATA.rows[e.idx], "f_recepcion_legajo") + (F(DATA.rows[e.idx], "estadoLegajo") ? " · Estado: " + esc(F(DATA.rows[e.idx], "estadoLegajo")) : "")) +
+    caja("Constructivo aprobado, esperando legajo", "Aprobados en los últimos 12 meses, sin legajo recibido", C, e => "Aprobado " + ff(DATA.rows[e.idx], "f_aprobacion_dist"));
+}
+function initCalendario(){ calArmarEventos(); calListas(); calHoy(); }
+
 fetch("data/extensiones.json", {cache: "no-store"})
   .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(data => {
@@ -2346,6 +2521,7 @@ fetch("data/extensiones.json", {cache: "no-store"})
     buildFieldIdx();
     document.getElementById("loading-overlay").style.display = "none";
     render();
+    try { initCalendario(); } catch (e) { console.error("Calendario:", e); }
   })
   .catch(err => {
     document.getElementById("loading-overlay").innerHTML =
