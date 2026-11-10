@@ -163,19 +163,9 @@
   <div class="seccion" data-group-section="certificaciones">
   <h2 class="section-title">Seguimiento de Certificaciones</h2>
   <div class="grid">
-    <a class="card mid" href="certificaciones.html?obra=anchorena" data-group="certificaciones" data-json="data/certificaciones_anchorena.json">
-      <span class="t">Anchorena</span><span class="health-dot" title="Verificando...">●</span>
-      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
-      <span class="arrow">Ver panel →</span>
-    </a>
-    <a class="card mid" href="certificaciones.html?obra=mechita" data-group="certificaciones" data-json="data/certificaciones_mechita.json">
-      <span class="t">Mechita</span><span class="health-dot" title="Verificando...">●</span>
-      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
-      <span class="arrow">Ver panel →</span>
-    </a>
-    <a class="card mid" href="certificaciones.html?obra=chascomus" data-group="certificaciones" data-json="data/certificaciones_chascomus.json">
-      <span class="t">Chascomús</span><span class="health-dot" title="Verificando...">●</span>
-      <span class="d">Certificaciones, avance físico y avance financiero de la obra.</span>
+    <a class="card mid" href="certificaciones.html" data-group="certificaciones" data-jsons="data/certificaciones_anchorena.json,data/certificaciones_mechita.json,data/certificaciones_chascomus.json">
+      <span class="t">Certificaciones</span><span class="health-dot" title="Verificando...">●</span>
+      <span class="d">Avance físico, financiero y seguimiento administrativo de las obras.</span>
       <span class="arrow">Ver panel →</span>
     </a>
   </div>
@@ -381,26 +371,36 @@ function parseFechaHora(fecha, hora){
 }
 
 async function cargarSalud(){
-  const tarjetas = document.querySelectorAll("a.card[data-json]");
+  const tarjetas = document.querySelectorAll("a.card[data-json], a.card[data-jsons]");
   for (const card of tarjetas){
     const dot = card.querySelector(".health-dot");
-    try {
-      const resp = await fetch(card.dataset.json, { cache: "no-store" });
-      if(!resp.ok) throw new Error("HTTP " + resp.status);
-      const data = await resp.json();
-      const fecha = parseFechaHora(data.generatedAt, data.generatedTime);
-      const horas = (Date.now() - fecha.getTime()) / 3600000;
-      if(horas <= 24){
-        dot.classList.add("ok");
-        dot.title = "Actualizado: " + data.generatedAt + " " + (data.generatedTime || "");
-      } else {
-        dot.classList.add("atrasado");
-        const dias = Math.floor(horas / 24);
-        dot.title = "Sin actualizar hace " + (dias >= 1 ? dias + " día(s)" : Math.round(horas) + "hs") +
-          " (" + data.generatedAt + " " + (data.generatedTime || "") + ") — revisar sync";
+    const urls = (card.dataset.jsons || card.dataset.json).split(",").map(u => u.trim()).filter(Boolean);
+    const atrasados = [];
+    const fallidos = [];
+    let peorHoras = 0, ultima = "";
+    for (const url of urls){
+      const nombre = url.split("/").pop().replace(".json", "");
+      try {
+        const resp = await fetch(url, { cache: "no-store" });
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const data = await resp.json();
+        const fecha = parseFechaHora(data.generatedAt, data.generatedTime);
+        const horas = (Date.now() - fecha.getTime()) / 3600000;
+        const stamp = data.generatedAt + " " + (data.generatedTime || "");
+        if(horas > peorHoras){ peorHoras = horas; ultima = stamp; }
+        if(horas > 24) atrasados.push(nombre + " (" + stamp + ")");
+      } catch(e){
+        fallidos.push(nombre);
       }
-    } catch(e){
-      dot.title = "No se pudo verificar la actualización.";
+    }
+    if(fallidos.length){
+      dot.title = "No se pudo verificar: " + fallidos.join(", ") + ".";
+    } else if(atrasados.length){
+      dot.classList.add("atrasado");
+      dot.title = "Sin actualizar hace más de 24hs: " + atrasados.join(", ") + " — revisar sync";
+    } else {
+      dot.classList.add("ok");
+      dot.title = "Actualizado (el más viejo: " + ultima + ")";
     }
   }
 }
