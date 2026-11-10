@@ -37,6 +37,7 @@ ARCHIVO_SEGUIMIENTO = CARPETA_TRABAJO / "00 - Seguimiento certificacion.xlsx"
 CARPETA_SALIDA = CARPETA_TRABAJO / "data"             # los JSON se generan acá; copiarlos al repo es un paso manual
 
 # clave de URL -> archivo de certificación y nombre de la obra en la TABLA MASTER / SALDO
+# Opcional: "url" = dirección completa del panel de esa obra, si no es este mismo certificaciones.html
 OBRAS = {
     "mechita":   {"archivo": "Certificado_MECHITA.xlsm",   "master": "MECHITA",
                   "planOriginal": "Plan_de_trabajos_e_inversion_v1.xls"},   # plan de la oferta (opcional)
@@ -977,10 +978,11 @@ def generar_indice(master_all, wb_seg):
     med = medianas_a_pago([r for r in master_all if r["tipo"] != "otro"])
     medianas = {k: round(med[k]) if k in med else DIAS_DEFAULT[k] for k in ("acta", "envio", "entrada", "tesoreria")}
 
-    paneles = {}
+    paneles, urls = {}, {}
     for clave, conf in OBRAS.items():
-        if (CARPETA_CERTIFICADOS / conf["archivo"]).exists():
+        if conf.get("url") or (CARPETA_CERTIFICADOS / conf["archivo"]).exists():
             paneles[norm(conf["master"])] = clave
+            urls[norm(conf["master"])] = conf.get("url") or None
 
     comprobantes, avisos, obras = [], [], {}
     for r in master_all:
@@ -993,7 +995,7 @@ def generar_indice(master_all, wb_seg):
             "factura": r.get("factura"), "poliza": r.get("poliza"), "obs": r.get("obs"),
         }
         comprobantes.append(item)
-        o = obras.setdefault(r["obra"], {"key": r["obra"], "nombre": item["obra"], "empresas": [], "panel": paneles.get(r["obra"])})
+        o = obras.setdefault(r["obra"], {"key": r["obra"], "nombre": item["obra"], "empresas": [], "panel": paneles.get(r["obra"]), "url": urls.get(r["obra"])})
         if r["empresa"] and r["empresa"] not in o["empresas"]:
             o["empresas"].append(r["empresa"])
 

@@ -387,6 +387,14 @@
   .ix-dlg .f-tit{font-size:24px;}
   .dia-lista .mv{padding:9px 4px;}
   .dia-lista .pto{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;border:1px solid transparent;}
+
+  /* tarjetas de acceso a los paneles de obra, como las del portal */
+  .paneles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:16px;}
+  .panel-card{display:flex;flex-direction:column;gap:6px;background:#008ed7;color:#fff;text-decoration:none;border-radius:8px;padding:18px 20px;box-shadow:0 3px 0 rgba(0,0,0,.14),0 5px 10px rgba(0,0,0,.08);}
+  .panel-card:hover{background:#0a80c2;}
+  .panel-card h3{margin:0;font-size:17px;color:#fff;}
+  .panel-card p{margin:0;font-size:12.5px;line-height:1.45;opacity:.95;}
+  .panel-card .ir{font-size:13px;font-weight:700;margin-top:6px;}
 </style>
 </head>
 <body>
@@ -443,6 +451,9 @@ const C = { navy:"#005895", navy2:"#0b4c7b", teal:"#00aec3", bright:"#008ed7", g
             muted:"#5c7688", text:"#16303f", amber:"#d9822b", plan:"#9fb4c4", orig:"#6f8aa3" };
 
 /* ---------------- arranque ---------------- */
+// Dirección del portal. Si el portal vive en otro sitio (por ejemplo GitHub Pages), poné acá el link completo.
+const PORTAL_URL = "index.html";
+document.querySelectorAll("a.marca, a.volver").forEach(a => { a.href = PORTAL_URL; });
 const app = document.getElementById("app");
 const obra = new URLSearchParams(location.search).get("obra");
 
@@ -1542,7 +1553,8 @@ function renderIndice(d){
 
     <section id="obras">
       <h2>Obras</h2>
-      <p class="bajada">Todas las obras de la planilla de seguimiento. «Ver en el calendario» filtra el calendario y los indicadores por esa obra; «Abrir panel» entra al detalle de la obra, donde exista.</p>
+      <p class="bajada">Arriba, las obras que tienen panel de detalle. Abajo, todas las obras de la planilla de seguimiento: «Ver en el calendario» filtra el calendario y los indicadores por esa obra.</p>
+      <div class="paneles-grid" id="ix-paneles"></div>
       <div class="obras-grid" id="ix-obras"></div>
     </section>
 
@@ -1727,6 +1739,8 @@ function pintarMover(vis){
 }
 
 /* ---------------- obras ---------------- */
+const urlPanelIx = o => o.url || `certificaciones.html?obra=${encodeURIComponent(o.panel)}`;
+
 function pintarObras(){
   const d = IX.d;
   const filas = d.obras.map(o => {
@@ -1735,6 +1749,10 @@ function pintarObras(){
     const ult = pag.reduce((m, c) => (!m || c.fechas.pago > m) ? c.fechas.pago : m, null);
     return {o, n:cs.length, pag, act, rev, ult};
   }).sort((a, b) => (sumaIx(b.act) - sumaIx(a.act)) || ((b.ult || 0) - (a.ult || 0)));
+  const conPanel = filas.filter(f => f.o.panel);
+  gid("ix-paneles").innerHTML = conPanel.map(({o}) => `<a class="panel-card" href="${esc(urlPanelIx(o))}"><h3>${esc(o.nombre)}</h3>
+    <p>Certificaciones, avance físico y avance financiero de la obra.</p><span class="ir">Ver panel →</span></a>`).join("");
+  gid("ix-paneles").hidden = !conPanel.length;
   gid("ix-obras").innerHTML = filas.map(({o, n, pag, act, rev, ult}) => `
     <article class="obra-card${IX.obra === o.key ? " sel" : ""}">
       <div><h3>${esc(o.nombre)}</h3><div class="emp">${esc(o.empresas.join(", "))}</div></div>
@@ -1745,7 +1763,7 @@ function pintarObras(){
       <div class="oc-pie"><span>${n} comprobantes</span><span>Último pago: ${ult ? fmtDate(ult) : "—"}</span>${rev ? `<span class="tag">${rev} para revisar</span>` : ""}</div>
       <div class="oc-acc">
         <button type="button" class="btn" data-filtrar="${esc(o.key)}">${IX.obra === o.key ? "Quitar filtro" : "Ver en el calendario"}</button>
-        ${o.panel ? `<a class="btn prim" href="certificaciones.html?obra=${encodeURIComponent(o.panel)}">Abrir panel</a>` : '<span class="sin">Sin panel todavía</span>'}
+        ${o.panel ? `<a class="btn prim" href="${esc(urlPanelIx(o))}">Abrir panel</a>` : '<span class="sin">Sin panel todavía</span>'}
       </div>
     </article>`).join("");
 }
@@ -1758,7 +1776,7 @@ function enlacePanelIx(c){
   if(c.tipo === "certificado" && c.n != null) h = `#cert-${c.n}`;
   else if(c.tipo === "ajuste" && c.redet) h = `#ajuste-${c.redet}`;
   else if(c.tipo === "anticipo" && c.pct) h = `#anticipo-${Math.round(c.pct * 100)}`;
-  return `certificaciones.html?obra=${encodeURIComponent(o.panel)}${h}`;
+  return urlPanelIx(o) + h;
 }
 
 function abrirFichaIx(id){

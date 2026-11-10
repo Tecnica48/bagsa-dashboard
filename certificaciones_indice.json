@@ -1,6 +1,6 @@
 {
  "generatedAt": "10/11/2026",
- "generatedTime": "12:57",
+ "generatedTime": "13:22",
  "reglas": {
   "antiguoDias": 120,
   "demoraFactor": 1.5
@@ -18,7 +18,8 @@
    "empresas": [
     "VTS CONSTRUCCIONES S.R.L."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "CASBAS, O’BRIEN Y ROCA",
@@ -26,7 +27,8 @@
    "empresas": [
     "FROST CARLOS"
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "CHASCOMUS",
@@ -34,7 +36,8 @@
    "empresas": [
     "MEGA ENERGIAS S.A."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "CLARAZ - TERMINACION",
@@ -42,7 +45,8 @@
    "empresas": [
     "VTS CONSTRUCCIONES S.R.L."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "COMODORO PY",
@@ -51,7 +55,8 @@
     "VTS CONSTRUCCIONES S.R.L.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "DEL CARRIL - POLVAREDAS",
@@ -60,7 +65,8 @@
     "VTS CONSTRUCCIONES S.R.L.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "DUDIGNAC",
@@ -69,7 +75,8 @@
     "EXGADET S.A.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "FONTEZUELA -TERMINACION",
@@ -77,7 +84,8 @@
    "empresas": [
     "VTS CONSTRUCCIONES S.R.L."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "GRA. MANSILLA - AMPLIACION PLANTA",
@@ -85,7 +93,8 @@
    "empresas": [
     "MEGA ENERGIAS S.A."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "MECHITA",
@@ -94,7 +103,8 @@
     "VTS CONSTRUCCIONES S.R.L.",
     "T.G.S."
    ],
-   "panel": "mechita"
+   "panel": "mechita",
+   "url": null
   },
   {
    "key": "MONES CAZON - SALAZAR",
@@ -103,7 +113,8 @@
     "KARPA S.A.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "PATRICIOS",
@@ -112,7 +123,8 @@
     "EXGADET S.A.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "PIROVANO",
@@ -121,7 +133,8 @@
     "KARPA S.A.",
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "PLA - ERP",
@@ -131,7 +144,8 @@
     "T.G.S.",
     "MURVEL S.R.L."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   },
   {
    "key": "(SIN OBRA)",
@@ -139,7 +153,8 @@
    "empresas": [
     "T.G.S."
    ],
-   "panel": null
+   "panel": null,
+   "url": null
   }
  ],
  "empresas": [
