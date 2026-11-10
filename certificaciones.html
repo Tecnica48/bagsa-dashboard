@@ -289,6 +289,104 @@
   }
 
   .consulta > .panel + .panel{margin-top:0;}
+
+  /* ===== Índice general de certificaciones ===== */
+  .ix-filtros-activos{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;}
+  .ix-pill{font:inherit;font-size:13px;border:1px solid var(--navy);background:var(--teal-soft);color:var(--navy);border-radius:999px;padding:3px 12px;cursor:pointer;}
+  .ix-pill:hover{background:#cfeef2;}
+  .ix-main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start;}
+  @media (max-width:1000px){.ix-main{grid-template-columns:1fr;}}
+  .ix-main > .panel + .panel{margin-top:0;}
+
+  .cal-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .cal-nav{display:flex;align-items:center;gap:8px;}
+  .cal-nav h3{margin:0;min-width:160px;text-align:center;font-family:var(--display);font-weight:400;font-size:24px;color:var(--navy);text-transform:capitalize;}
+  .cal-nav .flecha{font:inherit;font-size:20px;line-height:1;width:34px;height:34px;border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:999px;cursor:pointer;}
+  .cal-nav .flecha:hover{background:var(--teal-soft);}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff;}
+  .seg button{font:inherit;font-size:13px;border:none;background:none;padding:7px 16px;cursor:pointer;color:var(--navy);}
+  .seg button[aria-pressed="true"]{background:var(--navy);color:#fff;}
+  .cal-filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .cal-filtros select,.cal-filtros input{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);min-width:0;max-width:100%;}
+  .cal-filtros input{flex:1 1 200px;}
+  .cal-sem,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));}
+  .cal-sem div{font-size:12px;color:var(--text-muted);text-align:center;padding:4px 0;}
+  .cal-grid{gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .dia{background:#fff;min-height:118px;padding:4px 5px 5px;display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .dia.fuera{background:var(--bg);}
+  .dia .dn{align-self:flex-start;font:inherit;font-size:12px;color:var(--text-muted);background:none;border:none;padding:1px 7px;border-radius:999px;cursor:pointer;}
+  .dia .dn:hover{background:var(--teal-soft);}
+  .dia.hoy .dn{background:var(--navy);color:#fff;font-weight:700;}
+  .evs{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .ev{display:block;width:100%;text-align:left;font:inherit;font-size:11px;line-height:1.3;border:1px solid transparent;border-radius:5px;padding:2px 6px;cursor:pointer;overflow:hidden;min-width:0;}
+  .ev .tx{display:block;}
+  .ev .nm{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ev:hover{filter:brightness(.96);}
+  .ev b{font-weight:700;}
+  .ev-acta{background:#fdf3c7;color:#5e4a00;border-color:#ecd77b;}
+  .ev-envio{background:#fde4cc;color:#7a3d00;border-color:#f3c597;}
+  .ev-entrada{background:#d9edfb;color:#0b4c7b;border-color:#a9d3f0;}
+  .ev-tesoreria{background:#e8defa;color:#4a2f86;border-color:#cdbbef;}
+  .ev-pago{background:#d5f0e0;color:#1b6a41;border-color:#a6dcc0;}
+  .ev.est{background:#fff;border:1px dashed #2e9e62;color:#1b6a41;}
+  .ev.est.atrasado{border-color:var(--amber);color:#9a5a12;}
+  .ev.dem{box-shadow:inset 3px 0 0 var(--amber);}
+  .mas{font:inherit;font-size:11.5px;color:var(--navy);background:none;border:none;text-align:left;padding:1px 4px;cursor:pointer;}
+  .mas:hover{text-decoration:underline;}
+  .cal-vacio{font-size:13px;color:var(--text-muted);margin:10px 2px 0;line-height:1.5;}
+  .cal-leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--text-muted);margin-top:12px;}
+  .cal-leyenda span{display:inline-flex;align-items:center;gap:6px;}
+  .cal-leyenda i{display:inline-block;width:14px;height:12px;border-radius:3px;border:1px solid transparent;}
+  .cal-leyenda i.est{background:#fff;border:1px dashed #2e9e62;}
+  .cal-leyenda i.dem{background:#fff;border:1px solid var(--border);box-shadow:inset 3px 0 0 var(--amber);}
+  @media (max-width:700px){
+    .dia{min-height:56px;padding:2px;}
+    .evs{flex-direction:row;flex-wrap:wrap;gap:2px;}
+    .ev{width:9px;height:9px;padding:0;border-radius:50%;pointer-events:none;}
+    .ev .tx{display:none;}
+    .mas{display:none;}
+    .cal-nav h3{min-width:120px;font-size:20px;}
+  }
+
+  .mover h3{margin:0 0 2px;font-size:17px;color:var(--navy);}
+  .mv-g{margin-top:16px;}
+  .mv-g h4{margin:0;font-size:14px;color:var(--navy2);}
+  .mv-g .sub{font-size:12px;color:var(--text-muted);margin:1px 0 6px;line-height:1.4;}
+  .mv{display:block;width:100%;text-align:left;font:inherit;background:none;border:none;border-bottom:1px solid var(--grid);padding:8px 4px;cursor:pointer;color:var(--text);}
+  .mv:hover{background:var(--bg);}
+  .mv .t{display:block;font-size:13.5px;font-weight:700;}
+  .mv .s{display:block;font-size:12px;color:var(--text-muted);margin-top:1px;line-height:1.4;}
+  .mv .tag{display:inline-block;font-size:11px;font-weight:700;color:#9a5a12;background:var(--amber-soft);border-radius:999px;padding:0 8px;margin-left:6px;}
+  .mv-vacio{font-size:13px;color:var(--text-muted);padding:8px 4px;}
+  .mover details{margin-top:16px;}
+
+  .obras-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+  .obra-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .obra-card.sel{border-color:var(--navy);box-shadow:0 0 0 2px var(--teal-soft);}
+  .obra-card h3{margin:0;font-size:16px;color:var(--navy);}
+  .obra-card .emp{font-size:12px;color:var(--text-muted);line-height:1.4;}
+  .oc-nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .oc-nums .l{display:block;font-size:12px;color:var(--text-muted);}
+  .oc-nums b{display:block;font-size:18px;color:var(--navy);margin:1px 0;}
+  .oc-nums .s{font-size:12px;color:var(--text-muted);}
+  .oc-pie{font-size:12.5px;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;}
+  .oc-pie .tag{font-size:11px;font-weight:700;color:#9a5a12;background:var(--amber-soft);border-radius:999px;padding:0 8px;}
+  .oc-acc{display:flex;gap:8px;align-items:center;margin-top:auto;flex-wrap:wrap;}
+  .oc-acc .btn{font-size:13px;padding:5px 12px;text-decoration:none;display:inline-block;}
+  .oc-acc .sin{font-size:12.5px;color:var(--text-muted);}
+
+  .ix-datos h4{font-size:14px;margin:16px 0 4px;color:var(--navy2);}
+  .ix-datos li{font-size:13px;margin:3px 0;line-height:1.45;}
+  .ix-datos .fila{color:var(--text-muted);}
+  .ix-como li{font-size:13.5px;margin:6px 0;line-height:1.5;}
+
+  dialog.ix-dlg{border:none;border-radius:12px;padding:22px 24px;max-width:680px;width:calc(100% - 28px);max-height:calc(100vh - 40px);overflow:auto;color:var(--text);font-family:var(--sans);box-shadow:0 12px 40px rgba(0,0,0,.28);}
+  dialog.ix-dlg::backdrop{background:rgba(10,30,45,.45);}
+  .ix-dlg .cerrar{float:right;font:inherit;font-size:13px;border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:999px;padding:4px 14px;cursor:pointer;}
+  .ix-dlg .cerrar:hover{background:var(--teal-soft);}
+  .ix-dlg .f-tit{font-size:24px;}
+  .dia-lista .mv{padding:9px 4px;}
+  .dia-lista .pto{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;border:1px solid transparent;}
 </style>
 </head>
 <body>
@@ -349,16 +447,13 @@ const app = document.getElementById("app");
 const obra = new URLSearchParams(location.search).get("obra");
 
 if(!obra){
-  app.innerHTML = `<div class="estado-msg"><h2>Falta indicar la obra</h2>
-    <p>Abrí este panel desde el portal, o agregá la obra a la dirección, por ejemplo
-    <code>certificaciones.html?obra=mechita</code>.</p></div>`;
+  cargarIndice();
 } else {
-  fetch(`data/certificaciones_${encodeURIComponent(obra)}.json`, {cache:"no-store"})
-    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+  traerJSON(`certificaciones_${encodeURIComponent(obra)}.json`)
     .then(render)
     .catch(() => {
       app.innerHTML = `<div class="estado-msg"><h2>Todavía no hay datos de esta obra</h2>
-        <p>No se encontró <code>data/certificaciones_${esc(obra)}.json</code>. Se genera corriendo
+        <p>No se encontró <code>certificaciones_${esc(obra)}.json</code>, ni en la carpeta <code>data</code> ni junto a esta página. Se genera corriendo
         <code>actualizar_certificaciones.py</code> con el Excel de certificación de la obra en la carpeta configurada.</p></div>`;
     });
 }
@@ -885,7 +980,7 @@ function tablaPlanes(d){
 function navHTML(d){
   return `
     <nav class="secciones" aria-label="Secciones">
-      <a href="#avance" data-ir="avance">Avance</a><a href="#valores" data-ir="valores">Valores</a><a href="#proyeccion" data-ir="proyeccion">Proyección y cobros</a>
+      <a href="certificaciones.html">Todas las obras</a><a href="#avance" data-ir="avance">Avance</a><a href="#valores" data-ir="valores">Valores</a><a href="#proyeccion" data-ir="proyeccion">Proyección y cobros</a>
       <div class="nav-acc">
         <button type="button" class="nav-btn" data-vista="consulta" aria-pressed="false">Consulta individual</button>
         <button type="button" class="nav-btn" data-vista="def" aria-pressed="false">Definiciones</button>
@@ -1307,6 +1402,420 @@ function generarPDF(){
   window.addEventListener("afterprint", limpiar);
   window.scrollTo(0, 0);
   setTimeout(() => window.print(), 80);
+}
+
+
+/* ============================================================
+   Índice general de certificaciones (certificaciones.html sin ?obra=)
+   Lee certificaciones_indice.json: todos los comprobantes de la planilla de seguimiento.
+   El estado, las demoras y los pagos estimados se calculan acá con la fecha de hoy.
+   ============================================================ */
+async function traerJSON(nombre){
+  for(const ruta of ["data/" + nombre, nombre]){
+    try{ const r = await fetch(ruta, {cache:"no-store"}); if(r.ok) return await r.json(); }catch(e){ /* prueba la otra ubicación */ }
+  }
+  throw new Error("sin datos");
+}
+
+function cargarIndice(){
+  traerJSON("certificaciones_indice.json").then(renderIndice).catch(() => {
+    app.innerHTML = `<div class="estado-msg"><h2>Todavía no hay datos del índice</h2>
+      <p>No se encontró <code>certificaciones_indice.json</code>, ni en la carpeta <code>data</code> ni junto a esta página.
+      Se genera corriendo <code>actualizar_certificaciones.py</code> con la planilla de seguimiento de certificaciones.</p>
+      <p>Para ver el panel de una obra, agregá la obra a la dirección, por ejemplo <code>certificaciones.html?obra=mechita</code>.</p></div>`;
+  });
+}
+
+const IX = {d:null, hoy:null, mes:null, modo:"curso", obra:"", empresa:"", q:"", C:[], porId:{}};
+const ETA = [
+  {k:"acta",      corto:"Acta",      largo:"Acta de medición",      estado:"Acta de medición"},
+  {k:"envio",     corto:"Envío",     largo:"Enviado al contratista", estado:"Enviado al contratista"},
+  {k:"entrada",   corto:"Factura",   largo:"Factura recibida",       estado:"Factura recibida"},
+  {k:"tesoreria", corto:"Tesorería", largo:"Entregado a Tesorería",  estado:"En Tesorería"},
+  {k:"pago",      corto:"Pago",      largo:"Pagado",                 estado:"Pagado"},
+];
+const ETA_K = Object.fromEntries(ETA.map(e => [e.k, e]));
+const QUIEN = {
+  acta:      {quien:"bagsa",       txt:"con el acta hecha"},
+  envio:     {quien:"contratista", txt:"enviado al contratista"},
+  entrada:   {quien:"bagsa",       txt:"con la factura recibida"},
+  tesoreria: {quien:"tesoreria",   txt:"en Tesorería"},
+};
+const ACCION = {
+  acta:"Enviar el certificado al contratista", envio:"Esperar la factura del contratista",
+  entrada:"Entregar la factura a Tesorería", tesoreria:"Esperar el pago",
+};
+const gid = id => document.getElementById(id);
+const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const fmtDate = d => d ? d.toLocaleDateString("es-AR", {day:"2-digit", month:"2-digit", year:"numeric"}) : "—";
+const diasTxt = n => `${n} ${n === 1 ? "día" : "días"}`;
+const movil = () => window.matchMedia("(max-width:700px)").matches;
+
+function prepararIx(d){
+  const R = d.reglas, M = d.medianas;
+  IX.d = d;
+  IX.C = d.comprobantes.map(c => {
+    const x = {...c, fechas:{}};
+    for(const e of ETA) if(c[e.k]) x.fechas[e.k] = parseISO(c[e.k]);
+    let et = null; for(const e of ETA) if(x.fechas[e.k]) et = e.k;     // etapa más avanzada
+    x.etapa = et; x.fEtapa = et ? x.fechas[et] : null; x.pagado = et === "pago";
+    x.dias = (!x.pagado && x.fEtapa) ? Math.round((IX.hoy - x.fEtapa) / 864e5) : null;
+    const med = (et && M[et] != null) ? M[et] : null;
+    x.med = med;
+    x.estimado = (!x.pagado && x.fEtapa && med != null) ? addDays(x.fEtapa, med) : null;
+    x.antiguo = !x.pagado && (!x.fEtapa || x.dias > R.antiguoDias);
+    x.demorado = !x.pagado && !x.antiguo && med != null && x.dias > med * R.demoraFactor;
+    x.estadoTxt = et ? ETA_K[et].estado : "Sin fechas";
+    x.hay = nrm(`${x.obra} ${x.empresa} ${x.label} ${x.tema} ${x.estadoTxt}`);
+    return x;
+  });
+  IX.porId = Object.fromEntries(IX.C.map(c => [String(c.id), c]));
+}
+
+function visiblesIx(){
+  const toks = nrm(IX.q).split(" ").filter(Boolean);
+  return IX.C.filter(c => (!IX.obra || c.obraKey === IX.obra) && (!IX.empresa || c.empresa === IX.empresa) &&
+    toks.every(t => c.hay.includes(t)));
+}
+const sumaIx = a => a.reduce((s, c) => s + (c.monto || 0), 0);
+
+/* ---------------- arranque ---------------- */
+function renderIndice(d){
+  const t = new Date(); IX.hoy = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  IX.mes = new Date(IX.hoy.getFullYear(), IX.hoy.getMonth(), 1);
+  prepararIx(d);
+  document.title = "Certificaciones — BAGSA";
+  const opObras = d.obras.map(o => `<option value="${esc(o.key)}">${esc(o.nombre)}</option>`).join("");
+  const opEmp = d.empresas.map(e => `<option value="${esc(e)}">${esc(e)}</option>`).join("");
+  app.innerHTML = `
+    <nav class="secciones" aria-label="Secciones">
+      <a href="#calendario">Calendario</a><a href="#mover">Para mover hoy</a><a href="#obras">Obras</a><a href="#datos">Control de datos</a>
+    </nav>
+    <div class="obra-head">
+      <h1>Certificaciones</h1>
+      <p class="desc">Seguimiento de cobros de todas las obras, a partir de la planilla de seguimiento de certificaciones.</p>
+      <div class="meta">
+        <span><b>${d.comprobantes.length}</b> comprobantes</span>
+        <span><b>${d.obras.filter(o => o.key !== "(SIN OBRA)").length}</b> obras</span>
+        <span><b>${d.empresas.length}</b> empresas</span>
+        <span>Datos al <b>${esc(d.generatedAt)} ${esc(d.generatedTime || "")}</b></span>
+      </div>
+    </div>
+    <div class="kpis" id="ix-kpis"></div>
+    <div class="ix-filtros-activos" id="ix-activos"></div>
+
+    <section id="calendario">
+      <h2>Calendario</h2>
+      <p class="bajada">En curso muestra lo que todavía no se pagó, con su última etapa y la fecha de pago estimada. Historial muestra todo lo que pasó en el mes. Los montos están en las fichas.</p>
+      <div class="ix-main">
+        <div class="panel">
+          <div class="cal-bar">
+            <div class="cal-nav">
+              <button type="button" class="flecha" id="cal-prev" aria-label="Mes anterior">‹</button>
+              <h3 id="cal-mes" aria-live="polite"></h3>
+              <button type="button" class="flecha" id="cal-next" aria-label="Mes siguiente">›</button>
+              <button type="button" class="nav-btn" id="cal-hoy">Hoy</button>
+            </div>
+            <div class="seg" role="group" aria-label="Qué mostrar">
+              <button type="button" data-modo="curso" aria-pressed="true">En curso</button>
+              <button type="button" data-modo="hist" aria-pressed="false">Historial</button>
+            </div>
+          </div>
+          <div class="cal-filtros">
+            <select id="ix-obra" aria-label="Obra"><option value="">Todas las obras</option>${opObras}</select>
+            <select id="ix-emp" aria-label="Empresa"><option value="">Todas las empresas</option>${opEmp}</select>
+            <input type="search" id="ix-q" placeholder="Buscar obra, empresa o comprobante" aria-label="Buscar">
+          </div>
+          <div class="cal-sem"><div>lun</div><div>mar</div><div>mié</div><div>jue</div><div>vie</div><div>sáb</div><div>dom</div></div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="cal-vacio" id="cal-vacio" hidden></div>
+          <div class="cal-leyenda">
+            <span><i class="ev-acta"></i>Acta de medición</span><span><i class="ev-envio"></i>Enviado al contratista</span>
+            <span><i class="ev-entrada"></i>Factura recibida</span><span><i class="ev-tesoreria"></i>Entregado a Tesorería</span>
+            <span><i class="ev-pago"></i>Pagado</span><span><i class="est"></i>Pago estimado</span><span><i class="dem"></i>Demorado</span>
+          </div>
+        </div>
+        <div class="panel mover" id="mover"></div>
+      </div>
+    </section>
+
+    <section id="obras">
+      <h2>Obras</h2>
+      <p class="bajada">Todas las obras de la planilla de seguimiento. «Ver en el calendario» filtra el calendario y los indicadores por esa obra; «Abrir panel» entra al detalle de la obra, donde exista.</p>
+      <div class="obras-grid" id="ix-obras"></div>
+    </section>
+
+    <details class="panel ix-como" style="margin-top:32px"><summary>Cómo se calcula</summary>${comoIx(d)}</details>
+    <details class="panel ix-datos" id="datos" style="margin-top:16px"><summary>Control de datos (${d.avisos.length})</summary>${avisosIx(d)}</details>
+
+    <dialog class="ix-dlg" id="dlg-dia"></dialog>
+    <dialog class="ix-dlg" id="dlg-ficha"></dialog>`;
+
+  gid("cal-prev").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() - 1, 1); pintarCal(); };
+  gid("cal-next").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() + 1, 1); pintarCal(); };
+  gid("cal-hoy").onclick = () => { IX.mes = new Date(IX.hoy.getFullYear(), IX.hoy.getMonth(), 1); pintarCal(); };
+  document.querySelectorAll(".seg [data-modo]").forEach(b => b.onclick = () => {
+    IX.modo = b.dataset.modo;
+    document.querySelectorAll(".seg [data-modo]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    pintarCal();
+  });
+  gid("ix-obra").onchange = e => { IX.obra = e.target.value; pintarIx(); };
+  gid("ix-emp").onchange = e => { IX.empresa = e.target.value; pintarIx(); };
+  gid("ix-q").oninput = e => { IX.q = e.target.value; pintarIx(); };
+  gid("cal-grid").onclick = e => {
+    const ev = e.target.closest(".ev[data-id]");
+    if(ev && !movil()){ abrirFichaIx(ev.dataset.id); return; }
+    const cell = e.target.closest(".dia[data-f]");
+    if(cell && (e.target.closest("[data-dia]") || movil())) abrirDiaIx(cell.dataset.f);
+  };
+  gid("mover").onclick = e => { const b = e.target.closest("[data-id]"); if(b) abrirFichaIx(b.dataset.id); };
+  gid("ix-obras").onclick = e => {
+    const f = e.target.closest("[data-filtrar]");
+    if(f){ IX.obra = IX.obra === f.dataset.filtrar ? "" : f.dataset.filtrar; gid("ix-obra").value = IX.obra; pintarIx(); }
+  };
+  gid("ix-activos").onclick = e => {
+    const b = e.target.closest("[data-quitar]"); if(!b) return;
+    if(b.dataset.quitar === "obra"){ IX.obra = ""; gid("ix-obra").value = ""; }
+    if(b.dataset.quitar === "empresa"){ IX.empresa = ""; gid("ix-emp").value = ""; }
+    if(b.dataset.quitar === "q"){ IX.q = ""; gid("ix-q").value = ""; }
+    pintarIx();
+  };
+  for(const id of ["dlg-dia", "dlg-ficha"]){
+    const dl = gid(id);
+    dl.addEventListener("click", e => { if(e.target === dl || e.target.closest("[data-cerrar]")) dl.close(); });
+  }
+  gid("dlg-dia").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if(b){ gid("dlg-dia").close(); abrirFichaIx(b.dataset.id); } });
+  gid("dlg-ficha").addEventListener("click", e => { const b = e.target.closest("[data-ir-id]"); if(b) abrirFichaIx(b.dataset.irId); });
+  pintarIx();
+}
+
+function pintarIx(){
+  const vis = visiblesIx();
+  pintarKpis(vis);
+  pintarActivos();
+  pintarCal();
+  pintarMover(vis);
+  pintarObras();
+}
+
+function pintarActivos(){
+  const o = IX.d.obras.find(x => x.key === IX.obra);
+  const p = [];
+  if(IX.obra) p.push(`<button type="button" class="ix-pill" data-quitar="obra">Obra: ${esc(o ? o.nombre : IX.obra)} ✕</button>`);
+  if(IX.empresa) p.push(`<button type="button" class="ix-pill" data-quitar="empresa">Empresa: ${esc(IX.empresa)} ✕</button>`);
+  if(IX.q.trim()) p.push(`<button type="button" class="ix-pill" data-quitar="q">Búsqueda: ${esc(IX.q.trim())} ✕</button>`);
+  gid("ix-activos").innerHTML = p.join("");
+}
+
+/* ---------------- indicadores ---------------- */
+function pintarKpis(vis){
+  const act = vis.filter(c => !c.pagado && !c.antiguo);
+  const anio = IX.hoy.getFullYear();
+  const pag = vis.filter(c => c.pagado && c.fechas.pago.getFullYear() === anio);
+  const lim = addDays(IX.hoy, 30);
+  const esp = act.filter(c => c.estimado && c.estimado <= lim);
+  const atras = esp.filter(c => c.estimado < IX.hoy).length;
+  const dem = act.filter(c => c.demorado).length, ant = vis.filter(c => c.antiguo).length;
+  const obrasAct = new Set(act.map(c => c.obraKey)).size;
+  gid("ix-kpis").innerHTML = `
+    <div class="kpi"><div class="l">En trámite</div><div class="v">${fmtM(sumaIx(act))}</div>
+      <div class="s"><b>${act.length}</b> comprobantes sin pagar, de ${obrasAct} ${obrasAct === 1 ? "obra" : "obras"}. No incluye los ${ant} para revisar</div></div>
+    <div class="kpi"><div class="l">Pagado en ${anio}</div><div class="v">${fmtM(sumaIx(pag))}</div>
+      <div class="s"><b>${pag.length}</b> ${pag.length === 1 ? "pago" : "pagos"} en lo que va del año</div></div>
+    <div class="kpi"><div class="l">Pagos esperados, próximos 30 días</div><div class="v">${fmtM(sumaIx(esp))}</div>
+      <div class="s"><b>${esp.length}</b> ${esp.length === 1 ? "comprobante" : "comprobantes"}${atras ? `, ${atras} con la fecha estimada ya vencida` : ""}</div></div>
+    <div class="kpi"><div class="l">Demorados y para revisar</div><div class="v">${dem + ant}</div>
+      <div class="s"><b>${dem}</b> demorados en su etapa y <b>${ant}</b> antiguos o sin fechas, que probablemente tienen el pago sin cargar</div></div>`;
+}
+
+/* ---------------- calendario ---------------- */
+function eventosIx(){
+  const ev = [];
+  for(const c of visiblesIx()){
+    const pres = ETA.filter(e => c.fechas[e.k]);
+    if(IX.modo === "curso"){
+      if(c.pagado || c.antiguo) continue;
+      pres.slice(-2).forEach(e => ev.push({c, k:e.k, f:c.fechas[e.k], est:false}));
+    } else {
+      pres.forEach(e => ev.push({c, k:e.k, f:c.fechas[e.k], est:false}));
+    }
+    if(!c.pagado && !c.antiguo && c.estimado) ev.push({c, k:"pago", f:c.estimado, est:true});
+  }
+  const rango = {pago:5, tesoreria:4, entrada:3, envio:2, acta:1};
+  return ev.sort((a, b) => (rango[b.k] - rango[a.k]) || a.c.obra.localeCompare(b.c.obra));
+}
+
+function chipIx(x){
+  const c = x.c, e = ETA_K[x.k];
+  const atrasado = x.est && x.f < IX.hoy;
+  const corto = x.est ? "Pago est." : e.corto;
+  let tip = `${x.est ? "Pago estimado" : e.largo}: ${c.obra}, ${c.label} (${c.empresa})`;
+  if(c.demorado) tip += `. Demorado: ${diasTxt(c.dias)} en esta etapa, lo normal es hasta ${Math.round(c.med * IX.d.reglas.demoraFactor)}`;
+  if(atrasado) tip += ". La fecha estimada ya pasó";
+  return `<button type="button" class="ev ev-${x.k}${x.est ? " est" : ""}${atrasado ? " atrasado" : ""}${c.demorado ? " dem" : ""}" data-id="${c.id}" title="${esc(tip)}" aria-label="${esc(tip)}"><span class="tx"><b>${corto}</b><span class="nm">${esc(c.obra)} ${esc(c.label)}</span></span></button>`;
+}
+
+function pintarCal(){
+  const y = IX.mes.getFullYear(), m = IX.mes.getMonth();
+  gid("cal-mes").textContent = `${MESES_LARGO[m]} ${y}`;
+  const mapa = {};
+  for(const x of eventosIx()){ (mapa[ymd(x.f)] ||= []).push(x); }
+  const offset = (IX.mes.getDay() + 6) % 7;
+  const ini = new Date(y, m, 1 - offset);
+  const dias = new Date(y, m + 1, 0).getDate();
+  const filas = Math.ceil((offset + dias) / 7);
+  let h = "", delMes = 0;
+  for(let i = 0; i < filas * 7; i++){
+    const f = new Date(ini.getFullYear(), ini.getMonth(), ini.getDate() + i);
+    const k = ymd(f), ev = mapa[k] || [], fuera = f.getMonth() !== m;
+    if(!fuera) delMes += ev.length;
+    const max = 3;
+    h += `<div class="dia${fuera ? " fuera" : ""}${ymd(f) === ymd(IX.hoy) ? " hoy" : ""}" data-f="${k}">
+      <button type="button" class="dn" data-dia aria-label="Ver el ${f.getDate()} de ${MESES_LARGO[f.getMonth()]}">${f.getDate()}</button>
+      <div class="evs">${ev.slice(0, max).map(chipIx).join("")}</div>
+      ${ev.length > max ? `<button type="button" class="mas" data-dia>+${ev.length - max} más</button>` : ""}</div>`;
+  }
+  gid("cal-grid").innerHTML = h;
+  const vacio = gid("cal-vacio");
+  vacio.hidden = delMes > 0;
+  vacio.textContent = IX.modo === "curso"
+    ? "No hay trámites en curso con fechas en este mes. Probá con el mes siguiente o pasá a Historial para ver lo que ya pasó."
+    : "No hay movimientos con estos filtros en este mes.";
+}
+
+function abrirDiaIx(k){
+  const evs = eventosIx().filter(x => ymd(x.f) === k);
+  const f = parseISO(k);
+  gid("dlg-dia").innerHTML = `<button type="button" class="cerrar" data-cerrar>Cerrar</button>
+    <h3 class="f-tit">${f.getDate()} de ${MESES_LARGO[f.getMonth()]} de ${f.getFullYear()}</h3>
+    <div class="dia-lista">${evs.length ? evs.map(x => {
+      const e = ETA_K[x.k], c = x.c;
+      return `<button type="button" class="mv" data-id="${c.id}"><span class="t"><span class="pto ev-${x.k}"></span>${x.est ? "Pago estimado" : e.largo}${c.demorado ? '<span class="tag">demorado</span>' : ""}</span>
+        <span class="s">${esc(c.obra)}, ${esc(c.label)}. ${esc(c.empresa)}</span></button>`;
+    }).join("") : '<p class="mv-vacio">No hay movimientos este día con los filtros actuales.</p>'}</div>`;
+  gid("dlg-dia").showModal();
+}
+
+/* ---------------- para mover hoy ---------------- */
+function enEtapaTxt(c){
+  const q = QUIEN[c.etapa];
+  return `${c.dias <= 0 ? "Hoy" : "Hace " + diasTxt(c.dias)}, ${q ? q.txt : ""}`;
+}
+function filaMover(c, conEstimado){
+  return `<button type="button" class="mv" data-id="${c.id}"><span class="t">${esc(c.obra)}, ${esc(c.label)}${c.demorado ? '<span class="tag">demorado</span>' : ""}</span>
+    <span class="s">${enEtapaTxt(c)}${conEstimado && c.estimado ? `. Pago estimado el ${fmtDate(c.estimado)}` : ""}</span></button>`;
+}
+function pintarMover(vis){
+  const act = vis.filter(c => !c.pagado && !c.antiguo);
+  const porDias = (a, b) => b.dias - a.dias;
+  const g1 = act.filter(c => QUIEN[c.etapa] && QUIEN[c.etapa].quien === "bagsa").sort(porDias);
+  const g2 = act.filter(c => c.etapa === "envio").sort(porDias);
+  const g3 = act.filter(c => c.etapa === "tesoreria").sort((a, b) => (a.estimado - b.estimado));
+  const rev = vis.filter(c => c.antiguo).sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+  const grupo = (t, s, a, est, vacio) => `<div class="mv-g"><h4>${t} (${a.length})</h4><div class="sub">${s}</div>${a.length ? a.map(c => filaMover(c, est)).join("") : `<div class="mv-vacio">${vacio}</div>`}</div>`;
+  gid("mover").innerHTML = `<h3>Para mover hoy</h3>
+    <p class="nota" style="margin:2px 0 0">Trámites sin pagar, según la etapa en que están.</p>
+    ${grupo("Te toca a vos", "Acta lista para enviar al contratista, o factura para entregar a Tesorería", g1, true, "Nada pendiente de tu lado.")}
+    ${grupo("Esperan al contratista", "Enviados, falta la factura", g2, true, "Ninguno.")}
+    ${grupo("Esperan el pago", "Ya están en Tesorería", g3, true, "Ninguno.")}
+    <details><summary>Para revisar (${rev.length})</summary>
+      <p class="f-nota">Más de ${IX.d.reglas.antiguoDias} días sin movimiento o sin ninguna fecha. Probablemente ya se pagaron y falta cargar el pago.</p>
+      ${rev.length ? rev.map(c => `<button type="button" class="mv" data-id="${c.id}"><span class="t">${esc(c.obra)}, ${esc(c.label)}</span>
+        <span class="s">${c.fEtapa ? `Último movimiento hace ${diasTxt(c.dias)}: ${ETA_K[c.etapa].largo.toLowerCase()}` : "Sin ninguna fecha cargada"}. ${esc(c.empresa)}</span></button>`).join("") : '<div class="mv-vacio">Nada para revisar.</div>'}
+    </details>`;
+}
+
+/* ---------------- obras ---------------- */
+function pintarObras(){
+  const d = IX.d;
+  const filas = d.obras.map(o => {
+    const cs = IX.C.filter(c => c.obraKey === o.key);
+    const pag = cs.filter(c => c.pagado), act = cs.filter(c => !c.pagado && !c.antiguo), rev = cs.filter(c => c.antiguo).length;
+    const ult = pag.reduce((m, c) => (!m || c.fechas.pago > m) ? c.fechas.pago : m, null);
+    return {o, n:cs.length, pag, act, rev, ult};
+  }).sort((a, b) => (sumaIx(b.act) - sumaIx(a.act)) || ((b.ult || 0) - (a.ult || 0)));
+  gid("ix-obras").innerHTML = filas.map(({o, n, pag, act, rev, ult}) => `
+    <article class="obra-card${IX.obra === o.key ? " sel" : ""}">
+      <div><h3>${esc(o.nombre)}</h3><div class="emp">${esc(o.empresas.join(", "))}</div></div>
+      <div class="oc-nums">
+        <div><span class="l">Pagado</span><b>${fmtM(sumaIx(pag))}</b><span class="s">${pag.length} ${pag.length === 1 ? "pago" : "pagos"}</span></div>
+        <div><span class="l">En trámite</span><b>${fmtM(sumaIx(act))}</b><span class="s">${act.length} ${act.length === 1 ? "comprobante" : "comprobantes"}</span></div>
+      </div>
+      <div class="oc-pie"><span>${n} comprobantes</span><span>Último pago: ${ult ? fmtDate(ult) : "—"}</span>${rev ? `<span class="tag">${rev} para revisar</span>` : ""}</div>
+      <div class="oc-acc">
+        <button type="button" class="btn" data-filtrar="${esc(o.key)}">${IX.obra === o.key ? "Quitar filtro" : "Ver en el calendario"}</button>
+        ${o.panel ? `<a class="btn prim" href="certificaciones.html?obra=${encodeURIComponent(o.panel)}">Abrir panel</a>` : '<span class="sin">Sin panel todavía</span>'}
+      </div>
+    </article>`).join("");
+}
+
+/* ---------------- ficha de un comprobante ---------------- */
+function enlacePanelIx(c){
+  const o = IX.d.obras.find(x => x.key === c.obraKey);
+  if(!o || !o.panel) return "";
+  let h = "";
+  if(c.tipo === "certificado" && c.n != null) h = `#cert-${c.n}`;
+  else if(c.tipo === "ajuste" && c.redet) h = `#ajuste-${c.redet}`;
+  else if(c.tipo === "anticipo" && c.pct) h = `#anticipo-${Math.round(c.pct * 100)}`;
+  return `certificaciones.html?obra=${encodeURIComponent(o.panel)}${h}`;
+}
+
+function abrirFichaIx(id){
+  const c = IX.porId[String(id)]; if(!c) return;
+  const pasos = ETA.filter(e => c.fechas[e.k]).map(e => ({l:e.largo, f:c.fechas[e.k]})).sort((a, b) => a.f - b.f);
+  let prev = null, tabla = "";
+  if(pasos.length){
+    tabla = `<div class="tabla-wrap"><table class="f-pasos"><thead><tr><th>Etapa</th><th>Fecha</th><th class="n">Días desde la anterior</th></tr></thead><tbody>` +
+      pasos.map(p => { const dd = prev ? Math.round((p.f - prev) / 864e5) : null; prev = p.f;
+        return `<tr><td>${p.l}</td><td>${fmtDate(p.f)}</td><td class="n d">${dd == null ? "—" : dd}</td></tr>`; }).join("") + `</tbody></table></div>`;
+  }
+  let situacion = "";
+  if(c.pagado){
+    situacion = `<p class="f-nota">Desde la primera fecha cargada hasta el pago: <b>${diasTxt(Math.round((c.fechas.pago - pasos[0].f) / 864e5))}</b>.</p>`;
+  } else if(c.antiguo){
+    situacion = `<p class="f-nota"><b>Para revisar:</b> ${c.fEtapa ? `lleva ${diasTxt(c.dias)} sin movimiento` : "no tiene ninguna fecha cargada"}. Probablemente ya se pagó y falta cargar el pago en la planilla.</p>`;
+  } else {
+    situacion = `<p class="f-nota">${c.demorado ? `<b>Demorado:</b> lleva ${diasTxt(c.dias)} en esta etapa y lo normal es hasta ${Math.round(c.med * IX.d.reglas.demoraFactor)}. ` : ""}Falta: <b>${ACCION[c.etapa]}</b>.${c.estimado ? ` Pago estimado el <b>${fmtDate(c.estimado)}</b>.` : ""}</p>`;
+  }
+  const enlace = enlacePanelIx(c);
+  gid("dlg-ficha").innerHTML = `<button type="button" class="cerrar" data-cerrar>Cerrar</button>
+    <h3 class="f-tit">${esc(c.obra)}, ${esc(c.label)}</h3>
+    <p class="f-sub">${esc(c.empresa)}. ${esc(c.tema)}</p>
+    <div class="f-sec"><h4>Estado</h4>
+      ${fila("Etapa actual", esc(c.estadoTxt), "", c.antiguo || c.demorado ? "alerta" : "")}
+      ${fila("Monto a pagar", fmtM(c.monto), "total")}
+    </div>
+    <div class="f-sec"><h4>Circuito de cobro</h4>${tabla || '<p class="f-nota">No tiene fechas cargadas.</p>'}${situacion}</div>
+    ${c.factura ? `<div class="f-sec"><h4>Factura</h4><p class="f-nota">${esc(c.factura)}</p></div>` : ""}
+    ${c.poliza ? `<div class="f-sec"><h4>Garantías</h4><p class="f-nota">${esc(c.poliza)}</p></div>` : ""}
+    ${c.obs ? `<div class="f-sec"><h4>Observaciones del seguimiento</h4><p class="f-nota">${esc(c.obs)}</p></div>` : ""}
+    ${enlace ? `<p style="margin:18px 0 0"><a class="btn prim" href="${enlace}" style="text-decoration:none;display:inline-block">Abrir en el panel de ${esc(c.obra)}</a></p>` : ""}`;
+  gid("dlg-ficha").showModal();
+}
+
+/* ---------------- cómo se calcula y control de datos ---------------- */
+function comoIx(d){
+  const m = d.medianas, r = d.reglas;
+  return `<ul class="ix-como" style="padding-left:18px">
+    <li><b>Etapas.</b> Acta de medición, envío al contratista, factura recibida, entrega a Tesorería y pago. Cada trámite está en la etapa más avanzada que tiene fecha. Las fechas salen de la TABLA MASTER del seguimiento.</li>
+    <li><b>En trámite.</b> Comprobantes sin fecha de pago y con un movimiento de hace menos de ${r.antiguoDias} días.</li>
+    <li><b>Pago estimado.</b> Fecha de la última etapa más los días que suele tardar desde esa etapa hasta el pago, que son la mediana de todas las obras sin contar a TGS: ${m.acta} desde el acta, ${m.envio} desde el envío, ${m.entrada} desde la factura y ${m.tesoreria} desde Tesorería.</li>
+    <li><b>Demorado.</b> Lleva en su etapa más de ${String(r.demoraFactor).replace(".", ",")} veces esos días.</li>
+    <li><b>Para revisar.</b> Más de ${r.antiguoDias} días sin movimiento o sin ninguna fecha. Se supone que el pago está sin cargar, y por eso no se suman al trámite ni al calendario en curso.</li>
+    <li><b>Quién mueve cada etapa.</b> Le toca a BAGSA enviar el acta al contratista y entregar la factura a Tesorería. Después de enviar espera al contratista, y en Tesorería espera el pago.</li>
+    <li><b>Montos.</b> Es el «monto a pagar» de la planilla, y solo se ven en los indicadores, las tarjetas de obra y las fichas.</li>
+  </ul>`;
+}
+
+function avisosIx(d){
+  const por = t => d.avisos.filter(a => a.tipo === t);
+  const lista = (titulo, a) => a.length ? `${titulo ? `<h4>${titulo} (${a.length})</h4>` : ""}<ul>${a.map(x => `<li><span class="fila">Fila ${x.fila}.</span> ${esc(x.texto)}</li>`).join("")}</ul>` : "";
+  const graves = por("desorden").filter(a => !a.leve), leves = por("desorden").filter(a => a.leve);
+  const cuerpo = lista("Sin obra asignada", por("sin_obra")) + lista("Fechas que parecen mal cargadas", por("fecha_rara")) +
+    lista("Texto en lugar de fecha", por("texto_en_fecha")) + lista("Etapas en desorden por más de 3 días", graves) +
+    (leves.length ? `<details style="margin-top:12px"><summary>Etapas en desorden por 3 días o menos (${leves.length})</summary>${lista("", leves)}</details>` : "");
+  return `<p class="nota" style="margin-top:8px">Diferencias de la planilla de seguimiento que conviene corregir en el Excel. El número de fila es el de la hoja TABLA MASTER.</p>${cuerpo || "<p>No se encontraron problemas.</p>"}`;
 }
 
 </script>
