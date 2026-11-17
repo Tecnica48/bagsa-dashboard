@@ -1,6 +1,6 @@
 {
- "generatedAt": "07/10/2026",
- "generatedTime": "15:35",
+ "generatedAt": "17/11/2026",
+ "generatedTime": "09:52",
  "obra": {
   "clave": "mechita",
   "nombre": "Mechita",
@@ -16,14 +16,14 @@
   "redetVigente": 7
  },
  "kpis": {
-  "pctAvance": 0.921009,
-  "ultimoCert": 20,
-  "ultimoCertFecha": "2026-10-08",
-  "certificadoPreciosVigentes": 5906303953.73,
-  "certificadoPreciosContrato": 4599324835.78,
-  "netoCertificado": 5745738525.74,
-  "pagado": 5488467391.25,
-  "porCobrar": 257271134.49,
+  "pctAvance": 0.94099,
+  "ultimoCert": 21,
+  "ultimoCertFecha": "2026-11-10",
+  "certificadoPreciosVigentes": 6050407777.32,
+  "certificadoPreciosContrato": 4699107341.91,
+  "netoCertificado": 5846611202.25,
+  "pagado": 5745738525.74,
+  "porCobrar": 100872676.51,
   "anticipoDescontado": 1942119547.41,
   "anticipoAprobado": 1943657603.68
  },
@@ -327,6 +327,21 @@
    "acumConRedet": 5519866843.5,
    "pct": 0.017772,
    "pctAcum": 0.921009
+  },
+  {
+   "n": 21,
+   "redet": 7,
+   "fecha": "2026-11-10",
+   "mes": "2026-10",
+   "base": 99782506.13,
+   "conRedet": 144103823.59,
+   "difRedet": 44321317.46,
+   "anticipoDesc": 43231147.08,
+   "polizaCaucion": 7205191.18,
+   "neto": 100872676.51,
+   "acumConRedet": 5663970667.09,
+   "pct": 0.019981,
+   "pctAcum": 0.94099
   }
  ],
  "anticipos": [
@@ -643,6 +658,12 @@
     "mes": "2026-09",
     "pct": 0.017772,
     "pctAcum": 0.921009
+   },
+   {
+    "n": 21,
+    "mes": "2026-10",
+    "pct": 0.019981,
+    "pctAcum": 0.94099
    }
   ],
   "plan": [
@@ -858,9 +879,9 @@
    "pctAcum": 0.907163,
    "cantAcum": 11031.1,
    "saldoCant": 1128.9,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 928.9,
    "saldoMonto": 53510672.81,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 44030528.81
   },
   {
    "codigo": "1b",
@@ -875,9 +896,9 @@
    "pctAcum": 1.110225,
    "cantAcum": 4729.56,
    "saldoCant": -469.56,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": -469.56,
    "saldoMonto": -24017500.96,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": -24017500.96
   },
   {
    "codigo": "1c",
@@ -892,9 +913,9 @@
    "pctAcum": 0.926204,
    "cantAcum": 2000.6,
    "saldoCant": 159.4,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 159.4,
    "saldoMonto": 10118727.94,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 10118727.94
   },
   {
    "codigo": "1d",
@@ -906,12 +927,12 @@
    "precioVigente": 83117.05,
    "totalVigente": 91428755.0,
    "peso": 0.01419,
-   "pctAcum": 0.927636,
-   "cantAcum": 1020.4,
-   "saldoCant": 79.6,
-   "noSeEjecutaCant": 0.0,
-   "saldoMonto": 6616117.18,
-   "noSeEjecutaMonto": 0.0
+   "pctAcum": 0.930727,
+   "cantAcum": 1023.8,
+   "saldoCant": 76.2,
+   "noSeEjecutaCant": 76.2,
+   "saldoMonto": 6333519.21,
+   "noSeEjecutaMonto": 6333519.21
   },
   {
    "codigo": "1e",
@@ -923,12 +944,12 @@
    "precioVigente": 105191.89,
    "totalVigente": 102036133.3,
    "peso": 0.016844,
-   "pctAcum": 0.875567,
-   "cantAcum": 849.3,
-   "saldoCant": 120.7,
-   "noSeEjecutaCant": 0.0,
-   "saldoMonto": 12696661.12,
-   "noSeEjecutaMonto": 0.0
+   "pctAcum": 0.889897,
+   "cantAcum": 863.2,
+   "saldoCant": 106.8,
+   "noSeEjecutaCant": 106.8,
+   "saldoMonto": 11234493.85,
+   "noSeEjecutaMonto": 11234493.85
   },
   {
    "codigo": "2a",
@@ -943,9 +964,9 @@
    "pctAcum": 0.0,
    "cantAcum": 0.0,
    "saldoCant": 2000.0,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 1350.0,
    "saldoMonto": 30893180.0,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 20852896.5
   },
   {
    "codigo": "2b",
@@ -960,9 +981,9 @@
    "pctAcum": 0.0,
    "cantAcum": 0.0,
    "saldoCant": 2000.0,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 1200.0,
    "saldoMonto": 49429100.0,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 29657460.0
   },
   {
    "codigo": "3a",
@@ -1028,9 +1049,9 @@
    "pctAcum": 0.0,
    "cantAcum": 0.0,
    "saldoCant": 1.0,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 1.0,
    "saldoMonto": 5915559.63,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 5915559.63
   },
   {
    "codigo": "5b",
@@ -1093,11 +1114,11 @@
    "precioVigente": 389256561.93,
    "totalVigente": 389256561.93,
    "peso": 0.064499,
-   "pctAcum": 0.8,
-   "cantAcum": 0.8,
-   "saldoCant": 0.2,
+   "pctAcum": 0.9,
+   "cantAcum": 0.9,
+   "saldoCant": 0.1,
    "noSeEjecutaCant": 0.0,
-   "saldoMonto": 77851312.39,
+   "saldoMonto": 38925656.19,
    "noSeEjecutaMonto": 0.0
   },
   {
@@ -1113,9 +1134,9 @@
    "pctAcum": 0.990096,
    "cantAcum": 19306.87875,
    "saldoCant": 193.12125,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 193.12125,
    "saldoMonto": 27885399.14,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 27885399.14
   },
   {
    "codigo": "8",
@@ -1127,11 +1148,11 @@
    "precioVigente": 489655037.45,
    "totalVigente": 489655037.45,
    "peso": 0.086825,
-   "pctAcum": 0.859715,
-   "cantAcum": 0.859715,
-   "saldoCant": 0.140285,
+   "pctAcum": 0.929715,
+   "cantAcum": 0.929715,
+   "saldoCant": 0.070285,
    "noSeEjecutaCant": 0.0,
-   "saldoMonto": 68691256.93,
+   "saldoMonto": 34415404.31,
    "noSeEjecutaMonto": 0.0
   },
   {
@@ -1144,11 +1165,11 @@
    "precioVigente": 391587813.54,
    "totalVigente": 391587813.54,
    "peso": 0.06822,
-   "pctAcum": 0.87235,
-   "cantAcum": 0.87235,
-   "saldoCant": 0.12765,
+   "pctAcum": 0.965975,
+   "cantAcum": 0.965975,
+   "saldoCant": 0.034025,
    "noSeEjecutaCant": 0.0,
-   "saldoMonto": 49986184.4,
+   "saldoMonto": 13323775.36,
    "noSeEjecutaMonto": 0.0
   },
   {
@@ -1161,11 +1182,11 @@
    "precioVigente": 274036855.82,
    "totalVigente": 274036855.82,
    "peso": 0.044653,
-   "pctAcum": 0.937,
-   "cantAcum": 0.937,
-   "saldoCant": 0.063,
+   "pctAcum": 0.9545,
+   "cantAcum": 0.9545,
+   "saldoCant": 0.0455,
    "noSeEjecutaCant": 0.0,
-   "saldoMonto": 17264321.92,
+   "saldoMonto": 12468676.94,
    "noSeEjecutaMonto": 0.0
   },
   {
@@ -1198,9 +1219,9 @@
    "pctAcum": 0.973041,
    "cantAcum": 18974.3,
    "saldoCant": 525.7,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 193.0,
    "saldoMonto": 1537346.57,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 564405.34
   },
   {
    "codigo": "11c",
@@ -1215,9 +1236,9 @@
    "pctAcum": 0.484262,
    "cantAcum": 10000.0,
    "saldoCant": 10650.0,
-   "noSeEjecutaCant": 0.0,
+   "noSeEjecutaCant": 819.04,
    "saldoMonto": 4653198.0,
-   "noSeEjecutaMonto": 0.0
+   "noSeEjecutaMonto": 357854.96
   },
   {
    "codigo": "12",
@@ -1352,17 +1373,17 @@
     {
      "nombre": "Mecánica",
      "peso": 0.7,
-     "avance": 0.9362,
+     "avance": 0.9612,
      "tareas": []
     },
     {
      "nombre": "Eléctrica",
      "peso": 0.15,
-     "avance": 0.4,
+     "avance": 0.75,
      "tareas": []
     }
    ],
-   "total": 0.859715
+   "total": 0.929715
   },
   {
    "codigo": "9",
@@ -1371,17 +1392,17 @@
     {
      "nombre": "Civil",
      "peso": 0.15,
-     "avance": 0.959,
+     "avance": 0.9815,
      "tareas": [
       {
        "tarea": "Plateas",
        "peso": 0.3,
-       "avance": 0.98
+       "avance": 1.0
       },
       {
        "tarea": "Caminos y muros",
        "peso": 0.55,
-       "avance": 0.95
+       "avance": 0.98
       },
       {
        "tarea": "Alambrados",
@@ -1393,17 +1414,17 @@
     {
      "nombre": "Mecánica",
      "peso": 0.7,
-     "avance": 0.955,
+     "avance": 0.9875,
      "tareas": []
     },
     {
      "nombre": "Eléctrica",
      "peso": 0.15,
-     "avance": 0.4,
+     "avance": 0.85,
      "tareas": []
     }
    ],
-   "total": 0.87235
+   "total": 0.965975
   },
   {
    "codigo": "10",
@@ -1412,17 +1433,17 @@
     {
      "nombre": "Civil",
      "peso": 0.25,
-     "avance": 0.94,
+     "avance": 0.98,
      "tareas": [
       {
        "tarea": "Plateas, veredas y bases",
        "peso": 0.3,
-       "avance": 0.95
+       "avance": 1.0
       },
       {
        "tarea": "Muros y alambrados",
        "peso": 0.5,
-       "avance": 0.95
+       "avance": 1.0
       },
       {
        "tarea": "Camaras",
@@ -1440,11 +1461,11 @@
     {
      "nombre": "Eléctrica",
      "peso": 0.15,
-     "avance": 0.8,
+     "avance": 0.85,
      "tareas": []
     }
    ],
-   "total": 0.937
+   "total": 0.9545
   }
  ],
  "tramites": [
@@ -1980,10 +2001,10 @@
    "envio": "2026-09-09",
    "entrada": "2026-09-17",
    "tesoreria": "2026-09-17",
-   "pago": null,
-   "estado": "En Tesorería",
-   "pagoEstimado": "2026-10-21",
-   "diasCertAPago": null,
+   "pago": "2026-10-08",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 29,
    "factura": "FA A 00002-00000758 por $ 153.528.189,66 IVA incluido. –",
    "poliza": "Póliza de seguro de caución de TUTELAR n.º 171.449 en garantía de sustitución de fondo de reparo. –",
    "obs": "14-9 se envia la documentacion de RRHH de la contratista a RRHH Bagsa S.A / 14-9 se envia comentarios de documentacion faltante a la contratista/ 17-9 se envia la documentaciones por parte de la contratista/ 17-9 Validacion de personal."
@@ -1997,15 +2018,15 @@
    "monto": 14002596.41,
    "fechaCert": "2026-10-02",
    "acta": null,
-   "envio": null,
-   "entrada": null,
-   "tesoreria": null,
-   "pago": null,
-   "estado": "Certificado emitido",
-   "pagoEstimado": "2026-11-15",
-   "diasCertAPago": null,
-   "factura": null,
-   "poliza": null,
+   "envio": "2026-10-02",
+   "entrada": "2026-10-13",
+   "tesoreria": "2026-10-14",
+   "pago": "2026-11-13",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 42,
+   "factura": "FA A 0002-00000760 por $ 14.002.596,41 IVA incluido. - (Por ajuste de obra ejecutada)",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 177.594 en garantía de sustitución de fondo de reparo",
    "obs": null
   },
   {
@@ -2017,16 +2038,36 @@
    "monto": 89740348.42,
    "fechaCert": "2026-10-08",
    "acta": "2026-10-06",
-   "envio": null,
+   "envio": "2026-10-07",
+   "entrada": "2026-10-19",
+   "tesoreria": "2026-10-19",
+   "pago": "2026-11-13",
+   "estado": "Pagado",
+   "pagoEstimado": null,
+   "diasCertAPago": 36,
+   "factura": "FA A 00002-00000761 por $ 89.740.348,42 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 177.595 en garantía de sustitución de fondo de reparo. –",
+   "obs": "13-10 se envia a rrhh Bagsa la documentacion por parte de la contratista/ 13-10 se envia comentarios de documentacion pendiente a la contratista.( fondo de desempleo de Obregon)/16-10 se envia documentacion s rrhh bagsa/ 19-10 validacion del personal"
+  },
+  {
+   "nombre": "Certificado Nº 21",
+   "tipo": "certificado",
+   "n": 21,
+   "redet": 7,
+   "tema": "Certificado Nº 21 con redet VII",
+   "monto": 100872676.51,
+   "fechaCert": "2026-11-10",
+   "acta": "2026-11-06",
+   "envio": "2026-11-10",
    "entrada": null,
    "tesoreria": null,
    "pago": null,
-   "estado": "Acta de medición",
-   "pagoEstimado": "2026-11-21",
+   "estado": "Enviado al contratista",
+   "pagoEstimado": "2026-12-22",
    "diasCertAPago": null,
    "factura": null,
    "poliza": null,
-   "obs": null
+   "obs": "16-11 se envio documentacion del personal a rrhh Bagsa/"
   }
  ],
  "otrosPagos": [
@@ -2074,24 +2115,24 @@
   }
  ],
  "proyeccion": {
-  "saldoPct": 0.078991,
-  "ritmoReciente": 0.024147,
+  "saldoPct": 0.05901,
+  "ritmoReciente": 0.023002,
   "ritmoRecienteCerts": [
-   18,
    19,
-   20
+   20,
+   21
   ],
-  "ultimoMes": "2026-09",
+  "ultimoMes": "2026-10",
   "finContractual": "2026-07-23",
   "finPlanVigente": "2026-11-01",
-  "mesesHastaFinVigente": 2,
-  "ritmoNecesario": 0.039496,
+  "mesesHastaFinVigente": 1,
+  "ritmoNecesario": 0.05901,
   "finEstimadoRitmo": "2027-01-01",
-  "saldoObraConIva": 567427870.97,
-  "saldoObraAPagar": 397199509.68,
+  "saldoObraConIva": 423324047.38,
+  "saldoObraAPagar": 131760759.64,
   "diasMedianosAPago": {
-   "acta": 46,
-   "envio": 44,
+   "acta": 44,
+   "envio": 42,
    "entrada": 35,
    "tesoreria": 34,
    "certificado": 44
@@ -2099,8 +2140,8 @@
  },
  "seguimientoSaldo": {
   "finPlanVigente": "2026-11-01",
-  "montoActualizado": 6146526833.38,
-  "saldoAPagar": 400788307.64
+  "montoActualizado": null,
+  "saldoAPagar": null
  },
  "avisos": []
 }

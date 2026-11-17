@@ -1,6 +1,6 @@
 {
- "generatedAt": "10/11/2026",
- "generatedTime": "13:22",
+ "generatedAt": "17/11/2026",
+ "generatedTime": "09:52",
  "reglas": {
   "antiguoDias": 120,
   "demoraFactor": 1.5
@@ -7785,7 +7785,7 @@
    "envio": "2026-10-02",
    "entrada": "2026-10-13",
    "tesoreria": "2026-10-14",
-   "pago": null,
+   "pago": "2026-11-13",
    "factura": "FA A 0002-00000760 por $ 14.002.596,41 IVA incluido. - (Por ajuste de obra ejecutada)",
    "poliza": "Póliza de seguro de caución de TUTELAR n.º 177.594 en garantía de sustitución de fondo de reparo",
    "obs": null
@@ -7827,7 +7827,7 @@
    "envio": "2026-10-07",
    "entrada": "2026-10-19",
    "tesoreria": "2026-10-19",
-   "pago": null,
+   "pago": "2026-11-13",
    "factura": "FA A 00002-00000761 por $ 89.740.348,42 IVA incluido. –",
    "poliza": "Póliza de seguro de caución de TUTELAR n.º 177.595 en garantía de sustitución de fondo de reparo. –",
    "obs": "13-10 se envia a rrhh Bagsa la documentacion por parte de la contratista/ 13-10 se envia comentarios de documentacion pendiente a la contratista.( fondo de desempleo de Obregon)/16-10 se envia documentacion s rrhh bagsa/ 19-10 validacion del personal"
@@ -7848,7 +7848,7 @@
    "envio": "2026-10-20",
    "entrada": "2026-10-22",
    "tesoreria": "2026-10-22",
-   "pago": null,
+   "pago": "2026-11-13",
    "factura": "FA 00002-00000762 por $ 299.881.923,00 IVA incluido. –",
    "poliza": "Nota de solicitud del Anticipo Financiero",
    "obs": "Poliza de AF Nº 157.155 por un monto 899.645.769,00(30% MC), en la presentacion de AF10 % se va adjuntar la misma."
@@ -7914,7 +7914,7 @@
    "pago": null,
    "factura": null,
    "poliza": null,
-   "obs": null
+   "obs": "16-11 se envio documentacion del personal a rrhh Bagsa/"
   }
  ],
  "avisos": [
