@@ -1,6 +1,6 @@
 {
- "generatedAt": "17/11/2026",
- "generatedTime": "09:52",
+ "generatedAt": "18/11/2026",
+ "generatedTime": "11:13",
  "reglas": {
   "antiguoDias": 120,
   "demoraFactor": 1.5
@@ -18,7 +18,7 @@
    "empresas": [
     "VTS CONSTRUCCIONES S.R.L."
    ],
-   "panel": null,
+   "panel": "anchorena",
    "url": null
   },
   {
@@ -36,7 +36,7 @@
    "empresas": [
     "MEGA ENERGIAS S.A."
    ],
-   "panel": null,
+   "panel": "chascomus",
    "url": null
   },
   {
@@ -8045,6 +8045,20 @@
    "tipo": "texto_en_fecha",
    "fila": 250,
    "texto": "5% A LOS 90 DIAS CORRIDOS ACUERDO (Patricios): en la columna de tesoreria dice «pedir O.P / SE PAGO?» en lugar de una fecha."
+  }
+ ],
+ "pendientes": [
+  {
+   "obraKey": "CHASCOMUS",
+   "obra": "Chascomús",
+   "empresa": "MEGA ENERGIAS S.A.",
+   "tipo": "ajuste",
+   "redet": 1,
+   "label": "Ajuste I",
+   "tema": "AJUSTE I por Redet. I (cálculo hecho)",
+   "monto": 42229994.55,
+   "fechaCaratula": null,
+   "idSeguimiento": null
   }
  ]
 }

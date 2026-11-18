@@ -1,6 +1,6 @@
 {
- "generatedAt": "17/11/2026",
- "generatedTime": "09:52",
+ "generatedAt": "18/11/2026",
+ "generatedTime": "11:13",
  "obra": {
   "clave": "mechita",
   "nombre": "Mechita",
@@ -26,6 +26,356 @@
   "porCobrar": 100872676.51,
   "anticipoDescontado": 1942119547.41,
   "anticipoAprobado": 1943657603.68
+ },
+ "resumen": {
+  "cuadro": [
+   {
+    "clave": "abonadoDescAnticipos",
+    "acumulado": 4235285444.13,
+    "faltante": null
+   },
+   {
+    "clave": "certContrato",
+    "acumulado": 4699107341.91,
+    "faltante": 294683779.09
+   },
+   {
+    "clave": "certVigente",
+    "acumulado": 6050407777.32,
+    "faltante": 428450901.61
+   },
+   {
+    "clave": "abonadoConAF",
+    "acumulado": 5846611202.25,
+    "faltante": 131760759.64
+   },
+   {
+    "clave": "abonadoMasSaldo",
+    "acumulado": null,
+    "faltante": 5978371961.89
+   },
+   {
+    "clave": "montoVigente",
+    "acumulado": null,
+    "faltante": 6146526833.38
+   },
+   {
+    "clave": "difAbonadoVsMonto",
+    "acumulado": null,
+    "faltante": 168154871.49
+   },
+   {
+    "clave": "pctObra",
+    "acumulado": 0.941,
+    "faltante": 0.059
+   },
+   {
+    "clave": "anticipoDescontado",
+    "acumulado": null,
+    "faltante": 1942119547.41
+   },
+   {
+    "clave": "anticipoAprobado",
+    "acumulado": null,
+    "faltante": 1943657603.68
+   },
+   {
+    "clave": "anticipoDiferencia",
+    "acumulado": null,
+    "faltante": -1538056.27
+   }
+  ],
+  "totalesColumnas": {
+   "certificados": {
+    "base": 4699107341.91,
+    "conRedet": 5663970667.09,
+    "dif": 964863325.18,
+    "anticipo": 1699191200.13,
+    "fondo": 283198533.35,
+    "neto": 3964779466.96
+   },
+   "ajustes": {
+    "ajuste": 386437110.24,
+    "anticipo": 115931133.07,
+    "fondo": 19321855.51,
+    "neto": 270505977.17
+   }
+  }
+ },
+ "resumenes": {
+  "redets": [
+   {
+    "n": 1,
+    "mesSalto": "2025-01-01",
+    "monto": 285283640.47,
+    "saldoObra": 1.0,
+    "coefResumen": 1.0,
+    "variacion": 0.057128,
+    "aplicadoResumen": 285283640.47,
+    "entradaLegales": "2025-03-25",
+    "vencimiento": "2025-06-03",
+    "aprobacion": "2025-05-29",
+    "diasVsVencimiento": -5.0,
+    "periodo": "Noviembre-24 a Enero-25 (descarga índices feb-25)",
+    "montoTotal": 285283640.47,
+    "descTotal": 285283640.47,
+    "providencia": "31/03/2025 entra a técnica",
+    "fProvidencia": "2025-03-31",
+    "respuesta": "21/04/2025 memo 082/25 para legales luego adm y finanzas",
+    "fRespuesta": "2025-04-21",
+    "aprobacionTxt": "29/05/2025 (Directorio- aprobación)",
+    "montoUsado": 285283640.47
+   },
+   {
+    "n": 2,
+    "mesSalto": "2025-04-01",
+    "monto": 276033296.81,
+    "saldoObra": 0.949126,
+    "coefResumen": 0.8,
+    "variacion": 0.055086,
+    "aplicadoResumen": 220826637.45,
+    "entradaLegales": "2025-06-09",
+    "vencimiento": "2025-08-14",
+    "aprobacion": "2025-07-30",
+    "diasVsVencimiento": -15.0,
+    "periodo": "Enero-25 a Abril-25(descarga índices abril-25)",
+    "montoTotal": 276109634.38,
+    "descTotal": 220887707.5,
+    "providencia": "11/06/2025 entro a técnica para análisis",
+    "fProvidencia": "2025-06-11",
+    "respuesta": "18/06/2025 memo 106/25 para legales luego adm y finanzas",
+    "fRespuesta": "2025-06-18",
+    "aprobacionTxt": "30/07/2025 (Directorio- aprobación)",
+    "montoReducida": 276033296.81,
+    "descReducida": 220826637.45,
+    "montoUsado": 276033296.81
+   },
+   {
+    "n": 3,
+    "mesSalto": "2025-07-01",
+    "monto": 306433512.24,
+    "saldoObra": 0.888162,
+    "coefResumen": 0.7,
+    "variacion": 0.063293,
+    "aplicadoResumen": 214503458.57,
+    "entradaLegales": "2025-09-22",
+    "vencimiento": "2025-10-27",
+    "aprobacion": "2025-10-29",
+    "diasVsVencimiento": 2.0,
+    "periodo": "Abril 25 a Julio 2025 (descarga índices agosto-25)",
+    "montoTotal": 313111647.61,
+    "descTotal": 219178153.33,
+    "providencia": "24/09/2025 entro a técnica para análisis",
+    "fProvidencia": "2025-09-24",
+    "respuesta": "08/10/2025 memo 221/25 para legales luego adm y finanzas",
+    "fRespuesta": "2025-10-08",
+    "aprobacionTxt": "29/10/2025 (Directorio- aprobación)",
+    "montoReducida": 306433512.24,
+    "descReducida": 214503458.57,
+    "montoUsado": 306433512.24
+   },
+   {
+    "n": 4,
+    "mesSalto": "2025-09-01",
+    "monto": 385828623.42,
+    "saldoObra": 0.79736,
+    "coefResumen": 0.7,
+    "variacion": 0.083316,
+    "aplicadoResumen": 270080036.4,
+    "entradaLegales": "2025-11-18",
+    "vencimiento": "2026-01-29",
+    "aprobacion": "2025-12-17",
+    "diasVsVencimiento": -43.0,
+    "periodo": "Julio 2025 a Septiembre 2025(descarga índices octubre-25)",
+    "montoTotal": 393821353.29,
+    "descTotal": 275674947.3,
+    "providencia": "26/11/2025 entro a técnica para análisis",
+    "fProvidencia": "2025-11-26",
+    "respuesta": "04/12/2025 memo 252/25 para legales luego adm y finanzas",
+    "fRespuesta": "2025-12-04",
+    "aprobacionTxt": "17/12/2025 (Directorio- aprobación)",
+    "montoReducida": 385828623.42,
+    "descReducida": 270080036.4,
+    "montoUsado": 385828623.42
+   },
+   {
+    "n": 5,
+    "mesSalto": "2026-02-01",
+    "monto": 102298521.65,
+    "saldoObra": 0.345156,
+    "coefResumen": 0.7,
+    "variacion": 0.052643,
+    "aplicadoResumen": 71608965.16,
+    "entradaLegales": "2026-04-09",
+    "vencimiento": "2026-06-16",
+    "aprobacion": "2026-04-29",
+    "diasVsVencimiento": -48.0,
+    "periodo": "Septiembre 2025 a Febrero 2026 (descarga índices febrero-26)",
+    "montoTotal": 117395384.36,
+    "descTotal": 82176769.05,
+    "providencia": "13/04/2026 entro a técnica para análisis",
+    "fProvidencia": "2026-04-13",
+    "respuesta": "15/04/2026 memo 067/26 para legales luego adm y finanzas",
+    "fRespuesta": "2026-04-15",
+    "aprobacionTxt": "29/04/26 (Directorio- aprobación)",
+    "montoReducida": 102298521.65,
+    "descReducida": 71608965.16,
+    "montoUsado": 102298521.65
+   },
+   {
+    "n": 6,
+    "mesSalto": "2026-04-01",
+    "monto": 88907571.92,
+    "saldoObra": 0.244297,
+    "coefResumen": 0.7,
+    "variacion": 0.054197,
+    "aplicadoResumen": 62235300.34,
+    "entradaLegales": "2026-06-05",
+    "vencimiento": "2026-08-13",
+    "aprobacion": "2026-07-29",
+    "diasVsVencimiento": -15.0,
+    "periodo": "Febrero 2026 a Abril 2026(descarga índices abril-26)",
+    "montoTotal": 91452411.16,
+    "descTotal": 64016687.81,
+    "providencia": "08/06/2026 entro a técnica para análisis",
+    "fProvidencia": "2026-06-08",
+    "respuesta": "16/06/2026 memo 114/26 para legales luego adm y finanzas",
+    "fRespuesta": "2026-06-16",
+    "aprobacionTxt": "29/07/26 (Directorio- aprobación)",
+    "montoReducida": 88907571.92,
+    "descReducida": 62235300.34,
+    "montoUsado": 88907571.92
+   },
+   {
+    "n": 7,
+    "mesSalto": "2026-06-01",
+    "monto": 40282391.42,
+    "saldoObra": 0.176715,
+    "coefResumen": 0.7,
+    "variacion": 0.054338,
+    "aplicadoResumen": 28197673.99,
+    "entradaLegales": "2026-07-28",
+    "vencimiento": "2026-09-30",
+    "aprobacion": "2026-09-30",
+    "diasVsVencimiento": 0.0,
+    "periodo": "Abril 2026 a Junio 2026 (descarga índices junio-26)",
+    "montoTotal": 70588832.71,
+    "descTotal": 49412182.89,
+    "providencia": "03/08/2026 entro a técnica para análisis",
+    "fProvidencia": "2026-08-03",
+    "respuesta": "13/08/2026 memo 147/26 para legales luego adm y finanzas",
+    "fRespuesta": "2026-08-13",
+    "montoReducida": 40282391.42,
+    "descReducida": 28197673.99,
+    "montoUsado": 40282391.42
+   }
+  ],
+  "general": {
+   "infraContrato": [
+    {
+     "item": "CAÑERIA DE POLIETILENO (m)",
+     "valor": 20650.0
+    },
+    {
+     "item": "CAÑERIAS DE ACERO Ø2\" (u)",
+     "valor": 1.0
+    },
+    {
+     "item": "CAÑERIAS DE ACERO Ø3\" (m)",
+     "valor": 19500.0
+    },
+    {
+     "item": "EMED TGS (u)",
+     "valor": 1.0
+    },
+    {
+     "item": "ERP 70/25 (u)",
+     "valor": 1.0
+    },
+    {
+     "item": "ERP 25/1,5 (u)",
+     "valor": 1.0
+    }
+   ],
+   "infraInstalada": [
+    {
+     "item": "CAÑERIA DE POLIETILENO INSTALADA (m)",
+     "valor": 19648.26
+    },
+    {
+     "item": "CAÑERIAS DE ACERO Ø2\" INSTALADA (m)",
+     "valor": 0.9
+    },
+    {
+     "item": "CAÑERIAS DE ACERO Ø3\" INSTALADA (m)",
+     "valor": 19306.87875
+    },
+    {
+     "item": "EMED TGS % DE AVANCE",
+     "valor": 0.929715
+    },
+    {
+     "item": "ERP 70/25 % DE AVANCE",
+     "valor": 0.965975
+    },
+    {
+     "item": "ERP 25/1,5 % DE AVANCE",
+     "valor": 0.9545
+    }
+   ],
+   "economica": [
+    {
+     "item": "ABONADO A LA FECHA PRECIOS ULTIMA REDETERMINACION APROBADA ( INCLUYE AJUSTES) , DESCONTADO ANTICIPOS",
+     "valor": 4235285444.126956
+    },
+    {
+     "item": "ABONADO A LA FECHA PRECIOS ULTIMA REDETERMINACION APROBADA ( INCLUYE AJUSTES), INCLUIDO ANTICIPOS FINANCIEROS",
+     "valor": 5846611202.248651
+    },
+    {
+     "item": "SALDO DE OBRA A PRECIOS DE LA ULTIMA REDETERMINACION APROBADA",
+     "valor": 131760759.643383
+    },
+    {
+     "item": "MONTO TOTAL DE OBRA COMO SUMA DE CONTRATO MAS REDETERMINACIONES PAGADAS EN CADA TRAMO (REAL)",
+     "valor": 5978371961.892033
+    },
+    {
+     "item": "PORCENTAJE DE AVANCE FINANCIERO A PRECIOS DE CONTRATO",
+     "valor": 0.958693
+    },
+    {
+     "item": "MONTO DE CONTRATO ACTUALIZADO A PRECIOS DE LA ULTIMA REDETERMINACION APROBADA",
+     "valor": 7517305684.215752
+    },
+    {
+     "item": "REDETERMINACION CONSIDERADA",
+     "valor": "CON REDET VII"
+    },
+    {
+     "item": "MES AL QUE CORRESPONDE LA REDETERMINACION / OFERTA",
+     "valor": "2026-06-01"
+    },
+    {
+     "item": "DIFERENCIA DE ANTICIPO ENTRE LO APROBADO Y LO DESCONTADO",
+     "valor": -1538056.270016
+    }
+   ],
+   "mesOferta": "2024-11-01",
+   "usuarios": 796.0,
+   "avanceFisico": 0.94099,
+   "plazoEjecutado": "609 dias"
+  },
+  "dolar": {
+   "incrementoObra": 0.230834,
+   "variacion": 1.43943,
+   "desde": "2024-12-30",
+   "hasta": "2026-08-01",
+   "valorDesde": 1052.5,
+   "valorHasta": 1515.0
+  },
+  "incrementoResumen": 1152735712.38,
+  "montoTotalResumen": 6146526833.38
  },
  "certificados": [
   {
@@ -479,6 +829,57 @@
    ]
   }
  ],
+ "ajustesCaratula": [
+  {
+   "n": 1,
+   "fecha": "2025-06-09",
+   "importe": 20580322.43,
+   "anticipo": 6174096.73,
+   "neto": 99991317.84
+  },
+  {
+   "n": 2,
+   "fecha": "2025-07-30",
+   "importe": 17313436.39,
+   "anticipo": 5194030.92,
+   "neto": 39722735.16
+  },
+  {
+   "n": 3,
+   "fecha": "2025-11-03",
+   "importe": 72181239.02,
+   "anticipo": 21654371.71,
+   "neto": 50526867.31
+  },
+  {
+   "n": 4,
+   "fecha": "2025-12-23",
+   "importe": 182915118.24,
+   "anticipo": 54874535.47,
+   "neto": 128040582.77
+  },
+  {
+   "n": 5,
+   "fecha": "2026-05-11",
+   "importe": 39433233.51,
+   "anticipo": 11829970.05,
+   "neto": 27603263.46
+  },
+  {
+   "n": 6,
+   "fecha": "2026-07-29",
+   "importe": 34010051.48,
+   "anticipo": 10203015.44,
+   "neto": 23807036.04
+  },
+  {
+   "n": 7,
+   "fecha": "2026-10-02",
+   "importe": 20003709.16,
+   "anticipo": 6001112.75,
+   "neto": 14002596.41
+  }
+ ],
  "redeterminaciones": [
   {
    "redet": 0,
@@ -665,205 +1066,7 @@
     "pct": 0.019981,
     "pctAcum": 0.94099
    }
-  ],
-  "plan": [
-   {
-    "mes": "2025-01",
-    "pctAcum": 0.025799,
-    "pct": 0.025799
-   },
-   {
-    "mes": "2025-02",
-    "pctAcum": 0.025799,
-    "pct": 0.0
-   },
-   {
-    "mes": "2025-03",
-    "pctAcum": 0.051033,
-    "pct": 0.025234
-   },
-   {
-    "mes": "2025-04",
-    "pctAcum": 0.051316,
-    "pct": 0.000283
-   },
-   {
-    "mes": "2025-05",
-    "pctAcum": 0.061533,
-    "pct": 0.010217
-   },
-   {
-    "mes": "2025-06",
-    "pctAcum": 0.075091,
-    "pct": 0.013558
-   },
-   {
-    "mes": "2025-07",
-    "pctAcum": 0.085269,
-    "pct": 0.010179
-   },
-   {
-    "mes": "2025-08",
-    "pctAcum": 0.115108,
-    "pct": 0.029839
-   },
-   {
-    "mes": "2025-09",
-    "pctAcum": 0.154999,
-    "pct": 0.039891
-   },
-   {
-    "mes": "2025-10",
-    "pctAcum": 0.197759,
-    "pct": 0.04276
-   },
-   {
-    "mes": "2025-11",
-    "pctAcum": 0.242403,
-    "pct": 0.044644
-   },
-   {
-    "mes": "2025-12",
-    "pctAcum": 0.291389,
-    "pct": 0.048985
-   },
-   {
-    "mes": "2026-01",
-    "pctAcum": 0.371736,
-    "pct": 0.080348
-   },
-   {
-    "mes": "2026-02",
-    "pctAcum": 0.454331,
-    "pct": 0.082594
-   },
-   {
-    "mes": "2026-03",
-    "pctAcum": 0.553592,
-    "pct": 0.099262
-   },
-   {
-    "mes": "2026-04",
-    "pctAcum": 0.664842,
-    "pct": 0.111249
-   },
-   {
-    "mes": "2026-05",
-    "pctAcum": 0.813701,
-    "pct": 0.148859
-   },
-   {
-    "mes": "2026-06",
-    "pctAcum": 0.992826,
-    "pct": 0.179125
-   },
-   {
-    "mes": "2026-07",
-    "pctAcum": 1.0,
-    "pct": 0.007174
-   }
-  ],
-  "planNombre": "PLAN DE TRABAJO - R IV",
-  "planFin": "2026-07",
-  "planOriginal": [
-   {
-    "mes": "2025-01",
-    "pctAcum": 0.025799,
-    "pct": 0.025799
-   },
-   {
-    "mes": "2025-02",
-    "pctAcum": 0.025799,
-    "pct": 0.0
-   },
-   {
-    "mes": "2025-03",
-    "pctAcum": 0.051033,
-    "pct": 0.025234
-   },
-   {
-    "mes": "2025-04",
-    "pctAcum": 0.051316,
-    "pct": 0.000283
-   },
-   {
-    "mes": "2025-05",
-    "pctAcum": 0.061533,
-    "pct": 0.010217
-   },
-   {
-    "mes": "2025-06",
-    "pctAcum": 0.075091,
-    "pct": 0.013558
-   },
-   {
-    "mes": "2025-07",
-    "pctAcum": 0.110004,
-    "pct": 0.034913
-   },
-   {
-    "mes": "2025-08",
-    "pctAcum": 0.150747,
-    "pct": 0.040743
-   },
-   {
-    "mes": "2025-09",
-    "pctAcum": 0.192323,
-    "pct": 0.041576
-   },
-   {
-    "mes": "2025-10",
-    "pctAcum": 0.236767,
-    "pct": 0.044444
-   },
-   {
-    "mes": "2025-11",
-    "pctAcum": 0.281832,
-    "pct": 0.045065
-   },
-   {
-    "mes": "2025-12",
-    "pctAcum": 0.331239,
-    "pct": 0.049407
-   },
-   {
-    "mes": "2026-01",
-    "pctAcum": 0.409481,
-    "pct": 0.078242
-   },
-   {
-    "mes": "2026-02",
-    "pctAcum": 0.488959,
-    "pct": 0.079478
-   },
-   {
-    "mes": "2026-03",
-    "pctAcum": 0.585273,
-    "pct": 0.096314
-   },
-   {
-    "mes": "2026-04",
-    "pctAcum": 0.685197,
-    "pct": 0.099924
-   },
-   {
-    "mes": "2026-05",
-    "pctAcum": 0.835319,
-    "pct": 0.150122
-   },
-   {
-    "mes": "2026-06",
-    "pctAcum": 0.992826,
-    "pct": 0.157507
-   },
-   {
-    "mes": "2026-07",
-    "pctAcum": 1.0,
-    "pct": 0.007174
-   }
-  ],
-  "planOriginalFin": "2026-07",
-  "planOriginalArchivo": "Plan_de_trabajos_e_inversion_v1.xls"
+  ]
  },
  "items": [
   {
@@ -2124,10 +2327,6 @@
   ],
   "ultimoMes": "2026-10",
   "finContractual": "2026-07-23",
-  "finPlanVigente": "2026-11-01",
-  "mesesHastaFinVigente": 1,
-  "ritmoNecesario": 0.05901,
-  "finEstimadoRitmo": "2027-01-01",
   "saldoObraConIva": 423324047.38,
   "saldoObraAPagar": 131760759.64,
   "diasMedianosAPago": {
@@ -2137,11 +2336,6 @@
    "tesoreria": 34,
    "certificado": 44
   }
- },
- "seguimientoSaldo": {
-  "finPlanVigente": "2026-11-01",
-  "montoActualizado": null,
-  "saldoAPagar": null
  },
  "avisos": []
 }
