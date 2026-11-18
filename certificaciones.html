@@ -84,7 +84,7 @@
     border-radius:10px;margin:18px 0 0;}
   .kpi{padding:18px 20px;border-left:1px solid var(--border);}
   .kpi:first-child{border-left:none;}
-  button.kpi{display:block;width:100%;font:inherit;text-align:left;background:none;border-top:none;border-right:none;border-bottom:none;color:inherit;cursor:pointer;position:relative;}
+  button.kpi{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;width:100%;font:inherit;text-align:left;background:none;border-top:none;border-right:none;border-bottom:none;color:inherit;cursor:pointer;position:relative;}
   button.kpi:hover{background:var(--teal-soft);}
   button.kpi:focus-visible{outline:2px solid var(--bright);outline-offset:-2px;}
   .kpi .ver{display:block;margin-top:8px;font-size:12px;font-weight:700;color:var(--bright);}
@@ -343,7 +343,9 @@
   .ev-entrada{background:#d9edfb;color:#0b4c7b;border-color:#a9d3f0;}
   .ev-tesoreria{background:#e8defa;color:#4a2f86;border-color:#cdbbef;}
   .ev-pago{background:#d5f0e0;color:#1b6a41;border-color:#a6dcc0;}
-  .ev.est{background:#fff;border:1px dashed #2e9e62;color:#1b6a41;}
+  .ev.est{background:#fff;border-style:dashed;}
+  .ev-acta.est{border-color:#d6b72e;color:#5e4a00;} .ev-envio.est{border-color:#e6a866;color:#7a3d00;} .ev-entrada.est{border-color:#6fb3e3;color:#0b4c7b;}
+  .ev-tesoreria.est{border-color:#a98be0;color:#4a2f86;} .ev-pago.est{border-color:#5cc08e;color:#1b6a41;}
   .ev.est.atrasado{border-color:var(--amber);color:#9a5a12;}
   .ev.dem{box-shadow:inset 3px 0 0 var(--amber);}
   .mas{font:inherit;font-size:11.5px;color:var(--navy);background:none;border:none;text-align:left;padding:1px 4px;cursor:pointer;}
@@ -352,7 +354,7 @@
   .cal-leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--text-muted);margin-top:12px;}
   .cal-leyenda span{display:inline-flex;align-items:center;gap:6px;}
   .cal-leyenda i{display:inline-block;width:14px;height:12px;border-radius:3px;border:1px solid transparent;}
-  .cal-leyenda i.est{background:#fff;border:1px dashed #2e9e62;}
+  .cal-leyenda i.est{background:#fff;border:1px dashed #5c7688;}
   .cal-leyenda i.dem{background:#fff;border:1px solid var(--border);box-shadow:inset 3px 0 0 var(--amber);}
   @media (max-width:700px){
     .dia{min-height:56px;padding:2px;}
@@ -403,13 +405,187 @@
   .dia-lista .mv{padding:9px 4px;}
   .dia-lista .pto{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;border:1px solid transparent;}
 
+  .tabla-res{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .tabla-res th{text-align:left;font-weight:600;color:var(--muted);padding:6px 10px;border-bottom:2px solid var(--border);}
+  .tabla-res td{padding:8px 10px;border-bottom:1px solid var(--border);}
+  .tabla-res .n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .destacados{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0 6px;}
+  .dest{--dc:#008ed7;--dt:#e6f3fb;background:linear-gradient(180deg,var(--dt) 0,#fff 100%);border:1px solid var(--border);border-top:4px solid var(--dc);border-radius:10px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+  .dest .l{font-size:12.5px;color:var(--muted);font-weight:600;line-height:1.3;min-height:32px;}
+  .dest .v{font-size:26px;font-weight:700;color:var(--dc);margin-top:6px;line-height:1.1;}
+  .dest .s{font-size:12.5px;color:var(--navy);font-variant-numeric:tabular-nums;margin-top:2px;}
+  .dest .s2{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.35;}
+  .dest .ctl{display:block;margin-top:8px;}
+  .dest.azul{--dc:#005895;--dt:#e1ecf5;} .dest.rosa{--dc:#008ed7;--dt:#e3f1fa;} .dest.violeta{--dc:#00aec3;--dt:#e3f6f8;}
+  .kpis.kpis-dos{grid-template-columns:repeat(2,1fr);}
+  .kpis.kpis-tres{grid-template-columns:repeat(3,1fr);}
+  @media (max-width:900px){.kpis.kpis-tres{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.kpis.kpis-dos,.kpis.kpis-tres{grid-template-columns:1fr;}}
+  .py-meses{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;}
+  .py-mes{flex:1 0 96px;font:inherit;text-align:left;background:#fff;border:1px solid var(--border);border-top:3px solid #9fb4c4;border-radius:8px;padding:8px 10px;cursor:pointer;color:var(--text-muted);}
+  .py-mes span{display:block;font-size:12px;text-transform:capitalize;}
+  .py-mes b{display:block;font-size:15px;color:var(--navy);margin-top:2px;}
+  .py-mes.vacio b{color:var(--text-muted);font-weight:400;}
+  .py-mes:hover{background:var(--teal-soft);}
+  .py-mes.sel{border-top-color:#008ed7;background:#e6f3fb;box-shadow:0 2px 6px rgba(0,87,149,.12);}
+  button.dest{font:inherit;text-align:left;cursor:pointer;display:block;width:100%;color:inherit;transition:transform .18s ease,box-shadow .18s ease;}
+  button.dest:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,87,149,.14);}
+  .dest .ver,.kpi .ver{color:#008ed7;}
+  .dest .ver{display:block;margin-top:8px;font-size:12px;font-weight:700;}
+  .cuenta{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px;}
+  .cuenta td{padding:8px 6px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .cuenta td.sg{width:26px;text-align:center;font-weight:700;font-size:16px;}
+  .cuenta td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .cuenta .c-mas .sg{color:#0b8a9b;} .cuenta .c-menos .sg{color:#b4501a;}
+  .cuenta .c-menos .n{color:#8a3d12;}
+  @media print{.dest .ver,.kpi .ver{display:none;}}
+  .cuenta small{display:block;color:var(--text-muted);font-size:12px;margin-top:2px;}
+  .cuenta .sub td{background:var(--teal-soft);font-weight:600;border-top:1px solid #b9d8e6;}
+  .cuenta .tot td{background:#e6f3fb;font-weight:700;font-size:15px;border-top:2px solid #008ed7;border-bottom:none;}
+  @media (prefers-reduced-motion:reduce){button.dest{transition:none;}button.dest:hover{transform:none;}}
+  #res-redets small{display:block;color:var(--text-muted);font-size:11.5px;margin-top:2px;}
+  .tabla-res tr.pend td{color:var(--text-muted);}
+  .tabla-res tr.tot td{background:#e6f3fb;border-top:2px solid #008ed7;}
+  .tabla-res .muted{color:var(--text-muted);}
+  .py-hist{color:#7d8c99;}
+  .py-hist .py-tabla td,.py-hist .py-tabla th,.py-hist .py-h{color:#7d8c99!important;}
+  .py-hist .py-tabla tr.tot td{background:#f1f4f6!important;}
+  .py-hist .py-res .v{color:#6f7f8c;}
+  .py-pag{display:block;font-size:11.5px;color:#7d8c99;}
+  .py-tit{font-size:19px;color:var(--navy);margin:0 0 2px;font-weight:600;}
+  .ctl{font-size:12px;color:var(--muted);}
+  .ctl.ok{color:#0b8a9b;font-weight:600;}
+  .ctl.dif{color:#b4641a;font-weight:600;}
+  .tabla-res tbody tr:hover{background:var(--teal-soft);}
+
   /* tarjetas de acceso a los paneles de obra, como las del portal */
-  .paneles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:16px;}
-  .panel-card{display:flex;flex-direction:column;gap:6px;background:#008ed7;color:#fff;text-decoration:none;border-radius:8px;padding:18px 20px;box-shadow:0 3px 0 rgba(0,0,0,.14),0 5px 10px rgba(0,0,0,.08);}
-  .panel-card:hover{background:#0a80c2;}
+  .paneles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+  @media (max-width:1100px){.paneles-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.paneles-grid{grid-template-columns:1fr;}}
+  button.panel-card{font:inherit;text-align:left;border:none;cursor:pointer;width:100%;}
+  .panel-card.todas{--oc:#5f7487;--oc2:#43566a;}
+  .sec-cab{display:flex;align-items:baseline;gap:6px 18px;flex-wrap:wrap;margin-bottom:12px;}
+  .sec-cab h2{font-size:32px;margin:0;}
+  .sec-cab .bajada{margin:0;font-size:13px;}
+  .dos-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;align-items:start;}
+  @media (max-width:800px){.dos-col{grid-template-columns:1fr;}}
+  .dos-col > .panel{margin:0!important;height:100%;}
+  dialog.ix-dlg.ancho{max-width:1100px;}
+  .ix-dlg .nota{font-size:13px;color:var(--text-muted);line-height:1.5;}
+  button.ix-boton{font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px;width:100%;color:inherit;border:1px solid var(--border);background:linear-gradient(180deg,#f6fafc,#fff 60px);transition:box-shadow .18s ease,transform .18s ease;}
+  button.ix-boton b{font-size:16px;color:var(--navy);}
+  button.ix-boton span{font-size:13px;color:var(--text-muted);}
+  button.ix-boton i{font-style:normal;font-size:12.5px;font-weight:700;color:#008ed7;margin-top:4px;}
+  button.ix-boton:hover{box-shadow:0 6px 14px rgba(0,87,149,.12);transform:translateY(-2px);}
+  @media (prefers-reduced-motion:reduce){button.ix-boton{transition:none;}button.ix-boton:hover{transform:none;}}
+  .panel-card{--oc:#008ed7;--oc2:#0a6fa8;display:flex;flex-direction:column;gap:6px;background:linear-gradient(145deg,var(--oc) 0,var(--oc2) 100%);color:#fff;text-decoration:none;border-radius:10px;padding:18px 20px;box-shadow:0 3px 0 rgba(0,0,0,.14),0 8px 16px rgba(0,0,0,.08);transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden;}
+  .panel-card::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.12);}
+  .panel-card:hover{transform:translateY(-3px);box-shadow:0 3px 0 rgba(0,0,0,.14),0 12px 22px rgba(0,0,0,.14);}
+  .panel-card .pc-nums{display:flex;gap:18px;margin-top:6px;}
+  .panel-card .pc-nums span{display:block;font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.04em;}
+  .panel-card .pc-nums b{font-size:16px;}
+  .obra-card{border-top:4px solid var(--oc,transparent);}
+  @media (prefers-reduced-motion:reduce){.panel-card{transition:none;}.panel-card:hover{transform:none;}}
   .panel-card h3{margin:0;font-size:17px;color:#fff;}
   .panel-card p{margin:0;font-size:12.5px;line-height:1.45;opacity:.95;}
   .panel-card .ir{font-size:13px;font-weight:700;margin-top:6px;}
+
+  /* ---------- color sutil ---------- */
+  body{background:linear-gradient(180deg,#e8f2f8 0,var(--bg) 360px) no-repeat,var(--bg);}
+  .kpi{background:linear-gradient(180deg,var(--k-t,#fff) 0,rgba(255,255,255,0) 90%);box-shadow:inset 0 3px 0 var(--k-c,transparent);}
+  button.kpi{background:linear-gradient(180deg,var(--k-t,#fff) 0,rgba(255,255,255,0) 90%);}
+  button.kpi:hover{background:linear-gradient(180deg,var(--k-t2,#e3f6f8) 0,var(--k-t,#fff) 100%);}
+  .kpis > .kpi:nth-child(1),.kpi[data-kpi="tramite"]{--k-c:#008ed7;--k-t:#e6f3fb;--k-t2:#d6ebf8;}
+  .kpis > .kpi:nth-child(2),.kpi[data-kpi="pagado"]{--k-c:#005895;--k-t:#e1ecf5;--k-t2:#d0e1ef;}
+  .kpis > .kpi:nth-child(3),.kpi[data-kpi="devengado"]{--k-c:#00aec3;--k-t:#e3f6f8;--k-t2:#d0eef2;}
+  .kpis > .kpi:nth-child(4),.kpi[data-kpi="demora"]{--k-c:#4f6f8a;--k-t:#e9eef3;--k-t2:#dbe4ec;}
+  .kpis{overflow:hidden;}
+  section > h2{display:flex;align-items:center;gap:10px;}
+  section > h2::before{content:"";width:4px;height:.9em;border-radius:2px;background:var(--teal);}
+  .ix-main > .panel:first-child{background:linear-gradient(180deg,#eef7fb 0,#fff 150px);}
+  .cal-sem div:nth-child(n+6){color:#8296a6;}
+  #mover .mv-g{padding:8px 10px 6px 12px;border-radius:8px;border-left:3px solid var(--g-c,var(--border));background:linear-gradient(90deg,var(--g-t,transparent),rgba(255,255,255,0) 70%);}
+  #mover .mv-g:nth-of-type(1){--g-c:#4f6f8a;--g-t:#e9eef3;}
+  #mover .mv-g:nth-of-type(2){--g-c:#008ed7;--g-t:#e6f3fb;}
+  #mover .mv-g:nth-of-type(3){--g-c:#005895;--g-t:#e1ecf5;}
+  .obras-grid > *{box-shadow:inset 0 3px 0 rgba(0,174,195,.45);}
+  .ix-todas > summary,.ix-datos > summary,.ix-como > summary{color:var(--navy);}
+  details.ix-desp{margin-top:16px;}
+  details.ix-desp > summary{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap;cursor:pointer;list-style:none;}
+  details.ix-desp > summary::-webkit-details-marker{display:none;}
+  details.ix-desp > summary::before{content:"›";font-size:22px;color:#008ed7;display:inline-block;transition:transform .18s ease;width:14px;}
+  details.ix-desp[open] > summary::before{transform:rotate(90deg);}
+  details.ix-desp > summary h2{margin:0;}
+  details.ix-desp > summary .resumen{font-size:13.5px;color:var(--text-muted);}
+  details.ix-desp[open] > summary .resumen{display:none;}
+  details.ix-desp > summary + *{margin-top:10px;}
+  @media (prefers-reduced-motion:reduce){details.ix-desp > summary::before{transition:none;}}
+  .panel.ix-datos,.panel.ix-como,.panel.ix-todas{background:linear-gradient(180deg,#f6fafc,#fff 60px);}
+
+  /* ---------- proyección de pagos ---------- */
+  .py-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .py-bar select{font:inherit;font-size:16px;color:var(--navy);border:1px solid var(--border);border-radius:999px;padding:6px 14px;background:#fff;text-transform:capitalize;}
+  .py-panel{background:linear-gradient(180deg,#f1f6fb 0,#fff 160px);}
+  .graf-py{overflow-x:auto;margin:6px 0 14px;}
+  .graf-py svg{display:block;width:100%;min-width:640px;height:auto;}
+  .graf-py .bar{cursor:pointer;} .graf-py .bar:hover rect.fondo{fill:#e3f6f8;}
+  .py-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:4px 0 14px;}
+  .py-res > div{border-radius:8px;padding:10px 12px;border-left:3px solid var(--c);background:var(--t);}
+  .py-res .l{font-size:12px;color:var(--text-muted);} .py-res .v{font-size:20px;font-weight:700;color:var(--navy);}
+  .py-tabla{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0 14px;}
+  .py-tabla th{text-align:left;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid var(--border);padding:6px 8px;}
+  .py-tabla td{padding:7px 8px;border-bottom:1px solid var(--grid);vertical-align:top;}
+  .py-tabla .n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .py-tabla tr.fila{cursor:pointer;} .py-tabla tr.fila:hover{background:var(--bg);}
+  .py-tabla tr.tot td{font-weight:700;border-top:2px solid var(--border);border-bottom:none;background:rgba(0,142,215,.05);}
+  .py-tabla .sub{display:block;font-size:11.5px;color:var(--text-muted);}
+  .py-h{margin:14px 0 2px;font-size:14px;color:var(--navy2);}
+  .py-nota{font-size:12.5px;color:var(--text-muted);line-height:1.5;margin:2px 0 8px;}
+  .py-vacio{font-size:13px;color:var(--text-muted);padding:8px 0;}
+  #proy-doc{display:none;}
+  @media print{
+    html.imp-proy .wrap > *:not(#proy-doc){display:none!important;}
+    html.imp-proy #proy-doc{display:block!important;}
+    html.imp-proy body{padding:0;background:#fff!important;}
+    html.imp-proy #proy-doc th{color:#000;}
+  }
+  /* ---------- carga ---------- */
+  .esqueleto{margin-top:34px;}
+  .esq-barra{position:fixed;top:0;left:0;right:0;height:3px;overflow:hidden;z-index:50;}
+  .esq-barra::after{content:"";position:absolute;top:0;bottom:0;width:35%;background:linear-gradient(90deg,transparent,var(--teal),var(--blue-bright),transparent);animation:barrido 1.1s ease-in-out infinite;}
+  @keyframes barrido{from{left:-35%;}to{left:100%;}}
+  .esq-fila{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+  .esq-fila i,.esq-bloque{display:block;height:92px;border-radius:10px;background:linear-gradient(90deg,#e3edf3 25%,#f3f8fb 50%,#e3edf3 75%);background-size:200% 100%;animation:brillo 1.3s linear infinite;}
+  .esq-bloque{height:230px;}
+  @keyframes brillo{from{background-position:200% 0;}to{background-position:-200% 0;}}
+  @media (max-width:700px){.esq-fila{grid-template-columns:1fr 1fr;}}
+  .cab-der.buscando::after{content:"Buscando datos más nuevos…";display:block;color:var(--teal);font-weight:700;animation:latir 1s ease-in-out infinite;}
+  @keyframes latir{50%{opacity:.35;}}
+  @media print{.esqueleto,.esq-barra,.cab-der.buscando::after{display:none!important;}}
+  .cargando{margin:20px 0;text-align:center;color:var(--text-muted);font-size:14px;}
+  /* ---------- animaciones (sutiles; se apagan con "reducir movimiento" y al imprimir) ---------- */
+  html.anim .rev{opacity:0;transform:translateY(14px);}
+  html.anim .rev.in{opacity:1;transform:none;transition:opacity .55s ease,transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms);}
+  .panel-card{transition:transform .18s ease,box-shadow .18s ease,background .18s ease;}
+  .panel-card:hover{transform:translateY(-3px);box-shadow:0 6px 0 rgba(0,0,0,.12),0 12px 20px rgba(0,0,0,.12);}
+  button.kpi{transition:background .18s ease;}
+  button.kpi .ver{transition:transform .18s ease;}
+  button.kpi:hover .ver{transform:translateX(5px);}
+  .mv{transition:background .15s ease,padding-left .15s ease;}
+  .mv:hover{padding-left:10px;}
+  dialog.ix-dlg[open]{animation:dlgIn .24s cubic-bezier(.2,.7,.2,1);}
+  dialog.ix-dlg[open]::backdrop{animation:fadeIn .24s ease;}
+  @keyframes dlgIn{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .ev{transition:transform .12s ease,box-shadow .12s ease;}
+  .ev:hover{transform:translateY(-1px);}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}
+  }
+  @media print{
+    html.anim .rev,html.anim .rev.in{opacity:1!important;transform:none!important;transition:none!important;}
+    dialog.ix-dlg[open],dialog.ix-dlg[open]::backdrop{animation:none!important;}
+  }
 </style>
 </head>
 <body>
@@ -427,7 +603,7 @@
     <div class="cab-der" id="cab-der"><a class="volver" href="index.html">← Inicio</a></div>
   </header>
 
-  <div id="app"></div>
+  <div id="app"><div class="esqueleto" aria-live="polite"><div class="esq-barra"></div><div class="esq-fila"><i></i><i></i><i></i><i></i></div><div class="esq-bloque"></div><p class="cargando">Cargando datos…</p></div></div>
 
   <footer id="pie">Página interna de BAGSA — no distribuir fuera de la empresa.</footer>
 </div>
@@ -481,15 +657,17 @@ document.querySelectorAll("a.marca, a.volver").forEach(a => {
 });
 const app = document.getElementById("app");
 const obra = new URLSearchParams(location.search).get("obra");
+// La animación de carga se ve al menos ~0,6 s desde que abre la página, así no parpadea cuando los datos llegan al instante.
+const _pausa = d => matchMedia("(prefers-reduced-motion: reduce)").matches ? d : new Promise(r => setTimeout(() => r(d), Math.max(0, 600 - performance.now())));
 
 if(!obra){
   cargarIndice();
 } else {
-  traerJSON(`certificaciones_${encodeURIComponent(obra)}.json`)
-    .then(render)
+  traerJSON(`certificaciones_${encodeURIComponent(obra)}.json`, render)
+    .then(_pausa).then(render)
     .catch(() => {
       app.innerHTML = `<div class="estado-msg"><h2>Todavía no hay datos de esta obra</h2>
-        <p>No se encontró <code>certificaciones_${esc(obra)}.json</code>, ni en la carpeta <code>data</code> ni junto a esta página. Se genera corriendo
+        <p>No se encontró <code>certificaciones_${esc(obra)}.json</code>, ni en la carpeta <code>data</code> (como .json o .js) ni junto a esta página. Se genera corriendo
         <code>actualizar_certificaciones.py</code> con el Excel de certificación de la obra en la carpeta configurada.</p></div>`;
     });
 }
@@ -503,6 +681,7 @@ function setCabecera(tit, sub, d, extra, nombreJSON){
 }
 
 function render(d){
+  aplicarResumenes(d);
   const o = d.obra, k = d.kpis, p = d.proyeccion || {};
   document.title = `Certificaciones ${o.nombre} — BAGSA`;
 
@@ -518,7 +697,9 @@ function render(d){
     <p class="solo-print emision">Informe emitido el ${new Date().toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit",year:"numeric"})}.</p>
     ${obraHeadHTML(d)}
     <div class="linea" id="linea"></div>
-    <div class="kpis">${kpis(d)}</div>
+    <div class="kpis kpis-dos">${kpis(d)}</div>
+    ${destacados(d)}
+    <dialog class="ix-dlg" id="dlg-cuenta"></dialog>
 
     <section id="avance">
       <h2>Avance</h2>
@@ -529,10 +710,6 @@ function render(d){
         <div class="chart ancho" id="g-curva"></div>
         <div class="leyenda">
           <span><i style="border-color:${C.teal}"></i>Real certificado</span>
-          ${hayOrig(d) ? `<span><i style="border-color:${C.orig}"></i>Plan original</span>` : ""}
-          <span><i class="dash" style="border-color:${C.plan}"></i>${planNombre(d)}${hayOrig(d) ? " (reprogramado)" : ""}</span>
-          <span><i class="dash" style="border-color:${C.amber}"></i>Al ritmo de los últimos 3 meses</span>
-          <span><i class="dash" style="border-color:${C.navy2};opacity:.5"></i>Necesario para el fin vigente</span>
         </div>
         ${hayOrig(d) ? `<details class="no-print"><summary>Ver mes a mes</summary><div class="tabla-wrap"><table id="t-planes"></table></div></details>` : ""}
       </div>
@@ -550,6 +727,8 @@ function render(d){
     <section id="valores" data-pdf="valores">
       <h2>Valores</h2>
       <p class="bajada">Cómo cambió el monto del contrato con cada redeterminación y cuánto se certificó cada mes.</p>
+      ${resumenEco(d)}
+      ${panelRedets(d)}
       <div class="dos">
         <div class="panel">
           <h3>Monto del contrato</h3>
@@ -644,35 +823,234 @@ function render(d){
 function kpis(d){
   const o = d.obra, k = d.kpis;
   const inc = o.montoContrato ? o.montoVigente/o.montoContrato - 1 : null;
-  const prox = d.tramites.filter(t => t.estado !== "Pagado" && t.pagoEstimado).sort((a,b) => a.pagoEstimado.localeCompare(b.pagoEstimado))[0];
   return `
-    <div class="kpi"><div class="l">Monto vigente</div><div class="v">${fmtM(o.montoVigente)}</div>
-      <div class="s">Contrato original ${fmtM(o.montoContrato)}, <b>+${fmtPct(inc)}</b> por ${o.redetVigente} redeterminaciones</div></div>
-    <div class="kpi"><div class="l">Certificado a la fecha</div><div class="v">${fmtM(k.certificadoPreciosVigentes)}</div>
-      <div class="s">A precios redeterminados, ajustes incluidos. Último: certificado ${k.ultimoCert} del ${fmtFecha(k.ultimoCertFecha)}</div></div>
-    <div class="kpi"><div class="l">Pagado</div><div class="v">${fmtM(k.pagado)}</div>
-      <div class="s">${fmtPct(k.netoCertificado ? k.pagado/k.netoCertificado : null)} del neto certificado, anticipos incluidos</div></div>
-    <div class="kpi"><div class="l">En trámite de pago</div><div class="v">${fmtM(k.porCobrar)}</div>
-      <div class="s">${prox ? `Próximo: <b>${esc(prox.nombre)}</b>, estimado ${fmtFecha(prox.pagoEstimado)}` : "Sin pagos pendientes"}</div></div>`;
+    <button type="button" class="kpi" data-cuenta="vigente"><div class="l">Monto vigente</div><div class="v">${fmtM(o.montoVigente)}</div>
+      <div class="s">Contrato original ${fmtM(o.montoContrato)}, <b>+${fmtPct(inc)}</b> por ${o.redetVigente} redeterminaciones</div><span class="ver">Ver cuenta ›</span></button>
+    <button type="button" class="kpi" data-cuenta="certificado"><div class="l">Certificado a la fecha</div><div class="v">${fmtM(k.certificadoPreciosVigentes)}</div>
+      <div class="s">A precios redeterminados, ajustes incluidos. Último: certificado ${k.ultimoCert} del ${fmtFecha(k.ultimoCertFecha)}</div><span class="ver">Ver cuenta ›</span></button>`;
+}
+
+/* ---------------- monto vigente calculado con el RESUMEN DE RESUMENES ----------------
+   Contrato + cada redeterminación APROBADA × (1 − anticipo ya otorgado al mes de salto).
+   El monto de cada redeterminación es el reducido si existe, si no el total. */
+const RU = n => (typeof ROM !== "undefined" && ROM[n]) || String(n);
+const REGLA_COEF = "certificado";   // "certificado": fecha del certificado de anticipo · "pago": fecha en que Tesorería lo pagó
+function aplicarResumenes(d){
+  const R = d.resumenes; if(!R || !(R.redets || []).length || d._resCalc) return;
+  const o = d.obra;
+  const pagos = {}; (d.tramites || []).filter(t => t.tipo === "anticipo").forEach(t => pagos[t.monto] = t.pago);
+  const ants = (d.anticipos || []).map(a => ({pct:a.pct, fecha:REGLA_COEF === "pago" ? (pagos[a.monto] || null) : a.fecha}));
+  const filas = R.redets.map(r => {
+    const salto = r.mesSalto || "";
+    const usados = ants.filter(a => a.fecha && a.fecha < salto);
+    const coef = 1 - usados.reduce((t, a) => t + a.pct, 0);
+    return {...r, coef, antUsados:usados, aplicado:r.montoUsado * coef, aprobada:!!r.aprobacion,
+            coefDistinto: r.coefResumen != null && Math.abs(r.coefResumen - coef) > 0.0001};
+  });
+  const sumaAprob = filas.filter(f => f.aprobada).reduce((t, f) => t + f.aplicado, 0);
+  d._resCalc = {filas, sumaAprob, contrato:o.montoContrato, vigente:o.montoContrato + sumaAprob,
+                excel:o.montoVigente, resumen:R.montoTotalResumen};
+  o.montoVigenteExcel = o.montoVigente;
+  o.montoVigente = d._resCalc.vigente;
+  o.redetVigente = filas.filter(f => f.aprobada).length;
+}
+
+/* ---------------- tramitación de redeterminaciones y datos del resumen ---------------- */
+function panelRedets(d){
+  const c = d._resCalc; if(!c) return "";
+  const R = d.resumenes, hoy = new Date().toISOString().slice(0, 10);
+  const est = f => f.aprobada ? `<span class="ctl ok">Aprobada ${fmtFecha(f.aprobacion)}</span>`
+    : `<span class="ctl dif">En trámite${f.vencimiento ? ` · vence ${fmtFecha(f.vencimiento)}${f.vencimiento < hoy ? " (vencida)" : ""}` : ""}</span>`;
+  const filas = c.filas.map(f => `<tr${f.aprobada ? "" : ' class="pend"'}><td><b>${RU(f.n)}</b><small>${esc(f.periodo || "")}</small></td>
+    <td>${fmtMes(f.mesSalto)}</td><td class="n">${fmtPct(f.variacion)}</td>
+    <td class="n">${fmtPesos(f.montoUsado)}${f.montoReducida && f.montoTotal ? `<small>total ${fmtM(f.montoTotal)}</small>` : ""}</td>
+    <td class="n">${fmtNum(f.coef, 2)}${f.coefDistinto ? `<small class="ctl dif">resumen ${fmtNum(f.coefResumen, 2)}</small>` : ""}</td>
+    <td class="n">${f.aprobada ? fmtPesos(f.aplicado) : `<span class="muted">${fmtPesos(f.aplicado)}</span>`}</td>
+    <td>${f.entradaLegales ? fmtFecha(f.entradaLegales) : "—"}${f.fRespuesta ? `<small>memo técnica ${fmtFecha(f.fRespuesta)}</small>` : ""}</td>
+    <td>${est(f)}</td></tr>`).join("");
+  const dol = R.dolar || {};
+  const dolTxt = dol.variacion ? `<p class="nota">Incremento por redeterminaciones: <b>${fmtPct(dol.incrementoObra)}</b>. Variación del dólar en el mismo período: <b>${fmtPct(dol.variacion - 1)}</b> (${fmtNum(dol.valorDesde, 1)} el ${fmtFecha(dol.desde)} → ${fmtNum(dol.valorHasta, 1)} el ${fmtFecha(dol.hasta)}).</p>` : "";
+  const g = R.general || {}, ic = g.infraContrato || [], ii = g.infraInstalada || [];
+  const infra = ic.length && ic.length === ii.length ? `<h3 style="margin-top:22px">Infraestructura principal</h3>
+    <div class="tabla-wrap"><table class="tabla-res"><thead><tr><th>Según contrato</th><th class="n">Contrato</th><th class="n">Instalado</th><th class="n">Avance</th></tr></thead><tbody>${
+      ic.map((x, i) => { const y = ii[i], esPct = /% DE AVANCE/i.test(y.item), av = esPct ? y.valor : (x.valor ? y.valor / x.valor : null);
+        return `<tr><td>${esc(x.item)}</td><td class="n">${fmtNum(x.valor, x.valor % 1 ? 2 : 0)}</td><td class="n">${esPct ? "—" : fmtNum(y.valor, y.valor % 1 ? 2 : 0)}</td><td class="n"><b>${fmtPct(av)}</b></td></tr>`; }).join("")}</tbody></table></div>` : "";
+  return `<div class="panel" id="res-redets"><h3>Redeterminaciones</h3>
+    <p class="nota">Del RESUMEN DE RESUMENES. Suman al monto vigente solo las aprobadas, por el coeficiente de anticipo: 1 menos el anticipo ya certificado al mes de salto.</p>
+    <div class="tabla-wrap"><table class="tabla-res redets"><thead><tr><th>Redet.</th><th>Salto</th><th class="n">Variación</th><th class="n">Monto</th><th class="n">Coef.</th><th class="n">Suma</th><th>Entrada a Legales</th><th>Estado</th></tr></thead><tbody>${filas}
+      <tr class="tot"><td colspan="5">Contrato ${fmtPesos(c.contrato)} + redeterminaciones aprobadas</td><td class="n"><b>${fmtPesos(c.sumaAprob)}</b></td><td colspan="2">Monto vigente <b>${fmtPesos(c.vigente)}</b></td></tr></tbody></table></div>
+    ${dolTxt}${infra}</div>`;
+}
+
+/* ---------------- cuenta de cada indicador: qué suma y qué resta ---------------- */
+function cuentaEco(d, k){
+  const o = d.obra, p = d.proyeccion || {}, C = d.certificados || [], A = d.ajustes || [], AN = d.anticipos || [];
+  const S = (arr, f) => arr.reduce((t, x) => t + (+f(x) || 0), 0);
+  const base = S(C, c => c.base), dif = S(C, c => c.difRedet), aj = S(A, a => a.monto);
+  const antC = S(C, c => c.anticipoDesc), antA = S(A, a => a.anticipoDesc);
+  const poliza = S(C, c => c.polizaCaucion) + S(A, a => a.polizaCaucion);
+  const certVig = base + dif + aj;
+  const L = [];
+  const mas = (t, v, det) => L.push({c:"c-mas", s:"+", t, v, det});
+  const menos = (t, v, det) => L.push({c:"c-menos", s:"−", t, v, det});
+  const sub = (t, v, det) => L.push({c:"sub", s:"=", t, v, det});
+  const tot = (t, v, det) => L.push({c:"tot", s:"=", t, v, det});
+  const parteCert = () => {
+    mas("Certificado a precios de contrato", base, `${C.length} certificados`);
+    mas("Diferencia por redeterminación", dif, "Lo que suman las redeterminaciones sobre los certificados");
+    if(A.length) mas("Ajustes por redeterminación", aj, `${A.length} ${A.length === 1 ? "ajuste" : "ajustes"} (a precios de contrato no existe, es el ajuste de precio)`);
+  };
+  let titulo = "", nota = "";
+  if(k === "vigente"){
+    titulo = "Monto vigente";
+    mas("Monto de contrato original", o.montoContrato);
+    if(d._resCalc){
+      const c = d._resCalc;
+      c.filas.forEach(f => { if(f.aprobada) mas(`Redeterminación ${RU(f.n)} × ${fmtNum(f.coef, 2)}`, f.aplicado,
+        `${fmtPesos(f.montoUsado)}${f.montoReducida ? " (reducida)" : ""} · salto ${fmtMes(f.mesSalto)} · ${f.antUsados.length ? "anticipo ya certificado: " + f.antUsados.map(a => fmtPct(a.pct, 0)).join(" + ") : "sin anticipo certificado"}`); });
+      tot("Monto vigente", c.vigente);
+      const pend = c.filas.filter(f => !f.aprobada);
+      const ctl = (t, v) => v == null ? "" : ` ${t}: ${fmtPesos(v)} ${Math.abs(v - c.vigente) <= 2 ? "✓" : `(difiere ${fmtPesos(c.vigente - v)})`}.`;
+      nota = `Solo suman las redeterminaciones aprobadas.${pend.length ? ` En trámite, sin sumar: ${pend.map(f => `${RU(f.n)} por ${fmtM(f.aplicado)}`).join(", ")}.` : ""}${ctl("Certificado (Resumen General)", c.excel)}${ctl("RESUMEN DE RESUMENES", c.resumen)}`;
+      return {titulo, L, nota};
+    }
+    let prev = null;
+    (d.redeterminaciones || []).forEach(r => { if(prev != null && r.monto != null) mas(`Redeterminación ${r.redet}`, r.monto - prev, `Salto de precios de ${fmtMes(r.mesSalto)}`); if(r.monto != null) prev = r.monto; });
+    const acc = L.reduce((t, r) => t + r.v, 0);
+    if(o.montoVigente != null && Math.abs(o.montoVigente - acc) > 2) mas("Redeterminaciones sin detalle en la planilla", o.montoVigente - acc, "El monto vigente las incluye, pero no figuran en la hoja de redeterminaciones");
+    tot("Monto vigente", o.montoVigente);
+    nota = "Es el monto de contrato más los importes de todas las redeterminaciones aprobadas.";
+  } else if(k === "certificado"){
+    titulo = "Certificado a la fecha";
+    parteCert(); tot("Certificado a precios de la última redeterminación", certVig);
+    nota = `Avance según precios de contrato: ${fmtPct(o.montoContrato ? base / o.montoContrato : null)}. Último certificado: N° ${d.kpis.ultimoCert} del ${fmtFecha(d.kpis.ultimoCertFecha)}.`;
+  } else if(k === "azul"){
+    titulo = "Abonado a la fecha, descontados anticipos";
+    parteCert(); sub("Certificado a precios de la última redeterminación", certVig);
+    menos("Anticipo financiero descontado en los certificados", antC, `${fmtPct(o.anticipoPct, 0)} de cada certificado`);
+    if(A.length) menos("Anticipo descontado en los ajustes", antA);
+    tot("Abonado descontados anticipos", certVig - antC - antA);
+    nota = `La póliza de caución (${fmtPesos(poliza)}) se informa aparte: no se descuenta de lo abonado.`;
+  } else if(k === "rosa"){
+    titulo = "Abonado a la fecha, con anticipos financieros";
+    const neto = S(C, c => c.neto) + S(A, a => a.neto);
+    mas("Abonado descontados anticipos", neto, "Certificados y ajustes, ya sin el anticipo recuperado");
+    AN.forEach(a => mas(`Anticipo financiero ${fmtPct(a.pct, 0)}`, a.neto, `Fecha ${fmtFecha(a.fecha)}`));
+    const aa = S(A, a => a.ajusteAnticipo);
+    if(aa) mas("Ajuste del anticipo por redeterminación", aa, "Actualización de los anticipos que traen los ajustes");
+    tot("Abonado con anticipos financieros", d.kpis.netoCertificado);
+    nota = "Es todo lo que se pagó o está en camino a la empresa, anticipos incluidos.";
+  } else if(k === "violeta"){
+    titulo = "Falta abonar";
+    mas("Saldo de obra a precios vigentes, con IVA", p.saldoObraConIva, "Lo que queda por ejecutar según la hoja Saldo de Obra");
+    menos("Anticipo a descontar sobre ese saldo", (p.saldoObraConIva || 0) - (p.saldoObraAPagar || 0), "El saldo también va a recuperar anticipo; los ítems excedidos lo compensan");
+    tot("Saldo a pagar", p.saldoObraAPagar);
+    nota = `El saldo es ${fmtPct(o.montoVigente ? (p.saldoObraAPagar || 0) / o.montoVigente : null)} del monto vigente.`;
+  }
+  return {titulo, L, nota};
+}
+
+function abrirCuenta(d, k){
+  const c = cuentaEco(d, k); if(!c.L.length) return;
+  gid("dlg-cuenta").innerHTML = `<button type="button" class="cerrar" data-cerrar>Cerrar</button>
+    <h3 class="f-tit">${c.titulo}</h3><p class="f-nota" style="margin:2px 0 4px">Qué suma (+) y qué resta (−), en pesos con IVA.</p>
+    <table class="cuenta"><tbody>${c.L.map(r => `<tr class="${r.c}"><td class="sg">${r.s}</td><td>${r.t}${r.det ? `<small>${r.det}</small>` : ""}</td><td class="n">${fmtPesos(r.v)}</td></tr>`).join("")}</tbody></table>
+    <p class="f-nota" style="margin-top:12px">${c.nota}</p>`;
+  gid("dlg-cuenta").showModal();
+}
+
+/* ---------------- indicadores destacados: los que se marcan con color en la planilla ---------------- */
+function destacados(d){
+  if(!d.certificados || !d.certificados.length) return "";
+  const F = calcEco(d).filas, byX = x => F.find(r => r.x === x) || {};
+  const ab = byX("abonadoDescAnticipos"), af = byX("abonadoConAF");
+  const ok = r => r.control === "ok" ? '<span class="ctl ok" title="Coincide con la planilla de certificación">✓ coincide con la planilla</span>'
+    : r.control === "dif" ? '<span class="ctl dif" title="El panel calculó distinto que la planilla de certificación">Difiere de la planilla</span>' : "";
+  const t = (cls, tit, v, sub, r, k) => v == null ? "" : `<button type="button" class="dest ${cls}" data-cuenta="${k}"><div class="l">${tit}</div><div class="v">${fmtM(v)}</div>
+    <div class="s">${fmtPesos(v)}</div><div class="s2">${sub}</div>${r ? ok(r) : ""}<span class="ver">Ver cuenta ›</span></button>`;
+  const filas = t("azul", "Abonado a la fecha, descontados anticipos", ab.a, "Neto de certificados y ajustes, a precios de la última redeterminación", ab, "azul")
+    + t("rosa", "Abonado a la fecha, con anticipos financieros", af.a, "Lo que se pagó o está en camino, anticipos incluidos", af, "rosa")
+    + t("violeta", "Falta abonar", af.f, "Saldo a pagar de la obra, a precios de la última redeterminación", af, "violeta");
+  return filas ? `<div class="destacados">${filas}</div>` : "";
+}
+
+/* ---------------- resumen económico: lo calcula el panel con los certificados; la planilla solo sirve de control ---------------- */
+function calcEco(d){
+  const o = d.obra, k = d.kpis, p = d.proyeccion || {}, C = d.certificados || [], A = d.ajustes || [];
+  const S = (arr, f) => arr.reduce((t, x) => t + (+f(x) || 0), 0);
+  const base = S(C, c => c.base), conRedet = S(C, c => c.conRedet), ajustes = S(A, a => a.monto);
+  const netoCert = S(C, c => c.neto), netoAj = S(A, a => a.neto);
+  const abonado = k.netoCertificado, saldoPagar = p.saldoObraAPagar;
+  const cuadro = {}; (d.resumen && d.resumen.cuadro || []).forEach(x => cuadro[x.clave] = x);
+  const filas = [
+    {t:"Certificado a la fecha, a precios de contrato", a:base, f:o.montoContrato != null ? o.montoContrato - base : null, x:"certContrato"},
+    {t:"Certificado a la fecha, a precios de la última redeterminación (con ajustes)", a:conRedet + ajustes, f:p.saldoObraConIva, x:"certVigente"},
+    {t:"Certificado neto de anticipos (certificados y ajustes)", a:netoCert + netoAj, f:null, x:"abonadoDescAnticipos"},
+    {t:"Neto certificado con anticipos financieros", a:abonado, f:saldoPagar, x:"abonadoConAF"},
+    {t:"Neto certificado con anticipos, más el saldo a pagar", a:null, f:abonado != null && saldoPagar != null ? abonado + saldoPagar : null, x:"abonadoMasSaldo"},
+    {t:"Monto de contrato más los importes redeterminados, neto", a:null, f:o.montoVigente, x:"montoVigente"},
+    {t:"Diferencia entre el monto vigente y lo neto certificado más el saldo a pagar", a:null,
+      f:o.montoVigente != null && abonado != null && saldoPagar != null ? o.montoVigente - abonado - saldoPagar : null, x:"difAbonadoVsMonto"},
+    {t:"Porcentaje de obra según precios de contrato", a:o.montoContrato ? base / o.montoContrato : null, f:o.montoContrato ? 1 - base / o.montoContrato : null, x:"pctObra", pct:true},
+  ];
+  filas.forEach(r => { const c = cuadro[r.x];
+    r.ca = c ? c.acumulado : undefined; r.cf = c ? c.faltante : undefined;
+    const tol = r.pct ? 0.0006 : 2, mal = (v, w) => v != null && w != null && Math.abs(v - w) > tol;
+    r.dif = (mal(r.a, r.ca) || mal(r.f, r.cf)) ? {a:mal(r.a, r.ca) ? r.a - r.ca : null, f:mal(r.f, r.cf) ? r.f - r.cf : null} : null;
+    r.control = !c ? "sin" : r.dif ? "dif" : "ok"; });
+  // totales de cada columna de la tabla de certificados
+  const T = (d.resumen && d.resumen.totalesColumnas) || {}, tc = T.certificados || {}, ta = T.ajustes || {};
+  const cols = [
+    {t:"Certificado a precios de contrato", k:"base", c:base, a:null},
+    {t:"Certificado a precios redeterminados", k:"conRedet", c:conRedet, a:null},
+    {t:"Diferencia por redeterminación", k:"dif", c:S(C, c => c.difRedet), a:null},
+    {t:"Monto de los ajustes", k:"ajuste", c:null, a:ajustes},
+    {t:"Anticipo financiero descontado", k:"anticipo", c:S(C, c => c.anticipoDesc), a:S(A, a => a.anticipoDesc)},
+    {t:"Póliza de caución", k:"fondo", c:S(C, c => c.polizaCaucion), a:S(A, a => a.polizaCaucion)},
+    {t:"Neto a pagar", k:"neto", c:netoCert, a:netoAj},
+  ];
+  cols.forEach(r => { const pc = tc[r.k], pa = ta[r.k], hay = pc != null || pa != null;
+    const mal = (v, w) => v != null && w != null && Math.abs(v - w) > 2;
+    r.control = !hay ? "sin" : (mal(r.c, pc) || mal(r.a, pa)) ? "dif" : "ok";
+    r.dif = r.control === "dif" ? {c:mal(r.c, pc) ? r.c - pc : null, a:mal(r.a, pa) ? r.a - pa : null} : null; });
+  return {filas, cols: cols.filter(r => r.c != null || r.a != null || tc[r.k] != null || ta[r.k] != null)};
+}
+
+function resumenEco(d){
+  if(!d.certificados || !d.certificados.length) return "";
+  const e = calcEco(d);
+  const val = (x, pct) => x == null ? "—" : pct ? fmtPct(x) : fmtPesos(x);
+  const sg = (x, pct) => (x > 0 ? "+" : "") + (pct ? fmtPct(x) : fmtPesos(x));
+  const ctl = r => r.control === "ok" ? '<span class="ctl ok" title="Coincide con el Excel">✓ coincide</span>'
+    : r.control === "sin" ? '<span class="ctl">—</span>'
+    : `<span class="ctl dif" title="El panel calculó distinto que la planilla">Difiere: ${[r.dif.a != null ? "acum. " + sg(r.dif.a, r.pct) : "", r.dif.f != null ? "falt. " + sg(r.dif.f, r.pct) : "",
+        r.dif.c != null ? "cert. " + sg(r.dif.c) : ""].filter(Boolean).join(" · ")}</span>`;
+  const filas = e.filas.map(r => `<tr><td>${r.t}</td><td class="n">${val(r.a, r.pct)}</td><td class="n">${val(r.f, r.pct)}</td><td>${ctl(r)}</td></tr>`).join("");
+  const tot = e.cols.map(r => `<tr><td>${r.t}</td><td class="n">${val(r.c)}</td><td class="n">${val(r.a)}</td><td class="n"><b>${val((r.c || 0) + (r.a || 0))}</b></td><td>${ctl(r)}</td></tr>`).join("");
+  const hayDif = [...e.filas, ...e.cols].some(r => r.control === "dif");
+  return `<details class="panel" id="res-eco"><summary style="cursor:pointer;font-weight:700;font-size:16px">Resumen económico completo</summary>
+    <p class="nota">Lo calcula el panel con los certificados, los ajustes y el monto de cada redeterminación. La última columna lo compara con el cuadro de la planilla de certificación: si difieren, hay algo para revisar en el Excel (por ejemplo, un ajuste que no está cargado en una hoja).${hayDif ? " <b>Hay diferencias.</b>" : ""}</p>
+    <div class="tabla-wrap"><table class="tabla-res"><thead><tr><th></th><th class="n">Acumulado</th><th class="n">Faltante</th><th>Control con la planilla</th></tr></thead><tbody>${filas}</tbody></table></div>
+    <h3 style="margin-top:22px">Totales de la tabla de certificados</h3>
+    <div class="tabla-wrap"><table class="tabla-res"><thead><tr><th></th><th class="n">Certificados</th><th class="n">Ajustes</th><th class="n">Total</th><th>Control con la planilla</th></tr></thead><tbody>${tot}</tbody></table></div></details>`;
 }
 
 /* ---------------- línea de obra (pieza principal) ---------------- */
 function lineaObra(d){
   const o = d.obra, k = d.kpis, p = d.proyeccion;
   const box = document.getElementById("linea");
-  const atraso = p.finPlanVigente && p.finEstimadoRitmo && p.finEstimadoRitmo > p.finPlanVigente;
   let frase = `Certificado ${k.ultimoCert}, trabajos de ${fmtMes(p.ultimoMes+"-01")}. Falta certificar el <b>${fmtPct(p.saldoPct)}</b>.`;
   if(p.ritmoNecesario){
     frase += ` Para terminar en ${fmtMes(p.finPlanVigente)}, como indica el plan vigente del seguimiento, hacen falta <b>${fmtPct(p.ritmoNecesario)} por mes</b>;
       el ritmo de los últimos tres certificados es <b>${fmtPct(p.ritmoReciente)}</b>`;
-    frase += p.finEstimadoRitmo ? `, que llevaría el final a <span class="${atraso ? "alerta" : ""}">${fmtMes(p.finEstimadoRitmo)}</span>.` : ".";
+    frase += ".";
   }
   box.innerHTML = `<div class="titular"><div class="pct">${fmtNum((k.pctAvance||0)*100,1)}<small>%</small></div>
     <div class="frase">${frase}</div></div>`;
 
   // eje temporal: contrato -> mayor de las fechas de fin
   const ini = parseISO(o.fechaContrato);
-  const fechas = [p.finContractual, p.finPlanVigente, p.finEstimadoRitmo].filter(Boolean).map(parseISO);
+  const fechas = [p.finContractual, p.finPlanVigente].filter(Boolean).map(parseISO);
   const hoy = new Date();
   const fin = new Date(Math.max(...fechas.map(f => f.getTime()), hoy.getTime()) + 45*864e5);
   const W = 1000, H = 190, x0 = 8, x1 = W - 8;
@@ -695,7 +1073,6 @@ function lineaObra(d){
     {f:ini, t:"Contrato", s:fmtMes(o.fechaContrato), arriba:true},
     {f:fc, t:"Fin contractual", s:fmtMes(p.finContractual), arriba:true},
     {f:parseISO(p.finPlanVigente), t:"Fin vigente", s:fmtMes(p.finPlanVigente), arriba:false},
-    {f:parseISO(p.finEstimadoRitmo), t:"Al ritmo actual", s:fmtMes(p.finEstimadoRitmo), arriba:true, alerta:true},
     {f:hoy, t:"Hoy", s:"", arriba:false, hoy:true},
   ].filter(m => m.f);
   // ubicación de etiquetas: arriba o abajo de la barra, en dos niveles, sin pisarse
@@ -719,18 +1096,17 @@ function lineaObra(d){
   const yMax = ocupado.abajo[1].length ? yBar + 110 : (ocupado.abajo[0].length ? yBar + 78 : yBar + 46);
   s.setAttribute("viewBox", `0 ${yMin} ${W} ${yMax - yMin}`);
   s.setAttribute("role","img");
-  s.setAttribute("aria-label","Línea de tiempo de la obra: contrato, fin contractual, fin vigente y fin estimado al ritmo actual");
+  s.setAttribute("aria-label","Línea de tiempo de la obra: contrato, fin contractual y fin vigente");
   const graf = document.createElement("div"); graf.className = "graf";
   graf.appendChild(s); box.appendChild(graf);
 }
 
 /* ---------------- curva S ---------------- */
 function curva(d){
-  const real = d.curva.real, plan = d.curva.plan || d.curva.planOriginal, p = d.proyeccion;
+  const real = d.curva.real, plan = d.curva.plan || d.curva.planOriginal || [], p = d.proyeccion;
   const orig = d.curva.plan ? (d.curva.planOriginal || []) : [];
   const meses = [...real.map(r => r.mes), ...plan.map(r => r.mes), ...orig.map(r => r.mes)];
   if(p.finPlanVigente) meses.push(p.finPlanVigente.slice(0,7));
-  if(p.finEstimadoRitmo) meses.push(p.finEstimadoRitmo.slice(0,7));
   const i0 = Math.min(...meses.map(m => mesIdx(m+"-01"))), i1 = Math.max(...meses.map(m => mesIdx(m+"-01")));
   const W = 1000, H = 330, L = 48, R = 16, T = 14, B = 34;
   const X = i => L + (i - i0) / Math.max(1, i1 - i0) * (W - L - R);
@@ -750,7 +1126,6 @@ function curva(d){
   if(plan.length) linea(plan.map(r => [X(mesIdx(r.mes+"-01")), Y(r.pctAcum)]), {stroke:C.plan, "stroke-width":2.5, "stroke-dasharray":"6 5"});
   // proyecciones desde el último punto real
   const ult = real[real.length-1], iu = mesIdx(ult.mes+"-01");
-  if(p.finEstimadoRitmo) linea([[X(iu), Y(ult.pctAcum)], [X(mesIdx(p.finEstimadoRitmo)), Y(1)]], {stroke:C.amber, "stroke-width":2, "stroke-dasharray":"5 5"});
   if(p.finPlanVigente) linea([[X(iu), Y(ult.pctAcum)], [X(mesIdx(p.finPlanVigente)), Y(1)]], {stroke:C.navy2, "stroke-width":2, "stroke-dasharray":"2 4", opacity:.5});
   linea(real.map(r => [X(mesIdx(r.mes+"-01")), Y(r.pctAcum)]), {stroke:C.teal, "stroke-width":3});
   for(const r of real){
@@ -993,14 +1368,10 @@ function planFin(d){
 function hayOrig(d){ const c = d.curva || {}; return !!(c.plan && c.planOriginal && c.planOriginal.length); }
 function finOrig(d){ const c = d.curva || {}; return c.planOriginalFin ? c.planOriginalFin + "-01" : null; }
 function notaPlanes(d){
-  const fin = fmtMes(planFin(d));
-  if(!hayOrig(d)) return `Avance acumulado certificado frente al ${planNombre(d)}, que prevé terminar en ${fin}. El fin vigente viene de la hoja SALDO del seguimiento.`;
-  const fo = finOrig(d), igual = fo === planFin(d);
-  return `Avance acumulado certificado frente al plan original y al ${planNombre(d)} (reprogramado). ${igual ? `Los dos prevén terminar en ${fin}` : `El original prevé terminar en ${fmtMes(fo)} y el reprogramado en ${fin}`}. El fin vigente viene de la hoja SALDO del seguimiento.`;
+  return "Avance acumulado certificado, con cada certificado ubicado en su mes de ejecución.";
 }
 function cierrePlanes(d){
-  const fin = fmtMes(planFin(d));
-  if(!hayOrig(d)) return `La curva se compara con el ${planNombre(d)}, que prevé terminar en ${fin}.`;
+  return "";
   return `La curva se compara con el plan original y con el ${planNombre(d)} (reprogramado); ${finOrig(d) === planFin(d) ? `ambos prevén terminar en ${fin}` : `terminan en ${fmtMes(finOrig(d))} y ${fin}`}.`;
 }
 function tablaPlanes(d){
@@ -1073,6 +1444,11 @@ function iniciarVistas(d){
     }
     window.scrollTo(0, 0);
   }));
+  const dc = document.getElementById("dlg-cuenta");
+  if(dc){
+    dc.addEventListener("click", e => { if(e.target === dc || e.target.closest("[data-cerrar]")) dc.close(); });
+    document.getElementById("vista-panel").addEventListener("click", e => { const b = e.target.closest("[data-cuenta]"); if(b) abrirCuenta(d, b.dataset.cuenta); });
+  }
   document.getElementById("btn-pdf").addEventListener("click", () => document.getElementById("dlg-pdf").showModal());
   document.getElementById("pdf-cancelar").addEventListener("click", () => document.getElementById("dlg-pdf").close());
   document.getElementById("pdf-generar").addEventListener("click", generarPDF);
@@ -1353,22 +1729,15 @@ function definiciones(d){
       { t:"Estaciones",
         d:"Ítems globales que se miden por disciplina (civil, mecánica y eléctrica) y por tareas, según la metodología de medición del último certificado. El porcentaje grande es el avance total del ítem.",
         hoy:`${(d.globales || []).length} ítems` },
-      { t:"Curva y planes de trabajo",
-        d:(() => {
-          const c = d.curva || {};
-          const dif = hayOrig(d) ? c.plan.filter(x => { const o = c.planOriginal.find(y => y.mes === x.mes); return o && Math.abs(o.pctAcum - x.pctAcum) > 0.0005; }).map(x => x.mes) : [];
-          const tramo = dif.length ? ` Difieren entre ${fmtMes(dif[0] + "-01")} y ${fmtMes(dif[dif.length - 1] + "-01")}; antes y después coinciden.` : "";
-          const base = "La curva real une el avance acumulado de cada certificado, ubicado en el mes de ejecución. Los planes muestran el avance acumulado que se previó mes a mes. ";
-          if(!hayOrig(d)) return base + `El plan es la hoja «P.T.Propuesta %» de la planilla de certificación, rotulada «${c.planNombre || "plan de trabajo"}».`;
-          return base + `El plan original es el de la oferta${c.planOriginalArchivo ? ` (archivo «${c.planOriginalArchivo}»)` : ""}. El ${planNombre(d)} es el reprogramado y es el que figura en la hoja «P.T.Propuesta %» de la planilla de certificación.${tramo}`;
-        })(),
-        hoy:hayOrig(d) ? `original hasta ${fmtMes(finOrig(d))}, ${planNombre(d)} hasta ${fmtMes(planFin(d))}` : `${planNombre(d)}, prevé terminar en ${fmtMes(planFin(d))}` },
-      { t:"Ritmo reciente y ritmo necesario",
-        d:"Reciente: promedio del porcentaje mensual de los últimos tres certificados. Necesario: lo que falta certificar dividido por los meses que quedan hasta el fin vigente.",
-        hoy:p.ritmoNecesario ? `${fmtPct(p.ritmoReciente)} por mes contra ${fmtPct(p.ritmoNecesario)} necesarios` : "" },
-      { t:"Fin contractual, fin vigente y fin al ritmo actual",
-        d:"Contractual: fecha del contrato más el plazo en días. Vigente: mes de finalización que figura en la hoja SALDO del seguimiento (plan vigente). Al ritmo actual: mes en que se llegaría al 100 % si se siguiera certificando el ritmo reciente.",
-        hoy:`${fmtMes(p.finContractual)} contractual, ${fmtMes(p.finPlanVigente)} vigente, ${fmtMes(p.finEstimadoRitmo)} al ritmo actual` },
+      { t:"Curva de avance",
+        d:"Une el avance acumulado de cada certificado, ubicado en el mes de ejecución de los trabajos.",
+        hoy:`${(d.curva.real || []).length} certificados` },
+      { t:"Fin contractual",
+        d:"Fecha del contrato más el plazo en días.",
+        hoy:fmtMes(p.finContractual) },
+      { t:"Resumen económico",
+        d:"Lo calcula el panel: suma los certificados y ajustes, toma el monto de cada redeterminación y el saldo de obra. Cada renglón se compara con el cuadro ACUMULADO / FALTANTE del Resumen General de la planilla; si no coincide, se marca para revisar.",
+        hoy:"" },
       { t:"Saldo de obra",
         d:"Lo que falta ejecutar de cada ítem (cantidad de contrato menos ejecutada), valuado a los precios de la última redeterminación y sin IVA. Los ítems excedidos tienen saldo negativo.",
         hoy:`${fmtM(p.saldoObraConIva)} con IVA` },
@@ -1460,27 +1829,48 @@ async function leerJSON(ruta, ms){
   finally{ clearTimeout(t); }
   return null;
 }
-/* Como Panel_Extensiones: junta los datos del propio archivo, de la carpeta data/ y de la web, y usa el más nuevo.
-   Si hay empate o no se puede leer nada más, queda el del archivo. */
-async function traerJSON(nombre){
-  const emb = window.__DATOS__ && window.__DATOS__[nombre];
-  const cand = [];
-  if(emb) cand.push({d:emb, f:"archivo del panel"});
-  const [carp, raiz, web] = await Promise.all([
-    leerJSON("data/" + nombre, 4000), leerJSON(nombre, 4000), leerJSON(JSON_WEB + nombre, emb ? 3000 : 8000)]);
-  if(carp) cand.push({d:carp, f:"carpeta"});
-  if(raiz) cand.push({d:raiz, f:"carpeta"});
-  if(web) cand.push({d:web, f:"web"});
-  if(!cand.length) throw new Error("sin datos");
-  const mejor = cand.reduce((m, c) => sello(c.d) > sello(m.d) ? c : m);   // empate: gana el primero (el del archivo)
-  FUENTE[nombre] = mejor.f;
-  return mejor.d;
+/* Como Panel_Extensiones: compara los datos de la carpeta data/ y de la web, y usa los más nuevos.
+   Abierta con doble clic (file://) el navegador no deja leer .json de disco, pero sí cargar scripts: por eso el script
+   actualizar_certificaciones.py deja también data/certificaciones_*.js. Con datos locales el panel se dibuja AL INSTANTE;
+   la web se consulta en segundo plano y, solo si trae algo más nuevo, el panel se redibuja.
+   Publicada en GitHub lee los JSON de data/. */
+function leerJS(nombre, ms){
+  const base = nombre.replace(/\.json$/, ".js");
+  const probar = ruta => new Promise(res => {
+    const sc = document.createElement("script"), t = setTimeout(() => { sc.remove(); res(null); }, ms);
+    sc.onload = () => { clearTimeout(t); sc.remove(); res((window.__DATOS_JS || {})[nombre] || null); };
+    sc.onerror = () => { clearTimeout(t); sc.remove(); res(null); };
+    sc.src = ruta + "?t=" + Date.now(); document.head.appendChild(sc);
+  });
+  return probar("data/" + base).then(d => d || probar(base));
+}
+async function traerJSON(nombre, alActualizar){
+  let emb = (window.__DATOS__ && window.__DATOS__[nombre]) || null, fe = "archivo del panel";
+  if(!emb && LOCAL){ emb = await leerJS(nombre, 4000); fe = "carpeta"; }
+  const fuera = async () => {
+    const rutas = [["data/" + nombre, "carpeta"], [nombre, "carpeta"]];
+    if(LOCAL || emb) rutas.push([JSON_WEB + nombre, "web"]);   // publicado en GitHub no hace falta mirar la web: es la misma carpeta
+    const r = await Promise.all(rutas.map(([u]) => leerJSON(u, emb ? 6000 : 4000)));
+    const c = r.map((d, i) => d && {d, f:rutas[i][1]}).filter(Boolean);
+    return c.length ? c.reduce((m, x) => sello(x.d) > sello(m.d) ? x : m) : null;
+  };
+  if(emb){
+    FUENTE[nombre] = fe;
+    const cd = document.getElementById("cab-der"); if(cd) cd.classList.add("buscando");
+    const listo = () => { const x = document.getElementById("cab-der"); if(x) x.classList.remove("buscando"); };
+    fuera().finally(listo).then(m => { if(m && sello(m.d) > sello(emb)){ FUENTE[nombre] = m.f; if(alActualizar) alActualizar(m.d); } }).catch(() => {});
+    return emb;
+  }
+  const m = await fuera();
+  if(!m) throw new Error("sin datos");
+  FUENTE[nombre] = m.f;
+  return m.d;
 }
 
 function cargarIndice(){
-  traerJSON("certificaciones_indice.json").then(renderIndice).catch(() => {
+  traerJSON("certificaciones_indice.json", renderIndice).then(_pausa).then(renderIndice).catch(() => {
     app.innerHTML = `<div class="estado-msg"><h2>Todavía no hay datos del índice</h2>
-      <p>No se encontró <code>certificaciones_indice.json</code>, ni en la carpeta <code>data</code> ni junto a esta página.
+      <p>No se encontró <code>certificaciones_indice.json</code>, ni en la carpeta <code>data</code> (como .json o .js) ni junto a esta página.
       Se genera corriendo <code>actualizar_certificaciones.py</code> con la planilla de seguimiento de certificaciones.</p>
       <p>Para ver el panel de una obra, agregá la obra a la dirección, por ejemplo <code>certificaciones.html?obra=mechita</code>.</p></div>`;
   });
@@ -1552,13 +1942,41 @@ function renderIndice(d){
   const opEmp = d.empresas.map(e => `<option value="${esc(e)}">${esc(e)}</option>`).join("");
   app.innerHTML = `
     <nav class="secciones" aria-label="Secciones">
-      <a href="#calendario">Calendario</a><a href="#mover">Para mover hoy</a><a href="#indicadores">Indicadores</a><a href="#obras">Obras</a><a href="#datos">Control de datos</a>
+      <a href="#obras">Obras</a><a href="#indicadores">Indicadores y proyección</a><a href="#calendario">Calendario</a><a href="#mover">Para mover hoy</a><a href="#datos">Control de datos</a>
     </nav>
     <div class="ix-filtros-activos" id="ix-activos"></div>
 
+    <section id="obras">
+      <div class="sec-cab"><h2>Obras</h2><p class="bajada">Tocá una obra para abrir su panel.</p></div>
+      <div class="paneles-grid" id="ix-paneles"></div>
+      <dialog class="ix-dlg ancho" id="dlg-todas"><button type="button" class="cerrar" data-cerrar>Cerrar</button>
+        <h3 class="f-tit" id="dlg-todas-tit">Todas las obras</h3>
+        <p class="f-nota" style="margin:2px 0 12px">Las obras de la planilla de seguimiento que no tienen panel. «Ver en el calendario» filtra el calendario y los indicadores por esa obra.</p>
+        <div class="obras-grid" id="ix-obras"></div>
+      </dialog>
+    </section>
+    <details class="panel ix-desp" id="indicadores">
+      <summary><h2>Indicadores y proyección de pagos</h2><span class="resumen" id="ix-kpis-res"></span></summary>
+      <p class="bajada">Tocá un indicador para ver los comprobantes que lo componen. Respetan los filtros del calendario.</p>
+      <div class="kpis kpis-tres" id="ix-kpis"></div>
+      <div id="proyeccion-pagos" style="margin-top:22px">
+        <h3 class="py-tit">Proyección de pagos</h3>
+        <p class="bajada">Lo que tiene fechas en el seguimiento va en el mes de su pago estimado. Los ajustes con el cálculo hecho que todavía no tienen fechas van como pendientes. Los meses anteriores quedan como historial, en gris, con lo que se pagó.</p>
+        <div class="panel py-panel">
+          <div class="py-bar">
+            <div class="cal-nav">
+              <button type="button" class="flecha" id="py-prev" aria-label="Mes anterior">‹</button>
+              <select id="py-mes" aria-label="Mes de pago"></select>
+              <button type="button" class="flecha" id="py-next" aria-label="Mes siguiente">›</button>
+            </div>
+            <button type="button" class="btn prim" id="py-pdf">Exportar PDF</button>
+          </div>
+          <div id="py-cuerpo"></div>
+        </div>
+      </div>
+    </details>
     <section id="calendario">
-      <h2>Calendario</h2>
-      <p class="bajada">En curso muestra lo que todavía no se pagó, con su última etapa y la fecha de pago estimada. Historial muestra todo lo que pasó en el mes. Los montos están en las fichas.</p>
+      <div class="sec-cab"><h2>Calendario</h2><p class="bajada">En curso: lo que falta pagar · Historial: todo lo del mes.</p></div>
       <div class="ix-main">
         <div class="panel">
           <div class="cal-bar">
@@ -1584,37 +2002,26 @@ function renderIndice(d){
           <div class="cal-leyenda">
             <span><i class="ev-acta"></i>Acta de medición</span><span><i class="ev-envio"></i>Enviado al contratista</span>
             <span><i class="ev-entrada"></i>Factura recibida</span><span><i class="ev-tesoreria"></i>Entregado a Tesorería</span>
-            <span><i class="ev-pago"></i>Pagado</span><span><i class="est"></i>Pago estimado</span><span><i class="dem"></i>Demorado</span>
+            <span><i class="ev-pago"></i>Pagado</span><span><i class="est"></i>Estimado o posterior a hoy</span><span><i class="dem"></i>Demorado</span>
           </div>
         </div>
         <div class="panel mover" id="mover"></div>
       </div>
     </section>
 
-    <section id="indicadores">
-      <h2>Indicadores</h2>
-      <p class="bajada">Tocá cualquiera para ver los comprobantes que lo componen. Respetan los filtros del calendario.</p>
-      <div class="kpis" id="ix-kpis"></div>
-    </section>
-
-    <section id="obras">
-      <h2>Obras</h2>
-      <p class="bajada">Las obras con panel de detalle están abajo. El listado de todas las obras de la planilla de seguimiento está plegado: «Ver en el calendario» filtra el calendario y los indicadores por esa obra.</p>
-      <div class="paneles-grid" id="ix-paneles"></div>
-      <details class="panel ix-todas" id="ix-todas" style="margin-top:16px"><summary id="ix-todas-sum">Todas las obras</summary>
-        <div class="obras-grid" id="ix-obras"></div>
-      </details>
-    </section>
-
-    <details class="panel ix-como" style="margin-top:32px"><summary>Cómo se calcula</summary>${comoIx(d)}</details>
-    <details class="panel ix-datos" id="datos" style="margin-top:16px"><summary id="ix-datos-sum">Control de datos (${d.avisos.length})</summary><div id="ix-rev"></div>${avisosIx(d)}</details>
+    <div class="dos-col">
+    <button type="button" class="panel ix-boton" data-abrir="dlg-como"><b>Cómo se calcula</b><span>Etapas, días hasta el pago, demoras y fechas estimadas</span><i>Ver ›</i></button>
+    <button type="button" class="panel ix-boton" id="datos" data-abrir="dlg-datos"><b id="ix-datos-sum">Control de datos (${d.avisos.length})</b><span>Comprobantes para revisar y avisos de la planilla</span><i>Ver ›</i></button>
+    <dialog class="ix-dlg" id="dlg-como"><button type="button" class="cerrar" data-cerrar>Cerrar</button><h3 class="f-tit">Cómo se calcula</h3>${comoIx(d)}</dialog>
+    <dialog class="ix-dlg ix-datos" id="dlg-datos"><button type="button" class="cerrar" data-cerrar>Cerrar</button><h3 class="f-tit" id="dlg-datos-tit">Control de datos</h3><div id="ix-rev"></div>${avisosIx(d)}</dialog>
+    </div>
 
     <dialog class="ix-dlg" id="dlg-dia"></dialog>
     <dialog class="ix-dlg" id="dlg-ficha"></dialog>`;
 
-  gid("cal-prev").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() - 1, 1); pintarCal(); };
-  gid("cal-next").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() + 1, 1); pintarCal(); };
-  gid("cal-hoy").onclick = () => { IX.mes = new Date(IX.hoy.getFullYear(), IX.hoy.getMonth(), 1); pintarCal(); };
+  gid("cal-prev").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() - 1, 1); pintarCal(); deslizar(-1); };
+  gid("cal-next").onclick = () => { IX.mes = new Date(IX.mes.getFullYear(), IX.mes.getMonth() + 1, 1); pintarCal(); deslizar(1); };
+  gid("cal-hoy").onclick = () => { IX.mes = new Date(IX.hoy.getFullYear(), IX.hoy.getMonth(), 1); pintarCal(); deslizar(0); };
   document.querySelectorAll(".seg [data-modo]").forEach(b => b.onclick = () => {
     IX.modo = b.dataset.modo;
     document.querySelectorAll(".seg [data-modo]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
@@ -1629,13 +2036,21 @@ function renderIndice(d){
     const cell = e.target.closest(".dia[data-f]");
     if(cell && (e.target.closest("[data-dia]") || movil())) abrirDiaIx(cell.dataset.f);
   };
+  iniciarProy();
+  document.querySelectorAll('nav.secciones a[href^="#"]').forEach(l => l.addEventListener("click", () => {
+    const t = document.querySelector(l.getAttribute("href")); if(t && t.tagName === "DETAILS") t.open = true; }));
   gid("ix-kpis").onclick = e => { const b = e.target.closest("[data-kpi]"); if(b) abrirKpiIx(b.dataset.kpi); };
-  gid("ix-rev").onclick = e => { const b = e.target.closest("[data-id]"); if(b) abrirFichaIx(b.dataset.id); };
+  gid("ix-rev").onclick = e => { const b = e.target.closest("[data-id]"); if(b){ gid("dlg-datos").close(); abrirFichaIx(b.dataset.id); } };
   gid("mover").onclick = e => { const b = e.target.closest("[data-id]"); if(b) abrirFichaIx(b.dataset.id); };
   gid("ix-obras").onclick = e => {
     const f = e.target.closest("[data-filtrar]");
-    if(f){ IX.obra = IX.obra === f.dataset.filtrar ? "" : f.dataset.filtrar; gid("ix-obra").value = IX.obra; pintarIx(); }
+    if(f){ IX.obra = IX.obra === f.dataset.filtrar ? "" : f.dataset.filtrar; gid("ix-obra").value = IX.obra; pintarIx();
+      gid("dlg-todas").close(); if(IX.obra) gid("calendario").scrollIntoView({behavior:"smooth"}); }
   };
+  gid("ix-paneles").addEventListener("click", e => { if(e.target.closest("#btn-todas")) gid("dlg-todas").showModal(); });
+  for(const id of ["dlg-todas", "dlg-como", "dlg-datos"]){ const dl = gid(id); dl.addEventListener("click", e => { if(e.target === dl || e.target.closest("[data-cerrar]")) dl.close(); }); }
+  document.querySelectorAll("[data-abrir]").forEach(b => b.addEventListener("click", () => gid(b.dataset.abrir).showModal()));
+  document.querySelector('nav.secciones a[href="#datos"]').addEventListener("click", e => { e.preventDefault(); gid("dlg-datos").showModal(); });
   gid("ix-activos").onclick = e => {
     const b = e.target.closest("[data-quitar]"); if(!b) return;
     if(b.dataset.quitar === "obra"){ IX.obra = ""; gid("ix-obra").value = ""; }
@@ -1652,12 +2067,145 @@ function renderIndice(d){
   pintarIx();
 }
 
+
+/* ---------------- proyección de pagos ---------------- */
+const PY = {mes:null};
+const mesKey = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+const mesTxt = (k, corto) => { const [a, m] = k.split("-"); return corto ? `${MESES_LARGO[m - 1].slice(0, 3)}-${a.slice(2)}` : `${MESES_LARGO[m - 1]} ${a}`; };
+const mesMas = (k, n) => { const [a, m] = k.split("-").map(Number); const d = new Date(a, m - 1 + n, 1); return mesKey(d); };
+const fechaCert = c => c.fechas.envio || c.fechas.acta || c.fechas.entrada || null;
+
+function armarProy(M){
+  // En trámite: lo que tiene fechas en el seguimiento, en el mes de su pago estimado.
+  // Pendientes: ajustes con el cálculo hecho y sin fechas (en el mes actual y los siguientes).
+  // Historial: lo que se pagó en el mes, en gris.
+  const hoyK = mesKey(IX.hoy), pasado = M < hoyK;
+  const okF = x => x.obraKey !== "(SIN OBRA)" && (!IX.obra || x.obraKey === IX.obra) && (!IX.empresa || (x.empresa || "").toUpperCase().includes(IX.empresa.toUpperCase().slice(0, 12)));
+  const deC = c => ({obra:c.obra, empresa:c.empresa, tema:c.tema, fecha:fechaCert(c), pago:c.fechas.pago || null, monto:c.monto, id:c.id, tipo:c.tipo});
+  const pan = IX.C.filter(c => !c.pagado && !c.antiguo && c.fEtapa && c.estimado && mesKey(c.estimado) === M && okF(c));
+  const certs = pan.filter(c => c.tipo !== "anticipo").map(deC);
+  const ants = pan.filter(c => c.tipo === "anticipo").map(deC);
+  const pag = IX.C.filter(c => c.pagado && mesKey(c.fechas.pago) === M && okF(c)).map(deC);
+  let ajp = [];
+  if(!pasado){
+    const sinFecha = IX.C.filter(c => !c.pagado && c.tipo === "ajuste" && !c.fEtapa && okF(c));
+    const ids = new Set(sinFecha.map(c => String(c.id)));
+    ajp = [...sinFecha.map(deC).map(x => ({...x, fecha:null})),
+           ...(IX.d.pendientes || []).filter(x => okF(x) && !(x.idSeguimiento != null && ids.has(String(x.idSeguimiento))))
+             .map(x => ({obra:x.obra, empresa:x.empresa, tema:x.tema, fecha:null, monto:x.monto, id:null, tipo:"ajuste"}))];
+  }
+  const suma = a => a.reduce((t, x) => t + (x.monto || 0), 0);
+  return {certs, ants, ajp, pag, pasado, tCert:suma(certs), tAnt:suma(ants), tAjp:suma(ajp), tPag:suma(pag)};
+}
+
+function mesesProy(){
+  // historial de los últimos 12 meses (los que tienen algo) y, hacia adelante, hasta el último pago estimado
+  const hoyK = mesKey(IX.hoy);
+  const ult = IX.C.filter(c => !c.pagado && !c.antiguo && c.estimado).map(c => mesKey(c.estimado)).reduce((m, k) => k > m ? k : m, mesMas(hoyK, 1));
+  const out = [];
+  for(let k = mesMas(hoyK, -12); k <= ult && out.length < 36; k = mesMas(k, 1)){
+    if(k >= hoyK){ out.push(k); continue; }
+    const d = armarProy(k); if(d.pag.length || d.certs.length || d.ants.length) out.push(k);
+  }
+  return out;
+}
+
+function filasPy(a, vacio){
+  return a.length ? a.map(x => `<tr class="fila" ${x.id != null ? `data-id="${x.id}"` : ""}><td>${esc(x.obra)}</td><td>${esc(x.empresa || "")}</td>
+      <td>${esc(x.tema || "")}${x.pago ? `<small class="py-pag">Pagado el ${fmtDate(x.pago)}</small>` : ""}</td><td>${x.fecha ? fmtDate(x.fecha) : "Pendiente"}</td><td class="n">${fmtPesos(x.monto)}</td></tr>`).join("")
+    : `<tr><td colspan="5" class="py-vacio">${vacio}</td></tr>`;
+}
+const cabPy = '<thead><tr><th>Obra</th><th>Empresa</th><th>Tema</th><th>Fecha de certificación</th><th class="n" style="text-align:right">Monto a pagar</th></tr></thead>';
+
+function pintarProy(){
+  const meses = mesesProy(), hoyK = mesKey(IX.hoy);
+  if(!meses.length){ gid("py-cuerpo").innerHTML = '<p class="py-vacio">No hay comprobantes para proyectar.</p>'; return; }
+  if(!PY.mes || !meses.includes(PY.mes)){ const sig = mesMas(hoyK, 1); PY.mes = meses.includes(sig) ? sig : (meses.find(k => k >= hoyK) || meses[meses.length - 1]); }
+  const sel = gid("py-mes");
+  sel.innerHTML = meses.map(k => `<option value="${k}"${k === PY.mes ? " selected" : ""}>${mesTxt(k)}${k < hoyK ? " (historial)" : k === hoyK ? " (mes en curso)" : ""}</option>`).join("");
+  gid("py-prev").disabled = meses.indexOf(PY.mes) <= 0; gid("py-next").disabled = meses.indexOf(PY.mes) >= meses.length - 1;
+  const d = armarProy(PY.mes), trab = mesTxt(mesMas(PY.mes, -2), true);
+  const hist = d.pag.length ? `<div class="py-hist"><h4 class="py-h">Pagado en ${mesTxt(PY.mes)}</h4>
+    <table class="py-tabla">${cabPy}<tbody>${filasPy(d.pag)}<tr class="tot"><td colspan="4">Total pagado</td><td class="n">${fmtPesos(d.tPag)}</td></tr></tbody></table></div>` : "";
+  if(d.pasado){
+    const sinPagar = [...d.certs, ...d.ants];
+    gid("py-cuerpo").innerHTML = `<div class="py-hist"><p class="py-nota">Historial: ${mesTxt(PY.mes)} ya pasó.</p>
+      <div class="py-res"><div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Pagado en el mes</div><div class="v">${fmtM(d.tPag)}</div></div>
+      ${sinPagar.length ? `<div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Proyectado y sin pagar</div><div class="v">${fmtM(d.tCert + d.tAnt)}</div></div>` : ""}</div></div>
+      ${hist || '<p class="py-vacio">No hubo pagos en este mes.</p>'}
+      ${sinPagar.length ? `<h4 class="py-h">Proyectado para ${mesTxt(PY.mes)} y todavía sin pagar</h4>
+        <table class="py-tabla">${cabPy}<tbody>${filasPy(sinPagar)}<tr class="tot"><td colspan="4">Total</td><td class="n">${fmtPesos(d.tCert + d.tAnt)}</td></tr></tbody></table>` : ""}`;
+    return;
+  }
+  gid("py-cuerpo").innerHTML = `
+    <div class="py-res">
+      <div style="--c:#008ed7;--t:#e6f3fb"><div class="l">Certificados y ajustes</div><div class="v">${fmtM(d.tCert)}</div></div>
+      <div style="--c:#005895;--t:#e1ecf5"><div class="l">Anticipos</div><div class="v">${fmtM(d.tAnt)}</div></div>
+      <div style="--c:#00aec3;--t:#e3f6f8"><div class="l">Total general</div><div class="v">${fmtM(d.tCert + d.tAnt)}</div></div>
+      <div style="--c:#4a90b8;--t:#e6f0f7"><div class="l">Ajustes pendientes</div><div class="v">${fmtM(d.tAjp)}</div></div>
+    </div>
+    <h4 class="py-h">Certificados y ajustes a pagar en ${mesTxt(PY.mes)} <span class="py-nota">(trabajos de ${trab})</span></h4>
+    <table class="py-tabla">${cabPy}<tbody>${filasPy(d.certs, "Nada en trámite para este mes.")}
+      <tr class="tot"><td colspan="4">Total certificados y ajustes</td><td class="n">${fmtPesos(d.tCert)}</td></tr></tbody></table>
+    ${d.ants.length ? `<h4 class="py-h">Anticipos</h4><table class="py-tabla">${cabPy}<tbody>${filasPy(d.ants)}
+      <tr class="tot"><td colspan="4">Total anticipos</td><td class="n">${fmtPesos(d.tAnt)}</td></tr>
+      <tr class="tot"><td colspan="4">Total general</td><td class="n">${fmtPesos(d.tCert + d.tAnt)}</td></tr></tbody></table>` : ""}
+    <h4 class="py-h">Ajustes pendientes</h4><p class="py-nota">Ajustes con el cálculo hecho que todavía no tienen fechas en el seguimiento. No suman al total del mes.</p>
+    <table class="py-tabla">${cabPy}<tbody>${filasPy(d.ajp, "Sin ajustes pendientes.")}
+      <tr class="tot"><td colspan="4">A pagar</td><td class="n">${fmtPesos(d.tAjp)}</td></tr></tbody></table>
+    ${hist}`;
+}
+
+function exportarProyPdf(){
+  const d = armarProy(PY.mes), mt = mesTxt(PY.mes).toUpperCase().replace(" 20", "/");
+  const tit = `PROYECCION DE CERTIFICADOS A PAGAR EN ${mesTxt(PY.mes).split(" ")[0].toUpperCase()}/${PY.mes.slice(2, 4)}`;
+  const tabla = (a, vacio) => `<table class="pd"><thead><tr><th>Localidad de Referencia</th><th>Empresa</th><th>Tema</th><th>Fecha de certificación</th><th class="n">Suma de Monto a pagar</th></tr></thead><tbody>${
+    a.length ? a.map(x => `<tr><td>${esc(x.obra.toUpperCase())}</td><td>${esc(x.empresa || "")}</td><td>${esc(x.tema || "")}</td><td>${x.fecha ? fmtDate(x.fecha) : "pendiente"}</td><td class="n">${fmtPesos(x.monto)}</td></tr>`).join("") : `<tr><td colspan="5">${vacio}</td></tr>`}</tbody></table>`;
+  const tot = (t, v) => `<div class="pd-tot"><span>${t}</span><b>${fmtPesos(v)}</b></div>`;
+  const hoy = new Date().toLocaleDateString("es-AR");
+  const doc = gid("proy-doc");
+  doc.innerHTML = `<style>
+      #proy-doc{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:#000;font-size:10.5pt;}
+      #proy-doc h1{font-size:15pt;text-align:center;margin:0 0 14px;font-weight:700;}
+      #proy-doc h2{font-size:12pt;text-align:center;margin:18px 0 8px;}
+      #proy-doc table.pd{width:100%;border-collapse:collapse;margin-bottom:6px;}
+      #proy-doc .pd th{background:#d9e2ec;text-align:left;font-size:9.5pt;padding:5px 6px;border:1px solid #9fb0c0;}
+      #proy-doc .pd td{padding:6px;border:1px solid #c9d4de;font-size:9.5pt;vertical-align:top;}
+      #proy-doc .n{text-align:right;white-space:nowrap;}
+      #proy-doc .pd-tot{display:flex;justify-content:space-between;font-weight:700;padding:6px 8px;background:#eef3f7;border:1px solid #c9d4de;margin-bottom:4px;}
+      #proy-doc .pd-pie{margin-top:16px;font-size:8.5pt;color:#444;border-top:1px solid #bbb;padding-top:6px;}
+    </style>
+    <h1>${tit}</h1>
+    ${tabla(d.certs, "Sin certificados ni ajustes para este mes.")}
+    ${tot(`TOTAL CERTIFICADOS/AJUSTES (TRABAJOS DE ${mesTxt(mesMas(PY.mes, -2)).toUpperCase()})`, d.tCert)}
+    ${d.ants.length ? `<div style="height:10px"></div>${tabla(d.ants)}${tot("TOTAL ANTICIPOS", d.tAnt)}${tot("TOTAL GENERAL", d.tCert + d.tAnt)}` : ""}
+    <h2>PROYECCION DE AJUSTES PENDIENTES</h2>
+    ${tabla(d.ajp, "Sin ajustes pendientes.")}${tot("A PAGAR", d.tAjp)}
+    <div class="pd-pie">Elaborado por la Gerencia Técnica de Buenos Aires Gas S.A. con los certificados de obra y el seguimiento de certificaciones, datos al ${esc(IX.d.generatedAt)}. Mes de pago según la fecha estimada de cada comprobante. Fecha de certificación: envío al contratista.</div>`;
+  document.documentElement.classList.add("imp-proy");
+  const fin = () => { document.documentElement.classList.remove("imp-proy"); window.removeEventListener("afterprint", fin); };
+  window.addEventListener("afterprint", fin);
+  const t0 = document.title; document.title = tit.replace(/\//g, "-");
+  setTimeout(() => { window.print(); document.title = t0; }, 60);
+}
+
+function iniciarProy(){
+  const wrap = document.querySelector(".wrap");
+  if(!gid("proy-doc")){ const dv = document.createElement("div"); dv.id = "proy-doc"; wrap.appendChild(dv); }
+  gid("py-mes").onchange = e => { PY.mes = e.target.value; pintarProy(); };
+  const mover = n => { const m = mesesProy(), i = m.indexOf(PY.mes) + n; if(m[i]){ PY.mes = m[i]; pintarProy(); } };
+  gid("py-prev").onclick = () => mover(-1); gid("py-next").onclick = () => mover(1);
+  gid("py-pdf").onclick = exportarProyPdf;
+  gid("py-cuerpo").onclick = e => { const t = e.target.closest("tr[data-id]"); if(t) abrirFichaIx(t.dataset.id); };
+}
+
 function pintarIx(){
   const vis = visiblesIx();
   pintarKpis(vis);
   pintarActivos();
   pintarCal();
   pintarMover(vis);
+  pintarProy();
   pintarObras();
 }
 
@@ -1675,31 +2223,31 @@ function pintarKpis(vis){
   const act = vis.filter(c => !c.pagado && !c.antiguo);
   const anio = IX.hoy.getFullYear();
   const pag = vis.filter(c => c.pagado && c.fechas.pago.getFullYear() === anio);
-  const lim = addDays(IX.hoy, 30);
-  const esp = act.filter(c => c.estimado && c.estimado <= lim);
-  const atras = esp.filter(c => c.estimado < IX.hoy).length;
-  const dem = act.filter(c => c.demorado).length, ant = vis.filter(c => c.antiguo).length;
+  // devengado: comprobantes cuyo memo a Tesorería salió en el último mes calendario cerrado, se hayan pagado o no
+  const mDev = mesMas(mesKey(IX.hoy), -1);
+  const dev = vis.filter(c => c.fechas.tesoreria && mesKey(c.fechas.tesoreria) === mDev);
+  const mDevTxt = mesTxt(mDev).split(" ")[0];
+  const ant = vis.filter(c => c.antiguo).length;
   const obrasAct = new Set(act.map(c => c.obraKey)).size;
-  const demL = act.filter(c => c.demorado), antL = vis.filter(c => c.antiguo);
   IX.kl = {
     tramite:{t:"En trámite", s:"Comprobantes sin pagar, sin contar los que están para revisar.", g:[["", act.slice().sort((a, b) => b.dias - a.dias)]]},
     pagado:{t:`Pagado en ${anio}`, s:"Del más reciente al más antiguo.", g:[["", pag.slice().sort((a, b) => b.fechas.pago - a.fechas.pago)]], pago:true},
-    esperado:{t:"Pagos esperados, próximos 30 días", s:"Por fecha de pago estimada. En amarillo, los que ya la tienen vencida.", g:[["", esp.slice().sort((a, b) => a.estimado - b.estimado)]], est:true},
-    demora:{t:"Demorados y para revisar", s:"Los demorados superaron 1,5 veces la mediana de su etapa. Los antiguos probablemente tienen el pago sin cargar.", g:[["Demorados", demL], ["Para revisar", antL]]}
+    devengado:{t:`Devengado en ${mDevTxt}`, s:"Certificados, ajustes y anticipos con memo a Tesorería en ese mes, los haya pagado Tesorería o no.", g:[["", dev.slice().sort((a, b) => b.fechas.tesoreria - a.fechas.tesoreria)]], dev:true}
   };
   const kp = (k, l, v, s) => `<button type="button" class="kpi" data-kpi="${k}"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div><span class="ver">Ver detalle ›</span></button>`;
+  { const pm = mesMas(mesKey(IX.hoy), 1), dm = armarProy(pm);
+    gid("ix-kpis-res").innerHTML = `Devengado en ${mDevTxt} <b>${fmtM(sumaIx(dev))}</b> · En trámite <b>${fmtM(sumaIx(act))}</b> · Pagado en ${anio} <b>${fmtM(sumaIx(pag))}</b> · A pagar en ${mesTxt(pm).split(" ")[0]} <b>${fmtM(dm.tCert + dm.tAnt)}</b>`; }
   gid("ix-kpis").innerHTML =
+    kp("devengado", `Devengado en ${mDevTxt}`, fmtM(sumaIx(dev)), `<b>${dev.length}</b> ${dev.length === 1 ? "comprobante enviado" : "comprobantes enviados"} a Tesorería en el último mes`) +
     kp("tramite", "En trámite", fmtM(sumaIx(act)), `<b>${act.length}</b> comprobantes sin pagar, de ${obrasAct} ${obrasAct === 1 ? "obra" : "obras"}. No incluye los ${ant} para revisar`) +
-    kp("pagado", `Pagado en ${anio}`, fmtM(sumaIx(pag)), `<b>${pag.length}</b> ${pag.length === 1 ? "pago" : "pagos"} en lo que va del año`) +
-    kp("esperado", "Pagos esperados, próximos 30 días", fmtM(sumaIx(esp)), `<b>${esp.length}</b> ${esp.length === 1 ? "comprobante" : "comprobantes"}${atras ? `, ${atras} con la fecha estimada ya vencida` : ""}`) +
-    kp("demora", "Demorados y para revisar", dem + ant, `<b>${dem}</b> demorados en su etapa y <b>${ant}</b> antiguos o sin fechas, que probablemente tienen el pago sin cargar`);
+    kp("pagado", `Pagado en ${anio}`, fmtM(sumaIx(pag)), `<b>${pag.length}</b> ${pag.length === 1 ? "pago" : "pagos"} en lo que va del año`);
 }
 
 function abrirKpiIx(k){
   const d = IX.kl[k]; if(!d) return;
   const fila = c => {
     const e = ETA_K[c.etapa];
-    let sub = c.pagado ? `Pagado el ${fmtDate(c.fechas.pago)}` : c.fEtapa ? `${e.largo}, hace ${diasTxt(c.dias)}` : "Sin ninguna fecha cargada";
+    let sub = d.dev ? `Memo a Tesorería el ${fmtDate(c.fechas.tesoreria)}${c.pagado ? `, pagado el ${fmtDate(c.fechas.pago)}` : ""}` : c.pagado ? `Pagado el ${fmtDate(c.fechas.pago)}` : c.fEtapa ? `${e.largo}, hace ${diasTxt(c.dias)}` : "Sin ninguna fecha cargada";
     if(!c.pagado && !c.antiguo && c.estimado) sub += `. Pago estimado el ${fmtDate(c.estimado)}${c.estimado < IX.hoy ? " (vencido)" : ""}`;
     return `<button type="button" class="mv" data-id="${c.id}"><span class="t">${esc(c.obra)}, ${esc(c.label)}${c.demorado ? '<span class="tag">demorado</span>' : ""}<span class="mt">${fmtM(c.monto)}</span></span>
       <span class="s">${sub}. ${esc(c.empresa)}</span></button>`;
@@ -1714,7 +2262,7 @@ function abrirKpiIx(k){
 
 /* ---------------- calendario ---------------- */
 function eventosIx(){
-  const ev = [];
+  const ev = [], M_IX = IX.d.medianas || {};
   for(const c of visiblesIx()){
     const pres = ETA.filter(e => c.fechas[e.k]);
     if(IX.modo === "curso"){
@@ -1723,7 +2271,15 @@ function eventosIx(){
     } else {
       pres.forEach(e => ev.push({c, k:e.k, f:c.fechas[e.k], est:false}));
     }
-    if(!c.pagado && !c.antiguo && c.estimado) ev.push({c, k:"pago", f:c.estimado, est:true});
+    if(!c.pagado && !c.antiguo && c.estimado){
+      // etapas que faltan: se estiman hacia atrás desde el pago estimado (mediana de días de cada etapa hasta el pago)
+      const ult = ETA.findIndex(e => e.k === c.etapa);
+      ETA.forEach((e, i) => {
+        if(i <= ult) return;
+        const f = e.k === "pago" ? c.estimado : (M_IX[e.k] != null ? addDays(c.estimado, -M_IX[e.k]) : null);
+        if(f && (e.k === "pago" || f >= IX.hoy)) ev.push({c, k:e.k, f, est:true});
+      });
+    }
   }
   const rango = {pago:5, tesoreria:4, entrada:3, envio:2, acta:1};
   return ev.sort((a, b) => (rango[b.k] - rango[a.k]) || a.c.obra.localeCompare(b.c.obra));
@@ -1732,11 +2288,12 @@ function eventosIx(){
 function chipIx(x){
   const c = x.c, e = ETA_K[x.k];
   const atrasado = x.est && x.f < IX.hoy;
-  const corto = x.est ? "Pago est." : e.corto;
-  let tip = `${x.est ? "Pago estimado" : e.largo}: ${c.obra}, ${c.label} (${c.empresa})`;
+  const futuro = !x.est && x.f > IX.hoy;      // fecha cargada pero posterior a hoy
+  const corto = x.est ? `${e.corto} est.` : e.corto;
+  let tip = `${x.est ? e.largo + " (fecha estimada)" : futuro ? e.largo + " (fecha posterior a hoy)" : e.largo}: ${c.obra}, ${c.label} (${c.empresa})`;
   if(c.demorado) tip += `. Demorado: ${diasTxt(c.dias)} en esta etapa, lo normal es hasta ${Math.round(c.med * IX.d.reglas.demoraFactor)}`;
   if(atrasado) tip += ". La fecha estimada ya pasó";
-  return `<button type="button" class="ev ev-${x.k}${x.est ? " est" : ""}${atrasado ? " atrasado" : ""}${c.demorado ? " dem" : ""}" data-id="${c.id}" title="${esc(tip)}" aria-label="${esc(tip)}"><span class="tx"><b>${corto}</b><span class="nm">${esc(c.obra)} ${esc(c.label)}</span></span></button>`;
+  return `<button type="button" class="ev ev-${x.k}${x.est || futuro ? " est" : ""}${atrasado ? " atrasado" : ""}${c.demorado ? " dem" : ""}" data-id="${c.id}" title="${esc(tip)}" aria-label="${esc(tip)}"><span class="tx"><b>${corto}</b><span class="nm">${esc(c.obra)} ${esc(c.label)}</span></span></button>`;
 }
 
 function pintarCal(){
@@ -1774,7 +2331,7 @@ function abrirDiaIx(k){
     <h3 class="f-tit">${f.getDate()} de ${MESES_LARGO[f.getMonth()]} de ${f.getFullYear()}</h3>
     <div class="dia-lista">${evs.length ? evs.map(x => {
       const e = ETA_K[x.k], c = x.c;
-      return `<button type="button" class="mv" data-id="${c.id}"><span class="t"><span class="pto ev-${x.k}"></span>${x.est ? "Pago estimado" : e.largo}${c.demorado ? '<span class="tag">demorado</span>' : ""}</span>
+      return `<button type="button" class="mv" data-id="${c.id}"><span class="t"><span class="pto ev-${x.k}"></span>${x.est ? e.largo + " (estimado)" : e.largo}${c.demorado ? '<span class="tag">demorado</span>' : ""}</span>
         <span class="s">${esc(c.obra)}, ${esc(c.label)}. ${esc(c.empresa)}</span></button>`;
     }).join("") : '<p class="mv-vacio">No hay movimientos este día con los filtros actuales.</p>'}</div>`;
   gid("dlg-dia").showModal();
@@ -1797,7 +2354,7 @@ function pintarMover(vis){
   const g3 = act.filter(c => c.etapa === "tesoreria").sort((a, b) => (a.estimado - b.estimado));
   const rev = vis.filter(c => c.antiguo).sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
   const grupo = (t, s, a, est, vacio) => `<div class="mv-g"><h4>${t} (${a.length})</h4><div class="sub">${s}</div>${a.length ? a.map(c => filaMover(c, est)).join("") : `<div class="mv-vacio">${vacio}</div>`}</div>`;
-  gid("ix-datos-sum").textContent = `Control de datos (${IX.d.avisos.length + (rev.length ? 1 : 0)})`;
+  gid("ix-datos-sum").textContent = gid("dlg-datos-tit").textContent = `Control de datos (${IX.d.avisos.length + (rev.length ? 1 : 0)})`;
   gid("ix-rev").innerHTML = `<h4>Para revisar (${rev.length})</h4>
     <p class="f-nota">Más de ${IX.d.reglas.antiguoDias} días sin movimiento o sin ninguna fecha cargada. Probablemente ya se pagaron y falta cargar el pago; por eso no se suman al trámite ni al calendario en curso. Tocá uno para ver su ficha.</p>
     ${rev.length ? rev.map(c => `<button type="button" class="mv" data-id="${c.id}"><span class="t">${esc(c.obra)}, ${esc(c.label)}</span>
@@ -1813,6 +2370,13 @@ function pintarMover(vis){
 /* ---------------- obras ---------------- */
 const urlPanelIx = o => (!LOCAL && o.url) || `${ARCHIVO}?obra=${encodeURIComponent(o.panel)}`;
 
+// un color por obra, estable (según el orden alfabético de todas las obras)
+const PALETA_OBRA = [["#008ed7","#0a6fa8"],["#005895","#0b3f6e"],["#00aec3","#0b8a9b"],["#4a90b8","#35739a"],["#3f63a8","#2c4a85"],["#4f6f8a","#3b556b"],["#0f9aa8","#0a7683"]];
+const colorObra = key => {   // las obras con panel van primero, así nunca repiten color entre ellas
+  const orden = [...IX.d.obras.filter(o => o.panel), ...IX.d.obras.filter(o => !o.panel)];
+  return PALETA_OBRA[Math.max(0, orden.findIndex(o => o.key === key)) % PALETA_OBRA.length];
+};
+
 function pintarObras(){
   const d = IX.d;
   const filas = d.obras.map(o => {
@@ -1822,12 +2386,19 @@ function pintarObras(){
     return {o, n:cs.length, pag, act, rev, ult};
   }).sort((a, b) => (sumaIx(b.act) - sumaIx(a.act)) || ((b.ult || 0) - (a.ult || 0)));
   const conPanel = filas.filter(f => f.o.panel);
-  gid("ix-paneles").innerHTML = conPanel.map(({o}) => `<a class="panel-card" href="${esc(urlPanelIx(o))}"><h3>${esc(o.nombre)}</h3>
-    <p>Certificaciones, avance físico y avance financiero de la obra.</p><span class="ir">Ver panel →</span></a>`).join("");
-  gid("ix-paneles").hidden = !conPanel.length;
-  gid("ix-todas-sum").textContent = `Todas las obras (${filas.length})`;
-  gid("ix-obras").innerHTML = filas.map(({o, n, pag, act, rev, ult}) => `
-    <article class="obra-card${IX.obra === o.key ? " sel" : ""}">
+  const resto = filas.filter(f => !f.o.panel);
+  const sumRes = k => resto.reduce((t, f) => t + sumaIx(f[k]), 0);
+  gid("ix-paneles").innerHTML = conPanel.map(({o, pag, act}) => `<a class="panel-card" style="--oc:${colorObra(o.key)[0]};--oc2:${colorObra(o.key)[1]}" href="${esc(urlPanelIx(o))}"><h3>${esc(o.nombre)}</h3>
+    <p>Certificaciones, avance físico y avance financiero de la obra.</p>
+    <div class="pc-nums"><div><span>Pagado</span><b>${fmtM(sumaIx(pag))}</b></div><div><span>En trámite</span><b>${fmtM(sumaIx(act))}</b></div></div>
+    <span class="ir">Ver panel →</span></a>`).join("") + (resto.length ? `<button type="button" class="panel-card todas" id="btn-todas"><h3>Todas las obras</h3>
+    <p>Las otras ${resto.length} obras de la planilla de seguimiento, sin panel de detalle.</p>
+    <div class="pc-nums"><div><span>Pagado</span><b>${fmtM(sumRes("pag"))}</b></div><div><span>En trámite</span><b>${fmtM(sumRes("act"))}</b></div></div>
+    <span class="ir">Ver listado →</span></button>` : "");
+  gid("ix-paneles").hidden = !filas.length;
+  gid("dlg-todas-tit").textContent = `Todas las obras (${resto.length})`;
+  gid("ix-obras").innerHTML = resto.map(({o, n, pag, act, rev, ult}) => `
+    <article class="obra-card${IX.obra === o.key ? " sel" : ""}" style="--oc:${colorObra(o.key)[0]}">
       <div><h3>${esc(o.nombre)}</h3><div class="emp">${esc(o.empresas.join(", "))}</div></div>
       <div class="oc-nums">
         <div><span class="l">Pagado</span><b>${fmtM(sumaIx(pag))}</b><span class="s">${pag.length} ${pag.length === 1 ? "pago" : "pagos"}</span></div>
@@ -1909,6 +2480,116 @@ function avisosIx(d){
   return `<p class="nota" style="margin-top:8px">Diferencias de la planilla de seguimiento que conviene corregir en el Excel. El número de fila es el de la hoja TABLA MASTER.</p>${cuerpo || "<p>No se encontraron problemas.</p>"}`;
 }
 
+/* ============================================================
+   Animaciones. Todo se agrega "desde afuera": mira lo que se va dibujando en #app y le da vida.
+   No cambia datos ni textos finales. Se desactiva con "reducir movimiento" del sistema.
+   ============================================================ */
+const MOVER = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+function deslizar(dir){
+  if(!MOVER) return;
+  const g = document.getElementById("cal-grid"); if(!g || !g.animate) return;
+  g.animate([{opacity:0, transform:`translateX(${dir * 28}px)`}, {opacity:1, transform:"none"}], {duration:300, easing:"cubic-bezier(.2,.7,.2,1)"});
+}
+(function(){
+  if(!MOVER || !window.IntersectionObserver) return;
+  document.documentElement.classList.add("anim");
+  const hechos = new WeakSet(), accion = new WeakMap(), finales = [], restaurar = [], ANT = {};
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const io = new IntersectionObserver(es => {
+    let i = 0;
+    for(const e of es){
+      if(!e.isIntersecting) continue;
+      io.unobserve(e.target);
+      const f = accion.get(e.target); if(f) f(i++);
+    }
+  }, {threshold:.15, rootMargin:"0px 0px -4% 0px"});
+  const mirar = (el, f) => { accion.set(el, f); io.observe(el); };
+
+  // 1. aparición escalonada
+  function reveal(el){
+    el.classList.add("rev");
+    mirar(el, i => {
+      el.style.setProperty("--d", Math.min(i, 7) * 70 + "ms");
+      requestAnimationFrame(() => el.classList.add("in"));
+      let fin = false; const quitar = () => { if(fin) return; fin = true; el.classList.remove("rev", "in"); el.style.removeProperty("--d"); };
+      el.addEventListener("transitionend", quitar, {once:true});
+      setTimeout(quitar, 1500);
+    });
+  }
+
+  // 2. números que cuentan hasta su valor
+  function contador(el){
+    const nodo = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.nodeValue));
+    if(!nodo) return;
+    const m = /^(.*?)(-?)(\d[\d.]*)(?:,(\d+))?(.*)$/s.exec(nodo.nodeValue);
+    if(!m) return;
+    const [, pre, signo, ent, dec, post] = m, nd = dec ? dec.length : 0;
+    const meta = parseFloat(ent.replace(/\./g, "") + "." + (dec || "0"));
+    const txt = v => pre + (signo && v > 0 ? "-" : "") + fmtNum(v, nd) + post;
+    const final = nodo.nodeValue;
+    finales.push([nodo, final]);
+    const clave = el.closest("[data-kpi]") ? el.closest("[data-kpi]").dataset.kpi : null;
+    const desde = clave && ANT[clave] != null ? ANT[clave] : 0;
+    if(clave) ANT[clave] = meta;
+    if(desde === meta) return;
+    const dur = clave && desde ? 600 : 1100;
+    nodo.nodeValue = txt(desde);
+    const correr = () => {
+      const t0 = performance.now();
+      const paso = t => { const k = Math.min(1, (t - t0) / dur); nodo.nodeValue = k < 1 ? txt(desde + (meta - desde) * ease(k)) : final; if(k < 1) requestAnimationFrame(paso); };
+      requestAnimationFrame(paso);
+    };
+    if(clave && desde) correr(); else mirar(el, correr);
+  }
+
+  // 3. barras que se llenan
+  function barra(sp){
+    const w = sp.style.width; if(!w) return;
+    restaurar.push(() => { sp.style.transition = "none"; sp.style.width = w; });
+    sp.style.transition = "none"; sp.style.width = "0%";
+    mirar(sp, i => requestAnimationFrame(() => { sp.style.transition = "width 1s cubic-bezier(.2,.7,.2,1) " + Math.min(i, 8) * 40 + "ms"; sp.style.width = w; }));
+  }
+
+  // 4. gráficos: la línea se dibuja, lo demás aparece detrás
+  function grafico(sv){
+    if(!sv.animate) return;
+    const lineas = [...sv.querySelectorAll("polyline")];
+    const solidas = lineas.filter(l => !l.getAttribute("stroke-dasharray"));
+    const rects = [...sv.querySelectorAll("rect")].filter(r => (r.getAttribute("height") || 0) < 20);
+    const resto = [...sv.querySelectorAll("circle, text, line, polyline[stroke-dasharray], g > rect")].filter(x => !rects.includes(x));
+    const fantasma = (e, delay) => { e.style.opacity = "0"; return () => { const a = e.animate([{opacity:0}, {opacity:e.getAttribute("opacity") || 1}], {duration:500, delay, fill:"forwards", easing:"ease-out"}); a.onfinish = () => { e.style.opacity = ""; a.cancel(); }; }; };
+    const fades = resto.map((e, i) => fantasma(e, 350 + Math.min(i, 30) * 25));
+    solidas.forEach(l => l.setAttribute("pathLength", "1"));
+    rects.forEach(r => { r.style.transformBox = "fill-box"; r.style.transformOrigin = "0 50%"; r.style.transform = "scaleX(0)"; });
+    solidas.forEach(l => { l.style.strokeDasharray = "1"; l.style.strokeDashoffset = "1"; });
+    restaurar.push(() => { rects.forEach(r => { r.style.transform = ""; }); solidas.forEach(l => { l.style.strokeDasharray = ""; l.style.strokeDashoffset = ""; }); resto.forEach(e => { e.style.opacity = ""; }); });
+    mirar(sv, () => {
+      rects.forEach((r, i) => { const a = r.animate([{transform:"scaleX(0)"}, {transform:"scaleX(1)"}], {duration:900, delay:i * 120, fill:"forwards", easing:"cubic-bezier(.2,.7,.2,1)"}); a.onfinish = () => { r.style.transform = ""; a.cancel(); }; });
+      solidas.forEach(l => { const a = l.animate([{strokeDashoffset:1}, {strokeDashoffset:0}], {duration:1300, fill:"forwards", easing:"cubic-bezier(.4,.1,.2,1)"}); a.onfinish = () => { l.style.strokeDasharray = ""; l.style.strokeDashoffset = ""; a.cancel(); }; });
+      fades.forEach(f => f());
+    });
+  }
+
+  const REVEAL = ".kpis:not(#ix-kpis) > .kpi, #ix-kpis, section > h2, section > .bajada, .panel, .panel-card, .linea, .obra-head, .cal-grid";
+  function escanear(){
+    const app = document.getElementById("app");
+    app.querySelectorAll(REVEAL).forEach(e => { if(!hechos.has(e) && !e.closest("dialog")){ hechos.add(e); reveal(e); } });
+    app.querySelectorAll(".kpi .v, .linea .pct").forEach(e => { if(!hechos.has(e)){ hechos.add(e); contador(e); } });
+    app.querySelectorAll(".barra > span").forEach(e => { if(!hechos.has(e)){ hechos.add(e); barra(e); } });
+    app.querySelectorAll("svg").forEach(e => { if(!hechos.has(e) && !e.closest(".graf-py") && e.querySelector("polyline, rect")){ hechos.add(e); grafico(e); } });
+  }
+  let pend = false;
+  new MutationObserver(() => { if(pend) return; pend = true; requestAnimationFrame(() => { pend = false; try{ escanear(); }catch(e){ /* la animación nunca debe romper el panel */ } }); })
+    .observe(document.getElementById("app"), {childList:true, subtree:true});
+
+  // al imprimir o exportar a PDF, todo en su valor final
+  window.addEventListener("beforeprint", () => {
+    finales.forEach(([n, t]) => { n.nodeValue = t; });
+    document.querySelectorAll(".rev").forEach(e => e.classList.remove("rev", "in"));
+    restaurar.forEach(f => { try{ f(); }catch(e){} });
+    if(document.getAnimations) document.getAnimations().forEach(a => { try{ a.finish(); }catch(e){} });
+  });
+})();
 </script>
 </body>
 </html>
