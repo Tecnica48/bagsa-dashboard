@@ -43,9 +43,8 @@
   .intro{color:var(--text-muted);font-size:14.5px;line-height:1.6;margin:0 0 22px;}
 
   /* Tarjetas: mismo estilo que las del menú de los paneles (degradé + círculo) */
-  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
-  @media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));}}
-  @media (max-width:600px){.cards{grid-template-columns:1fr;}}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    @media (max-width:600px){.cards{grid-template-columns:1fr;}}
   .card{--oc:#005895;--oc2:#0b4c7b;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;min-height:200px;
     padding:20px 22px 18px;border-radius:10px;text-decoration:none;color:#fff;
     background:linear-gradient(145deg,var(--oc) 0,var(--oc2) 100%);
@@ -147,7 +146,7 @@
       <div class="foot"><div class="info"><span class="metric">Mapa interactivo</span><span class="est">Se edita a mano</span></div><span class="go">Abrir visor →</span></div>
     </a>
 
-    <div class="card soon" data-group="redes" data-key="redes">
+    <div class="card soon" data-key="redes">
       <span class="badge-soon">Próximamente</span>
       <span class="ic"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8M18 8l-5 8"/></svg></span>
       <h3>Redes y Croquis</h3>
@@ -155,7 +154,7 @@
       <div class="foot"><div class="info"><span class="est">En preparación</span></div></div>
     </div>
 
-    <div class="card soon" data-group="guia" data-key="guia">
+    <div class="card soon" data-key="guia">
       <span class="badge-soon">Próximamente</span>
       <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 21V5"/><path d="M9 8h7M9 12h5"/></svg></span>
       <h3>Guía de Obra</h3>
