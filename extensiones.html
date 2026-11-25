@@ -334,7 +334,6 @@
     .ficha-row-val.filled{color:var(--navy)!important;}
     .ficha-carpeta{color:var(--teal)!important;}
   }
-
   /* ===== CALENDARIO ===== */
   .cal-wrap{display:grid;grid-template-columns:minmax(0,3.4fr) minmax(220px,1fr);gap:16px;margin-bottom:36px;align-items:start;}
   @media (max-width:900px){.cal-wrap{grid-template-columns:1fr;}}
@@ -375,44 +374,7 @@
   .cal-vacio{font-size:12px;color:var(--text-muted);padding:4px 0;}
   .cal-dia{margin-top:10px;border-top:1px solid var(--border);padding-top:8px;}
   .cal-dia h4{margin:0 0 6px;font-size:14px;color:var(--navy);}
-  
-  /* ===== ANIMACIONES (solo estética: sutiles, cortas y sin demorar la carga) ===== */
-  .menu-card{position:relative;overflow:hidden;}
-  .menu-card::after{content:"";position:absolute;inset:0;pointer-events:none;transform:translateX(-120%);
-    background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.30) 50%,transparent 62%);}
-  .menu-card:hover::after{animation:sheenHover .75s ease-out;}
-  .menu-card:nth-child(1){--dx:-34px;--d:0ms;}   .menu-card:nth-child(2){--dx:-34px;--d:45ms;}
-  .menu-card:nth-child(3){--dy:20px;--d:90ms;}   .menu-card:nth-child(4){--dy:20px;--d:135ms;}
-  .menu-card:nth-child(5){--dx:34px;--d:180ms;}  .menu-card:nth-child(6){--dx:34px;--d:225ms;}
-  .cal-side-box:nth-child(1){--j:0;} .cal-side-box:nth-child(2){--j:1;} .cal-side-box:nth-child(3){--j:2;}
-
-  /* Entrada del panel: solo mientras dura la clase "intro" (la primera vez que se abre) */
-  body.intro header{animation:fadeDown .45s ease-out backwards;}
-  body.intro .menu-card{animation:cardIn .45s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards;}
-  body.intro .menu-card::after{animation:sheen .9s ease-out calc(var(--d,0ms) + .45s) backwards;}
-  body.intro #view-menu .section-head{animation:fadeUp .45s ease-out .3s backwards;}
-  body.intro .cal-main{animation:fadeUp .5s ease-out .4s backwards;}
-  body.intro .cal-side-box{animation:slideRight .45s cubic-bezier(.2,.7,.2,1) calc(.45s + var(--j,0) * 80ms) backwards;}
-
-  /* Cambio de pantalla: solo opacidad (no mueve nada, así no afecta las medidas) */
-  .view.active:not(#view-menu){animation:viewIn .22s ease-out;}
-
-  /* Calendario: al cambiar de mes los días y los recuadros entran escalonados (no al elegir un día) */
-  .cal-anim .cal-cell:not(.out){animation:calCell .32s ease-out backwards;animation-delay:calc(var(--i,0) * 9ms);}
-  .cal-anim .cal-ev{animation:calChip .35s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 9ms + 90ms);}
-
-  @keyframes cardIn{from{opacity:0;transform:translate(var(--dx,0),var(--dy,0));}to{opacity:1;transform:none;}}
-  @keyframes sheen{from{transform:translateX(-120%);}to{transform:translateX(120%);}}
-  @keyframes sheenHover{from{transform:translateX(-120%);}to{transform:translateX(120%);}}
-  @keyframes fadeDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
-  @keyframes slideRight{from{opacity:0;transform:translateX(26px);}to{opacity:1;transform:none;}}
-  @keyframes viewIn{from{opacity:0;}to{opacity:1;}}
-  @keyframes calCell{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-  @keyframes calChip{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:none;}}
-  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;}}
-  @media print{*,*::before,*::after{animation:none!important;}}
-  </style>
+    </style>
 </head>
 <body>
 <!-- overlay mientras carga el JSON -->
@@ -425,7 +387,7 @@
 <div class="wrap">
 
   <header>
-      <div class="brand-row" onclick="showView('menu')">
+      <div class="brand-row" onclick="location.href='index.html'">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAREAAABxCAYAAADyF5dgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAEy9JREFUeNrsXU1S40gWzuqo5US06wSYE7Q5AFHiBBasZmd7PQvjE4BPYFjMGrObFYgTIIIDoDoBqhO0O2L2PXr2yyFRKX+VklL2+yLcVdUYZSp/vnzfy5cvGSMQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCITDwcPrQPajf/zz30NqIAKhG/zWA/KIis9j8bdHxbfuCiKZUncSCEQiZfJ4Lv4Gn9jgN4BIIupSAuHQSeQzediSwmNBJCPqVgLhEEnk4XWIssWFPDjAb/JMREIgHBqJPLxeFv99M5QtRCQEApHIJ+sDLI8VTn5fICIhEPaeRB5eY7Q+ooZK4EQypG4mEPaNRHby5dGz9SEjEnC2DqirCYR9IZGH1zuUL21hhBYJEQmB0HsS2RHItIP33BIJdTeB0GcS6Y5A/k8khTVyR11OIPSRRLonEI4pEQmB0DcSeXi9DoRARCK5pK4nEPpAIrtt3KsA33tFB/YIhNBJBALJGAtZOqwoGI1ACNsSAQIJeVuVgtEIhGBJZBdMFvXg/SkYjUAIjkR2GciuetQGo8BlF4FwcJaI78N0bSAurJFrGg4EQtcksnOmTnvaFlcFkcQ0JAiEbi2Rq563xx05WgkEO3z1aIUMemyFcGwdrcXnpImHYw5YKINvLX8vfSUS/p4Vnw3+Hf78gf8v++9//pU32QgW0g7qkrTZQbgtD+10JLTjqEJC5/gBvODfob6Z57Kjiq+mQh1+4r+h7I2nMRQZfv3GR5ntkUj/CYQDztisisZfeBr00C5zYdAZ16P071h4JgxOmLy3vgkFJZ2pRcnr0TRxQJ3G2Aam/rYhfj5N9OJZadFmZxZlQ3mw2zgRnqdDVGWhF89aFGXf1GyOOTPPAAj9s+6TnJnvkYV26TFz/NCBQEyeCQP7HQjP8xb12KYeTQbsAQEXn3e0DqesZYc9Ho94RxLwIXMHNeszYHYpRMdttJMfEnl4HXlq5JDQl/gRGOg+U0HaOpcnTUiW4gNZ7+66GFfQ78WnibSdbfdN3MYY9mWJRGz/MGD9iR/ZxrrUHTAoGwYND2wT+ffcgPVmg+dAx7SLZdH4juNvHb5cHxC3tO0Lzr4UP6CZl6hl+f8zJZJVB/3oTdIggXR6XAKdysGdqcJdwzjEuenLsRqx/cUdOuOa8HIbO/lwos6Z2oENPoRlDWerbJBukNhWCkmTeSIQU2yQYGHXKmcfOzFlaxLa7QhlUWQwUU2cyvCuT5zgi/ZOS34LcdfoCMutS0wqAllgvQcySdPkLk19EoEb6/YbXNacd1kJ3JqcFQPiRTPZYrRmfEqZBD8rRZmLGgQytLCiwEK7FyeuBkkFGcug2xyAiXiuKhsnK/95mVzqWFgTzTv+oVhgYtbgLo0POXMIx+njUO75LQbpWjMgvjcgZZ7QuskakjQmEgbKPinqMbMgEBkZu1jUQA5nrmUDubhaiEiysvblcUNPXUkaHyRyKCdgQ3Ky3jfQH1IpIwSUpY4rpWqCRAZyOMMJnDXcrioivG2hfBcpwyVVwj6CEyslTcgk8v1ASGQYyiE9zWoYOUxknZQxIS9XB/SVIYE0GnlpYEmlHXb5xHBBSRron1ZI5JAw70HsiMtkU0qZkhTIfUkaNNN1pLdoI3TbwILLu+hMjZTJS9ZRJ5KG5Iz9u3Z+yFBzSNDF5DaRMiar3cRTuRzrOv4P35ZogFImKVmonUgacqza4zKAk76RrxVTI2VSjflc12TWSeGnFttUR76TjvraVMp0Jmn2Rc7A9uIZ/nnDasYseNDxTVohOmvopQkp05CkUZHhps0TwiiZVLJp2vYNAZZSxoR4J0Qi8gEA21wQuAVHn0FDw1H+b8VnxppxiE278I1gmY8K0zrHLeBGzGWfksYgbqILGaMjLQg8bDPnjEvfqNotaqLuPkhkEyixwEq2xojQY+b/yPplS8QBh9FivLnvXbN6LyyfrdyVUTg0fUgancXyo4Nhc2+ygLDd6ek3OOXb8LUjtlKGW1StShofYe8ZCzzsHYNxzjEmwdfJUIhuvK7r2yjq9Len15w5mP9WUka0/DCnyVAmaTzEVOQdjJMUjjgYjucRJ8Lid3iU6guSb+26O0oZse9iBTHd+Gy3g9riRU//iSerZBDILXo8FHvt8Lsu5rIvSTMKjUQQ5w7WNc/zsRKslLpjo6m+GfmWNHsrZzQy59wTG3d9ehne4djFAVlDyviSNINQxwfbOenrkBhPzfBeg0wmLlZiF5LGB4n8YD0Epj9c1l0tOg4+A7+M66o3dh2kXNIwj4FnTQDkq+QzMng3sFjXNaswRDJ5thknGimzMYydaW2XxgeJZKynKDrj2sNA6fqaCeuBit+b1jCXfUmapvEs+awMxgZM1hlaJXXlL/hYbIgkbrhvvEoaH47VvPOh8vC6EqyilF2c5hZEMsOVyXXlHNcgoo0hCQ8M6scHqsk5k1izKMAgM6n/T00Zi6DHjdn4gFU/FZICjZnbRgL03yOSUh0p89PiRHmmGDdOKSOaIZGL06yYxJuONe7oU8c+vKZbqXJxmhr+PvhI3hzfIapR78wy8zh0/FxRJs9uNqshZUa4Wte2kDS7NDoSGQZGJjlOuhsulQRCMV2AQEpNVU5wjZQBXDE/wY7edml87c6kLCxsV+WCTJ7xVj6TAXLrWNagLf0PDlQkHRVJTFWmqkPG8LoDtY5MC9pCEQIbj9nOv2ZiXekSH7XVN94kjS8SeQm0r6OthbHLRq/DDXPfaYpaHsBrjYSaB+LDmWpkggq9STEBixD6104MVnfd5G3TlxSHRCJJwH08QKtkqBkImxrWyFEH77XUSBIXKeO97TWJrvNQiNkTmWxw129tIL9dpExIlqJnEtk5MrPAicQkM5mrRhx1MGBzheUUBSBlTEhLaY0EEsznm+BV46XtvvEiaXxeo3nPwk4LEG2TSiucrbCSFI2aOHRmV05l2yMHqvcy3SmSvb9qYswUMniqWSnXfWMQIHjFsQBXyyCrIbdHijFae5fGJ4lAZ68C798J0zuBXxxIpCvytB2kKqtgWeee2GLS/CkZqFtJI4mqTTQWIuxmXHq4v7YLbCzbTydlnFNE4nWgqus+arWvv7MzF6ebHqwaJpO9F8FzKE2Glt/3EcTk8vtjmeVnMGauQoh+9TzWcksrMamZIrLRwDPfB/CWfSeRgNLx1ZEmqeX3Mw8nT58c66obM1vHeChXdhgS9tRhoZo7tq2RvNIsjnE4JLJzsPZOw/YNuDKvLAepSsrc162TJr+ndJdGCOIyIZJVk2eVfDzboG825QA8/J1hg1airo8n4ZBIP6wR73qWtXiSWbjwemA6YAykjC/ry1rSCGPGREaCtv8Ts4s1cfgRTHt4/qNtwiGoC14pouubxHISJ56y3Tcmab56H+VgjTy83rCWMn9ZwnSy2A5O510NwUyvWqEiQYbBNYmRgR8krQg1V8ZqeLyUCczuqcJknsl8I8W7zgwmIMeUl4MJgXz6sTjhxvh83r+8nL9K3ze651dYbJaWcsJLsmrcMWrkLM3XhibrEis1DIxEmoqsdfUnfDqnYnjoTTdIZ5ZWgLdAQZA0indQ7dLwbGlnFkQiTvqm/SV84tUtZ1H2PbUkZUQLdaSQNE4k0kxms91OzYKFB62/xtFEDiGnCr8rNreUMvee6+EqacQ8HinbP6wlB+/akDKNSprm0iNenCbMcy7H2gRiliLAZbXpetBDWx9LZElbUsbE/NbuAuA5FH79x2ZPCGSBuUls28TrvTtN7dI0m2P14nTBwoi7kGnRKtge/Mo7vOh5jdbHuWLFakXKGD5Td5ZGHPDb1I8oz/qa+GqN5H4jsXrblDImluckPBLZ4SyAFeXcIlFR7HHScH+Jr0mQonUH+U++weqmimvpQMqY5Pcc2zwLr/3gx+0X+Oy8ZhtmkvJSD+Vk7CP37UwTf9NkgFlrkuZLK1N4dxTf1mH2a+dfnJ5Jnv8skSE7R+NOWmmBq+SjZb2ObQK1sJPEjhpWrEblHYespUutewVcyQcSGZqLJOAaRIhErHOsbndvehSo6BVfWiupPpHYkkiKBGIzwZ8tfSKpTWYyAmEf0d69M5BGsXlpw03Jky3h2BHIlNk7VZc0hAiHji+tl7izSFT3ydpbIvXNYqiLbY7VBO+vIRDIEmkVO4skmFgA4ZJsGwIJNQ6GQDgAEtkRyQatik7lABII+EFsj5ovfdy3SiAQidQnk+uurJIaBJL0NEkOgdAIvnZeA+5wfXidst19GsMWCCRiu4xatmVBXWcO5b1VkBWPp1jw7dvie3+jlXNd8Qz4f1fFz76I/5aVCd/D9wSivMEEwspnCuQKR9mnpbreluuFvz8vSUHY6vxm0Cbv2P6yun1qC+H75f64FcPJNTts2900yTvyBeJcUechtnls8s7orL/D9jsub9NjSMFVxdg4qQpgxPJX7Nf4krUiIrZcF8A3nyEDX4Ohs4tTGAhrJJM5ayDlIA4e6DSXE8b8bIpL44/YLnpRDO6KBNKs4zA2kYRwrP1JF8dQss7A2nrCyQKRjJBh7IgPVoHEEnyvjfBeun7gkZobpr8pj2NYakNeL0gLwErnUnJWHUjHJegj1pO/I3/eQFNnflgSynrB+qvyy86F78RMOLuFBP8oLEy5MFZkY4yHSIj1Nl0IJ7K67A+J/EomI3zx2qeBcXJcVqyabRAIx8/SJIarGX9nNVMmVFktEsAqdKwjGxzE56XTtnA6F34fLsa6x/eAvskqVm4Tacon1wJJIDIM1Cq3YYJWXjmhcy5rF1zNI5kFpAAPQjyrsBISSTkjfEd43/J1q2PheRtd+yHpwDNnqhv0NO8sq0uPfSI6mQNnby5Oj9FvcutAHiMc/O+4aroQSCYzLz3gr5ZaE6yVIVoPutUqkxzXXwjfYYIl4YIYJx7PhlYns9YTs4vvGdq2vTCBby3GQSwQzPYGgVJI+QgXgTYSYOnqsqck8iuhJAadPcCMVyvU0G+oe92jZCuO13uUVmPWzsXWKa48uqTHQ9lKiIM9EyYh9Edkm/sU/QDw7k/COZs6OT7HzMIxj5bMlrgsMpdFMotDY22lOHbuS5OZkx+0h+kNCXycXDkQwJx95NGtqsueyRm3Cbli/pMg2Zq7Wk1a1PN7aWBCp57XfPeqy7cXFSvmAtvoDi27Ks2vW6E3gv5f4js84x0rMDnvDWTJVpsL1s4TyiRpwiIBRwIBjwTfWdmpOKpqF+GIwgLb4Q2zfaVoZeQaAsoM+4T7fJb897AcMfHPGv99iU7PFIl1LSk7x+xvW8u6+HuKfpm1qt5CXWaKuhyAJaLHyCOB5Gh9+A4my7HT+Yev6vOaz32p+GwklsQMJ9h13ZfBCcVPvOZo8T1LSE20vj459YQEzyaSZoq7NnDHDXcALyom3kbSLrzMNfu4hJv7gt5d2wXqVLLIJhWWyz0TTsniCeUT7JMECRn8Q+8ySwPrze/75ZsE75rs8tq6kCXi33dw09CJ2ZeSs++aXypU/Hnr6nOxcKzy9IUJmsRJmRQM0zNmJWKCAX0jbpsqLpziJvQlvvunn8EzNG2/Zh8p/qAsWcxOrmsXXL2vsR9gMj3ydpH1Bazqhv3E3/PPijadC/4l8XL2mXDJ1EpmoWL5mWBl3CH5yFIHGNfl0C2RutiuTDDw2jxyL0yAWFhB/5B8/XdPxc6wnDuJXBkrrIhI5sPBlZXLioFiVdxaeqXPzFCnb3dnsN1ukIxiD/2QC5NpoCBOrf8H68OlTPk9U9U74nulzDC8AQnlVrDGvdWFLBEzcKdeZyHsggnMy4eOjSQrcsw8JDcSMqtXHYJM0JKo2nK9FB2CCqKR/WzIPrZW04qfXzGLu3dBbvKgQdD4HvpwoLHgcrRUUo01Mkafz7WkDe40Fs2A2TnbB8J4rqxLlXUt1CWqmwflEEmEs3fScqKfIxz0meDDuRLIjGvVGH0LS/YRHDQXnWMSIioP/NRA1pRXIu58hXtXbtnHrscEfR4pd36i6b0RBjzX6Iypb+CTbdUnaFkMLQgBTP43JETRWTxQtQs64kXf0RAlhOr6iQWWA32zVpBpzOS7OPzu4TkE/2G5WUlejJgkgBDrLZbLx1CGcjTGZyyx/2PFOOd12d5Pjf4gcPzPbAn5UEgkwUGTdHhwbsoqwqyxwzfC5J7hgH4sWU1Liede5sjUpXmYoWUwKFkpZ1j+FfscVr8u6ec/Kt4H2vZcQmA8BkXW/vdo7RjffyLsWADprQRn+EjTLjH7NcgP6ryQLSzYNyfsI+L5smKST7E9nxRWICfvF/brTXm8n68VY6iq3tx/8h379AktDdO6zNjHvUbW4RBf9oEhSucluOPpBw7aNJA6iuHRuY7MhNR/my4SQYv11eRxjUzfKbAxI/aHdfpJIc1lrf6x7edSes2sQqaMXOrDL4jvMOl45wNi1NOb4wkEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoEQKP4nwACHi4gW064R4AAAAABJRU5ErkJggg==" alt="BAGSA">
         <div class="brand-div"></div>
         <div class="brand-title">GERENCIA TÉCNICA</div>
@@ -437,6 +399,7 @@
     <div class="header-right">
       <div class="timestamp">Datos al <b id="ts-date">—</b><br><span id="ts-file"></span></div>
       <div class="header-links">
+        <a href="index.html" class="hdr-btn">← Inicio</a>
         <button type="button" class="hdr-btn" onclick="showView('definiciones')">Definiciones</button>
         <button type="button" class="hdr-btn" onclick="showView('guia')">Guía de uso</button>
       </div>
@@ -484,7 +447,6 @@
         <div class="mc-count" id="mc-extensiones">—</div>
       </div>
     </div>
-
     <!-- ===== CALENDARIO ===== -->
     <div class="section-head"><h2>Calendario de obras</h2><span class="section-note">Constructivo aprobado, legajo e inicio de ejecución · con las flechas se navega mes a mes</span></div>
     <div class="cal-wrap">
@@ -501,7 +463,6 @@
       </div>
       <div class="cal-side" id="cal-side"></div>
     </div>
-
   </div>
 
   <!-- ===== EXTENSIONES HABILITADAS ===== -->
@@ -986,8 +947,15 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="_sistema/data/extensiones.js" charset="utf-8"></script>
 <script>
+/* Filtro de acceso casual (ver nota en index.html): si no se desbloqueó
+   el grupo "extensiones" desde la portada, vuelve ahí en vez de mostrar datos. */
+(function(){
+  try{
+    const grupos = JSON.parse(localStorage.getItem("bagsa_access") || "[]");
+    if(!grupos.includes("extensiones")) location.href = "index.html";
+  } catch(e){ location.href = "index.html"; }
+})();
 const STAGE_NAMES = ["Recepción","Aceptación","Proyecto constructivo","Aprobación distrib.","Legajo único","Inicio de obra","Finalización","Habilitación"];
 const STAGE_COLORS = ["#005895","#0a6aa1","#1f7bab","#3b8fb6","#5aa3bf","#7bb8c1","#9dccc2","#00aec3"];
 const STAGE6_NAMES = ["Envío a Distribuidora","Aprobación Dist.","Recepción Legajo Único","Inicio de Obra","Finalización","Habilitación"];
@@ -995,18 +963,9 @@ const STAGE6_FIELDS = ["f_envio_distrib","f_aprobacion_dist","f_recepcion_legajo
 const STAGE8_FIELDS = ["f_recepcion","f_aceptacion","f_recepcion_proy_const","f_aprobacion_dist","f_recepcion_legajo","f_inicio_obra","f_finalizacion","f_habilitacion"];
 const DIAM_HEADERS = ["PE Ø50","PE Ø63","PE Ø90","PE Ø125","PE Ø180","A° Ø51","A° Ø76","A° Ø102","A° Ø152"];
 
-/* Los datos viven en _sistema/data/extensiones.js (al lado de este HTML): lo genera actualizar.py / sync_extensiones.py. */
-const DATA = window.EXTENSIONES_DATA;
-if (!DATA){
-  document.getElementById("loading-overlay").innerHTML =
-    '<div style="color:#d64545;font-family:sans-serif;padding:24px;text-align:center;max-width:560px;line-height:1.5;">' +
-    'No se pudieron cargar los datos.<br>Falta el archivo <b>_sistema/data/extensiones.js</b> al lado de este HTML.<br>' +
-    'Ejecutá <b>actualizar_extensiones.bat</b> para generarlo, o copiá la carpeta <b>_sistema</b> completa al lado del panel.</div>';
-  throw new Error("Falta _sistema/data/extensiones.js");
-}
+let DATA = null;
 let FIELD_IDX = {};
 function buildFieldIdx(){ FIELD_IDX = {}; DATA.fields.forEach((f,i)=>FIELD_IDX[f]=i); }
-buildFieldIdx();
 function F(row, name){ return row[FIELD_IDX[name]]; }
 
 const fmtInt = n => Math.round(n).toLocaleString("es-AR");
@@ -2495,7 +2454,6 @@ function imprimirFicha(){
   window.print();
 }
 
-
 /* ===== CALENDARIO ===== */
 const CAL_TIPOS = [
   {campo:"f_aprobacion_dist",  cls:"ev-apr", nombre:"Constructivo aprobado"},
@@ -2503,7 +2461,7 @@ const CAL_TIPOS = [
   {campo:"f_inicio_obra",      cls:"ev-ini", nombre:"Inicio de ejecución"},
   {campo:"f_finalizacion",     cls:"ev-fin", nombre:"Finalización"}
 ];
-let calAnio = 0, calMes = 0, calSel = null, calEventos = {}, calAnimar = false;
+let calAnio = 0, calMes = 0, calSel = null, calEventos = {};
 const escA = s => esc(s).replace(/"/g, "&quot;");
 const calKey = d => d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 
@@ -2541,12 +2499,12 @@ function calItem(ev, linea3){
   const t = CAL_TIPOS[ev.ti], x = calTexto(ev.idx);
   return `<div class="cal-item ${t.cls}" onclick="calAbrir(${ev.idx})"><b>${esc(x.cliente)}</b><small>${esc(x.proyecto)} · ${esc(x.empresa)}${x.localidad ? " · " + esc(x.localidad) : ""}</small><small>${linea3}</small></div>`;
 }
-function calHoy(anim = true){ const h = new Date(); calAnio = h.getFullYear(); calMes = h.getMonth(); calSel = null; calAnimar = anim; calRender(); }
+function calHoy(){ const h = new Date(); calAnio = h.getFullYear(); calMes = h.getMonth(); calSel = null; calRender(); }
 function calMover(n){
   calMes += n;
   while (calMes < 0){ calMes += 12; calAnio--; }
   while (calMes > 11){ calMes -= 12; calAnio++; }
-  calSel = null; calAnimar = true; calRender();
+  calSel = null; calRender();
 }
 function calElegirDia(k){ calSel = (calSel === k) ? null : k; calRender(); }
 
@@ -2569,11 +2527,9 @@ function calRender(){
     const cls = "cal-cell" + (dow >= 5 ? " we" : "") + (k === hoyK ? " hoy" : "") + (k === calSel ? " sel" : "");
     const visibles = evs.slice(0, 3).map(calChip).join("");
     const mas = evs.length > 3 ? `<div class="cal-mas">+${evs.length - 3} más…</div>` : "";
-    html += `<div class="${cls}" style="--i:${offset + n - 1}" onclick="calElegirDia('${k}')"><div class="cal-num">${n}</div>${visibles}${mas}</div>`;
+    html += `<div class="${cls}" onclick="calElegirDia('${k}')"><div class="cal-num">${n}</div>${visibles}${mas}</div>`;
   }
-  const gridEl = document.getElementById("cal-grid");
-  gridEl.classList.toggle("cal-anim", calAnimar); calAnimar = false;
-  gridEl.innerHTML = html;
+  document.getElementById("cal-grid").innerHTML = html;
   document.getElementById("cal-legend").innerHTML = CAL_TIPOS.map((t, i) =>
     `<span><span class="cal-dot ${t.cls}"></span>${t.nombre} (${cuenta[i]})</span>`).join("");
 
@@ -2615,39 +2571,23 @@ function calListas(){
          e => "Legajo " + ff(DATA.rows[e.idx], "f_recepcion_legajo") + (F(DATA.rows[e.idx], "estadoLegajo") ? " · Estado: " + esc(F(DATA.rows[e.idx], "estadoLegajo")) : "")) +
     caja("Constructivo aprobado, esperando legajo", "Aprobados en los últimos 12 meses, sin legajo recibido", C, e => "Aprobado " + ff(DATA.rows[e.idx], "f_aprobacion_dist"));
 }
-function initCalendario(){ calArmarEventos(); calListas(); calHoy(false); }
+function initCalendario(){ calArmarEventos(); calListas(); calHoy(); }
 
-/* ===== ARRANQUE (con animaciones sutiles; los datos ya están cargados, no se demora nada) ===== */
-const REDUCIR_MOV = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
-/* Los números de las tarjetas "suben" desde 0 hasta su valor y terminan en el texto exacto de siempre. */
-function animarNumeros(){
-  document.querySelectorAll(".menu-card .mc-count").forEach(el => {
-    const txt = el.textContent.trim();
-    if (!/^\d{1,3}(\.\d{3})*$/.test(txt)) return;
-    const fin = parseInt(txt.replace(/\./g, ""), 10);
-    if (!(fin > 0)) return;
-    const t0 = performance.now() + 250, dur = 700;
-    el.textContent = "0";
-    const paso = ahora => {
-      const k = Math.min(1, Math.max(0, (ahora - t0) / dur));
-      if (k < 1){ el.textContent = fmtInt(fin * (1 - Math.pow(1 - k, 3))); requestAnimationFrame(paso); }
-      else el.textContent = txt;
-    };
-    requestAnimationFrame(paso);
+fetch("data/extensiones.json", {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(data => {
+    DATA = data;
+    buildFieldIdx();
+    document.getElementById("loading-overlay").style.display = "none";
+    render();
+    try { initCalendario(); } catch (e) { console.error("Calendario:", e); }
+  })
+  .catch(err => {
+    document.getElementById("loading-overlay").innerHTML =
+      '<div style="color:#d64545;font-family:sans-serif;padding:24px;text-align:center;">' +
+      'No se pudieron cargar los datos (' + err.message + ').<br>' +
+      'Probá recargar la página en unos minutos.</div>';
   });
-}
-function arrancarPanel(){
-  const ov = document.getElementById("loading-overlay");
-  if (REDUCIR_MOV){ ov.style.display = "none"; render(); initCalendario(); return; }
-  document.body.classList.add("intro");
-  ov.style.transition = "opacity .3s ease"; void ov.offsetWidth; ov.style.opacity = "0";
-  setTimeout(() => { ov.style.display = "none"; }, 320);
-  render();
-  initCalendario();
-  animarNumeros();
-  setTimeout(() => document.body.classList.remove("intro"), 1500);
-}
-arrancarPanel();
 </script>
 </body>
 </html>
