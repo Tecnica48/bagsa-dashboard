@@ -586,6 +586,17 @@
     html.anim .rev,html.anim .rev.in{opacity:1!important;transform:none!important;transition:none!important;}
     dialog.ix-dlg[open],dialog.ix-dlg[open]::backdrop{animation:none!important;}
   }
+  /* Encabezado igual al de Extensiones: logo grande, Gerencia Técnica y botón turquesa */
+  header{padding-bottom:20px;}
+  header img{height:108px;}
+  .brand-div{align-self:center;height:80px;}
+  .brand-text .area{font-size:18px;font-weight:600;letter-spacing:.03em;}
+  .cab-centro h1{font-weight:400;font-size:clamp(24px,4vw,32px);}
+  .cab-centro p{font-size:14px;}
+  .cab-der .volver{display:inline-flex;align-items:center;background:var(--teal);color:#fff;border-radius:8px;padding:7px 14px;font-size:12.5px;margin-top:8px;transition:background .15s;}
+  .cab-der .volver:hover{background:var(--navy);text-decoration:none;}
+  @media (max-width:600px){ header img{height:64px;} .brand-text .area{font-size:14px;} }
+  @media print{ header img{height:50px;} }
 </style>
 </head>
 <body>
