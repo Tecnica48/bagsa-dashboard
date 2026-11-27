@@ -1,6 +1,6 @@
 {
- "generatedAt": "18/11/2026",
- "generatedTime": "11:13",
+ "generatedAt": "27/11/2026",
+ "generatedTime": "14:04",
  "obra": {
   "clave": "mechita",
   "nombre": "Mechita",
@@ -2262,15 +2262,15 @@
    "fechaCert": "2026-11-10",
    "acta": "2026-11-06",
    "envio": "2026-11-10",
-   "entrada": null,
+   "entrada": "2026-11-18",
    "tesoreria": null,
    "pago": null,
-   "estado": "Enviado al contratista",
-   "pagoEstimado": "2026-12-22",
+   "estado": "Factura recibida",
+   "pagoEstimado": "2026-12-23",
    "diasCertAPago": null,
-   "factura": null,
-   "poliza": null,
-   "obs": "16-11 se envio documentacion del personal a rrhh Bagsa/"
+   "factura": "FA A 00002-00000764 por $ 100.872.676,50 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 183.143 en garantía de sustitución de fondo de reparo. –",
+   "obs": "16-11 se envio la documentacion del personal a rrhh bagsa/ 17-11 observacion pero se devolvio el mail a rrhh bagsa(ractificar/rectificar comentarios)/18-11 se reenvia comentarios con documentacíon a la contratista, responde contratista y lo tiene rrhh bagsa mismo día/ 18-11 Validacion del Personal por rrhh Bagsa."
   }
  ],
  "otrosPagos": [
