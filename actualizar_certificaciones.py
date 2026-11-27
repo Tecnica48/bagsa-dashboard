@@ -4,10 +4,10 @@ Genera data/certificaciones_<obra>.json para certificaciones.html.
 
 Lee, por cada obra:
   - Certificado_<OBRA>.xlsm   -> resúmenes ya calculados (Resumen General, Resumen Ajuste,
-                                 Saldo de Obra, C I Comparativa, Metodología del último cert.,
-                                 REDETERMINACIONES solo para el mes de salto)
+                                 Saldo de Obra, Metodología del último cert., REDETERMINACIONES
+                                 para el mes de salto y las carátulas AJUSTE n para los ajustes calculados)
   - 00 - Seguimiento certificacion.xlsx -> TABLA MASTER (fechas del circuito y pagos)
-                                           y SALDO (fin de obra según plan vigente)
+  - RESUMEN_DE_RESUMENES.xlsx            -> redeterminaciones aprobadas, tramitación y datos generales
 
 No recalcula nada del certificado: toma los valores tal como quedaron guardados en el Excel.
 Las tablas se ubican por sus títulos, no por celdas fijas, para que sirva en todas las obras.
@@ -31,19 +31,49 @@ from openpyxl import load_workbook
 # CONFIGURACIÓN — ajustar rutas a tu PC
 # ============================================================
 # Carpeta de trabajo (pruebas). Los Excel y la salida quedan acá, fuera del repositorio.
-CARPETA_TRABAJO = Path(r"C:\Users\drago\BUENOS AIRES GAS S.A\TÉCNICA - Documents\Gerencia Tecnica\Andrés BG\prueba\pr Mechita")
+CARPETA_TRABAJO = Path(r"C:\Users\drago\BUENOS AIRES GAS S.A\TÉCNICA - Documents\Gerencia Tecnica\Andrés BG\prueba\prCert")
 CARPETA_CERTIFICADOS = CARPETA_TRABAJO                # donde están los Certificado_<OBRA>.xlsm
 ARCHIVO_SEGUIMIENTO = CARPETA_TRABAJO / "00 - Seguimiento certificacion.xlsx"
+ARCHIVO_RESUMENES = CARPETA_TRABAJO / "RESUMEN_DE_RESUMENES.xlsx"   # redeterminaciones aprobadas, tramitación y datos generales
 CARPETA_SALIDA = CARPETA_TRABAJO / "data"             # los JSON se generan acá; copiarlos al repo es un paso manual
+
+# Mismo html que en GitHub (certificaciones.html), sin datos pegados. Abierto con doble clic lee los archivos
+# data/certificaciones_*.js que genera este script (un navegador no deja leer .json de disco, pero sí .js), y si hay
+# internet compara con el JSON publicado en la web y usa el más nuevo. La carpeta data/ tiene que estar junto al html.
+ARCHIVO_HTML = CARPETA_TRABAJO / "certificaciones.html"
+
+# Carpeta del repositorio de GitHub Pages en tu PC (la que tiene index.html). Si se completa, el script copia ahí los JSON
+# (en data/) y el certificaciones.html, listos para subir.
+# Ejemplo: CARPETA_GITHUB = Path(r"C:\Users\drago\Documents\bagsa-dashboard")
+CARPETA_GITHUB = None
+
+# Subida directa a GitHub Pages (igual que sync_extensiones.py): usa la variable de entorno GITHUB_TOKEN.
+# Sube data/certificaciones_*.json, data/certificaciones_*.js y certificaciones.html al repo.
+SUBIR_A_GITHUB = True
+REPO_OWNER = "Tecnica48"
+REPO_NAME = "bagsa-dashboard"
+REPO_BRANCH = "main"
 
 # clave de URL -> archivo de certificación y nombre de la obra en la TABLA MASTER / SALDO
 # Opcional: "url" = dirección completa del panel de esa obra, si no es este mismo certificaciones.html
 OBRAS = {
-    "mechita":   {"archivo": "Certificado_MECHITA.xlsm",   "master": "MECHITA",
-                  "planOriginal": "Plan_de_trabajos_e_inversion_v1.xls"},   # plan de la oferta (opcional)
+    "mechita":   {"archivo": "Certificado_MECHITA.xlsm",   "master": "MECHITA"},
     "anchorena": {"archivo": "Certificado_ANCHORENA.xlsm", "master": "ANCHORENA"},
-    "chascomus": {"archivo": "Certificado_CHASCOMUS.xlsm", "master": "CHASCOMUS"},
+    "chascomus": {"archivo": "Certificados_CHASCOMUS_.xlsm", "master": "CHASCOMUS"},
 }
+
+
+def ruta_certificado(conf):
+    """Ruta del Certificado_*.xlsm de la obra. Si el nombre exacto no existe, busca uno parecido en la misma carpeta
+    (por ejemplo 'Certificados_CHASCOMUS_.xlsm' o 'Certificado_CHASCOMUS.xlsm')."""
+    ruta = CARPETA_CERTIFICADOS / conf["archivo"]
+    if ruta.exists():
+        return ruta
+    clave = conf["master"].upper()
+    for f in sorted(CARPETA_CERTIFICADOS.glob("Certificado*.xls*")):
+        if clave in f.name.upper() and not f.name.startswith("~$"):
+            return f
+    return ruta
 
 # días por defecto de cada etapa hasta el pago, si no hay historia suficiente
 DIAS_DEFAULT = {"certificado": 50, "acta": 46, "envio": 43, "entrada": 37, "tesoreria": 33}
@@ -308,6 +338,41 @@ def leer_resumen_general(h, avisos):
     tot["pctAvance"] = r4(tomar("PORCENTAJE DE OBRA SEGUN PRECIOS DE CONTRATO", c_acum))
     tot["anticipoDescontado"] = r2(tomar("ANTICIPO DESCONTADO", c_falt))
     tot["anticipoAprobado"] = r2(tomar("ANTICIPO APROBADO ACTUALIZADO", c_falt))
+
+    # Cuadro ACUMULADO / FALTANTE completo, tal como está en la planilla (las filas que no tienen número se omiten)
+    cuadro = []
+    for clave, etiqueta, *saldo in (
+            ("abonadoDescAnticipos", "ABONADO A LA FECHA PRECIOS ULTIMA REDETERMINACION DESCONTADO"),
+            ("certContrato", "CERTIFICADO A LA FECHA PRECIOS DE CONTRATO"),
+            ("certVigente", "CERTIFICADO A LA FECHA PRECIOS ULTIMA"),
+            ("abonadoConAF", "ABONADO A LA FECHA PRECIOS ULTIMA REDETERMINACION INCLUIDO", False),
+            ("abonadoMasSaldo", "ABONADO A LA FECHA PRECIOS ULTIMA REDETERMINACION INCLUIDO", True),
+            ("montoVigente", "MONTO DE CONTRATO MAS LOS IMPORTES REDETERMINADOS"),
+            ("difAbonadoVsMonto", "DIFERENCIA MONTO ABONADO INCLUIDO AF"),
+            ("pctObra", "PORCENTAJE DE OBRA SEGUN PRECIOS DE CONTRATO"),
+            ("anticipoDescontado", "ANTICIPO DESCONTADO"),
+            ("anticipoAprobado", "ANTICIPO APROBADO ACTUALIZADO"),
+            ("anticipoDiferencia", "ANTICIPO DIFERENCIA")):
+        cand = h.buscar(etiqueta, filas=(fila_fin, fila_fin + 30))
+        if saldo:   # dos filas empiezan igual: una termina en «MAS EL SALDO A PAGAR»
+            cand = [x for x in cand if ("SALDO A PAGAR" in norm(h.v(*x))) == saldo[0]]
+        if not cand:
+            continue
+        p_ = cand[0]
+        a = num(h.v(p_[0], c_acum)) if c_acum else None
+        f = num(h.v(p_[0], c_falt)) if c_falt else None
+        if a is None and f is None:
+            continue
+        nd = 4 if clave == "pctObra" else 2
+        cuadro.append({"clave": clave, "acumulado": None if a is None else round(a, nd), "faltante": None if f is None else round(f, nd)})
+    tot["cuadro"] = cuadro
+
+    # Totales de las columnas de la tabla de certificados: fila SUBTOTALES y fila de ajustes acumulados
+    def fila_tot(fila):
+        return {k: r2(num(h.v(fila, col[k]))) for k in ("base", "conRedet", "dif", "ajuste", "anticipo", "fondo", "neto")
+                if k in col and num(h.v(fila, col[k])) is not None}
+    tot["totalesColumnas"] = {"certificados": fila_tot(fila_fin) if fin else {},
+                              "ajustes": fila_tot(fila_fin + 1) if fin else {}}
     return certs, anticipos, tot
 
 
@@ -495,6 +560,40 @@ def leer_metodologia(h, items):
     return out
 
 
+def leer_caratulas_ajuste(wb):
+    """Carátulas 'AJUSTE n' que ya tienen el cálculo hecho (importe neto a pagar mayor que cero)."""
+    out = []
+    for nombre in wb.sheetnames:
+        m = re.fullmatch(r"AJUSTE\s*(\d+)", nombre.strip(), re.I)
+        if not m:
+            continue
+        h = abrir_hoja(wb, nombre)
+        if not h:
+            continue
+        def derecha(etiqueta):
+            p_ = h.primero(etiqueta)
+            if not p_:
+                return None
+            for c in range(p_[1] + 1, p_[1] + 14):
+                v = num(h.v(p_[0], c))
+                if v is not None and abs(v) > 1:
+                    return v
+            return None
+        neto = derecha("Importe neto a pagar")
+        if not neto or neto <= 0:
+            continue
+        p_f = h.primero("Fecha de certificado")
+        f_cert = None
+        if p_f:
+            for c in range(p_f[1] + 1, p_f[1] + 8):
+                f_cert = fecha(h.v(p_f[0], c))
+                if f_cert:
+                    break
+        out.append({"n": int(m.group(1)), "fecha": iso(f_cert), "importe": r2(derecha("Importe del presente certificado de ajuste")),
+                    "anticipo": r2(derecha("Retención por anticipo")), "neto": r2(neto)})
+    return sorted(out, key=lambda x: x["n"])
+
+
 def leer_meses_salto(h):
     if not h:
         return {}
@@ -533,83 +632,159 @@ class _FilasXLS:
             yield tuple(fila)
 
 
-def leer_plan_externo(ruta, hoja="PT - INVERS."):
-    """Plan de trabajo e inversión en un archivo aparte (.xls, .xlsx o .xlsm).
-    Devuelve la serie [{mes, pctAcum, pct}] tomada de las filas 'AVANCE ACUMULADO' y 'AVANCE PORCENTUAL'."""
-    ruta = Path(ruta)
-    if ruta.suffix.lower() == ".xls":
-        try:
-            import xlrd
-        except ImportError:
-            raise RuntimeError("Para leer un .xls hace falta xlrd (pip install xlrd) o guardar el archivo como .xlsx.")
-        libro = xlrd.open_workbook(str(ruta))
-        h = None
-        for nombre in libro.sheet_names():
-            if norm(nombre) == norm(hoja):
-                h = Hoja(_FilasXLS(libro.sheet_by_name(nombre), libro.datemode))
-    else:
-        wbp = load_workbook(ruta, read_only=True, data_only=True)
-        h = abrir_hoja(wbp, hoja)
-        wbp.close()
-    if not h:
-        raise RuntimeError(f"No se encontró la hoja '{hoja}' en {ruta.name}.")
-    fila_fechas = next((r for r in range(1, 30) if sum(1 for v in h.fila(r).values() if fecha(v)) >= 3), None)
-    p_acum, p_mens = h.primero("AVANCE ACUMULADO"), h.primero("AVANCE PORCENTUAL")
-    if not (fila_fechas and p_acum):
-        raise RuntimeError(f"{ruta.name}: no se encontraron las fechas o la fila 'AVANCE ACUMULADO'.")
-    out = []
-    for c, v in sorted(h.fila(fila_fechas).items()):
-        f = fecha(v)
-        if not f:
-            continue
-        # las celdas del mes pueden estar combinadas: el valor queda en la columna de la derecha
-        a = num(h.v(p_acum[0], c))
-        a = num(h.v(p_acum[0], c + 1)) if a is None else a
-        m = None
-        if p_mens:
-            m = num(h.v(p_mens[0], c))
-            m = num(h.v(p_mens[0], c + 1)) if m is None else m
-        if a is not None:
-            out.append({"mes": mes_key(f), "pctAcum": r4(a), "pct": r4(m)})
-    return out
+# ============================================================
+# RESUMEN DE RESUMENES: redeterminaciones (montos, aprobación, tramitación) y datos generales de cada obra
+# ============================================================
+_FECHA_TXT = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{2,4})")
 
 
-def leer_nombre_plan(h):
-    """Rótulo del plan en la hoja 'P.T.Propuesta %' (p. ej. 'PLAN DE TRABAJO - R IV')."""
-    if not h:
+def fecha_de_texto(v):
+    """Fecha suelta o primera fecha dd/mm/aa(aa) dentro de un texto como '29/05/2025 (Directorio- aprobación)'."""
+    f = fecha(v)
+    if f:
+        return f
+    m = _FECHA_TXT.search(str(v or ""))
+    if not m:
         return None
-    for (r, c), v in sorted(h.c.items()):
-        if r <= 20 and isinstance(v, str) and norm(v).startswith("PLAN DE TRABAJO") and norm(v) != "PLAN DE TRABAJO PROPUESTO":
-            return re.sub(r"\s+", " ", v).strip()
+    d_, m_, a_ = (int(x) for x in m.groups())
+    a_ += 2000 if a_ < 100 else 0
+    try:
+        return date(a_, m_, d_)
+    except ValueError:
+        return None
+
+
+def _texto(v):
+    return re.sub(r"\s+", " ", str(v)).strip() if v not in (None, "") else None
+
+
+def _col_obra(ws, fila, clave):
+    for c in range(1, ws.max_column + 1):
+        if clave in norm(ws.cell(fila, c).value or ""):
+            return c
     return None
 
 
-def leer_plan_original(h):
-    if not h:
-        return []
-    p_acum = h.primero("% AVANCE ACUMULADO PROPUESTO")
-    p_mens = h.primero("% AVANCE MENSUAL PROPUESTO")
-    if not p_acum or not p_mens:
-        return []
-    # fila de fechas: la más cercana por encima con fechas
-    fila_fechas = None
-    for r in range(p_mens[0] - 1, p_mens[0] - 6, -1):
-        if sum(1 for c, v in h.fila(r).items() if fecha(v)) >= 3:
-            fila_fechas = r
-            break
-    if not fila_fechas:
-        return []
-    out = []
-    for c, v in sorted(h.fila(fila_fechas).items()):
-        f = fecha(v)
-        a = num(h.v(p_acum[0], c))
-        if f and a is not None:
-            out.append({"mes": mes_key(f), "pctAcum": r4(a), "pct": r4(num(h.v(p_mens[0], c)))})
-    # cortar repeticiones finales al 100 %
-    while len(out) > 1 and out[-1]["pctAcum"] == out[-2]["pctAcum"]:
-        out.pop()
-    return out
+def leer_resumenes(wb, master_clave):
+    """Todo lo de una obra en el RESUMEN DE RESUMENES. master_clave: 'MECHITA', 'ANCHORENA', 'CHASCOMUS'."""
+    clave = norm(master_clave)
+    out = {"redets": [], "general": {}, "dolar": {}}
 
+    # --- hoja MONTOS DE CONTRATOS Y REDET: un bloque por obra
+    ws = wb["MONTOS DE CONTRATOS Y REDET"] if "MONTOS DE CONTRATOS Y REDET" in wb.sheetnames else None
+    por_n = {}
+    if ws:
+        ini = next((r for r in range(1, ws.max_row + 1) if norm(ws.cell(r, 1).value or "").startswith(clave)), None)
+        if ini:
+            for r in range(ini + 2, min(ini + 40, ws.max_row + 1)):
+                g = norm(ws.cell(r, 7).value or "")
+                if "INCREMENTO POR REDETERMINACIONES" in g:
+                    out["incrementoResumen"] = r2(num(ws.cell(r, 8).value))
+                    continue
+                if "MONTO TOTAL DE LA OBRA" in g:
+                    out["montoTotalResumen"] = r2(num(ws.cell(r, 8).value))
+                    break
+                n = num(ws.cell(r, 1).value)
+                if n is None or n != int(n) or n < 1:
+                    continue
+                por_n[int(n)] = {
+                    "n": int(n), "mesSalto": iso(fecha(ws.cell(r, 2).value)), "monto": r2(num(ws.cell(r, 3).value)),
+                    "saldoObra": r4(num(ws.cell(r, 4).value)), "coefResumen": r4(num(ws.cell(r, 5).value)),
+                    "variacion": r4(num(ws.cell(r, 6).value)), "aplicadoResumen": r2(num(ws.cell(r, 8).value)),
+                    "entradaLegales": iso(fecha_de_texto(ws.cell(r, 11).value)),
+                    "vencimiento": iso(fecha_de_texto(ws.cell(r, 12).value)),
+                    "aprobacion": iso(fecha_de_texto(ws.cell(r, 13).value)),
+                    "diasVsVencimiento": num(ws.cell(r, 14).value),
+                }
+
+    # --- hoja Redeterminaciones: montos total/reducida y la tramitación con sus textos
+    ws = wb["Redeterminaciones"] if "Redeterminaciones" in wb.sheetnames else None
+    if ws:
+        col = _col_obra(ws, 6, clave)
+        if col:
+            actual = None
+            for r in range(7, ws.max_row + 1):
+                a, b, v = norm(ws.cell(r, 1).value or ""), norm(ws.cell(r, 2).value or ""), ws.cell(r, col).value
+                m = re.match(r"REDETERMINACION (\d+)", a)
+                if m:
+                    actual = por_n.setdefault(int(m.group(1)), {"n": int(m.group(1))})
+                    actual["periodo"] = _texto(v)
+                    actual["_reducida"] = False
+                    continue
+                if actual is None or v in (None, ""):
+                    continue
+                if b.startswith("MONTO TOTAL"):
+                    actual["montoTotal"] = r2(num(v))
+                elif "REDUCIDA" in b:
+                    actual["montoReducida"] = r2(num(v)); actual["_reducida"] = True
+                elif b.startswith("MONTO DESCONTANDO ANTICIPO"):
+                    actual["descReducida" if actual["_reducida"] else "descTotal"] = r2(num(v))
+                elif b.startswith("FECHA PROVIDENCIA"):
+                    actual["providencia"] = _texto(v); actual["fProvidencia"] = iso(fecha_de_texto(v))
+                elif b.startswith("FECHA RESPUESTA"):
+                    actual["respuesta"] = _texto(v); actual["fRespuesta"] = iso(fecha_de_texto(v))
+                elif b.startswith("FECHA APROBACION"):
+                    actual["aprobacionTxt"] = _texto(v)
+                    actual["aprobacion"] = actual.get("aprobacion") or iso(fecha_de_texto(v))
+
+    for n in sorted(por_n):
+        x = por_n[n]
+        x.pop("_reducida", None)
+        # monto que vale: el reducido si existe, si no el total (y como último recurso el de la hoja MONTOS)
+        x["montoUsado"] = x.get("montoReducida") or x.get("montoTotal") or x.get("monto")
+        if x["montoUsado"]:
+            out["redets"].append(x)
+
+    # --- hoja General: datos de la obra, infraestructura (contrato e instalada) e información económica
+    ws = wb["General"] if "General" in wb.sheetnames else None
+    if ws:
+        col = _col_obra(ws, 6, clave)
+        if col:
+            seccion, gen = None, {"infraContrato": [], "infraInstalada": [], "economica": []}
+            for r in range(7, ws.max_row + 1):
+                et, v = _texto(ws.cell(r, 1).value), ws.cell(r, col).value
+                if not et:
+                    continue
+                n_ = norm(et)
+                if n_.startswith("INFRAESTRUCTURA PRINCIPAL SEGUN"):
+                    seccion = "infraContrato"; continue
+                if n_.startswith("INFRAESTRUCTURA PRINCIPAL INSTALADA"):
+                    seccion = "infraInstalada"; continue
+                if n_.startswith("INFORMACION ECONOMICA"):
+                    seccion = "economica"; continue
+                if n_.startswith("PORCENTAJE DE AVANCE FISICO"):
+                    gen["avanceFisico"] = r4(num(v)); continue
+                if v in (None, "") or (isinstance(v, str) and v.startswith("#")):
+                    continue
+                if seccion in ("infraContrato", "infraInstalada"):
+                    if num(v) is not None:
+                        gen[seccion].append({"item": et, "valor": r4(num(v))})
+                elif seccion == "economica":
+                    gen["economica"].append({"item": et, "valor": r4(num(v)) if num(v) is not None else (iso(fecha(v)) or _texto(v))})
+                elif n_ == "MES DE LA OFERTA":
+                    gen["mesOferta"] = iso(fecha(v))
+                elif n_.startswith("USUARIOS POTENCIALES"):
+                    gen["usuarios"] = num(v)
+            out["general"] = gen
+
+    # --- hoja OBRAS: incremento real contra la variación del dólar
+    ws = wb["OBRAS"] if "OBRAS" in wb.sheetnames else None
+    if ws:
+        ini = next((r for r in range(1, ws.max_row + 1) if norm(ws.cell(r, 1).value or "") == clave or
+                    norm(ws.cell(r, 1).value or "").startswith(clave + " ")), None)
+        if ini:
+            for r in range(ini + 1, min(ini + 12, ws.max_row + 1)):
+                a = norm(ws.cell(r, 1).value or "")
+                if a.startswith("INCREMENTO REAL"):
+                    out["dolar"]["incrementoObra"] = r4(num(ws.cell(r, 3).value))
+                elif a.startswith("VARIACION DOLAR"):
+                    out["dolar"]["variacion"] = r4(num(ws.cell(r, 3).value))
+                    f1, f2 = fecha(ws.cell(r + 1, 1).value), fecha(ws.cell(r + 1, 2).value)
+                    v1, v2 = num(ws.cell(r + 2, 1).value), num(ws.cell(r + 2, 2).value)
+                    out["dolar"].update({"desde": iso(f1), "hasta": iso(f2), "valorDesde": v1, "valorHasta": v2})
+                elif a.startswith("PLAZO ACTUAL EJECUTADO"):
+                    out["general"]["plazoEjecutado"] = _texto(ws.cell(r, 2).value)
+    return out
 
 # ============================================================
 # Lectura del seguimiento (TABLA MASTER y SALDO)
@@ -680,31 +855,6 @@ def leer_master(wb_seg, incluir_sin_obra=False):
     return out
 
 
-def leer_saldo_seguimiento(wb_seg, clave):
-    ws = None
-    for w in wb_seg.worksheets:
-        if norm(w.title) == "SALDO":
-            ws = w
-    if ws is None:
-        return {}
-    h = Hoja(ws)
-    enc = h.primero("Localidad de Referencia")
-    if not enc:
-        return {}
-    col = columnas_por_titulo(h, enc[0], {
-        "fin": "MES DE FINALIZACION", "monto": "Monto de obra actualizado", "saldo": "SALDO DE OBRA A PAGAR",
-    })
-    p = h.primero(clave, col=enc[1], exacto=True)
-    if not p:
-        return {}
-    r = p[0]
-    return {
-        "finPlanVigente": iso(fecha(h.v(r, col.get("fin")))),
-        "montoActualizado": r2(num(h.v(r, col.get("monto")))),
-        "saldoAPagar": r2(num(h.v(r, col.get("saldo")))),
-    }
-
-
 # ============================================================
 # Armado del JSON
 # ============================================================
@@ -726,9 +876,9 @@ def medianas_a_pago(registros):
     return out
 
 
-def procesar_obra(clave, conf, master, wb_seg):
+def procesar_obra(clave, conf, master, wb_seg, wb_res=None):
     avisos = []
-    ruta = CARPETA_CERTIFICADOS / conf["archivo"]
+    ruta = ruta_certificado(conf)
     wb = load_workbook(ruta, read_only=True, data_only=True, keep_vba=False)
 
     pres = abrir_hoja(wb, "Presupuesto")
@@ -741,25 +891,9 @@ def procesar_obra(clave, conf, master, wb_seg):
     ultimo = certs[-1] if certs else None
     metod = leer_metodologia(abrir_hoja(wb, f"Metodologia de medicion Nº {ultimo['n']}"), items) if ultimo else []
     meses_salto = leer_meses_salto(abrir_hoja(wb, "REDETERMINACIONES"))
-    plan = leer_plan_original(abrir_hoja(wb, "C I Comparativa"))
-    plan_nombre = leer_nombre_plan(abrir_hoja(wb, "P.T.Propuesta %"))
-    plan_fin = next((x["mes"] for x in plan if (x["pctAcum"] or 0) >= 0.9999), None)
-    plan_orig, plan_orig_fin = None, None
-    if conf.get("planOriginal"):
-        ruta_plan = CARPETA_CERTIFICADOS / conf["planOriginal"]
-        if ruta_plan.exists():
-            try:
-                plan_orig = leer_plan_externo(ruta_plan)
-                plan_orig_fin = next((x["mes"] for x in plan_orig if (x["pctAcum"] or 0) >= 0.9999), None)
-                if not plan_orig_fin:
-                    avisos.append(f"El plan original ({ruta_plan.name}) no llega al 100 %.")
-            except Exception as e:  # el panel sigue funcionando sin el plan original
-                avisos.append(f"No se pudo leer el plan original: {e}")
-        else:
-            avisos.append(f"No se encontró el plan original: {ruta_plan}")
+    ajustes_car = leer_caratulas_ajuste(wb)
     wb.close()
 
-    saldo_seg = leer_saldo_seguimiento(wb_seg, conf["master"]) if wb_seg else {}
 
     # --- TABLA MASTER de esta obra, cruzada con el certificado
     regs = [r for r in master if r["obra"] == norm(conf["master"])]
@@ -874,19 +1008,12 @@ def procesar_obra(clave, conf, master, wb_seg):
         ult_mes = date.fromisoformat(ultimo["mes"] + "-01")
         fin_contr = (ficha["fechaContrato"] + timedelta(days=ficha["plazoDias"])) \
             if ficha.get("fechaContrato") and ficha.get("plazoDias") else None
-        fin_vig = date.fromisoformat(saldo_seg["finPlanVigente"]) if saldo_seg.get("finPlanVigente") else None
-        meses_vig = meses_entre(ult_mes, fin_vig) if fin_vig else None
         proy = {
             "saldoPct": r4(saldo_pct),
             "ritmoReciente": r4(ritmo),
             "ritmoRecienteCerts": [c["n"] for c in certs[-3:]],
             "ultimoMes": ultimo["mes"],
             "finContractual": iso(fin_contr),
-            "finPlanVigente": iso(fin_vig),
-            "mesesHastaFinVigente": meses_vig,
-            "ritmoNecesario": r4(saldo_pct / meses_vig) if meses_vig and meses_vig > 0 else None,
-            "finEstimadoRitmo": iso(sumar_meses(ult_mes, math.ceil(saldo_pct / ritmo)))
-            if ritmo and ritmo > 0 and saldo_pct > 0 else None,
             "saldoObraConIva": pie_saldo.get("saldoTotalConIva"),
             "saldoObraAPagar": pie_saldo.get("saldoAPagar"),
             "diasMedianosAPago": {k: round(v) for k, v in med.items()},
@@ -914,21 +1041,20 @@ def procesar_obra(clave, conf, master, wb_seg):
             "anticipoDescontado": tot.get("anticipoDescontado"),
             "anticipoAprobado": tot.get("anticipoAprobado"),
         },
+        "resumen": {"cuadro": tot.get("cuadro", []), "totalesColumnas": tot.get("totalesColumnas", {})},
+        "resumenes": leer_resumenes(wb_res, conf["master"]) if wb_res else None,
         "certificados": certs,
         "anticipos": anticipos,
         "ajustes": ajustes,
+        "ajustesCaratula": ajustes_car,
         "redeterminaciones": escalera,
-        "curva": {"real": [{"n": c["n"], "mes": c["mes"], "pct": c["pct"], "pctAcum": c["pctAcum"]} for c in certs],
-                  "plan": plan, "planNombre": plan_nombre, "planFin": plan_fin,
-                  "planOriginal": plan_orig, "planOriginalFin": plan_orig_fin,
-                  "planOriginalArchivo": conf.get("planOriginal") if plan_orig else None},
+        "curva": {"real": [{"n": c["n"], "mes": c["mes"], "pct": c["pct"], "pctAcum": c["pctAcum"]} for c in certs]},
         "items": items,
         "globales": metod,
         "tramites": tramites,
         "otrosPagos": [{"tema": r["tema"], "empresa": r["empresa"], "monto": r2(r["monto"]),
                         "entrada": iso(r["entrada"]), "pago": iso(r["pago"])} for r in otros],
         "proyeccion": proy,
-        "seguimientoSaldo": saldo_seg,
         "avisos": avisos,
     }
     return data
@@ -969,6 +1095,29 @@ def etiqueta_comprobante(r):
     return texto_corto(r["tema"], 48)
 
 
+def ajustes_pendientes(datos_obras, comprobantes):
+    """Ajustes que ya tienen el cálculo hecho en el Certificado (carátula AJUSTE n) pero todavía no figuran
+    con fechas en la tabla de seguimiento. Van a la proyección como pendientes, sin fecha."""
+    out = []
+    for clave, d in datos_obras.items():
+        master = OBRAS[clave]["master"]
+        en_seg = {c["redet"]: c for c in comprobantes
+                  if c["obraKey"] == norm(master) and c["tipo"] == "ajuste" and c.get("redet") is not None}
+        for a in d.get("ajustesCaratula") or []:
+            a = {**a, "redet": a["n"]}
+            c = en_seg.get(a["redet"])
+            if c and any(c.get(k) for k in ("acta", "envio", "entrada", "tesoreria", "pago")):
+                continue          # ya está en trámite (o pagado) en el seguimiento
+            rom = ROMANOS_TXT[a["redet"]] if a["redet"] < len(ROMANOS_TXT) else str(a["redet"])
+            out.append({"obraKey": norm(master), "obra": nombre_obra(master),
+                        "empresa": (d.get("obra") or {}).get("contratista") or "", "tipo": "ajuste",
+                        "redet": a["redet"], "label": f"Ajuste {rom}",
+                        "tema": f"AJUSTE {rom} por Redet. {rom} (cálculo hecho)",
+                        "monto": a.get("neto"), "fechaCaratula": a.get("fecha"),
+                        "idSeguimiento": c["id"] if c else None})
+    return out
+
+
 def generar_indice(master_all, wb_seg):
     """Índice general: todos los comprobantes de la TABLA MASTER, con datos crudos.
     El estado, las demoras y las fechas de pago estimadas se calculan en el navegador con la fecha del día."""
@@ -980,7 +1129,7 @@ def generar_indice(master_all, wb_seg):
 
     paneles, urls = {}, {}
     for clave, conf in OBRAS.items():
-        if conf.get("url") or (CARPETA_CERTIFICADOS / conf["archivo"]).exists():
+        if conf.get("url") or ruta_certificado(conf).exists():
             paneles[norm(conf["master"])] = clave
             urls[norm(conf["master"])] = conf.get("url") or None
 
@@ -1026,6 +1175,152 @@ def generar_indice(master_all, wb_seg):
     }
 
 
+MARCA_INI, MARCA_FIN = "/*DATOS_INI*/", "/*DATOS_FIN*/"
+
+
+def _con_datos(html, datos):
+    """Devuelve el html con el bloque de datos reemplazado (datos=None lo deja vacío)."""
+    i, f = html.find(MARCA_INI), html.find(MARCA_FIN)
+    if i < 0 or f < i:
+        return None
+    valor = "null" if datos is None else json.dumps(datos, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return html[:i + len(MARCA_INI)] + "window.__DATOS__ = " + valor + ";" + html[f:]
+
+
+ETAPAS_SEG = ("acta", "envio", "entrada", "tesoreria", "pago")
+
+
+def guardar_historial_proyeccion(indice):
+    """Guarda una foto de la proyección de pagos en data/certificaciones_historial.json.
+    Hay una foto por mes: cada corrida reemplaza la del mes en curso, así queda la última de cada mes.
+    El panel muestra, para un mes que ya pasó, la foto tomada antes de que empezara ese mes."""
+    ruta = CARPETA_SALIDA / "certificaciones_historial.json"
+    hist = {"fotos": {}}
+    if ruta.exists():
+        try:
+            hist = json.loads(ruta.read_text(encoding="utf-8"))
+        except ValueError:
+            print(f"[aviso] {ruta.name} estaba dañado: se empieza un historial nuevo (el anterior queda como .bak).")
+            ruta.with_suffix(".bak").write_bytes(ruta.read_bytes())
+    hoy = date.today()
+    med, reglas = indice.get("medianas") or {}, indice.get("reglas") or {}
+    items = []
+    for c in indice["comprobantes"]:
+        if c.get("pago") or c["obraKey"] == "(SIN OBRA)":
+            continue
+        et = next((e for e in reversed(ETAPAS_SEG[:-1]) if c.get(e)), None)
+        if not et or med.get(et) is None:
+            continue
+        f_et = date.fromisoformat(c[et])
+        if (hoy - f_et).days > reglas.get("antiguoDias", 120):
+            continue                                      # "para revisar": no entra en la proyección
+        est = f_et + timedelta(days=med[et])
+        items.append({"id": c["id"], "obraKey": c["obraKey"], "obra": c["obra"], "empresa": c["empresa"],
+                      "tema": c["tema"], "tipo": c["tipo"], "monto": c["monto"], "etapa": et,
+                      "estimado": est.isoformat(), "mesPago": est.strftime("%Y-%m")})
+    hist.setdefault("fotos", {})[hoy.strftime("%Y-%m")] = {
+        "tomada": hoy.isoformat(), "hora": datetime.now().strftime("%H:%M"),
+        "items": items, "pendientes": indice.get("pendientes") or []}
+    hist["generatedAt"] = datetime.now().strftime("%d/%m/%Y")
+    hist["generatedTime"] = datetime.now().strftime("%H:%M")
+    ruta.write_text(json.dumps(hist, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"[ok] historial de proyección: foto de {hoy.strftime('%m/%Y')} con {len(items)} comprobantes "
+          f"({len(hist['fotos'])} meses guardados) -> {ruta}")
+
+
+def subir_a_github(archivos):
+    """Sube archivos al repo con la API de GitHub (Contents API). archivos: [(ruta_local, ruta_en_repo)].
+    Solo sube los que cambiaron. Devuelve True si todo salió bien."""
+    import base64, hashlib, os, urllib.request, urllib.error
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        print("[aviso] GitHub: no encontré la variable de entorno GITHUB_TOKEN (la misma que usa sync_extensiones.py). "
+              "No se subió nada.")
+        return False
+
+    def api(metodo, ruta, cuerpo=None):
+        req = urllib.request.Request(f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{ruta}"
+                                     + (f"?ref={REPO_BRANCH}" if metodo == "GET" else ""),
+                                     data=json.dumps(cuerpo).encode() if cuerpo else None, method=metodo,
+                                     headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                                              "User-Agent": "actualizar_certificaciones"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.status, json.loads(r.read() or b"{}")
+        except urllib.error.HTTPError as e:
+            return e.code, {}
+
+    ok, subidos, iguales = True, 0, 0
+    for local, remoto in archivos:
+        datos = Path(local).read_bytes()
+        st, info = api("GET", remoto)
+        if st == 401:
+            print("[ERROR] GitHub: el token no sirve (401, probablemente venció). Renovalo y volvé a correr el script.")
+            return False
+        sha = info.get("sha") if st == 200 else None
+        # sha de git del archivo local, para no subir lo que no cambió
+        if sha and sha == hashlib.sha1(b"blob %d\0" % len(datos) + datos).hexdigest():
+            iguales += 1
+            continue
+        cuerpo = {"message": f"certificaciones: {remoto} ({datetime.now():%d/%m/%Y %H:%M})",
+                  "content": base64.b64encode(datos).decode(), "branch": REPO_BRANCH}
+        if sha:
+            cuerpo["sha"] = sha
+        st, _ = api("PUT", remoto, cuerpo)
+        if st in (200, 201):
+            subidos += 1
+            print(f"     · {remoto}: {'actualizado' if sha else 'creado'}")
+        else:
+            ok = False
+            print(f"[ERROR] GitHub: no se pudo subir {remoto} (código {st})."
+                  + (" Revisá REPO_OWNER / REPO_NAME." if st == 404 else ""))
+    print(f"[ok] GitHub {REPO_OWNER}/{REPO_NAME}: {subidos} archivos subidos, {iguales} sin cambios.")
+    return ok
+
+
+def pegar_datos():
+    """Genera data/certificaciones_*.js (para abrir el html con doble clic) y deja el html al día, sin datos pegados."""
+    jsons = sorted(CARPETA_SALIDA.glob("certificaciones_*.json"))
+    if not jsons:
+        print("[aviso] No hay JSON en la carpeta de salida.")
+        return
+    for f in jsons:
+        datos = json.loads(f.read_text(encoding="utf-8"))
+        cuerpo = json.dumps(datos, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        (CARPETA_SALIDA / (f.stem + ".js")).write_text(
+            f'(window.__DATOS_JS = window.__DATOS_JS || {{}})["{f.name}"] = {cuerpo};\n', encoding="utf-8")
+    print(f"[ok] {len(jsons)} archivos .js de datos -> {CARPETA_SALIDA}")
+
+    plantilla = Path(__file__).resolve().parent / "certificaciones.html"
+    html = None
+    if plantilla.exists():
+        html = plantilla.read_text(encoding="utf-8")
+    elif ARCHIVO_HTML.exists():
+        html = ARCHIVO_HTML.read_text(encoding="utf-8")
+    if html is None:
+        print(f"[aviso] No encontré certificaciones.html junto al script ni en {ARCHIVO_HTML.parent}.")
+        return
+    limpio = _con_datos(html, None) or html          # por si quedó una versión vieja con datos pegados
+    if not ARCHIVO_HTML.exists() or ARCHIVO_HTML.read_text(encoding="utf-8") != limpio:
+        ARCHIVO_HTML.write_text(limpio, encoding="utf-8")
+        print(f"[ok] certificaciones.html actualizado en {ARCHIVO_HTML.parent}")
+
+    if CARPETA_GITHUB:
+        repo = Path(CARPETA_GITHUB)
+        (repo / "data").mkdir(parents=True, exist_ok=True)
+        for f in jsons:
+            (repo / "data" / f.name).write_bytes(f.read_bytes())
+        (repo / "certificaciones.html").write_text(limpio, encoding="utf-8")
+        print(f"[ok] JSON y certificaciones.html copiados a {repo}")
+
+    if SUBIR_A_GITHUB:
+        archivos = [(f, f"data/{f.name}") for f in jsons] + \
+                   [(CARPETA_SALIDA / (f.stem + ".js"), f"data/{f.stem}.js") for f in jsons]
+        if ARCHIVO_HTML.exists():
+            archivos.append((ARCHIVO_HTML, "certificaciones.html"))
+        subir_a_github(archivos)
+
+
 def main():
     elegidas = [a.lower() for a in sys.argv[1:]] or list(OBRAS)
     CARPETA_SALIDA.mkdir(parents=True, exist_ok=True)
@@ -1037,22 +1332,23 @@ def main():
     else:
         print(f"[aviso] No se encontró {ARCHIVO_SEGUIMIENTO}: el panel saldrá sin fechas de pago.")
 
-    if wb_seg:
-        indice = generar_indice(leer_master(wb_seg, incluir_sin_obra=True), wb_seg)
-        salida_idx = CARPETA_SALIDA / "certificaciones_indice.json"
-        salida_idx.write_text(json.dumps(indice, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"[ok] índice general: {len(indice['comprobantes'])} comprobantes, {len(indice['obras'])} obras, "
-              f"{len(indice['avisos'])} avisos de datos -> {salida_idx}")
+    wb_res = None
+    if ARCHIVO_RESUMENES.exists():
+        wb_res = load_workbook(ARCHIVO_RESUMENES, data_only=True)
+    else:
+        print(f"[aviso] No se encontró {ARCHIVO_RESUMENES}: el monto vigente se tomará del Resumen General de cada certificado.")
 
+    datos_obras = {}
     for clave in elegidas:
         conf = OBRAS.get(clave)
         if not conf:
             print(f"[saltada] '{clave}' no está en OBRAS.")
             continue
-        if not (CARPETA_CERTIFICADOS / conf["archivo"]).exists():
-            print(f"[saltada] {clave}: no existe {CARPETA_CERTIFICADOS / conf['archivo']}")
+        if not ruta_certificado(conf).exists():
+            print(f"[saltada] {clave}: no existe {ruta_certificado(conf)}")
             continue
-        data = procesar_obra(clave, conf, master, wb_seg)
+        data = procesar_obra(clave, conf, master, wb_seg, wb_res)
+        datos_obras[clave] = data
         salida = CARPETA_SALIDA / f"certificaciones_{clave}.json"
         salida.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"[ok] {clave}: {len(data['certificados'])} certificados, "
@@ -1061,8 +1357,30 @@ def main():
             print("     ·", a)
 
     if wb_seg:
+        indice = generar_indice(leer_master(wb_seg, incluir_sin_obra=True), wb_seg)
+        indice["pendientes"] = ajustes_pendientes(datos_obras, indice["comprobantes"])
+        salida_idx = CARPETA_SALIDA / "certificaciones_indice.json"
+        salida_idx.write_text(json.dumps(indice, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"[ok] índice general: {len(indice['comprobantes'])} comprobantes, {len(indice['obras'])} obras, "
+              f"{len(indice['avisos'])} avisos de datos -> {salida_idx}")
+        guardar_historial_proyeccion(indice)
+
+    if wb_seg:
         wb_seg.close()
+
+    pegar_datos()
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        import traceback
+        print("\n[ERROR] El script se detuvo:\n")
+        traceback.print_exc()
+    finally:
+        # la ventana no se cierra sola: así se puede leer lo que pasó
+        try:
+            input("\nPresioná Enter para cerrar...")
+        except EOFError:
+            pass
