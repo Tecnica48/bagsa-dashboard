@@ -1,6 +1,6 @@
 {
- "generatedAt": "18/11/2026",
- "generatedTime": "11:13",
+ "generatedAt": "27/11/2026",
+ "generatedTime": "14:04",
  "reglas": {
   "antiguoDias": 120,
   "demoraFactor": 1.5
@@ -7893,7 +7893,7 @@
    "pago": null,
    "factura": null,
    "poliza": null,
-   "obs": null
+   "obs": "Certifico items que no requieren validacion del personal consultado con Agus- no va a ver validacion del personal."
   },
   {
    "id": 370,
@@ -7909,12 +7909,12 @@
    "monto": 100872676.51,
    "acta": "2026-11-06",
    "envio": "2026-11-10",
-   "entrada": null,
+   "entrada": "2026-11-18",
    "tesoreria": null,
    "pago": null,
-   "factura": null,
-   "poliza": null,
-   "obs": "16-11 se envio documentacion del personal a rrhh Bagsa/"
+   "factura": "FA A 00002-00000764 por $ 100.872.676,50 IVA incluido. –",
+   "poliza": "Póliza de seguro de caución de TUTELAR n.º 183.143 en garantía de sustitución de fondo de reparo. –",
+   "obs": "16-11 se envio la documentacion del personal a rrhh bagsa/ 17-11 observacion pero se devolvio el mail a rrhh bagsa(ractificar/rectificar comentarios)/18-11 se reenvia comentarios con documentacíon a la contratista, responde contratista y lo tiene rrhh bagsa mismo día/ 18-11 Validacion del Personal por rrhh Bagsa."
   }
  ],
  "avisos": [
