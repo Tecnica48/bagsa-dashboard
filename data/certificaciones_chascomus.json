@@ -1,6 +1,6 @@
 {
- "generatedAt": "18/11/2026",
- "generatedTime": "11:13",
+ "generatedAt": "27/11/2026",
+ "generatedTime": "14:04",
  "obra": {
   "clave": "chascomus",
   "nombre": "Chascomus",
@@ -533,7 +533,7 @@
    "diasCertAPago": null,
    "factura": null,
    "poliza": null,
-   "obs": null
+   "obs": "Certifico items que no requieren validacion del personal consultado con Agus- no va a ver validacion del personal."
   }
  ],
  "otrosPagos": [],
