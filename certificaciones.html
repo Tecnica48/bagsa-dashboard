@@ -428,7 +428,7 @@
   .py-mes.vacio b{color:var(--text-muted);font-weight:400;}
   .py-mes:hover{background:var(--teal-soft);}
   .py-mes.sel{border-top-color:#008ed7;background:#e6f3fb;box-shadow:0 2px 6px rgba(0,87,149,.12);}
-  button.dest{font:inherit;text-align:left;cursor:pointer;display:block;width:100%;color:inherit;transition:transform .18s ease,box-shadow .18s ease;}
+  button.dest{font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-start;width:100%;color:inherit;transition:transform .18s ease,box-shadow .18s ease;}
   button.dest:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,87,149,.14);}
   .dest .ver,.kpi .ver{color:#008ed7;}
   .dest .ver{display:block;margin-top:8px;font-size:12px;font-weight:700;}
@@ -453,6 +453,13 @@
   .py-hist .py-res .v{color:#6f7f8c;}
   .py-pag{display:block;font-size:11.5px;color:#7d8c99;}
   .py-tit{font-size:19px;color:var(--navy);margin:0 0 2px;font-weight:600;}
+  .dest .motivo{display:block;font-size:11.5px;line-height:1.4;color:#7a4a12;background:#fbeedd;border-radius:6px;padding:5px 8px;margin-top:4px;}
+  .motivo-dlg{background:#fdf5ea;border:1px solid #f0d6b4;border-radius:10px;padding:12px 14px;margin-top:14px;color:#4d3210;font-size:13px;line-height:1.5;}
+  .motivo-dlg h4{margin:0 0 4px;font-size:14px;color:#8a4b0f;}
+  .motivo-dlg p{margin:8px 0 0;}
+  .motivo-dlg .cuenta{margin-top:4px;font-size:13px;}
+  .motivo-dlg .cuenta td{border-bottom-color:#f0d6b4;padding:6px 4px;}
+  .motivo-dlg .cuenta .tot td{background:#fbe6cc;border-top:2px solid #d9822b;color:#6b3a0b;}
   .ctl{font-size:12px;color:var(--muted);}
   .ctl.ok{color:#0b8a9b;font-weight:600;}
   .ctl.dif{color:#b4641a;font-weight:600;}
@@ -966,22 +973,55 @@ function abrirCuenta(d, k){
   gid("dlg-cuenta").innerHTML = `<button type="button" class="cerrar" data-cerrar>Cerrar</button>
     <h3 class="f-tit">${c.titulo}</h3><p class="f-nota" style="margin:2px 0 4px">Qué suma (+) y qué resta (−), en pesos con IVA.</p>
     <table class="cuenta"><tbody>${c.L.map(r => `<tr class="${r.c}"><td class="sg">${r.s}</td><td>${r.t}${r.det ? `<small>${r.det}</small>` : ""}</td><td class="n">${fmtPesos(r.v)}</td></tr>`).join("")}</tbody></table>
-    <p class="f-nota" style="margin-top:12px">${c.nota}</p>`;
+    <p class="f-nota" style="margin-top:12px">${c.nota}</p>
+    ${d._motivos && d._motivos[k] ? (m => `<div class="motivo-dlg"><h4>Por qué difiere de la planilla</h4>
+      <table class="cuenta"><tbody>
+        <tr><td>Según la planilla (cuadro del Resumen General)</td><td class="n">${fmtPesos(m.excel)}</td></tr>
+        <tr><td>Según el panel (suma de los renglones)</td><td class="n">${fmtPesos(m.panel)}</td></tr>
+        <tr class="tot"><td>${m.dif > 0 ? "La planilla tiene de más" : "A la planilla le falta"}</td><td class="n">${fmtPesos(Math.abs(m.dif))}</td></tr>
+      </tbody></table>
+      <p><b>Causa.</b> ${m.causa}</p><p><b>Qué hacer.</b> ${m.accion}</p></div>`)(d._motivos[k]) : ""}`;
   gid("dlg-cuenta").showModal();
 }
 
 /* ---------------- indicadores destacados: los que se marcan con color en la planilla ---------------- */
+function motivoDif(d, panel, excel, tipo){
+  // Por qué el panel y la planilla no dan lo mismo: los dos números, la diferencia, la causa y qué hacer
+  if(panel == null || excel == null || Math.abs(panel - excel) <= 2) return null;
+  const dif = excel - panel;
+  const enRes = new Set((d.ajustes || []).map(a => a.redet));
+  const faltan = (d.ajustesCaratula || []).filter(c => !enRes.has(c.n) && c.fecha);
+  const val = c => tipo === "azul" ? (c.importe || 0) - (c.anticipo || 0) : (c.neto || 0);
+  const suma = faltan.reduce((t, c) => t + val(c), 0);
+  const m = {panel, excel, dif};
+  if(faltan.length && Math.abs(suma - dif) <= 2){
+    const nom = faltan.map(c => `el Ajuste ${RU(c.n)}`).join(" y ");
+    m.causa = `La diferencia es exactamente ${nom}, ${faltan.length === 1 ? "que tiene" : "que tienen"} su carátula calculada (${faltan.map(c => `AJUSTE ${c.n}, del ${fmtFecha(c.fecha)}, ${fmtPesos(val(c))}`).join("; ")}). `
+      + `El cuadro del Resumen General ya ${faltan.length === 1 ? "lo suma" : "los suma"}, pero no ${faltan.length === 1 ? "está cargado" : "están cargados"} en la hoja Resumen Ajuste. El panel arma este número sumando renglón por renglón de esa hoja, por eso le falta.`;
+    m.accion = `Cargar ${nom} en la hoja Resumen Ajuste del Certificado y volver a correr el script. Después de eso los dos números tienen que coincidir.`;
+  } else {
+    m.causa = "No se encontró un certificado, ajuste o anticipo que explique la diferencia por sí solo.";
+    m.accion = "Revisar que cada certificado, ajuste y anticipo esté cargado en el Resumen General y en el Resumen Ajuste, con el mismo importe que su carátula.";
+  }
+  return m;
+}
+
 function destacados(d){
   if(!d.certificados || !d.certificados.length) return "";
   const F = calcEco(d).filas, byX = x => F.find(r => r.x === x) || {};
   const ab = byX("abonadoDescAnticipos"), af = byX("abonadoConAF");
-  const ok = r => r.control === "ok" ? '<span class="ctl ok" title="Coincide con la planilla de certificación">✓ coincide con la planilla</span>'
-    : r.control === "dif" ? '<span class="ctl dif" title="El panel calculó distinto que la planilla de certificación">Difiere de la planilla</span>' : "";
-  const t = (cls, tit, v, sub, r, k) => v == null ? "" : `<button type="button" class="dest ${cls}" data-cuenta="${k}"><div class="l">${tit}</div><div class="v">${fmtM(v)}</div>
-    <div class="s">${fmtPesos(v)}</div><div class="s2">${sub}</div>${r ? ok(r) : ""}<span class="ver">Ver cuenta ›</span></button>`;
-  const filas = t("azul", "Abonado a la fecha, descontados anticipos", ab.a, "Neto de certificados y ajustes, a precios de la última redeterminación", ab, "azul")
-    + t("rosa", "Abonado a la fecha, con anticipos financieros", af.a, "Lo que se pagó o está en camino, anticipos incluidos", af, "rosa")
-    + t("violeta", "Falta abonar", af.f, "Saldo a pagar de la obra, a precios de la última redeterminación", af, "violeta");
+  d._motivos = {};
+  const ctl = (k, panel, excel) => {
+    if(excel == null) return "";
+    const m = motivoDif(d, panel, excel, k); d._motivos[k] = m;
+    return m ? '<span class="ctl dif">Difiere de la planilla · ver por qué en la cuenta</span>'
+             : '<span class="ctl ok" title="Coincide con la planilla de certificación">✓ coincide con la planilla</span>';
+  };
+  const t = (cls, tit, v, sub, k, excel) => v == null ? "" : `<button type="button" class="dest ${cls}" data-cuenta="${k}"><div class="l">${tit}</div><div class="v">${fmtM(v)}</div>
+    <div class="s">${fmtPesos(v)}</div><div class="s2">${sub}</div>${ctl(k, v, excel)}<span class="ver">Ver cuenta ›</span></button>`;
+  const filas = t("azul", "Abonado a la fecha, descontados anticipos", ab.a, "Neto de certificados y ajustes, a precios de la última redeterminación", "azul", ab.ca)
+    + t("rosa", "Abonado a la fecha, con anticipos financieros", af.a, "Lo que se pagó o está en camino, anticipos incluidos", "rosa", af.ca)
+    + t("violeta", "Falta abonar", af.f, "Saldo a pagar de la obra, a precios de la última redeterminación", "violeta", af.cf);
   return filas ? `<div class="destacados">${filas}</div>` : "";
 }
 
@@ -1879,6 +1919,9 @@ async function traerJSON(nombre, alActualizar){
 }
 
 function cargarIndice(){
+  // historial de proyecciones (opcional): fotos que guarda el script cada mes
+  traerJSON("certificaciones_historial.json", h => { IX.hist = h; if(IX.d) pintarProy(); })
+    .then(h => { IX.hist = h; if(IX.d) pintarProy(); }).catch(() => {});
   traerJSON("certificaciones_indice.json", renderIndice).then(_pausa).then(renderIndice).catch(() => {
     app.innerHTML = `<div class="estado-msg"><h2>Todavía no hay datos del índice</h2>
       <p>No se encontró <code>certificaciones_indice.json</code>, ni en la carpeta <code>data</code> (como .json o .js) ni junto a esta página.
@@ -1887,7 +1930,7 @@ function cargarIndice(){
   });
 }
 
-const IX = {d:null, hoy:null, mes:null, modo:"curso", obra:"", empresa:"", q:"", C:[], porId:{}};
+const IX = {hist:null, d:null, hoy:null, mes:null, modo:"curso", obra:"", empresa:"", q:"", C:[], porId:{}};
 const ETA = [
   {k:"acta",      corto:"Acta",      largo:"Acta de medición",      estado:"Acta de medición"},
   {k:"envio",     corto:"Envío",     largo:"Enviado al contratista", estado:"Enviado al contratista"},
@@ -1972,7 +2015,7 @@ function renderIndice(d){
       <div class="kpis kpis-tres" id="ix-kpis"></div>
       <div id="proyeccion-pagos" style="margin-top:22px">
         <h3 class="py-tit">Proyección de pagos</h3>
-        <p class="bajada">Lo que tiene fechas en el seguimiento va en el mes de su pago estimado. Los ajustes con el cálculo hecho que todavía no tienen fechas van como pendientes. Los meses anteriores quedan como historial, en gris, con lo que se pagó.</p>
+        <p class="bajada">Lo que tiene fechas en el seguimiento va en el mes de su pago estimado. Los ajustes con el cálculo hecho que todavía no tienen fechas van como pendientes. Los meses anteriores quedan como historial, en gris: lo que se había proyectado (foto que guarda el script cada mes) contra lo que se pagó.</p>
         <div class="panel py-panel">
           <div class="py-bar">
             <div class="cal-nav">
@@ -2109,6 +2152,13 @@ function armarProy(M){
   return {certs, ants, ajp, pag, pasado, tCert:suma(certs), tAnt:suma(ants), tAjp:suma(ajp), tPag:suma(pag)};
 }
 
+function fotoDe(M){
+  // la última foto tomada antes de que empezara el mes M (lo que se proyectaba para ese mes)
+  const F = (IX.hist && IX.hist.fotos) || {};
+  const k = Object.keys(F).filter(x => x < M).sort().pop();
+  return k ? F[k] : null;
+}
+
 function mesesProy(){
   // historial de los últimos 12 meses (los que tienen algo) y, hacia adelante, hasta el último pago estimado
   const hoyK = mesKey(IX.hoy);
@@ -2116,7 +2166,8 @@ function mesesProy(){
   const out = [];
   for(let k = mesMas(hoyK, -12); k <= ult && out.length < 36; k = mesMas(k, 1)){
     if(k >= hoyK){ out.push(k); continue; }
-    const d = armarProy(k); if(d.pag.length || d.certs.length || d.ants.length) out.push(k);
+    const d = armarProy(k), f = fotoDe(k);
+    if(d.pag.length || d.certs.length || d.ants.length || (f && f.items.some(x => x.mesPago === k))) out.push(k);
   }
   return out;
 }
@@ -2139,13 +2190,30 @@ function pintarProy(){
   const hist = d.pag.length ? `<div class="py-hist"><h4 class="py-h">Pagado en ${mesTxt(PY.mes)}</h4>
     <table class="py-tabla">${cabPy}<tbody>${filasPy(d.pag)}<tr class="tot"><td colspan="4">Total pagado</td><td class="n">${fmtPesos(d.tPag)}</td></tr></tbody></table></div>` : "";
   if(d.pasado){
-    const sinPagar = [...d.certs, ...d.ants];
+    const foto = fotoDe(PY.mes);
+    const okF = x => (!IX.obra || x.obraKey === IX.obra) && (!IX.empresa || (x.empresa || "").toUpperCase().includes(IX.empresa.toUpperCase().slice(0, 12)));
+    const proy = foto ? foto.items.filter(x => x.mesPago === PY.mes && okF(x)) : [];
+    const tProy = proy.reduce((t, x) => t + (x.monto || 0), 0);
+    let tCumplido = 0;
+    const filasF = proy.map(x => {
+      const c = IX.porId[String(x.id)], fp = c && c.fechas.pago;
+      let que = '<span class="ctl dif">Sin pagar todavía</span>';
+      if(fp){ const mismo = mesKey(fp) === PY.mes; if(mismo) tCumplido += x.monto || 0;
+        que = mismo ? `<span class="ctl ok">Pagado el ${fmtDate(fp)}</span>` : `<span class="ctl">Pagado en otro mes: ${fmtDate(fp)}</span>`; }
+      return `<tr><td>${esc(x.obra)}</td><td>${esc(x.tema || "")}</td><td>${fmtDate(parseISO(x.estimado))}</td><td class="n">${fmtPesos(x.monto)}</td><td>${que}</td></tr>`;
+    }).join("");
+    const tablaF = foto ? `<h4 class="py-h">Lo que se proyectaba para ${mesTxt(PY.mes)} <span class="py-nota">(foto del ${fmtDate(parseISO(foto.tomada))})</span></h4>
+      <table class="py-tabla"><thead><tr><th>Obra</th><th>Tema</th><th>Pago estimado</th><th class="n">Monto</th><th>Qué pasó</th></tr></thead><tbody>${filasF || '<tr><td colspan="5">No había nada proyectado para este mes.</td></tr>'}
+      <tr class="tot"><td colspan="3">Total proyectado</td><td class="n">${fmtPesos(tProy)}</td><td></td></tr></tbody></table>`
+      : '<p class="py-nota">No hay una proyección guardada de antes de este mes: el historial se guarda desde que el script empezó a sacar fotos.</p>';
     gid("py-cuerpo").innerHTML = `<div class="py-hist"><p class="py-nota">Historial: ${mesTxt(PY.mes)} ya pasó.</p>
-      <div class="py-res"><div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Pagado en el mes</div><div class="v">${fmtM(d.tPag)}</div></div>
-      ${sinPagar.length ? `<div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Proyectado y sin pagar</div><div class="v">${fmtM(d.tCert + d.tAnt)}</div></div>` : ""}</div></div>
-      ${hist || '<p class="py-vacio">No hubo pagos en este mes.</p>'}
-      ${sinPagar.length ? `<h4 class="py-h">Proyectado para ${mesTxt(PY.mes)} y todavía sin pagar</h4>
-        <table class="py-tabla">${cabPy}<tbody>${filasPy(sinPagar)}<tr class="tot"><td colspan="4">Total</td><td class="n">${fmtPesos(d.tCert + d.tAnt)}</td></tr></tbody></table>` : ""}`;
+      <div class="py-res">
+        ${foto ? `<div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Proyectado</div><div class="v">${fmtM(tProy)}</div></div>
+        <div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">De eso, pagado en el mes</div><div class="v">${fmtM(tCumplido)}</div></div>` : ""}
+        <div style="--c:#8a9aa8;--t:#f1f4f6"><div class="l">Total pagado en el mes</div><div class="v">${fmtM(d.tPag)}</div></div>
+      </div>
+      ${tablaF}</div>
+      ${hist || '<p class="py-vacio">No hubo pagos en este mes.</p>'}`;
     return;
   }
   gid("py-cuerpo").innerHTML = `
